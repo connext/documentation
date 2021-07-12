@@ -1,0 +1,85 @@
+---
+sidebar_position: 1
+---
+
+# Getting Started
+
+The NXTP SDK is distributed as a package on NPM.
+
+## Installation
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  defaultValue="yarn"
+  values={[
+    { label: 'Yarn', value: 'yarn', },
+    { label: 'NPM', value: 'npm', },
+  ]
+}>
+<TabItem value="yarn">
+
+```shell
+yarn install @connext/nxtp-sdk
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```shell
+npm install @connext/nxtp-sdk
+```
+
+</TabItem>
+</Tabs>
+
+## Initializing the SDK
+
+The SDK is initialized with a static async method called `init` which returns a Promise that resolves to the initialized SDK class. The `init` function accepts the following arguments, in order:
+
+- `chainProviders`: _Required_. Object with `chainId` as a key, and an Ethers [JsonRpcProvider](https://docs.ethers.io/v5/api/providers/jsonrpc-provider/) as a value. Provide all the chains you intend to support in this argument. Providers are instantiated using [Alchemy](https://www.alchemy.com), [Infura](https://infura.io), or local nodes.
+- `signer`: _Required_. An Ethers-compatible [Signer](https://docs.ethers.io/v5/api/signer/) which is instantiated with a private key or injected provider.
+
+## Basic Example
+
+<Tabs
+  defaultValue="ts"
+  values={[
+    { label: 'Typescript', value: 'ts', },
+  ]
+}>
+<TabItem value="ts">
+
+```ts
+import { providers, Wallet, utils } from "ethers";
+
+const chainProviders = {
+  4: new providers.JsonRpcProvider("https://rinkeby.infura.io/..."),
+  5: new providers.JsonRpcProvider("https://goerli.infura.io/..."),
+};
+const signer = Wallet.fromMnemonic(
+  "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat"
+);
+const sdk = await NxtpSdk.init(chainProviders, signer);
+await sdk.transfer({
+  sendingChainId: 4,
+  sendingAssetId: "0x",
+  receivingChainId: 5,
+  receivingAssetId: "0x",
+  receivingAddress: signer.address,
+  amount: utils.parseEther("1").toString(),
+  expiry: Date.now() / 1000 + 24 * 3, // 3 days from now
+});
+```
+
+</TabItem>
+</Tabs>
+
+## Next Steps
+
+See the [API reference](./api-reference) for the list of methods that can be called.
+
+## Full Example
+
+See the [`test-ui`](https://github.com/connext/nxtp/tree/main/packages/test-ui) for a full working example of a React integration of the SDK.

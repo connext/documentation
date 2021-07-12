@@ -2,34 +2,16 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# NXTP Developer Docs
 
-Let's discover **Docusaurus in less than 5 minutes**.
+NXTP (Noncustodial Xchain Transfer Protocol) is a lightweight protocol for generalized xchain/xrollup transactions that retain the security properties of the underlying execution environment (i.e. it does not rely on any external validator set).
 
-## Getting Started
+## Components
 
-Get started by **creating a new site**.
+### [SDK](./sdk/getting-started)
 
-Or **try Docusaurus immediately** with **[new.docusaurus.io](https://new.docusaurus.io)**.
+The SDK is an isomorphic library that allows you to interact with the NXTP network to perform xchain transfers.
 
-## Generate a new site
+### [Router](./router/intro)
 
-Generate a new Docusaurus site using the **classic template**:
-
-```shell
-npx @docusaurus/init@latest init my-website classic
-```
-
-## Start your site
-
-Run the development server:
-
-```shell
-cd my-website
-
-npx docusaurus start
-```
-
-Your site starts at `http://localhost:3000`.
-
-Open `docs/intro.md` and edit some lines: the site **reloads automatically** and display your changes.
+The router is an offchain component that provides liquidity and facilitates xchain transfers.
