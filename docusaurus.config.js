@@ -4,20 +4,20 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: "Connext Documentation",
-  tagline: "Cross Chain Infrastructure",
+  tagline: "The interoperability protocol of L2 Ethereum.",
   url: "https://nxtp-docs.connext.network",
   baseUrl: "/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  favicon: "img/logomark.ico",
+  organizationName: "connext", // Usually your GitHub org/user name.
+  projectName: "connext", // Usually your repo name.
   themeConfig: {
     navbar: {
       title: "Connext",
       logo: {
         alt: "My Site Logo",
-        src: "img/logo.svg",
+        src: "img/logomark.png",
       },
       items: [
         {
@@ -27,7 +27,7 @@ module.exports = {
           label: "Docs",
         },
         {
-          href: "https://github.com/facebook/docusaurus",
+          href: "https://github.com/connext/nxtp",
           label: "GitHub",
           position: "right",
         },
@@ -37,20 +37,11 @@ module.exports = {
       style: "dark",
       links: [
         {
-          title: "Docs",
-          items: [
-            {
-              label: "Tutorial",
-              to: "/docs/intro",
-            },
-          ],
-        },
-        {
           title: "Community",
           items: [
             {
               label: "Discord",
-              href: "https://discord.gg/SuPEHyvZcg",
+              href: "https://chat.connext.network",
             },
             {
               label: "Twitter",
