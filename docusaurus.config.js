@@ -21,10 +21,14 @@ module.exports = {
       },
       items: [
         {
-          type: "doc",
-          docId: "intro",
-          position: "left",
-          label: "Docs",
+          href: "https://medium.com/connext",
+          label: "Blog",
+          position: "right",
+        },
+        {
+          href: "https://chat.connext.network",
+          label: "Chat",
+          position: "right",
         },
         {
           href: "https://github.com/connext/nxtp",
@@ -35,21 +39,6 @@ module.exports = {
     },
     footer: {
       style: "dark",
-      links: [
-        {
-          title: "Community",
-          items: [
-            {
-              label: "Discord",
-              href: "https://chat.connext.network",
-            },
-            {
-              label: "Twitter",
-              href: "https://twitter.com/ConnextNetwork",
-            },
-          ],
-        },
-      ],
       copyright: `Copyright © ${new Date().getFullYear()} Connext, Inc.`,
     },
     prism: {
@@ -63,7 +52,7 @@ module.exports = {
       {
         docs: {
           path: "./docs",
-          routeBasePath: "docs",
+          routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           editUrl: "https://github.com/connext/documentation",
