@@ -14,7 +14,7 @@ module.exports = {
   projectName: "connext", // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: "Connext",
+      title: "Connext Documentation",
       logo: {
         alt: "My Site Logo",
         src: "img/logomark.png",
