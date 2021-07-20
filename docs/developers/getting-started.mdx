@@ -36,10 +36,16 @@ npm install @connext/nxtp-sdk
 
 ## Initializing the SDK
 
-The SDK is initialized with a static async method called `init` which returns a Promise that resolves to the initialized SDK class. The `init` function accepts the following arguments, in order:
+The `constructor` accepts the following arguments, in order:
 
-- `chainProviders`: _Required_. Object with `chainId` as a key, and an Ethers [JsonRpcProvider](https://docs.ethers.io/v5/api/providers/jsonrpc-provider/) as a value. Provide all the chains you intend to support in this argument. Providers are instantiated using [Alchemy](https://www.alchemy.com), [Infura](https://infura.io), or local nodes.
+- `chainConfig`: _Required_. Object with `chainId` as a key, and the following object keys/values. Provide all the chains you intend to support in this argument:
+  - `provider`: _Required_. Ethers [FallbackProvider](https://docs.ethers.io/v5/api/providers/other/#FallbackProvider). Providers are instantiated using [Alchemy](https://www.alchemy.com), [Infura](https://infura.io), or local nodes. `FallbackProvider` is used to provide redunancy from faulty providers.
+  - `subgraph`: _Optional_. Override the subgraph for the specified chain. Most chains will have default subgraph endpoints, you will get an error on instantiation if not.
+  - `transactionManagerAddress`: _Optional_. Override or provide alternate address for `TransactionManager` contract.
 - `signer`: _Required_. An Ethers-compatible [Signer](https://docs.ethers.io/v5/api/signer/) which is instantiated with a private key or injected provider.
+- `logger`: _Optional_. An instance of a [Pino](https://getpino.io) logger. If not provided, one will be created.
+- `natsUrl`: _Optional_. Override NATS URL otherwise connect to the main, global NATS cluster.
+- `authUrl`: _Optional_. Override auth URL otherwise connect to the main, global auth server.
 
 ## Basic Example
 
@@ -53,24 +59,46 @@ The SDK is initialized with a static async method called `init` which returns a 
 
 ```ts
 import { providers, Wallet, utils } from "ethers";
+import { NxtpSdkEvents, NxtpSdk } from "@connext/nxtp-sdk";
 
-const chainProviders = {
-  4: new providers.JsonRpcProvider("https://rinkeby.infura.io/..."),
-  5: new providers.JsonRpcProvider("https://goerli.infura.io/..."),
+const chainConfig = {
+  4: {
+    provider: new providers.FallbackProvider([
+      new providers.JsonRpcProvider("https://rinkeby.infura.io/..."),
+    ]),
+  },
+  5: {
+    provider: new providers.FallbackProvider([
+      new providers.JsonRpcProvider("https://goerli.infura.io/..."),
+    ]),
+  },
 };
 const signer = Wallet.fromMnemonic(
   "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat"
 );
-const sdk = await NxtpSdk.init(chainProviders, signer);
-await sdk.transfer({
+const sdk = new NxtpSdk(chainProviders, signer);
+const quote = await sdk.getTransferQuote({
+  sendingAssetId: "0x9aC2c46d7AcC21c881154D57c0Dc1c55a3139198",
   sendingChainId: 4,
-  sendingAssetId: "0x",
+  receivingAssetId: "0x8a1Cad3703E0beAe0e0237369B4fcD04228d1682",
   receivingChainId: 5,
-  receivingAssetId: "0x",
-  receivingAddress: signer.address,
-  amount: utils.parseEther("1").toString(),
-  expiry: Date.now() / 1000 + 24 * 3, // 3 days from now
+  receivingAddress: "0x5A9e792143bf2708b4765C144451dCa54f559a11",
+  amount: utils.parseEther("1"),
+  expiry: Math.floor(Date.now() / 1000) + 3600 * 24 * 3, // 3 days
 });
+
+// start transfer, will either prompt user for sigs/transactions or sign with unlocked account
+const transfer = await sdk.startTransfer(quote);
+
+// wait for receiver prepared event
+const prepared = await sdk.waitFor(
+  NxtpSdkEvents.ReceiverTransactionPrepared,
+  100_000,
+  (data) => data.txData.transactionId === transfer.transactionId // filter function
+);
+
+await sdk.finishTransfer(prepared);
+// done!
 ```
 
 </TabItem>
