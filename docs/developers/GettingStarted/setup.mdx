@@ -2,11 +2,17 @@
 sidebar_position: 1
 ---
 
-# Getting Started
+# Installation & Setup
 
-The NXTP SDK is distributed as a package on NPM.
+Connext consists of two integration touchpoints: 
+1. The onchain connext contracts
+2. The offchain connext SDK
 
-## Installation
+A contract integration is only needed if you want to initiate a transaction directly from another contract (guide coming soon!). For anything else, the Connext sdk neatly wraps all functionality for the developer.
+
+## Installing the SDK
+
+The SDK is distributed as a typescript package on npm. It is fully isomorphic (can be used the same way in client-side, server-side, and React Native environments).
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -41,14 +47,11 @@ The `constructor` accepts the following arguments, in order:
 - `chainConfig`: _Required_. Object with `chainId` as a key, and the following object keys/values. Provide all the chains you intend to support in this argument:
   - `provider`: _Required_. Ethers [FallbackProvider](https://docs.ethers.io/v5/api/providers/other/#FallbackProvider). Providers are instantiated using [Alchemy](https://www.alchemy.com), [Infura](https://infura.io), or local nodes. `FallbackProvider` is used to provide redunancy from faulty providers.
   - `subgraph`: _Optional_. Override the subgraph for the specified chain. Most chains will have default subgraph endpoints, you will get an error on instantiation if not.
-  - `transactionManagerAddress`: _Optional_. Override or provide alternate address for `TransactionManager` contract.
-- `signer`: _Required_. An Ethers-compatible [Signer](https://docs.ethers.io/v5/api/signer/) which is instantiated with a private key or injected provider.
+- `signer`: _Required_. An Ethers-compatible [Signer](https://docs.ethers.io/v5/api/signer/) which is instantiated with a private key or injected provider (Metamask).
 - `logger`: _Optional_. An instance of a [Pino](https://getpino.io) logger. If not provided, one will be created.
 - `doNotStartContractListeners`: _Optional_. Boolean value that can be set to manually control starting and stopping contract listeners. If implemented this can optimize RPC calls.
-- `natsUrl`: _Optional_. Override NATS URL otherwise connect to the main, global NATS cluster.
-- `authUrl`: _Optional_. Override auth URL otherwise connect to the main, global auth server.
 
-## Basic Example
+A basic example:
 
 <Tabs
   defaultValue="ts"
@@ -62,6 +65,7 @@ The `constructor` accepts the following arguments, in order:
 import { providers, Wallet, utils } from "ethers";
 import { NxtpSdkEvents, NxtpSdk } from "@connext/nxtp-sdk";
 
+// Set up provider to chain mappings
 const chainConfig = {
   4: {
     provider: new providers.FallbackProvider([
@@ -74,41 +78,15 @@ const chainConfig = {
     ]),
   },
 };
-const signer = Wallet.fromMnemonic(
-  "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat"
-);
-const sdk = new NxtpSdk(chainProviders, signer);
-const quote = await sdk.getTransferQuote({
-  sendingAssetId: "0x9aC2c46d7AcC21c881154D57c0Dc1c55a3139198",
-  sendingChainId: 4,
-  receivingAssetId: "0x8a1Cad3703E0beAe0e0237369B4fcD04228d1682",
-  receivingChainId: 5,
-  receivingAddress: "0x5A9e792143bf2708b4765C144451dCa54f559a11",
-  amount: utils.parseEther("1"),
-  expiry: Math.floor(Date.now() / 1000) + 3600 * 24 * 3, // 3 days
-});
 
-// start transfer, will either prompt user for sigs/transactions or sign with unlocked account
-const transfer = await sdk.startTransfer(quote);
+// Get signer from metamask
+await ethereum.request({ method: "eth_requestAccounts" });
+const provider = new providers.Web3Provider(ethereum);
+const _signer = provider.getSigner();
 
-// wait for receiver prepared event
-const prepared = await sdk.waitFor(
-  NxtpSdkEvents.ReceiverTransactionPrepared,
-  100_000,
-  (data) => data.txData.transactionId === transfer.transactionId // filter function
-);
-
-await sdk.finishTransfer(prepared);
-// done!
+// Instantiate SDK
+const sdk = new NxtpSdk(chainProviders, _signer);
 ```
 
 </TabItem>
 </Tabs>
-
-## Next Steps
-
-See the other sections in this folder for information on [events](./events), [API](./api-reference), etc.
-
-## Full Example
-
-See the [`test-ui`](https://github.com/connext/nxtp/tree/main/packages/test-ui) for a full working example of a React integration of the SDK.
