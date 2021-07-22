@@ -44,6 +44,7 @@ The `constructor` accepts the following arguments, in order:
   - `transactionManagerAddress`: _Optional_. Override or provide alternate address for `TransactionManager` contract.
 - `signer`: _Required_. An Ethers-compatible [Signer](https://docs.ethers.io/v5/api/signer/) which is instantiated with a private key or injected provider.
 - `logger`: _Optional_. An instance of a [Pino](https://getpino.io) logger. If not provided, one will be created.
+- `doNotStartContractListeners`: _Optional_. Boolean value that can be set to manually control starting and stopping contract listeners. If implemented this can optimize RPC calls.
 - `natsUrl`: _Optional_. Override NATS URL otherwise connect to the main, global NATS cluster.
 - `authUrl`: _Optional_. Override auth URL otherwise connect to the main, global auth server.
 
