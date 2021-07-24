@@ -32,9 +32,9 @@ We'd like to note that we have an immense amount of respect for the Hop team. Wh
 
 Hop has a slightly better integration flow for developers as the system is purely onchain. In contrast, Connext requires integrating a (very lightweight) SDK to run an offchain route auction prior to onchain interactions. Hop also has a slightly better UX as only one signature is needed for users to interact with the system. Connext, on the other hand, requires a signature to initiate the interaction on the source chain, and one to complete the interaction on the destination chain (note that no gas needs to be paid by the user on destination).
 
-Hop is less capital efficient than Connext. Hop requires liquidity for both its source and destination AMMs *and* for its bonders. Additionally, bonders submit bridging transactions on L1 (though these can be batched at scale). Bonders take a capital lockup for funds that they front, as the original user transaction must complete through an existing arbitrary messaging bridge - in the case of rollups, this lockup is the duration of the rollup exit. Lastly, bonders compete against one another to send txs on L1. This makes Hop bonders vulnerable to frontrunning/MEV, reducing margins.
+Hop is less capital efficient than Connext. Hop requires liquidity for both its source and destination AMMs *and* for its bonders. Additionally, bonders submit bridging transactions on L1, incurring L1 fees (though these can be batched at scale). Bonders take a capital lockup for funds that they front, as the original user transaction must complete through an existing arbitrary messaging bridge - in the case of rollups, this lockup is the duration of the rollup exit. Lastly, bonders compete against one another to send txs on L1. This makes Hop bonders vulnerable to frontrunning/MEV, reducing margins.
 
-In contrast, only the liquidity for a *given transaction* is needed to operate Connext. Connext routers take no lockups of capital, and operate directly between source and destination chains (without needing to necessarily incur any L1 gas costs). Connext's offchain route auctioning also make it resistant to MEV as LP/price are negotiated upfront. The combination of the above properties means that Connext has lower fees and significantly better LP returns than Hop.
+In contrast, only the liquidity for a *given transaction* is needed to operate Connext. Connext routers take no lockups of capital, and operate directly between source and destination chains (without needing to necessarily incur any L1 gas costs). Connext's offchain route auctioning also makes it resistant to MEV as LP/price are negotiated upfront. The combination of the above properties means that Connext has lower fees and significantly better LP returns than Hop.
 
 ## Connext vs Optics
 
@@ -46,7 +46,7 @@ We do not consider Optics to be competitive to Connext but instead to be a compl
 
 Atomic swaps, typically done using htlcs, are a model for crosschain swapping where funds are locked and unlocked atomically between two parties on different chains.
 
-Connext aims to be a protocol for more generalized crosschain interactions, rather than for exchanging assets. As such it optimizes for high reliability/uptime and better generality, at the cost of absolute best price:
+Connext aims to be a protocol for more generalized crosschain interactions, rather than for exchanging assets. As such it makes tradeoffs for high reliability/uptime and better generality, at the cost of absolute best price:
 - Connext borrows its core locking mechanism from atomic swaps, but extends the principle to arbitrary contract interactions and transfers.
 - Connext uses a route auction and AMM-based pricing mechanism to source liquidity from a network of routers. In contrast atomic swap systems typically use an orderbook mechanism with the goal of trading two assets with a counterparty.
 - Connext explicitly only enables interactions of 1:1 assets across chains (e.g. USDC on Polygon to USDC on Arbitrum). This mitigates free options in the system.
