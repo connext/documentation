@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Overview
+# How it works
 
 This iteration of Connext's network utilizes [nxtp](https://github.com/connext/nxtp), a lightweight protocol for generalized crosschain transfers.
 
