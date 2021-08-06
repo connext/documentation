@@ -28,11 +28,11 @@ Yes! You can see our audits at https://audits.connext.network.
 
 ### How does Connext work?
 
-Check out our protocol background section (TODO) to understand the system's security model.
+Check out our [How it Works](./howitworks) and [Security Model](./securitymodel) sections!
 
 ### How does Connext compare to XYZ interoperability solution?
 
-Check out our interop background section (TODO) to understand how Connext compares to other systems.
+Check out [Connext vs XYZ](./connextvsxyz) section!
 
 ### Why is Connext an authority on L2s and interoperability?
 
@@ -44,4 +44,4 @@ Connext has been live with its interoperability network since January 2021. Note
 
 ### Where can I try Connext?
 
-There are a number of projects and protocols building on top of Connext. We expect to have a community-maintained list of them soon . For now, we recommend trying the [nxtp testnet demo](https://nxtp.li.finance), a simple UI built by our friends at LiFi to showcase transferring funds across chains.
+There are a number of projects and protocols building on top of Connext. We expect to have a community-maintained list of them soon . For now, we recommend trying the [nxtp testnet demo](https://nxtp.li.finance), a simple UI built by our friends at [LiFi](https://li.finance) to showcase transferring funds across chains.
