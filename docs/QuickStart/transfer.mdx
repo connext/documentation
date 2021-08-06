@@ -5,6 +5,7 @@ sidebar_position: 2
 # Crosschain Txs
 
 The core flow for sending a transaction through Connext consists of:
+
 1. Getting a transfer quote: returns an estimated price and commitment for the transfer.
 2. Starting the transfer: sends the user's transaction on chain A and waits for the network to provide liquidity.
 3. Finishing the transfer: completes the user's transaction on chain B.
@@ -12,6 +13,7 @@ The core flow for sending a transaction through Connext consists of:
 ## GetTransferQuote
 
 The `getTransferQuote` function accepts the following arguments:
+
 - `sendingAssetId`: _Required_. Address of token on the initiating chain. Use `Address(0)` for native assets like $ETH.
 - `sendingChainId`: _Required_. [ChainId](https://chainid.network/) of the initiating chain.
 - `receivingAssetId`: _Required_. Address of token on the receiving chain. Use `Address(0)` for native assets like $ETH.
@@ -54,7 +56,7 @@ const feeEstimate = amount.sub(quote.bid.amountReceived);
 
 ## Executing the Transaction
 
-First, `startTransfer` to initiate the transaction to our contracts. Then, wait for the transaction to be prepared on the receiving chain and call `finishTransfer`.
+First, `prepareTransfer` to initiate the transaction to our contracts. Then, wait for the transaction to be prepared on the receiving chain and call `fulfillTransfer`.
 
 <Tabs
   defaultValue="ts"
@@ -66,7 +68,7 @@ First, `startTransfer` to initiate the transaction to our contracts. Then, wait 
 
 ```ts
 // start transfer, will either prompt user for sigs/transactions or sign with unlocked account
-const transfer = await sdk.startTransfer(quote);
+const transfer = await sdk.prepareTransfer(quote);
 
 // wait for receiver prepared event
 const prepared = await sdk.waitFor(
@@ -75,7 +77,7 @@ const prepared = await sdk.waitFor(
   (data) => data.txData.transactionId === transfer.transactionId // filter function
 );
 
-await sdk.finishTransfer(prepared);
+await sdk.fulfillTransfer(prepared);
 // done!
 ```
 
