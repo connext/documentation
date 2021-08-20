@@ -25,9 +25,9 @@ Nxtp, the latest protocol iteration of Connext, is currently being audited and w
 |      Goerli      |     5    |      ✅      |
 |      Rinkeby     |     4    |      ✅      |
 |       Kovan      |    42    | Coming Soon |
-| Arbitrum Testnet |  421611  | Coming Soon |
+| Arbitrum Testnet |  421611  |      ✅     |
 | Optimism Testnet |    69    | Coming Soon |
-|      Mumbai      |   80001  | Coming Soon |
+|      Mumbai      |   80001  |      ✅     |
 |    BSC Testnet   |    97    | Coming Soon |
 
 ## Supporting Other Chains
