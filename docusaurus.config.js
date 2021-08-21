@@ -21,6 +21,16 @@ module.exports = {
       },
       items: [
         {
+          href: "/",
+          label: "Integration",
+          position: "left",
+        },
+        {
+          href: "Routers/intro",
+          label: "Routers",
+          position: "left",
+        },
+        {
           href: "https://medium.com/connext",
           label: "Blog",
           position: "right",

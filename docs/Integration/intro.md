@@ -22,7 +22,7 @@ This means that cases like **migrating** a token from chain A to chain B are not
 
 These docs contain information for developers integrating Connext and liquidity providers. If you're interested in contributing to the development of the system, check out the READMEs in our [core implementation repo](https://github.com/connext/nxtp).
 
-#### [Quick Start](./QuickStart/setup)
+#### [Quick Start](./Integration/QuickStart/setup)
 
 Want to get started with crosschain interactions in your dApp right away? We step through the E2E integration flow in our Quick Start guide.
 
