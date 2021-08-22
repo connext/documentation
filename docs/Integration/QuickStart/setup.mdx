@@ -49,7 +49,6 @@ The `constructor` accepts the following arguments, in order:
   - `subgraph`: _Optional_. Override the subgraph for the specified chain. Most chains will have default subgraph endpoints, you will get an error on instantiation if not.
 - `signer`: _Required_. An Ethers-compatible [Signer](https://docs.ethers.io/v5/api/signer/) which is instantiated with a private key or injected provider (Metamask).
 - `logger`: _Optional_. An instance of a [Pino](https://getpino.io) logger. If not provided, one will be created.
-- `doNotStartContractListeners`: _Optional_. Boolean value that can be set to manually control starting and stopping contract listeners. If implemented this can optimize RPC calls.
 
 A basic example:
 
