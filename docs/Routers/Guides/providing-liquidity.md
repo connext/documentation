@@ -23,3 +23,7 @@ Add liquidity for both sides of the swap, based on your configured swap pools. M
 You do not need to use the router's private key to do this. The `addLiquidityFor` method will pull funds from your connected wallet and assign them to the specified router.
 
 :::
+
+## Test Tokens
+
+We have deployed test tokens to all testnet chains that can be used to easily test routers. These tokens are mintable. The token addresses are listed in [this file](https://github.com/connext/nxtp/blob/11d995b6bb96ff1fb20bb23be0811f3d0486fa4d/packages/contracts/deployments.json) as `TestERC20`.
