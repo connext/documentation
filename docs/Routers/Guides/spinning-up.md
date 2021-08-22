@@ -80,3 +80,7 @@ $ docker logs router
 # or
 $ docker logs --follow --tail 100 router
 ```
+
+## Grafana Dashboard
+
+The router runs a Grafana dashboard which is available at the on the configured `GRAFANA_EXTERNAL_PORT`.
