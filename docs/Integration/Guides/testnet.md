@@ -46,3 +46,5 @@ The test ERC20 tokens can be freely minted by anyone. The signature of the `mint
 ```
 function mint(address account, uint256 amount)
 ```
+
+The test tokens are collateralized by routers on the test network, so swap requests should always be successful when using these assets.
