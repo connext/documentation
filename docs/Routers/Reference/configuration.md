@@ -14,6 +14,7 @@ The JSON schema accepts the following keys:
   - `providers`: _Required_. An array of providers URLs for a chain. Use a minimum of 1 URL, but additional URLs provide more fallback protection against provider issues.
   - `confirmations`: _Optional_. The number of confirmations required for a transaction to be considered valid on a chain. Defaults to defined values [here](https://github.com/connext/chaindata/blob/29cc0250aff398cdf9326dcb7698d291f3e3015a/crossChain.json).
   - `minGas`: _Optional_. The minimum gas amount required to be held by the router's signer address in order to participate in auctions. Defaults to 0.1 Ether units.
+  - `safeRelayerFee`: _Optional_. The minimum fee amount required by the router to metaTx the transaction. Defaults to 0 Ether units.
 - `swapPools`: _Required_. An array of swap pools. Each pool is a JSON object with the following keys:
   - `name`: _Optional_. The name of the swap pool.
   - `assets`: _Required_. An array of assets. Each asset is a JSON object with the following keys:
