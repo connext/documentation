@@ -11,24 +11,25 @@ Nxtp, the latest protocol iteration of Connext, is currently being audited and w
 | Chain Name          | ChainId  |   Status  |
 |---------------------|----------|:---------:|
 |       Ethereum      |     1    | On launch |
-|       Polygon       |    137   | On launch |
-|     Arbitrum One    |   42161  | On launch |
 |       Optimism      |    10    | On launch |
-|         xDai        |    100   | On launch |
 | Binance Smart Chain |    56    | On launch |
+|       Polygon       |    137   | On launch |
+|         xDai        |    100   | On launch |
 |     Fantom Opera    |    250   | On launch |
+|     Arbitrum One    |   42161  | On launch |
 
 ## Testnets
 
 | Chain Name       | ChainId  |    Status   |
 |------------------|----------|:-----------:|
-|      Goerli      |     5    |      ✅      |
+|      Ropsten      |    3    |      ✅      |
 |      Rinkeby     |     4    |      ✅      |
-|       Kovan      |    42    | Coming Soon |
-| Arbitrum Testnet |  421611  |      ✅     |
-| Optimism Testnet |    69    | Coming Soon |
-|   Polygon Mumbai |   80001  |      ✅     |
+|      Goerli      |     5    |      ✅      |
+|       Kovan      |    42    |      ✅      |
 |    BSC Testnet   |    97    |      ✅     |
+|   Polygon Mumbai |   80001  |      ✅     |
+| Arbitrum RinkArby|  421611  |      ✅     |
+| Optimism Kovan   |    69    | Coming Soon |
 |   Avalanche Fuji |   43113  | Coming Soon |
 
 ## Supporting Other Chains
