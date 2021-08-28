@@ -29,8 +29,9 @@ Nxtp, the latest protocol iteration of Connext, is currently being audited and w
 |    BSC Testnet   |    97    |      ✅     |
 |   Polygon Mumbai |   80001  |      ✅     |
 | Arbitrum RinkArby|  421611  |      ✅     |
+|  Avalanche Fuji  |   43113  |      ✅     |
 | Optimism Kovan   |    69    | Coming Soon |
-|   Avalanche Fuji |   43113  | Coming Soon |
+
 
 ## Supporting Other Chains
 
