@@ -26,7 +26,7 @@ These docs contain information for developers integrating Connext and liquidity 
 
 Want to get started with crosschain interactions in your dApp right away? We step through the E2E integration flow in our Quick Start guide.
 
-#### [System Overview](./background/faq)
+#### [System Overview](./Integration/SystemOverview/faq)
 
 The System Overview section covers high level information about crosschain interoperability and how **nxtp**, the protocol underlying Connext, works.
 
