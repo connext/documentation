@@ -44,10 +44,11 @@ npm install @connext/nxtp-sdk
 
 The `constructor` accepts the following arguments, in order:
 
-- `chainConfig`: _Required_. Object with `chainId` as a key, and the following object keys/values. Provide all the chains you intend to support in this argument:
-  - `provider`: _Required_. Ethers [FallbackProvider](https://docs.ethers.io/v5/api/providers/other/#FallbackProvider). Providers are instantiated using [Alchemy](https://www.alchemy.com), [Infura](https://infura.io), or local nodes. `FallbackProvider` is used to provide redunancy from faulty providers.
-  - `subgraph`: _Optional_. Override the subgraph for the specified chain. Most chains will have default subgraph endpoints, you will get an error on instantiation if not.
-- `signer`: _Required_. An Ethers-compatible [Signer](https://docs.ethers.io/v5/api/signer/) which is instantiated with a private key or injected provider (Metamask).
+- `config`: _Required_. Object with chainConfig, signer and other optional parameters.
+  - `chainConfig`: _Required_. Object with `chainId` as a key, and the following object keys/values. Provide all the chains you intend to support in this argument:
+    - `provider`: _Required_. Ethers [FallbackProvider](https://docs.ethers.io/v5/api/providers/other/#FallbackProvider). Providers are instantiated using [Alchemy](https://www.alchemy.com), [Infura](https://infura.io), or local nodes. `FallbackProvider` is used to provide redunancy from faulty providers.
+    - `subgraph`: _Optional_. Override the subgraph for the specified chain. Most chains will have default subgraph endpoints, you will get an error on instantiation if not.
+  - `signer`: _Required_. An Ethers-compatible [Signer](https://docs.ethers.io/v5/api/signer/) which is instantiated with a private key or injected provider (Metamask).
 - `logger`: _Optional_. An instance of a [Pino](https://getpino.io) logger. If not provided, one will be created.
 
 A basic example:
@@ -84,7 +85,7 @@ const provider = new providers.Web3Provider(ethereum);
 const _signer = provider.getSigner();
 
 // Instantiate SDK
-const sdk = new NxtpSdk(chainProviders, _signer);
+const sdk = new NxtpSdk({chainConfig: chainProviders, signer: _signer});
 ```
 
 </TabItem>
