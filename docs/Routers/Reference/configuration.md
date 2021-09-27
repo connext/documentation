@@ -24,6 +24,7 @@ The JSON schema accepts the following keys:
 - `port`: _Optional_. The port the router will listen on. Defaults to `8080`.
 - `host`: _Optional_. The host the router will listen on. Defaults to `0.0.0.0`.
 - `network`: _Optional_. The network to connect to (separate from blockchain network). One of `testnet`, `mainnet`, `local`. Defaults to `mainnet`.
+- `requestLimit`: _Optional_. The minimal period in milliseconds users can request an auction to each router. Defaults to 2000 (ms)
 
 ## Example Configuration File
 
