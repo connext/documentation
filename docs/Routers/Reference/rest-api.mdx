@@ -12,11 +12,11 @@ As described in the [Spinning Up](../Guides/spinning-up) section, do NOT expose 
 
 ## Endpoints
 
-## GET /ping
+### GET /ping
 
 Pings the router.
 
-### Example Request
+#### Example Request
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -36,6 +36,35 @@ curl -X GET http://ROUTER_EXTERNAL_IP:ROUTER_EXTERNAL_PORT/ping
 </TabItem>
 </Tabs>
 
-### Response
+#### Example Response
 
-Pong.
+```
+pong
+```
+
+### GET /config
+
+Gets the router's config.
+
+#### Example Request
+
+<Tabs
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+  ]
+}>
+<TabItem value="curl">
+
+```shell
+curl -X GET http://ROUTER_EXTERNAL_IP:ROUTER_EXTERNAL_PORT/config
+```
+
+</TabItem>
+</Tabs>
+
+#### Example Response
+
+```json
+{"signerAddress":"0x0EC26F03e3dBA9bb5162D28fD5a3378A25f168d1"}
+```
