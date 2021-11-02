@@ -17,6 +17,6 @@ Routers _cannot_ be shut down anytime they desire. They must be shut down throug
 
 ## Updating Router Version
 
-- Update the `.env` file in the root directory of the [docker-compose repo]() with the desired version. Unless you really know what you are doing, choose releases from the [releases page](https://github.com/connext/nxtp/releases). The version number is the semantic version beginning with `v`.
+- Update the `.env` file in the root directory of the [docker-compose repo](https://github.com/connext/nxtp-router-docker-compose) with the desired version. Unless you really know what you are doing, choose releases from the [releases page](https://github.com/connext/nxtp/releases). The version number is the semantic version beginning with `v`.
 - Update the key in the `.env` `ROUTER_VERSION` with the desired version.
 - Run `docker-compose up -d` to update the router version without any downtime.
