@@ -40,8 +40,8 @@ We started Connext in 2017, and have been a core part of the L2 research communi
 
 ### Is Connext live on mainnet?
 
-Connext has been live with its interoperability network since January 2021. Note that Connext is currently in the process of a network upgrade to use [a new protocol](https://github.com/connext/nxtp). These docs are specifically targeted at the new system, which will be live on mainnet soon.
+Yes! You can see the live status of the network on the community-built [Connext Explorer](connextscan.io/).
 
 ### Where can I try Connext?
 
-There are a number of projects and protocols building on top of Connext. We expect to have a community-maintained list of them soon . For now, we recommend trying the [nxtp testnet demo](https://nxtp.li.finance), a simple UI built by our friends at [LiFi](https://li.finance) to showcase transferring funds across chains.
+There are a number of projects and protocols building on top of Connext. We expect to have a community-maintained list of them soon . For now, we recommend checking out [xPollinate](https://xpollinate.io), a simple UI for bridging across chains.
