@@ -8,7 +8,7 @@ In general, Connext is the *only* EVM-focused interoperability system that is bo
 
 ## Interoperability Approaches
 
-The key question behind any interoperability system is to determine *who* is responsible for mirroring information across chains.
+The key question behind any interoperability system is to determine *who* is responsible for mirroring information across chains. You can learn more about this in our [Interoperability Trilemma blog post](https://medium.com/connext/the-interoperability-trilemma-657c2cf69f17).
 
 |       Approach      |                                                                     Mechanism                                                                    |                        Examples                       | Trust Minimized (No new security assumptions) | Generalized (Event data passing) | Cheap/fast, easy to build, & easy to extend to more systems |
 |:-------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------:|:---------------------------------------------:|:--------------------------------:|:-----------------------------------------------------------:|
