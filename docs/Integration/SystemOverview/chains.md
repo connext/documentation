@@ -6,17 +6,26 @@ sidebar_position: 4
 
 ## Mainnets
 
-Nxtp, the latest protocol iteration of Connext, is currently being audited and will be live on mainnet soon!
-
 | Chain Name          | ChainId  |   Status  |
 |---------------------|----------|:---------:|
-|       Ethereum      |     1    | On launch |
-|       Optimism      |    10    | On launch |
-| Binance Smart Chain |    56    | On launch |
-|       Polygon       |    137   | On launch |
-|         xDai        |    100   | On launch |
-|     Fantom Opera    |    250   | On launch |
-|     Arbitrum One    |   42161  | On launch |
+|       Ethereum      |     1    |     ✅    |
+| Binance Smart Chain |    56    |     ✅    |
+|       Polygon       |    137   |     ✅    |
+|         xDai        |    100   |     ✅    |
+|     Fantom Opera    |    250   |     ✅    |
+|     Arbitrum One    |   42161  |     ✅    |
+|       Avalanche     |   43114  |     ✅    |
+|       Optimism      |    10    | On OVM 2.0 Launch |
+|       Fuse      |    122    |    Planned    |
+|       Moonbeam      |    1284    |    Planned    |
+|       Moonriver      |    1285    |    Planned    |
+|       Celo      |    42220    |    Planned    |
+|       Aurora      |    1313161554    |    Planned    |
+|       Harmony      |    1666600000    |    Planned    |
+|       Evmos      |    TBD    |    Planned    |
+|       Nervos      |    TBD    |    Planned    |
+|       zkSync      |    TBD    |    Planned    |
+|       StarkNet      |    TBD    |    Planned    |
 
 ## Testnets
 
@@ -26,11 +35,10 @@ Nxtp, the latest protocol iteration of Connext, is currently being audited and w
 |      Rinkeby     |     4    |      ✅      |
 |      Goerli      |     5    |      ✅      |
 |       Kovan      |    42    |      ✅      |
-|    BSC Testnet   |    97    |      ✅     |
+|    BSC Chapel   |    97    |      ✅     |
 |   Polygon Mumbai |   80001  |      ✅     |
 | Arbitrum RinkArby|  421611  |      ✅     |
 |  Avalanche Fuji  |   43113  |      ✅     |
-| Optimism Kovan   |    69    | Coming Soon |
 
 
 ## Supporting Other Chains
