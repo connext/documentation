@@ -9,5 +9,5 @@ sidebar_position: 1
 - [Test the router](./testing-router) on testnets
 - Change configuration to mainnets (use a different mnemonic!), or spin up a new mainnet router
 - Provide liquidity on mainnets
-- [Monitor router logs](./spinning-up/view-logs) and [Grafana](./spinning-up/grafana-dashboard)
+- [Monitor router logs](./spinning-up#view-logs) and [Grafana](./spinning-up#grafana-dashboard)
 - Make sure to fill with gas when it's low!
