@@ -16,7 +16,7 @@ The JSON schema accepts the following keys:
   - `transactionManagerAddress`: _Optional_. The address of the transaction manager contract. If not provided, will default to the latest deployed contracts.
   - `priceOracleAddress`: _Optional_. The address of the price oracle contract. If not provided, will default to the latest deployed contracts.
   - `confirmations`: _Optional_. The number of confirmations required for a transaction to be considered valid on a chain. Defaults to defined values [here](https://github.com/connext/chaindata/blob/29cc0250aff398cdf9326dcb7698d291f3e3015a/crossChain.json).
-  - `minGas`: _Optional_. The minimum gas amount required to be held by the router's signer address in order to participate in auctions. Defaults to 0.1 Ether units.
+  - `minGas`: _Optional_. The minimum gas amount required to be held by the router's signer address in order to participate in auctions, specified in Wei. Defaults to `100000000000000000` (0.1 Ether).
   - `defaultInitialGas`: _Optional_. The default initial gas amount to be used when sending transactions. If not provided, it will be estimated through gas station APIs or the node itself.
   - `allowFulfillRelay`: _Optional_. Boolean to control whether this router will participate in relaying transactions. Defaults to `true`.
   - `relayerFeeThreshold`: _Optional_. Minimum threshold percentage that the relayer fee can be below the router's estimated amount. Defaults to `10`.
