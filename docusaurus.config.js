@@ -26,7 +26,7 @@ module.exports = {
           position: "left",
         },
         {
-          href: "Routers/intro",
+          href: "/Routers/intro",
           label: "Routers",
           position: "left",
         },
