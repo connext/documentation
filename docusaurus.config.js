@@ -5,13 +5,13 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 module.exports = {
   title: "Connext Documentation",
   tagline: "The interoperability protocol of L2 Ethereum.",
-  url: "https://nxtp-docs.connext.network",
-  baseUrl: "/",
+  url: "https://tann9949.github.io/",
+  baseUrl: "/documentation/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/logomark.ico",
-  organizationName: "connext", // Usually your GitHub org/user name.
-  projectName: "connext", // Usually your repo name.
+  organizationName: "tann9949", // Usually your GitHub org/user name.
+  projectName: "documentation", // Usually your repo name.
   themeConfig: {
     navbar: {
       title: "Connext Documentation",
