@@ -2,35 +2,35 @@
 sidebar_position: 1
 ---
 
-# How it works
+# Connext ทำงานอย่างไร?
 
-This iteration of Connext's network utilizes [nxtp](https://github.com/connext/nxtp), a lightweight protocol for generalized crosschain transfers.
+ปัจจุบันนี้ Connext Network ใช้ [nxtp](https://github.com/connext/nxtp) ซึ่งเป็นโปรโตคอลขนาดเบาสำหรับการทำธุรกรรมข้ามบล็อคเชนต่างๆ
 
-Nxtp is made up of a simple contract that uses a locking pattern to prepare and fulfill transactions, a network of offchain routers that participate in pricing auctions and pass calldata between chains, and a user-side sdk that finds routes and prompts onchain transactions.
+Nxtp นั้นถูกสร้างจากสัญญาอย่างง่ายที่ใช้ รูปแบบการล็อคเพื่อเตรียมตัวและสำเร็จธุรกรรมนั้นๆ, เครือข่ายของ offchain router ที่เข้าร่วมในการประมูล ที่สื่อสารข้อมูลระหว่างบล็อคเชน, และ sdk จากผู้ใช้งานที่หาเส้นทางและเรียกใช้ธุรกรรมบนบล็อคเชน
 
-## Transaction Lifecycle
+## วงจรชีวิตของธุรกรรม (Transaction Lifecycle)
 
 ![HighLevelFlow](/img/background/HighLevelFlow.png)
 
-Transactions go through three phases:
+ธุรกรรมนั้นจะผ่านสามขั้นตอนหลักๆ:
 
-1. **Route Auction:** User broadcasts to our network signalling their desired route. Routers respond with sealed bids containing commitments to fulfilling the transaction within a certain time and price range.
-2. **Prepare:** Once the auction is completed, the transaction can be prepared. The user submits a transaction to `TransactionManager` contract on sender-side chain containing router's signed bid. This transaction locks up the users funds on the sending chiain. Upon detecting an event containing their signed bid from the chain, router submits the same transaction to `TransactionManager` on the receiver-side chain, and locks up a corresponding amount of liquidity. The amount locked on the receiving chain is `sending amount - auction fee` so the router is incentivized to complete the transaction.
-3. **Fulfill:** Upon detecting the `TransactionPrepared` event on the receiver-side chain, the user signs a message and sends it to a relayer, who will earn a fee for submission. The relayer (which is typically another router) then submits the message to the `TransactionManager` to complete the user's transaction on receiver-side chain and claim the funds locked by the router. A relayer is used here to allow users to submit transactions with arbitrary calldata on the receiving chain without needing gas to do so. The router then submits the same signed message and completes transaction on sender-side, unlocking the original `amount`.
+1. **การหาเส้นทางประมูล (Route Auction):** ผู้ใช้งานจะประกาศเส้นทางที่ต้องการไปสู้เครือข่าย (network) จากนั้น routers จะตอบรับด้วยการเปิดประมูลพันธะ (commitments) เพื่อทำธุรกรรมให้เสร็จสมบูรณ์ในช่วงเวลาและราคาหนึ่ง
+2. **การเตรียมตัว (Prepare):** เมื่อการประมูลจบลง ธุรกรรมจะถูกเตรียมการต่อ ผู้ใช้งานจะส่งธุรกรรมไปยัง `TransactionManager` contract ที่อยู่บนฝั่ง บล็อคเชนของผู้ส่ง (sender chain) ที่มีผลการประมูลที่เซ็น (sign) เรียบร้อยแล้ว ธุรกรรมดังกล่าวจะล็อคเงินของผู้ส่งบนบล็อคเชนของผู้ส่ง (sender chain) ทันทีที่ตรวจจับเหตุการณ์การเซ็น (sign) การประมูล router จะส่งธุรกรรมตัวเดียวกันไปสู่ `TransactionManager` บนฝั่งบล็อคเชนที่รอรับ (receiver chain) และทำการล็อคสภาพคล่องในปริมาณที่เท่ากัน ปริมาณที่ล็อคไว้บนเชนฝั่งที่รอรับ (receiver chain) คือ `ปริมาณเงินที่ส่ง - ค่าธรรมเนียมประมูล` เพราะฉะนั้น router จะได้รับแรงจูงใจในการทำธุรกรรมให้สำเร็จ
+3. **เติมเต็ม (Fullfil):** ทันทีที่มีการตรวจจับเหตุการณ์​ `TransactionPrepared` บนฝั่งบล็อคเชนที่รอรับ (receiver chain) ผู้ใช้งานจะเซ็น (sign) ข้อความและส่งไปหาผู้สืบทอด (relayer) ซึ่งเป็นผู้ที่จะได้ค่าธรรมเนียม ต่อมา ผู้สืบทอด (relayer) ซึ่งก็คือ router อีกอัน จะส่งข้อความไปหา `TransactionManager` เพื่อจะสำเร็จธุรกรรมของผู้ใช้บนบล็อคเชนผั่งรอรับ (receiver chain) และรับเงินที่ล็อคไว้โดย router โดยหน้าที่ของผู้สืบทอด (relayer) คือเพื่อให้ผู้ใช้งานสามารถส่งธุรกรรมด้วย calldata บนบล็อคเชนฝั่งรอรับ (receiver chain) โดยไม่เสียค่า gas จากนั้น router จะส่งข้อมูลที่เซ็น (sign) เรียบร้อยเพื่อสำเร็จธุรกรรมในฝั่งผู้ส่ง ปลดล็อคจำนวน `amount`
 
-If a transaction is not fulfilled within a fixed `expiry`, it reverts and can be reclaimed by the party that called prepare on each chain (initiator). Additionally, transactions can be cancelled unilaterally by the person owed funds on that chain (router for sending chain, user for receiving chain) prior to `expiry`.
+หากธุรกรรมนั้นไม่ถูกเติมเต็ม (fullfilled) ภายในระยะเวลา `expiry` ธุรกรรมนั้นจะถูกย้อนกลับและสามารถรับคืนได้โดยบุคคลที่เรียกคำสั่ง prepare ในแต่ละบล็อคเชน (เรียกว่า ผู้รึเริ่ม หรือ initiator) นอกจากนี้ ธุรกรรมยังสามารถยกเลิก โดยเจ้าของเงินบนบล็อคเชนนั้นๆ (ซึ่งคือ router สำหรับบล็อคเชนขอบผู้ส่ง (sender chain) และผู้ใช้งานสำหรับบล็อคเชนฝั่งรอรับ (receiver chain)) ก่อนจะถึงวันหมดอายุ `expiry`
 
-It is important to note that neither participant should require a store to complete these transactions. All information to `prepare`, `fulfill`, or `cancel` transactions should be retrievable through contract events.
+เป็นเรื่องที่สำคัญว่าผู้เข้าร่วมไม่จำเป็นที่จะต้องเก็บธุรกรรมที่เสร็จสมบูรณ์ ทุกข้อมูลไม่ว่าจะเป็นธุรกรรม `prepare`, `fullfil` หรือ `cancel` ควรจะสามารถเรียกคืนได้ผ่าน contract
 
 ## Architecture
 
 ![Architecture](/img/background/Architecture.png)
 
-The system contains the following pieces:
+ระบบนั้นประกอบไปด้วยชิ้นส่วนตั่างๆดังนี้:
 
-- Contracts - hold funds for all network participants, and lock/unlock based on data submitted by users and routers
-- Subgraph - enables scalable querying/responding by caching onchain data and events.
-- TxService - resiliently attempts to send transactions to chain (with retries, etc.)
-- Messaging - prepares, sends, and listens for message data over nats
-- Router - listens for events from messaging service and subgraph, and then dispatches transactions to txService
-- SDK - creates auctions, listens for events and creates transactions on the user side.
+- Contracts - เพื่อเก็บเงินสำหรับผู้เข้าร่วมในเครือข่าย สามารถล็อค/ปลดล็อคได้จากข้อมูลที่ส่งมาจากผู้ใช้งาน (user) หรือ เราเตอร์ (router)
+- Subgraph - ทำให้มีความสามารถในการขยายการดึงข้อมูล/การตอบรับด้วยการ cache ข้อมูลบนบล็อคเชนและเหตุการณ์ต่างๆ
+- TxService - พยายามส่งข้อมูลไปสู่บล็อคเชนต่างๆ (พร้อมส่งใหม่ ฯลฯ)
+- Messaging - เตรียมตัว, ส่ง, และฟังข้อความจาก nats
+- Router - ฟังเหตุการณ์จาก messaging และ subgraph จากนั้นกระจายธุรกรรมไปสู่ txService
+- SDK - สร้างการประมูล, ฟังเหตุการณ์และสร้างธุรกรรมจากผู้ใช้งาน (user)

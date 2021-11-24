@@ -4,51 +4,51 @@ sidebar_position: 2
 
 # Connext vs XYZ
 
-In general, Connext is the *only* EVM-focused interoperability system that is both trust-minimized (no new security assumptions) and highly capital efficient (low fees for users).
+โดยทั่วไปแล้ว Connext เป็นระบบเชื่อมต่อระหว่างบล็อคเชน *เพียงตัวเดียว* ที่เป็นระบบ EVM-focused และใช้ความเชื่อถือน้อยที่สุด (ไม่จำเป็นต้องมีสมมติฐานความปลอดภัย) และมีประสิทธิภาพเงินทุน (capital efficiency) ที่สูงเนื่องจากค่าธรรมเนียมที่ถูก
 
-## Interoperability Approaches
+## วิธีในการเชื่อมต่อระหว่างบล็อคเชน
 
-The key question behind any interoperability system is to determine *who* is responsible for mirroring information across chains. You can learn more about this in our [Interoperability Trilemma blog post](https://medium.com/connext/the-interoperability-trilemma-657c2cf69f17).
+คำถามสำคัญของระบบเชื่อมต่อระหว่างบล็อคเชนนั้นขึ้นอยู่กับว่า ใคร เป็นผู้รับผิดชอบในการสะท้อนข้อมูลบนหลายๆบล็อคเชน คุณสามารถเรียนเกี่ยวกับเรื่องนี้ได้ใน [บล็อกโพสเกี่ยวกับข้อจำกัดสามประการของการเชื่อมต่อระหว่างบล็อคเชน](https://medium.com/connext/the-interoperability-trilemma-657c2cf69f17).
 
-|       Approach      |                                                                     Mechanism                                                                    |                        Examples                       | Trust Minimized (No new security assumptions) | Generalized (Event data passing) | Cheap/fast, easy to build, & easy to extend to more systems |
+|       วิธีการ      |                                                                     ระบบการทำงาน                                                                    |                        ตัวอย่าง                       | ใช้การเชื่อใจน้อยที่สุด (ไม่มีข้อสมมติฐานด้านความปลอดภัย) | ใช้ได้ทั่วไป (สามารถส่งข้อมูลเหตุการณ์ได้) | ถูก/เร็ว ใช้งานง่าย สามารถขยายไประบบอื่นได้ง่าย |
 |:-------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------:|:---------------------------------------------:|:--------------------------------:|:-----------------------------------------------------------:|
-| Natively verified   | Chain's own validator set verifies xchain data.  Typically done by running a light client of origin chain inside of the destination chain's VM.  | IBC, Near Rainbowbridge, BTC Relay, rollup entry/exit |                       ✅                       |                 ✅                |                              ❌                              |
-| Externally verified | 3rd party validator set verifies data across chains. AKA PoS/MPC systems.                                                                        | Thorchain, Anyswap, Synapse, Hyphen, many many others.         |                       ❌                       |                 ✅                |                              ✅                              |
-| Locally verified    | N-party system is reduced to 1:1 interaction, which is very easy to keep trust-minimized.                                                        | Connext, Hop, simple atomic swaps.                    |                       ✅                       |                 ❌                |                              ✅                              |
+| ยืนยันโดยกำเนิด (Natively Verified)   | validator ของบล็อคเชนตัวเองยืนยันข้อมูล xchain โดยปกติจะทำด้วยการรันผู้ใช้งานแบบเบา (light client) ของบล็อคเชนต้นกำเนิดภายใน VM ของบล็อคเชนปลายทาง  | IBC, Near Rainbowbridge, BTC Relay, rollup entry/exit |                       ✅                       |                 ✅                |                              ❌                              |
+| ยืนยันโดยกำเนิด (Natively Verified) | validator  ของบุคคลที่สามยืนยันข้อมูลผ่านบล็อคเชน หรือที่เรียกว่า ระบบ PoS/MPC                                                                        | Thorchain, Anyswap, Synapse, Hyphen, และอื่นๆ         |                       ❌                       |                 ✅                |                              ✅                              |
+| ยืนยันจากภายใน (Locally Verified)    | จากมีหลายบุคคลในระบบ เหลือแค่การติดต่อกันแบบ 1:1 ซึ่งทำให้ง่ายต่อการลดการพึ่งพาความเชื่อถือ                                                        | Connext, Hop, simple atomic swaps.                    |                       ✅                       |                 ❌                |                              ✅                              |
 
 ## Connext vs Pos/MPC Systems
 
-PoS/MPC systems are interoperability frameworks where some external set of validators or oracles is responsible for moving data/value between chains. They are **externally verified** systems as per the above taxonomy.
+ระบบ PoS/MPC เป็นโครงสร้างของระบบการเชื่อมต่อระหว่างบล็อคเชน โดยที่จะมี validator ภายนอก หรือ oracles เป็นผู้รับผิดชอบในการเคลื่อนย้ายข้อมูลต่างๆระหว่างบล็อคเชน ระบบนี้เป็นระบบที่ ยืนยันจากภายนอก
 
-Externally verified systems are generalized and easy to build, but their security model is necessarily weaker than that of the underlying chains. Connext does not possess the same level of generality as MPC systems, but it does inherit its security from the base chains.
+ระบบที่ยืนยันจากภายนอกจะใช้งานทั่วไปและสร้างได้ง่าย แต่เรื่องความปลอดภัยนั้นจะค่อนข้างอ่อนกว่าบล็อคเชนที่ใช้งานอยู่ Connext ไม่สามารถใช้งานได้ทั่วไปได้อย่างระบบ MPC แต่ยังคงระดับความปลอดภัยไว้ได้ในระดับเดียวกับบล็อคเชนที่รันอยู่บนนั้น
 
-For this reason, we think that in cases where generality is not needed, or when a significant amount of value needs to be transferred/secured, Connext is the better option.
+ด้วยสาเหตุนี้ เราคิดว่าความใช้งานได้ทั่วไปนั้นไม่ได้จำเป็นมากนัก หรือเมื่อข้อมูลส่วนมากนั้นต้องทำการส่งผ่านระหว่างบล็อคเชนด้วยความปลอดภัยที่สูง Connext นั้นเป็นทางเลือกที่ดีกว่า
 
 ## Connext vs Hop
 
-Hop is a locally verified mechanism for sending tokens across rollups. Hop leverages existing arbitrary messaging bridges (AMBs) to send funds between chains, with a *bonder* (liquidity provider) fronting the capital on L1 to make the process fast. To incentivize rebalancing, the protocol also utilizes AMMs on both sides to swap between the "canonical" asset for a chain, and hTokens, a representative asset used by the bonder.
+Hop เป็นระบบทั่วไปที่เป็นที่ยอมรับ และใช้ในการส่งโทเคนระหว่างโรลอัพ (rollups) Hop ใช้ arbitrary messaging bridges (AMBs) เพื่อส่งเงินระหว่างบล็อคเชน ด้วย bonder (หรือผู้ให้สภาพคล่อง) เป็นเงินทุนอยู่บน L1 เพื่อที่จะทำให้ธุรกรรมว่องไว นอกจากนี้ เพื่อสร้างแรงจูงใจในการ rebalance นั้น โปรโตคอลจะใช้งาน AMMs จากสองฝั่งเพื่อ swap สินทรัพย์บัญญัติ ("canonical" asset) และ hTokens ซึ่งเป็นสินทรัพย์แสดงความเป็นเจ้าของสำหรับ bonder
 
-Because the "proof" of a transfer is passed between chains using an AMB, Hop bypasses the need for users to run offchain code (unlike Connext). However, this pattern presents some tradeoffs:
+เนื่องจากการ "พิสูจน์" ของการโอนระหว่างบล็อคเชนด้วย AMB ทำให้ Hop ไม่จำเป็นที่จะต้องให้ผู้ใช้งานโค้ดจากนอกบล็อคเชน (offchain code) ต่างกับ Connext อย่างไรก็ตาม ระบบนี้นั้นมากับการแลกเปลี่ยน อาทิเช่น:
 
-- **Security:** Hop is less economically secure than Connext. The dependency on an AMB for Hop means that one needs to be created if none exists which has the same trust model as an externally verified system. In the case of optimistic rollups, Hop passes their messages through the rollup exit after one day instead of waiting for the full seven day exit, which also reduces security.
-- **Capital Efficiency:** Hop requires not only the exit liquidity for user provided by a Bonder (similar to Connext), but also liquidity for AMMs on both the sending and receiving chains. Additionally, the Hop Bonder's liquidity is fully locked up while the tx is passed through the AMB (1 day for rollups). In contrast, Connext routers *only* need exit liquidity and incur no liquidity lockup, achieving 10x+ better capital usage. The effect of this is that Hop will be either more expensive for the user or less profitable for the LP.
-- **Speed and Cost:** All txs through Hop need to be bonded on the Ethereum L1. This means incurring L1 gas costs as a Bonder. Bonders can batch transactions, but that necessarily means adding latency as Bonders need to wait for more txs. In Connext, transactions go *directly* from L2 -> L2.
-- **MEV:** Hop Bonders are highly susceptible to MEV and gas price griefing. Hop Bonders race each other to submit txs to chain, implying that margins for Bonder fees will be squeezed away as Bonders (and/or frontrunning bots) bid up the gas price for a given transaction. In Connext, users negotiate offchain on route and pricing, making it impossible for 3rd parties to frontrun the crosschain transaction.
+- **ความปลอดภัย:** Hop นั้นมีความปลอดภัยในเชิงเศรษฐศาสตร์ที่น้อยกว่า Connext เนื่องจากว่า AMB ของ Hop นั้นจำเป็นที่จะต้องมีบุคคลที่สร้างระบบขึ้นมา หากไม่มีระบบนั้นอยู่ ซึ่งต้องอาศัยความเชื่อใจเหมือนกับระบบยืนยันจากภายนอก ในเคสสำหรับ optimistic rollups นั้น Hop จะส่งข้อมูลไปสู่ทางออกของ rollup แทนที่จะเป็นการนำสินทรัพย์ออกด้วยเวลาเจ็ดวัน ด้วยเหตุนี้เลยทำให้มีความปลอดภัยที่ลดลง
+- **ประสิทธิภาพเงินทุน (Capital Efficiency):** Hop นั้นไม่ได้อาศัยแค่ Bonder ในการมีสภาพคล่องออก (exit liquidity) เหมือนกับ Connext แต่ยังต้องการสภาพคล่องจาก AMMs ของทั้งบล็อคเชนที่ส่งไปและรอรับ นอกจากนี้ สภาพคล่องของ Bonder ที่ HOP ใช้ยังถูกล็อคไว้ในขณะที่ธุรกรรมนั้นกำลังทำผ่าน AMB (ซึ่งก็คือ 1 วันสำหรับโรลอัพ) ในทางตรงกันข้าม สำหรับ Connext แล้ว มีเพียงแค่ routers ที่ต้องการสภาพคล่องออก (exit liquidity) และไม่ต้องการล็อคสภาพคล่องแต่อย่างใด ทำให้ได้ประสิทธิภาพเงินทุนที่สูงกว่าถึง 10 เท่าหรือมากกว่า เพราะฉะนั้น Hop นั้นจะมีค่าธรรมเนียมที่แพงกว่าและทำให้ผู้ปล่อยสภาพคล่องได้ผลตอบแทนที่น้อยลง
+- **ความเร็วและค่าใช้จ่าย:** ทุกๆธุรกรรมที่ผ่าน Hop นั้นจำเป็นต้องนำเป็นเข้าสู้พันธะ (bonded) บน Ethereum L1 ด้วยสาเหตุนี้ Bonder นั้นต้องจ่ายค่าแก๊ส (gas) สำหรับ L1 ถึงแม้ว่า Bonder สามารถรวมธุรกรรมเป็นกลุ่มได้ (batch transaction) แต่มันก็เป็นการเพิ่มการรอคอยที่นานขึ้นเนื่องจาก Bonder ต้องรอคอยธุรกรรมนานขั้น ต่างกับ Connext ที่ธุรกรรมนั้นส่ง ตรง จาก L2 ถึง L2
+- **MEV:** Bonder ของ Hop นั้นมีโอกาสสูงมากที่จะเจอ MEV และค่าแก๊สที่แพง โดย Bonder จะแข่งกันส่งธุรกรรมไปยังบล็อคเชน บ่งบอกว่าขอบเขตค่าธรรมเนียมของ Bonder นั้นจะถูกบีบออกในขณะที่ Bonder (และ/หรือ บอท frontrun) จะเสนอค่าแก๊สที่แพงกว่าในการทำธุรกรรมนั้น แต่สำหรับ Connext แล้ว ผู้ใช้งานสามารถเจรจากับบล็อคเชนภายนอก (offchain) สำหรับเส้นทางและราคา ทำให้เป็นไปไม่ได้ที่จะมีบุคคลที่สามมาแย่ง (frontrun) ธุรกรรมบนบล็อคเชนต่างๆ
 
-Functionally, Hop and Connext both support the same level of contract-contract interactions across chains. While it is true that Connext users would need to run some (very lightweight) offchain code to negotiate routes, we are working on building this directly into the wallet layer - this way it is completely invisible to both the developer and user.
+ในการใช้งานแล้ว Hop และ Connext ต่างรองรับการปฏิสัมพันธ์ระหว่าง contract บนหลายๆบล็อคเชนในระดับเดียวกัน ในขณะที่ผู้ใช้งาน Connext จะต้องเปิดใช้งานโปรแกรมบนบล็อคเชนภายนอก (offchain) เพื่อเจรจาเส้นทาง ขณะที่ทีมงานกำลังทำงานเพื่อสร้างระบบนี้ในระดับกระเป๋า (wallet) - ในลักษณะนี้แล้วมันจะทำให้นักพัฒนาหรือผู้ใช้งานไม่สามารถมองเห็นได้เลย
 
 ## Connext vs Optics
 
-Optics is a protocol for passing generalized data between arbitrary chains. Optics explores a very interesting tradeoff between being a locally vs externally verified system. Optics targets slow/infrequent arbitrary message passing between chains, and does this with a bonded relayer that can be slashed for posting incorrect data.
+Optics นั้นเป็นโปรโตคอลสำหรับส่งข้อมูลทั่วไประหว่างบล็อคเชนต่างๆ Optics นั้นใช้การแลกเปลี่ยนที่น่าสนใจ ระหว่างอยู่ภายใน (locally) และอยู่ในระบบภายนอกที่ยืนยันแล้ว (externally verified system) นอกจากนี้ เป้าหมายของ Optics คือข้อมูลที่ช้าและไม่มีการส่งต่อบ่อยๆที่ส่งต่อระหว่างบล็อคเชนต่างๆ และใช้สิ่งนี้กับ bonded relayer ที่สามารถปรับ (slash) ได้หากส่งข้อมูลที่ผิดไป
 
-We do not consider Optics to be competitive to Connext but instead to be a complementary part of the growing interoperability stack. In fact, we are investigating the use of Optics as a part of our own mechanism for penalizing routers that attempt to grief users.
+เราไม่นับ Optics เป็นคู่แข่งของ Connext แต่ในทางกลับกัน มองเป็นส่วนหนึ่งที่ช่วยใช้ระบบสื่อสารระหว่างบล็อคเชนนั้นโตขั้นได้ มากไปกว่านั้น เรายังตรวจสอบการใช้งาน Optics เพื่อพิจารณาเป็นส่วนหนึ่งของระบบเราสำหรับลงโทษ routers ที่พยายามจะเอาเปรียบผู้ใช้าน
 
 ## Connext vs simple atomic swaps
 
-Atomic swaps, typically done using htlcs, are a model for crosschain swapping where funds are locked and unlocked atomically between two parties on different chains.
+atomic swaps นั้นโดยปกติแล้วจะทำผ่าน htlcs และยังเป็นระบบที่ใช้สำหรับการแลกเปลี่ยนข้ามบล็อคเชนโดยที่เงินจะถูกล็อคและปลดล็อคในขนาดย่อยมาก (locked/unlocked atomically) ระหว่างบล็อคเชนต่างๆที่เป็นผู้รับและผู้ส่ง
 
-Connext aims to be a protocol for more generalized crosschain interactions, rather than for exchanging assets. As such it makes tradeoffs for high reliability/uptime and better generality, at the cost of absolute best price:
-- Connext borrows its core locking mechanism from atomic swaps, but extends the principle to arbitrary contract interactions and transfers.
-- Connext uses a route auction and AMM-based pricing mechanism to source liquidity from a network of routers. In contrast atomic swap systems typically use an orderbook mechanism with the goal of trading two assets with a counterparty.
-- Connext explicitly only enables interactions of 1:1 assets across chains (e.g. USDC on Polygon to USDC on Arbitrum). This mitigates free options in the system.
-- Connext builds external mechanisms to penalize LPs for griefing users.
+Connext เล็งที่จะเป็นโปรโตคอลสำหรับการสื่อสารระหว่างบล็อคเชนโดยทั่วไป แทนที่จะเป็นการส่งต่อสินทรัพย์เท่านั้น เพราะฉะนั้นทำให้ระบบสามารถมีความน่าเชื่อถือที่สูงขึ้น การส่งข้อมูลได้หลายแบบมากขึ้น และในต้นทุนราคาที่ดีที่สุด:
+- Connext นั้นใช้งานระบบล็อคเหมือนกับ atomic swaps แต่ขยายหลักการไปสู่การสื่อสารกันระหว่างบล็อคเชนและการโอน
+- Connext ใช้ระบบประมูลเส้นทาง (route auction) และการตั้งราคาแบบ AMM-based เพื่อหาสภาพคล่องจากเครือข่ายสู่ routers ในทางกลับกัน ระบบของ atomic swap จะใช้ระบบ orderbook เพื่อจุดประสงค์ในการแลกสินทรัพย์กับอีกฝั่ง
+- Connextly ให้ใช้งานการสื่อสารของสินทรัพย์แบบ 1:1 ระหว่างบล็อคเชน (ตัวอย่างเช่น USDC บน polygon ไปสู่ USDC บน Arbitrium)
+- Connext สร้างบนระบบภายนอกเพื่อทำโทษผู้ให้สภาพคล่องที่เอาเปรียบผู้ใช้งาน
