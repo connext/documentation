@@ -3,15 +3,17 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: "Connext Documentation",
-  tagline: "The interoperability protocol of L2 Ethereum.",
-  url: "https://tann9949.github.io/",
-  baseUrl: "/documentation/",
+  title: "เอกสาร Connext",
+  tagline: "โปรโตคอลสำหรับการสื่อสารระว่างบล็อคเชนของ Ethereum L2",
+  url: "http://thai-contribute-community.github.io/",
+  baseUrl: "/connext-documentation/",
+  // url: "http://thaicontribute.connext.network/",
+  // baseUrl: "/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/logomark.ico",
-  organizationName: "tann9949", // Usually your GitHub org/user name.
-  projectName: "documentation", // Usually your repo name.
+  organizationName: "thai-contribute-community", // Usually your GitHub org/user name.
+  projectName: "connext-documentation", // Usually your repo name.
   themeConfig: {
     navbar: {
       title: "Connext Documentation",

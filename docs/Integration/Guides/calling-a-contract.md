@@ -2,7 +2,9 @@
 sidebar_position: 2
 ---
 
-# Calling a Contract on the Receiving Chain
+# การเรียกใช้ Contract บนบล็อคเชนที่รอรับ
+
+TODO:
 
 NXTP Routers are able to act as cross-chain meta transaction relayers. This means they are able to call contracts on the receiving chain using data passed in from the sending chain. This can greatly enhance user experience by allowing users to interact with the receiving chain without needing funds for gas on the receiver side. Also this can enable "money legos" types of interactions across chains.
 

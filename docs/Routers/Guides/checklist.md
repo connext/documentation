@@ -2,7 +2,9 @@
 sidebar_position: 1
 ---
 
-# Checklist for Running a Router
+# รายการตรวจสอบสำหรับการรัน Router
+
+TODO:
 
 - [Spin up the router](./spinning-up) and [configure](../Reference/configuration) for testnets
 - [Provide Liquidity](./providing-liquidity) and gas fees on testnets

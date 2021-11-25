@@ -2,7 +2,9 @@
 sidebar_position: 2
 ---
 
-# Spinning Up a Router
+# เริ่มต้นที่จะเป็น Router
+
+TODO:
 
 ## Minimum Hardware Requirements
 

@@ -2,7 +2,9 @@
 sidebar_position: 1
 ---
 
-# Configuration
+# การตั้งค่า
+
+TODO:
 
 The router is accepts configuration using the config file `config.json` in the root directory of the [docker-compose repo](https://github.com/connext/nxtp-router-docker-compose).
 

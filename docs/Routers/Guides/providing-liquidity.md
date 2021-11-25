@@ -2,7 +2,9 @@
 sidebar_position: 3
 ---
 
-# Providing Liquidity
+# การให้สภาพคล่อง
+
+TODO:
 
 Router operators must provide liquidity to the network in order to operate. This is done by calling the `addLiquidityFor` method on the [`TransactionManager`](https://github.com/connext/nxtp/blob/main/packages/contracts/contracts/TransactionManager.sol) contract.
 

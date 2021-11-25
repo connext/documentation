@@ -2,7 +2,9 @@
 sidebar_position: 3
 ---
 
-# Initiating a Crosschain Transaction from a Smart Contract
+# เริ่มต้นทำธุรกรรมข้ามบล็อคเชนจาก Smart Contract
+
+TODO:
 
 It is possible to initiate an NXTP crosschain transaction from a smart contract. This allows NXTP to be used as a "money lego" and integrated into DeFi applications. For example, one can write a contract to swap on Uniswap or SushiSwap and directly transfer the received tokens across chains.
 

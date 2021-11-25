@@ -2,7 +2,9 @@
 sidebar_position: 4
 ---
 
-# Supported Chains
+# บล็อคเชนที่รองรับ
+
+TODO:
 
 ## Mainnets
 
