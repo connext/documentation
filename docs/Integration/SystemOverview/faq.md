@@ -4,46 +4,44 @@ sidebar_position: 5
 
 # คำถามที่พบบ่อย (FAQ)
 
-TODO:
+## ทั่วไป
 
-## General
+### Connext จะมีโทเคนไหม?
 
-### Does Connext have a token?
+ไม่มี Connext จะไม่มีโทเคนในขณะนี้ หากมีการพูดถึงโทเคน Connext แล้วทั้งหมดเป็นการหลอกลวงทั้งหมด
 
-No. Connext does not have a token at this time. Any references to a Connext token out there are definitely scams.
+### Connext เป็น exchange (หรือเป็น dApp)?
 
-### Is Connext an exchange (or other dApp)?
+ไม่ใช่ Connext เป็นโปรโตคอลสร้างขึ้นจากผู้ให้สภาพคล่อง และผู้ให้โครงสร้าง (เรียกว่า **routers**) ที่ทำให้การสื่อสารระหว่างบล็อคเชนนั้นเป็นไปได้ โดยเหล่าผู้พัฒนาสามารถสร้างแอพลิเคชั่นระหว่างบล็อคเชนเช่น DEXs ด้วยการใช้งาน Connext อีกที
 
-No. Connext is a protocol made up of many independent liquidity/infrastructure providers (called **routers**) that enables communication between chains. Developers can build natively crosschain applications like DEXs on top of Connext.
+### Connext สามารถเข้าถึงเงินเราได้ไหม?
 
-### Does Connext have access to my funds?
+ไม่ได้ ทั้งทีมผู้สร้าง Connext หรือ routers ที่ช่วยให้ Connext โปรโตคอลดำเนินการได้ ล้วนไม่สามารถเข้าถึงเงินของผู้ใช้งานได้ทั้งสิ้น ซึ่งเป็นเพราะการออกแบบของ Connext เอง ทำให้ความปลอดภัยของระบบนั้นใช้ร่วมกับความปลอดภัยของบล็อคเชนนั้นๆ -- แม้ว่าทุกๆ router ในเครือข่ายจะสมรู้ร่วมคิดกันแล้ว ไม่มีทางที่พวกเขาจะเข้าถึงเงินของคุณได้
 
-No. Neither the Connext founding team, nor any routers running Connext's protocols have any form of access to your funds. Because of how Connext is designed, the security of the system is the same as the security of the underlying blockchain -- even if every single router in our network were to collude with each other, there would be no way for them to access your funds.
+### มีค่าธรรมเนียมในการใช้ Connext ไหม?
 
-### Are there any fees to use Connext?
+ค่าธรรมเนียมจะถูกเก็บที่ routers ภายในเครือข่ายเมื่อผู้ใช้งานส่งธุรกรรม ทีมงาน Connext นั้นเป็นแค่ผู้บริการโปรโตคอล และจะไม่สามารถเก็บค่าธรรมเนียมได้
 
-Fees are charged by routers within the network when users send transactions. The Connext team is only a protocol implementer and so does not charge any fees.
+### Connext นั้นผ่านการออดิท (audit) รึยัง?
 
-### Is Connext audited?
+แน่นอน! คุณสามารถดูการออดิตของเราได้ที่ https://audits.connext.network.
 
-Yes! You can see our audits at https://audits.connext.network.
+### Connext นั้นทำงานอย่างไร
 
-### How does Connext work?
+สามารถเข้าไปดูได้ที่เนื้อหา [Connext ทำงานอย่างไร?](./howitworks) และ [รูปแบบความปลอดภัย](./securitymodel) ได้เลย!
 
-Check out our [How it Works](./howitworks) and [Security Model](./securitymodel) sections!
+### หากเทียบ Connext กับ XYZ แล้วแตกต่างกันอย่างไรในแง่ของการสื่อสารระหว่างบล็อคเชน (interoperability)?
 
-### How does Connext compare to XYZ interoperability solution?
+สามารถเข้าไปดูได้ที่เนื้อหา [Connext vs XYZ](./connextvsxyz) ได้เลย!
 
-Check out [Connext vs XYZ](./connextvsxyz) section!
+### ทำไม Connext นั้นเป็นผู้ดีแลบน L2 และการสื่อสารระหว่างบล็อคเชน (interoperability)?
 
-### Why is Connext an authority on L2s and interoperability?
+เราเริ่มต้น Connext ในปี 2017 และเป็นส่วนหลักของชุมชนงานวิจัย L2 ตั้งแต่เราสร้างระบบจ่ายเงินทั่วไปสำหรับ L2 ในปี 2018 โดยงานของเราเกี่ยวกับระบบ state channel นั้นทำให้เราคิดอย่างหนักว่าเราจะทำยังไงให้ผู้ใช้งานสามารถส่งเงินไปมาระหว่างโรลอัพ (rollups) และเราเชื่อว่าระบบปัจจุบันของ Connext นั้นแสดงให้เห็นถึงการแลกเปลี่ยน (tradeoffs) ที่ดีที่สุดในการสื่อสารระหว่างโรลอัพทั้งหลาย
 
-We started Connext in 2017, and have been a core part of the L2 research community since we built the first general-purpose L2 payment system in 2018. Our work on state channel systems has led us to think deeply about how users can seamlessly transfer funds between rollups, and we believe that the current iteration of Connext presents the best set of tradeoffs for enabling interactions between rollups.
+### Connext เปิดใช้งานบน mainnet แล้วรึยัง?
 
-### Is Connext live on mainnet?
+ได้แล้ว! คุณสามารถดูสถานะของเครือข่ายบน [Connext Explorer](connextscan.io/) ที่ชุมชนสร้างไว้
 
-Yes! You can see the live status of the network on the community-built [Connext Explorer](connextscan.io/).
+### สามารถใช้งาน Connext ได้ที่ไหน?
 
-### Where can I try Connext?
-
-There are a number of projects and protocols building on top of Connext. We expect to have a community-maintained list of them soon . For now, we recommend checking out [xPollinate](https://xpollinate.io), a simple UI for bridging across chains.
+มีโปรเจคและโปรโตคอลมากมายที่สร้างบนระบบ Connext และพวกเราหวังว่าจะลิสของโปรเจคเหล่านั้นที่สร้างขึ้นจากชุมชนในเร็วๆนี้ สำหรับปัจจุบัน เราแนะนำให้เช็ค [xPollinate](https://xpollinate.io) ซึ่งเป็น UI ที่สามารถใช้โอนเงินระหว่างบล็อคเชนได้ (bridge)

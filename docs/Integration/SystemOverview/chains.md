@@ -4,11 +4,9 @@ sidebar_position: 4
 
 # บล็อคเชนที่รองรับ
 
-TODO:
+## เน็ตเวิร์คหลัก (Mainnets)
 
-## Mainnets
-
-| Chain Name          | ChainId  |   Status  |
+| ชื่อบล็อคเชน          | ไอดีบล็อคเชน (ChainId)  |   สถานะ  |
 |---------------------|----------|:---------:|
 |       Ethereum      |     1    |     ✅    |
 | Binance Smart Chain |    56    |     ✅    |
@@ -17,21 +15,21 @@ TODO:
 |     Fantom Opera    |    250   |     ✅    |
 |     Arbitrum One    |   42161  |     ✅    |
 |       Avalanche     |   43114  |     ✅    |
-|       Optimism      |    10    | On OVM 2.0 Launch |
-|       Fuse      |    122    |    Planned    |
-|       Moonbeam      |    1284    |    Planned    |
-|       Moonriver      |    1285    |    Planned    |
-|       Celo      |    42220    |    Planned    |
-|       Aurora      |    1313161554    |    Planned    |
-|       Harmony      |    1666600000    |    Planned    |
-|       Evmos      |    TBD    |    Planned    |
-|       Nervos      |    TBD    |    Planned    |
-|       zkSync      |    TBD    |    Planned    |
-|       StarkNet      |    TBD    |    Planned    |
+|       Optimism      |    10    | เมื่อมีการปล่อย OVM 2.0 |
+|       Fuse      |    122    |    วางแผนไว้    |
+|       Moonbeam      |    1284    |    วางแผนไว้    |
+|       Moonriver      |    1285    |    วางแผนไว้    |
+|       Celo      |    42220    |    วางแผนไว้    |
+|       Aurora      |    1313161554    |    วางแผนไว้    |
+|       Harmony      |    1666600000    |    วางแผนไว้    |
+|       Evmos      |    TBD    |    วางแผนไว้    |
+|       Nervos      |    TBD    |    วางแผนไว้    |
+|       zkSync      |    TBD    |    วางแผนไว้    |
+|       StarkNet      |    TBD    |    วางแผนไว้    |
 
-## Testnets
+## เน็ตเวิร์คทดสอบ (Testnets)
 
-| Chain Name       | ChainId  |    Status   |
+| ชื่อบล็อคเชน          | ไอดีบล็อคเชน (ChainId)  |   สถานะ  |
 |------------------|----------|:-----------:|
 |      Ropsten      |    3    |      ✅      |
 |      Rinkeby     |     4    |      ✅      |
@@ -43,8 +41,8 @@ TODO:
 |  Avalanche Fuji  |   43113  |      ✅     |
 
 
-## Supporting Other Chains
+## รองรับบล็อคเชนอื่นๆ
 
-In general, Connext is very easy to support on any EVM-compatible chain. Reach out to the team via [our discord](https://chat.connext.network) so we can deploy contracts to your chain. Note that while your chain may be supported in the network, users will not be able to connect to it unless routers choose to provide liquidity for your chain.
+โดยทั่วไป Connext นั้นจะต่อกับบล็อคเชนที่รอบรับ EVM ได้ง่าย หากต้องการต่อ Connext กับบล็อคเชนของคุณ ให้ติดต่อทีมงานมาทาง [ดิสคอร์ดของพวกเรา](https://chat.connext.network) เพื่อที่จะให้เรา deploy contracts บนบล็อคเชนนั้น อย่างไรก็ตาม ในขณะที่บล็อคเชนคุณจะรองรับแล้ว ผู้ใช้งานจะไม่สามารถต่อได้เว้นแต่ว่า routers เลือกที่จะให้สภาพคล่องบนบล็อคเชนคุณ
 
-For non-EVM chains, it is possible to build support for Connext but would require porting the contracts and rewriting our txService. While the core team does not have bandwidth to do this at the moment, we are happy to give grants to teams that want to port to other systems such as Starkware's Cairo or Cosmos. Please reach out to us via the link above!
+สำหรับบล็อคเชนที่ไม่รองรับ EVM นั้น มีความเป็นไปได้ที่จะให้ Connext รองรับ แต่จะต้องอาศัยแรงงานในการเขียน contracts และจัดการระบบธุรกรรม (txService) ใหม่ ในขณะเดียวกัน ทีมงานหลักของเรายังไม่มีเวลาล่างมากพอที่จะทำสิ่งนี้ได้ในขณะนี้ เรายินดีที่จะมองทุบแก่ทีมที่ต้องการจะต่อระบบเรากับบล็อคเชนอื่นๆ เช่น Starkware's Cairo หรือ Cosmos โปรดติดต่อเราจากลิงค์ด้านบนเลย!

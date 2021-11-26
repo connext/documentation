@@ -4,32 +4,30 @@ sidebar_position: 3
 
 # รูปแบบความปลอดภัย
 
-TODO:
-
 :::note
 
-We assume below that you already have read the [How it works](./howitworks) section.
+เราจะถือว่าคุณนั้นได้อ่านเนื้อหาส่วน [Connext ทำงานยังไง](./howitworks) เรียบร้อยแล้ว
 
 :::
 
-In general, Connext adopts the same core security model as other locking systems such as HTLCs. Unlike other systems, Connext is less vulnerable to free options as all interactions across chains are with 1:1 assets (e.g. ETH on Optimism to ETH on Arbitrum).
+โดยทั่วไปแล้ว Connext น้ันใช้ระบบความปลอดภัยเหมือนกับระบบล็อคอื่นๆเช่น HTLCs แต่ส่วนที่ไม่เหมือนนั้น คือการที่ Connext จะปลอดภัยจากตัวเลือกฟรีมากกว่า เพราะทุกๆการสื่อสารระหว่างบล็อคเชนนั้นเป็นสินทรัพย์แบบ 1:1 (ตัวอย่างเช่น ETH บน Optimism และ ETH บน Arbitrium)
 
-## Risks
+## ความเสี่ยง
 
-### Loss of Funds
+### การเสียเงิน
 
-Barring the possibility of a hack or user error, there is **no** way for users to lose funds in this system. To ensure that they are safe, users simply need to make sure that the corresponding `prepare` transaction on the destination chain has the same transaction data as what they sent on the origin chain.
+หากไม่คำนึงถึงความเป็นไปที่จะถูกแฮ็กหรือความผิดพลาดของผู้ใช้งานแล้ว **ไม่มีทาง** ที่ผู้ใช้งานจะเสียเงินด้วยระบบนี้ และเพื่อการันตีความปลอดภัย ผู้ใช้งานต้องตรวจสอบขั้นตอนการ `เตรียมการ` (`prepare`) ของธุรกรรมบนบล็อคเชนปลายทาง (destination chain) ว่ามีข้อมูลที่ส่งไปหานั้นเหมือนกับที่ส่งไปจากบล็อคเชนที่ส่งไป
 
-There is a possibility that routers can lose funds if the chain is attacked or if a router goes completely offline for an extended duration while transfers are in progress. After a user `fulfill`s their transaction on the destination chain, routers have until the transaction's `expiry` to submit the corresponding `fulfill` tx on the origin chain to claim their funds. If routers fail to do this, the transaction on the origin chain is automatically reverted back to the user.
+มันมีความเป็นไปได้ที่ routers สามารถสูญเสียเงิน หากบล็อคเชนนั้นถูกโจมตี หรือหาก router นั้นออฟไลน์เป็นช่วงเวลาหนึ่งในขณะที่ธุรกรรมการโอนเงินนั้นยังไม่สำเร็จ เพราะเมื่อผู้ใช้งาน `เติมเต็ม` (`fullfill`) ธุรกรรมของเขาที่บล็อคเชนปลายทางแล้ว routers จะมีเวลาจนกว่าธุรกรรมจะ `หมดอายุ` เพื่อที่จะส่งธุรกรรม `เติมเต็ม` (`fullfill`) ไปยังบล็อคเชนเริ่มต้นพี่รับเงินของเขา แต่ถ้าหาก router นั้นไม่สามารถทำสิ่งนี้ได้ ธุรกรรมบนบล็อคเชนเริ่มต้นจะถูกส่งกลับไปหาผู้ใช้งานอัตโนมัติ
 
-In practice, this is an acceptable risk so long as the duration of `expiry` is long enough to mitigate chain congestion attacks and to account for potential downtime. Routers are assumed to be automated/online actors with high reliability (similar to nodes and validators for other systems), and can gracefully shut down their operations without risk if they cease to accept new transactions and complete all pending ones.
+ในเชิงปฎิบัติแล้ว นี่เป็นความเสี่ยงที่รับได้ตราบเท่าที่ระยะเวลาของ `การหมดอายุ` นั้นนานเกินพอที่จะรอดพ้นจากการโจมตีที่ทำให้ธุรกรรมบนบล็อคเชนหนาแน่น และไปถึงอีกบัญชีภายในช่วงเวลาที่ล่มไป นอกจากนี้ routers จะถูกพิจารณาเป็นระบบอัตโนมัติที่สามารถพึ่งพาได้สูง (เปรียบเสมือนโหนด (node) และ ผู้ยืนยัน (validator) ของระบบอื่น) และสามารถปิดการใช้งานโดยไม่มีความเสี่ยงได้หากพวกเขาเลือกที่จะไม่รับธุรกรรมใหม่และสำเร็จธุรกรรมก่อนหน้านี้หมดแล้ว
 
-### DoS and Griefing
+### DoS และ การแกล้ง (Greifing)
 
-It is possible for routers to grief users by locking up user liquidity for the duration of the `expiry`. This can happen if the router commits to making a transaction, the user submits a `prepare` tx on the origin chain, but the router never submits a corresponding `prepare` on the destination chain.
+มีความเป็นไปได้ที่ router นั้นจะจงใจแกล้ง (grief) ผู้ใช้งานด้วยการล็อคสภาพคล่องของผู้ใช้งานจนกว่าจะ `หมดอายุ` (`expiry`) สิ่งนี้สามารถเกิดขั้นได้หาก router เลือกที่จะทำธุรกรรมนั้น และ ผู้ใช้งานยืนยันขึ้นตอน `เตรียมการ` (`prepare`) ธุรกรรมบนบล็อคเชนเริ่มต้น แต่ router นั้นไม่สำเร็จธุรกรรมที่ `เตรียมการ` (`prepare`) ไว้บนบล็อคเชนปลายทาง
 
-Note that this lockup explicitly only exists in malicious cases, as the router possesses the ability to `cancel` the sender's prepare on the origin chain.
+อย่างไรก็ตาม การล็อคนั้นจะเกิดขึ้นบนกรณีที่มีการประสงค์ร้ายอย่างชัดเจน เพราะ router นั้นมีความสามารถในการ `ยกเลิก` ธุรกรรมการเตรียมตัวของผู้ส่งจากบล็อคเชนที่ส่งไป
 
-In the short term, there is a whitelist for routers in the core contracts which the Connext team has the ability to update. The Connext team expects to work closely with an initial set of pilot routers that are trustworthy and reputationally disincentivized to attempt to grief users.
+ในระยะสั้น จะมีระบบคัดเลือก routers ในสัญญาหลัก โดยทีมงาน Connext จะมีความสามารถในการปรับปรุง โดยทีมงาน Connext คาดหวังจะทำงานอย่างใกล้ชิดกับกลุ่ม routers กลุ่มแรกที่น่าเชื่อถือ และทำให้กลุ่มคนที่แกล้ง (grief) ผู้ใช้เสียแรงจูงใจ
 
-In the medium to long term, we are implementing a slashing mechanism to penalize routers that do not complete transactions that they have committed to. When this is implemented, the Connext team will burn their admin key for the router whitelist, enabling any router to join the system permissionlessly.
+ในระยะกลางถึงยาว พวกเราจะดำเนินการสร้างระบบทำโทษ (slashing mechanism) เพื่อลงโทษ router ที่ไม่สำเร็จธุรกรรมที่เค้ารับไว้ และเมื่อการสร้างระบบสำเร็จ ทีมงาน Connext จะเผาการกุญแจแอดมิน (admin key) สำหรับ router ที่คัดเลือกไว้ ปล่อยให้ router นั้นเข้าร่วมระบบอย่างไม่มีข้อจำกัดใดๆ
