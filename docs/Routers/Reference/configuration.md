@@ -4,39 +4,37 @@ sidebar_position: 1
 
 # การตั้งค่า
 
-TODO:
+router จะรับการตั้งค่าด้วยการใช้ไฟล์ `config.json` ที่อยู่ใน root directory ของ [docker-compose repo](https://github.com/connext/nxtp-router-docker-compose)
 
-The router is accepts configuration using the config file `config.json` in the root directory of the [docker-compose repo](https://github.com/connext/nxtp-router-docker-compose).
+JSON schema นั้นรับ keys ดังนี้
 
-The JSON schema accepts the following keys:
+- `adminToken`: _จำเป็น_. โทเคนลับใช้ในการยืนยันคำร้องขอจากแอดมิน
+- `mnemonic`: _จำเป็น_. The mnemonic used to generate the private key.
+- `chainConfig`: _จำเป็น_. การตั้งค่าบล็อคเชน เป็น JSON Object โดยมี key เป็น `chainId` และมี object schema ดังกล่าวเป็น value:
+  - `providers`: _จำเป็น_. เป็น array ของ providers URLs สำหรับบล็อคเชนนั้นๆ ใช้ขั้นต่ำ 1 URL แต่ URLs ที่เหลือจะเป็นตัวรองรับในกรณีที่ provider มีปัญหา
+  - `subgraph`: _ไม่จำเป็น_. เป็น array ของ subgraph URLs สำหรับบล็อคเชนนั้นๆ URLs อื่นๆจะเป็นตัวรองรับในกรณีที่ subgraph หลักมีปัญหา และหากไม่ระบุมาจะเป็นค่าเริ่มต้นที่ subgraph ที่ Connext เป็นเจ้าของ
+  - `transactionManagerAddress`: _ไม่จำเป็น_. address ของ transaction manager contract หากไม่ระบุมาจะเป็นค่าเริ่มต้นที่ contract ที่ทำการ deploy ล่าสุด
+  - `priceOracleAddress`: _ไม่จำเป็น_. address ของ price oracle contract. หากไม่ระบุมาจะเป็นค่าเริ่มต้นที่ contract ที่ทำการ deploy ล่าสุด
+  - `confirmations`: _ไม่จำเป็น_. จำนวนของการยืนยัน (confirmation) ที่ต้องการเพื่อที่จะถือว่าธุรกรรมนั้นใช้งานได้บนบล็อคเชนนั้นๆ ค่าเริ่มต้นจะถูกระบุไว้[ที่นี่](https://github.com/connext/chaindata/blob/29cc0250aff398cdf9326dcb7698d291f3e3015a/crossChain.json)
+  - `minGas`: _ไม่จำเป็น_. ค่าแก๊สขั้นต่ำที่ต้องการที่จะให้ router เตรียมไว้สำหรับการเซ็นธุรกรรมที่ใช้ในการประมูล โดยจะมีหน่วยเป็น Wei และมีค่าเริ่มต้นที่ `100000000000000000` (0.1 Ether)
+  - `defaultInitialGas`: _ไม่จำเป็น_. ค่าแก๊สเริ่มต้นที่จะใช้ในการส่งธุรกรรม หากไม่ระบุ จะเป็นการประเมินจาก gas station API หรือโดยตัว node เอง
+  - `allowFulfillRelay`: _ไม่จำเป็น_. เป็นตัวแปรชนิด Boolean ที่ควบคุมว่า router จะเข้าร่วมในการส่งต่อ (relay) ธุรกรรมหรือไม่ ค่าเริ่มต้นที่เป็น `true`
+  - `relayerFeeThreshold`: _ไม่จำเป็น_. ค่าขีดจำกัด (threshold) เป็นเปอร์เซ็นต์ที่ค่าธรรมเนียมผู้ส่งต่อ (relayer fee) สามารถต่ำกว่าปริมาณที่ router ประเมินไว้ได้ ค่าเริ่มต้นที่ `10`
+  - `subgraphSyncBuffer`: _ไม่จำเป็น_. ตัวเลขของบล็อคที่อนุญาตให้ block number ล่าสุดของ subgraph ช้ากว่า block number ล่าสุดจาก provider
+- `swapPools`: _จำเป็น_. เป็น array ของ swap pools แต่ละ pool จะมี JSON object ด้วย keys ดังนี้:
+  - `name`: _ไม่จำเป็น_. ชื่อของ swap pool.
+  - `assets`: _จำเป็น_. เป็น array ของสินทรัพย์​ (assets) แต่ละสินทรัพย์จะมี JSON object ด้วย keys ดังนี้:
+    - `assetId`: _จำเป็น_. ID ของสินทรัพย์ (address ของ ERC20 token) สำหรับโทเคนประจำบล็อคเชน (เช่น ETH บน Ethereum) ใช้ `0x0000000000000000000000000000000000000000`
+    - `chainId`: _จำเป็น_. ID ของบล็อคเชน (chain ID)
+- `logLevel`: _ไม่จำเป็น_. ระดับการ log ต้องเป็นหนึ่งในค่าเหล่านี้ `fatal`, `error`, `warn`, `info`, `debug`, `trace`, `silent` โดยที่ค่าเริ่มต้นคือ `info`.
+- `port`: _ไม่จำเป็น_. port ที่ router จะรอรับฟัง ค่าเริ่มต้นอยู่ที่ `8080`.
+- `host`: _ไม่จำเป็น_. IP Address ของ host router จะรอรับฟัง ค่าเริ่มต้นที่ `0.0.0.0`.
+- `network`: _ไม่จำเป็น_. ข้อความระบุว่าจะต่อกลับเครือข่าย (network) ไหน ต้องเป็นหนึ่งใน `testnet`, `mainnet`, `local` ค่าเริ่มต้นที่ `mainnet`.
+- `requestLimit`: _ไม่จำเป็น_. ระยะเวลาสั้นสุดในหน่วยมิลลิวินาทีที่ผู้ใช้งานสามารถเรียกใช้การประมูลสำหรับการแลกเปลี่ยน (swap) ไปหา router เพื่อป้องกันการ spam ค่าเริ่มต้นที่ 500 (ms)
+- `cleanUpMode`: _ไม่จำเป็น_. เป็นตัวแปรชนิด Boolean ที่ใช้เลือกโหมดที่ต้องใช้ในการไม่รับการประมูลเพิ่มเติม และยังทำธุรกรรมที่รับไว้อยู่ต่อไป ค่าเริ่มต้นที่ `false`
+- `diagnosticMode`: _ไม่จำเป็น_. เป็นตัวแปรชนิด Boolean ที่ใช้เลือกโหมดที่ต้องใช้ในการไม่รับการประมูลใหม่ และไม่รัน subgraph loops หรือ handler เพื่อการ debug โดยละเอียด ค่าเริ่มต้นที่ `false`
 
-- `adminToken`: _Required_. Secret token used to authenticate admin requests.
-- `mnemonic`: _Required_. The mnemonic used to generate the private key.
-- `chainConfig`: _Required_. The chain configuration. A JSON object with the following keyed by `chainId` with the following object schema as value:
-  - `providers`: _Required_. An array of providers URLs for a chain. Use a minimum of 1 URL, but additional URLs provide more fallback protection against provider issues.
-  - `subgraph`: _Optional_. An array of subgraph URLs for a chain. Additional URLs provide more fallback protection against subgraph issues. If not provided, will default to Connext's hosted subgraphs.
-  - `transactionManagerAddress`: _Optional_. The address of the transaction manager contract. If not provided, will default to the latest deployed contracts.
-  - `priceOracleAddress`: _Optional_. The address of the price oracle contract. If not provided, will default to the latest deployed contracts.
-  - `confirmations`: _Optional_. The number of confirmations required for a transaction to be considered valid on a chain. Defaults to defined values [here](https://github.com/connext/chaindata/blob/29cc0250aff398cdf9326dcb7698d291f3e3015a/crossChain.json).
-  - `minGas`: _Optional_. The minimum gas amount required to be held by the router's signer address in order to participate in auctions, specified in Wei. Defaults to `100000000000000000` (0.1 Ether).
-  - `defaultInitialGas`: _Optional_. The default initial gas amount to be used when sending transactions. If not provided, it will be estimated through gas station APIs or the node itself.
-  - `allowFulfillRelay`: _Optional_. Boolean to control whether this router will participate in relaying transactions. Defaults to `true`.
-  - `relayerFeeThreshold`: _Optional_. Minimum threshold percentage that the relayer fee can be below the router's estimated amount. Defaults to `10`.
-  - `subgraphSyncBuffer`: _Optional_. The number of blocks to allow the subgraph's latest block number to be behind the provider's latest block number.
-- `swapPools`: _Required_. An array of swap pools. Each pool is a JSON object with the following keys:
-  - `name`: _Optional_. The name of the swap pool.
-  - `assets`: _Required_. An array of assets. Each asset is a JSON object with the following keys:
-    - `assetId`: _Required_. The asset ID (ERC20 token address). For native assets, use `0x0000000000000000000000000000000000000000`.
-    - `chainId`: _Required_. The chain ID.
-- `logLevel`: _Optional_. The log level. One of `fatal`, `error`, `warn`, `info`, `debug`, `trace`, `silent`. Default is `info`.
-- `port`: _Optional_. The port the router will listen on. Defaults to `8080`.
-- `host`: _Optional_. The host the router will listen on. Defaults to `0.0.0.0`.
-- `network`: _Optional_. The messaging network to connect to (separate from blockchain network). One of `testnet`, `mainnet`, `local`. Defaults to `mainnet`.
-- `requestLimit`: _Optional_. The minimal period in milliseconds users can request an auction for a particular swap to each router to avoid spam. Defaults to 500 (ms).
-- `cleanUpMode`: _Optional_. Boolean to set mode to use to not accept new auctions and continue to handle in-progress auctions. Defaults to false.
-- `diagnosticMode`: _Optional_. Boolean to set mode to use to not accept new auctions not run any subgraph loops/handlers for in-depth debugging. Defaults to false.
-
-## Example Configuration File
+## ตัวอย่างไฟล์ตั่งค่า
 
 ```json
 {
