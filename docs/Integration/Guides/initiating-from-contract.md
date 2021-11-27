@@ -4,19 +4,17 @@ sidebar_position: 3
 
 # เริ่มต้นทำธุรกรรมข้ามบล็อคเชนจาก Smart Contract
 
-TODO:
+มันเป็นไปได้ที่จะเริ่มต้นธุรกรรมข้ามเช่น NXTP ผ่าน smart contract ที่สามารถให้ NXTP นั้นใช้งานเป็น "money lego" และต่อรวมกับแอพลิเคชั่น DeFi ตัวอย่างเช่น ใครก็สามารถเขียน contract เพื่อจะแลกเปลี่ยน (swap) บน Uniswap หรือ SushiSwap และโอนโทเคนที่ได้รับตรงไปสู่บล็อคเชนต่างๆ
 
-It is possible to initiate an NXTP crosschain transaction from a smart contract. This allows NXTP to be used as a "money lego" and integrated into DeFi applications. For example, one can write a contract to swap on Uniswap or SushiSwap and directly transfer the received tokens across chains.
+## ขั้นตอน
 
-## Process
+เพื่อที่จะเริ่มต้นธุรกรรมข้ามบล็อคเชน คุณจะต้องได้รับ การประมูลที่ถูกเซ็นแล้ว (signed bid) จาก router โดยสิ่งนี้สามารถทำได้ด้วยการใช้ method `getTransferQuote` จาก SDK โดยสิ่งนี้สามารถนำไปใส่ในบล็อคเชนด้วยการใช้คำสั่ง `prepare`
 
-In order to initiate a crosschain transaction, you will need to retrieve a signed bid from a router. This can be done by using the `getTransferQuote` method in the SDK. This quote can then be put on chain using the `prepare` method.
+ตัว smart contract สามารถเรียกใช้ฟังก์ชั่น [`prepare`](https://github.com/connext/nxtp/blob/main/packages/contracts/contracts/TransactionManager.sol#L287) บน contract `TransactionManager` ด้วยการใช้ [interface](https://github.com/connext/nxtp/blob/main/packages/contracts/contracts/interfaces/ITransactionManager.sol) ของมัน
 
-Th smart contract can then use the [`prepare`](https://github.com/connext/nxtp/blob/main/packages/contracts/contracts/TransactionManager.sol#L287) function on the `TransactionManager` contract using its [interface](https://github.com/connext/nxtp/blob/main/packages/contracts/contracts/interfaces/ITransactionManager.sol).
+contract ที่ปล่อยใช้แล้ว (deployed) จะสามารถหาเจอได้ใน [deployments.json](https://github.com/connext/nxtp/blob/main/packages/contracts/deployments.json)
 
-The deployed contract addresses can be found in the [deployments.json](https://github.com/connext/nxtp/blob/main/packages/contracts/deployments.json).
-
-## Example
+## ตัวอย่าง
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED

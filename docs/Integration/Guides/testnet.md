@@ -4,17 +4,15 @@ sidebar_position: 1
 
 # ทดลอง NXTP บน Testnets
 
-TODO:
+เราได้ทำการปล่อย contract บน testnet หลายที่เพื่อให้มีการใช้งาน SDK ได้อย่างง่ายขึ้น
 
-We have deployed our contracts against various testnets to allow for easier testing of SDK integrations.
+โดย testnet ที่รองรับสามารถดูได้ใน [deployments.json](https://github.com/connext/nxtp/blob/main/packages/contracts/deployments.json)
 
-The supported testnets can be found in the [deployments.json](https://github.com/connext/nxtp/blob/main/packages/contracts/deployments.json).
+## เชื่อต่อ Dapps กับ Testnet
 
-## Connecting a Dapp to Testnets
+เริ่มต้น NXTP SDK ด้วยการตั้งค่าสำหรับ testnet ที่ต้องการ
 
-Initialize the NXTP SDK with parameters for the desired testnets.
-
-Example:
+ตัวอย่าง:
 
 ```typescript
 const chainConfig = {
@@ -39,14 +37,14 @@ const _signer = provider.getSigner();
 const sdk = new NxtpSdk(chainProviders, _signer);
 ```
 
-## Testing Transfers Using Test ERC20s
+## ทดสองการโอนด้วยการใช้ Test ERC20s
 
-For easy testing, we have also deployed a test ERC20 contract on each testnet. Within the [deployments.json](https://github.com/connext/nxtp/blob/main/packages/contracts/deployments.json) file, you can find the address of the test ERC20 contract under the key `TestERC20` for each chain.
+สำหรับการทดสอบที่ง่าย เราได้ทำการปล่อย test ERC20 contract บน testnet ต่างๆ ภายในไฟล์ [deployments.json](https://github.com/connext/nxtp/blob/main/packages/contracts/deployments.json) คุณสามารถหา address ของ test ERC20 contract ภายใต้ key `TestERC20` สำหรับแต่ละบล็อคเชน
 
-The test ERC20 tokens can be freely minted by anyone. The signature of the `mint` function is:
+โทเคน test ERC20 จะสามารถสร้าง (mint) โดยใครก็ได้ โดยลักษณะของฟังก์ชั่น `mint` คือ:
 
 ```
 function mint(address account, uint256 amount)
 ```
 
-The test tokens are collateralized by routers on the test network, so swap requests should always be successful when using these assets.
+โทเคนสำหรับการทดสอบ (test tokens) นั้นจะถูกสำรองโดย routers บน testnet เพราะฉะนั้นการแลกเปลี่ยน (swap) จะสำเร็จตลอดเมื่อคุณใช้โทเคนเหล่านี้
