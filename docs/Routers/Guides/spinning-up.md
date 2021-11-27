@@ -4,68 +4,66 @@ sidebar_position: 2
 
 # เริ่มต้นที่จะเป็น Router
 
-TODO:
-
-## Minimum Hardware Requirements
+## ฮาร์ดแวร์ที่ต้องใช้ขึ้นต่ำ
 
 - 4GB RAM
 - 30GB Storage
 
-## Required Software
+## ซอร์ฟแวร์ที่ต้องมี
 
 - [ Docker CE (Community Edition) ](https://docs.docker.com/install/) version 20.10.5 or higher
 - [ Docker Compose ](https://docs.docker.com/compose/install/) version 1.27.4 or higher
 
-## Network Configuration
+## การตั้งค่าเน็ตเวิร์ค
 
-The router requires the following ports to be open to the public:
+router นั้นจำเป็นต้องใช้ port ดังกล่าวเพื่อให้เป็นสาธารณะ:
 
 - `4222`
 
 :::danger
-Do NOT expose the `ROUTER_EXTERNAL_PORT` to anyone untrusted! It should only be accessible by the operator in a trusted environment.
+**อย่า** เปิด `ROUTER_EXTERNAL_PORT` ให้ใครก็ตาม! เลข port นี้ควรมีสิทธิในการเข้าถึงแค่จากผู้รัน router เอง หรือในกลุ่มที่เชื่อถือได้
 :::
 
-## Cloning the Repository
+## การ Clone Repository
 
-To spin up a router, first clone the [`nxtp-router-docker-compose`](https://github.com/connext/nxtp-router-docker-compose) repository.
+ในการเริ่มเป็น router, ขั้นตอนแรกคือ clone repository ของ [`nxtp-router-docker-compose`](https://github.com/connext/nxtp-router-docker-compose)
 
 ```shell
 $ git clone https://github.com/connext/nxtp-router-docker-compose.git
 ```
 
-## Basic Configuration
+## การตั้งค่าพื้นฐาน
 
-### Environment Config
+### การตั้งค่า Environment
 
-Create a `.env` file in the root directory of the repository based on the `env.example` file.
+สร้างไฟล์ `.env` ใน root directory ของ repository ให้เหมือนกับในไฟล์ `env.example`
 
-Modify the following environment variables:
+แก้ไขตัวแปร environment เหล่านี้:
 
-* `ROUTER_VERSION` - The version of the router to use (e.g. `v0.1.0`). See the [releases page](https://github.com/connext/nxtp/releases) for the latest released version.
-* `ROUTER_EXTERNAL_PORT` - Exposed port of the router. Remember to not expose this port to the public.
-* `GRAFANA_EXTERNAL_PORT` - Exposed port of the Grafana dashboard.
+* `ROUTER_VERSION` - เวอร์ชั่นของ router ที่จะใช้ (เช่น `v0.1.0`) สามารถดู[หน้า releases page](https://github.com/connext/nxtp/releases) สำหรับเวอร์ชั่นต่างๆ
+* `ROUTER_EXTERNAL_PORT` - port ที่จะเปิดเผยของ router ระวังไม่ให้เลข port นี้เป็นสาธารณะ
+* `GRAFANA_EXTERNAL_PORT` - port ที่จะเปิดเผยของ Grafana dashboard.
 
-### Router Config
+### การตั้งค่า Router
 
-Create a `config.json` file based on the `config.example.json` file. At minumum, change the following values:
+สร้างไฟล์ `config.json` อิงจากไฟล์ `config.example.json` และอย่างน้อย ควรเปลี่ยนค่าเหล่านี้:
 
-- `adminToken` - A secret string for performing sensitive operations.
-- `chainConfig` - Add your desired chains and provider URLs.
-- `mnemonic` - Use a unique and secret mnemonic.
-- `swapPools` - Change to desired assets.
+- `adminToken` - ชุดอักษรลับในการเรียกใช้คำสั่งที่ต้องให้ความระมัดระวัง
+- `chainConfig` - เพิ่มบล็อคเชนที่ต้องการ และ URL ของ provider
+- `mnemonic` - ใช้รหัส mneumonic ที่ใหม่
+- `swapPools` - เปลี่ยนเป็นสินทรัพย์ที่ต้องการ
 
-See the [Configuration](../Reference/configuration) section for more details.
+สามารถดูในส่วนของ [การตั้งค่า](../Reference/configuration) สำหรับข้อมูลเพิ่มเติม
 
-## Running the Router
+## การเริ่มต้นรัน Router
 
-Run the router with `docker-compose`.
+รัน router ด้วยคำสั่ง `docker-compose`
 
 ```shell
 $ docker-compose up -d
 ```
 
-Test if it's working by querying the `/config` endpoint. Log into the host or the router container and run the following curl command:
+ทดสอบว่ามันทำงานปกติไหนด้วยการให้คำสั่ง `/config` endpoint จากนั้น เข้าระบบไปสู่ host หรือ router container และรันทำสั่ง curl ตามนี้
 
 ```shell
 # assumes ROUTER_EXTERNAL_PORT is 8000, on the container itself it will be 8000
@@ -73,9 +71,9 @@ $ curl localhost:8000/config
 {"signerAddress":"0x9ADA6aa06eF36977569Dc5b38237809c7DF5082a"}
 ```
 
-## View Logs
+## การดู Logs
 
-Use docker commands to check logs of any of the running containers.
+ใช้คำสั่ง docker เพื่อดู logs ของ container ต่างๆที่ยังรันอยู่
 
 ```shell
 $ docker logs router
@@ -85,4 +83,4 @@ $ docker logs --follow --tail 100 router
 
 ## Grafana Dashboard
 
-The router runs a Grafana dashboard which is available at the on the configured `GRAFANA_EXTERNAL_PORT`.
+router สามารถใช้งาน Grafana Dashboard ซึ่งจะสามารถให้ใช้ได้ด้วยการตั้งค่า `GRAFANA_EXTERNAL_PORT`

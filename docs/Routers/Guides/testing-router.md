@@ -4,12 +4,10 @@ sidebar_position: 4
 
 # การทดสอบ Router
 
-TODO:
-
-Once the router is up and running, the next step is to test swaps on it.
+เมื่อ router นั้นเปิดขึ้นและรันเรียบร้อยแล้ว ขั้นตอนถัดไปคือทดลอง swap บน router นั้น
 
 ## Using the UI
 
-The [NXTP Test UI](https://nxtp.connext.network) is a web-based UI for testing cross-chain swaps. It can be used to individually test a router, bypassing the router auction process.
+[NXTP Test UI](https://nxtp.connext.network) นั้นเป็น UI ที่อยู่ในรูปแบบเว็ปไซต์เพื่อทำการทดสอบการแลกเปลี่ยนข้ามบล็อคเชน (cross-chain swaps) โดยระบบนี้สามารถใช้ในการทดสอบ router ได้ ไม่ต้องผ่านระบบการประมูล
 
-Once your router has liquidity on the receiving side, you can test it through the UI. Open the UI and go to the "Swap" tab. Provide the info for your desired swap and input the preferred router you want to test.
+เมื่อ router มีสภาพคล่องบนฝั่งที่รอรับแล้ว คุณสามารถทดสอบมันผ่าน UI โดยเริ่มจากเปิด UI และให้ไปที่แท็ป "Swap" จากนั้นใส่ข้อมูลในการแลกเปลี่ยน (swap) และเลือก router ที่คุณต้องการจะทดสอบ

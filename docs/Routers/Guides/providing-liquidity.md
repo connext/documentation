@@ -4,28 +4,26 @@ sidebar_position: 3
 
 # การให้สภาพคล่อง
 
-TODO:
+ผู้ใช้งาน operator จะต้องให้สภาพคล่องสู่เครือข่ายเพื่อที่จะให้ทำงานได้ โดยสิ่งนี้จะทำสำเร็จได้ด้วยการเรียกใช้ method `addLiquidityFor` บน contract [`TransactionManager`](https://github.com/connext/nxtp/blob/main/packages/contracts/contracts/TransactionManager.sol)
 
-Router operators must provide liquidity to the network in order to operate. This is done by calling the `addLiquidityFor` method on the [`TransactionManager`](https://github.com/connext/nxtp/blob/main/packages/contracts/contracts/TransactionManager.sol) contract.
+## การใช้งาน UI
 
-## Using the UI
-
-Of course, you can always directly interact with the contracts to provide liquidity using Etherscan or other similar tools. To make things easier, we have provided the [NXTP Test UI](https://nxtp.connext.network) which allows you to view and add liquidity for your router. Navigate to the "Router" tab for convenient liquidity management functionality.
+แน่นอนว่าคุณนั้นสามารถใช้งาน contract เพื่อให้สภาพคล่องด้วย Etherscan หรือเครื่องมือที่คล้ายๆกัน เราได้สร้าง [NXTP Test UI](https://nxtp.connext.network) เพื่อทำให้สิ่งนี้ง่ายขึ้น และสามารถให้ผู้ใช้งานดูและเพิ่มสภาพคล่องบน router ได้ เพียงกดไปที่แท็ป "Router" เพื่อการจัดการสภาพคล่องที่สะดวกสบายมากขึ้น
 
 :::info
 
-Testnets are freely open to routers to add liquidity. However, mainnet routers and assets are still permissioned temporarily. Please contact the Connext team to get your router and assets whitelisted!
+testnets นั้นเปิดให้ routers สามารถให้สภาพคล่องได้อย่างอิสระ อย่างไรก็ตาม สำหรับ mainnset แล้ว routers และสินทรัพย์จะยังถูกคัดเลือกอยู่ในช่วงเวลาชั่วคราว หากต้องการเพิ่มสินทรัพย์ให้ใช้ได้หรืออยากเป็น router แล้ว ให้ติดต่อทางทีมงาน Connext เพื่อให้ได้รับสิทธิ
 
 :::
 
-Add liquidity for both sides of the swap, based on your configured swap pools. Make sure to also add sufficient gas.
+การเพิ่มสภาพคล่องสำหรับการแลกเปลี่ยน (swaps) ทั้งสองทางนั้นขึ้นอยู่กับการตั้งค่าของ กองเงินแลกเปลี่ยน (swap pools) อย่าลืมที่จะเตรียมค่าแก๊สให้เพียงพอ
 
 :::note
 
-You do not need to use the router's private key to do this. The `addLiquidityFor` method will pull funds from your connected wallet and assign them to the specified router.
+คุณไม่ต้องอาศัย private key ของ router ในการทำสิ่งนี้ เพราะ method `addLiquidityFor` จะดึงเงินจากกระเป๋าที่เชื่อมต่อไว้ และระบุกระเป๋านั้นเข้ากับ router ที่เลือกไว้อีกที
 
 :::
 
-## Test Tokens
+## โทเคนสำหรับทดสอบ (Test Tokens)
 
-We have deployed test tokens to all testnet chains that can be used to easily test routers. These tokens are mintable. The token addresses are listed in [this file](https://github.com/connext/nxtp/blob/11d995b6bb96ff1fb20bb23be0811f3d0486fa4d/packages/contracts/deployments.json) as `TestERC20`.
+เราได้ทำการปล่อยโทเคนสำหรับทดสอบสำหรับ testnet ทุกตัวที่สามารถใช่เป็นเส้นทางสำหรับทดสอบได้ โทเคนเหล่านี้สามารถ mint ได้ และ address ของ token เหล่านี้จะอยู่ใน[ไฟล์นี้](https://github.com/connext/nxtp/blob/11d995b6bb96ff1fb20bb23be0811f3d0486fa4d/packages/contracts/deployments.json) ในรูปแบบของ `TestERC20`.
