@@ -4,18 +4,16 @@ sidebar_position: 3
 
 # เหตุการณ์ (Event)
 
-TODO:
+`NxtpSdk` จะปล่อย events ที่จะมอบประสบการณ์ที่ดีให้กับผู้ใช้งานด้วยการแจ้งเตือนพวกเขาถึงสิ่งที่จะมีการโอนหรือเคลื่อนย้ายระหว่างธุรกรรมการโอน
 
-The `NxtpSdk` emits events that can offer builders a better experience for their users by notifying them of things going on in the transfer flow.
+## การรอฟัง Event (Listener)
 
-## Listening to Events
+SDK จะรองรับวิธีต่างๆเพื่อรอรับฟัง events โดยได้รับแรงบันดาลใจอย่างมากมาจาก interface ของ [Evt](https://www.evt.land) และเราสามารถเรียกใช้ methods ได้ตรงๆจากระบบ SDK ดังนี้:
 
-The SDK supports the following methods to listen for events, heavily inspired by the [Evt](https://www.evt.land) library's interface. The methods can be called directly on the SDK instance:
-
-- `.attach(eventName, callbackFn, filterFn)` - Listen for an event and run a handler on every instance of that event, with an optional filter function.
-- `.attachOnce(eventName, callbackFn, filterFn)` - Listen for an event and run a handler on the first instance, with an optional filter function. Detaches the listener after.
-- `.waitFor(eventName, timeoutMs, filterFn)` - Listen for an event and resolve a promise with the event payload on the first instance, with an optional filter function.
-- `.detach(eventName)` - Detach listeners by event name or all events (if name isn't provided).
+- `.attach(eventName, callbackFn, filterFn)` - คอยฟัง event และเรียกใช้ handler บนทุกๆ event ที่จับได้ และยังสามารถเพิ่มฟังก์ชั่นสำหรับการคัดกรอง event
+- `.attachOnce(eventName, callbackFn, filterFn)` - คอยฟัง event และเรียกใช้ handler บน event แรกที่จับได้ และยังสามารถเพิ่มฟังก์ชั่นสำหรับการคัดกรอง event จะมีการถอดถอน listener หลังจากเสร็จสิ้น
+- `.waitFor(eventName, timeoutMs, filterFn)` - คอยฟัง event และ resolve promise ด้วยข้อมูล event แรกที่จับได้ และยังสามารถเพิ่มฟังก์ชั่นสำหรับการคัดกรอง event
+- `.detach(eventName)` - ถอดถอน listeners จาก event ที่เรียกฟังอยู่ด้วยชื่อของ event นั้นๆ หากไม่มีการระบุ จะถอด listener ทั้งหมด
 
 ## Events
 
@@ -30,11 +28,11 @@ The SDK supports the following methods to listen for events, heavily inspired by
 - `ReceiverTransactionFulfilled`
 - `ReceiverTransactionCancelled`
 
-The event payloads are fully typed, the callbacks will automatically be typed with the event that is listened for.
+ตัวข้อมูล event จะมีการ typing อย่างครบถ้วน และ callbacks จะมีการ typing ด้วย event ที่เราฟังอยู่
 
-## Example
+## ตัวอย่าง
 
-```ts title="Run callback on every request for specific transactionId"
+```ts title="การรัน callback บนทุกๆการเรียกใช้สำหรับ transactionId ที่ระบุไว้"
 sdk.attach(
   NxtpSdkEvents.SenderTransactionPrepared,
   (data) => {
@@ -44,7 +42,7 @@ sdk.attach(
 );
 ```
 
-```ts title="Run callback on a single request for specific transactionId"
+```ts title="การรัน callback บนการเรียกใช้เพียงครั้งเดียวสำหรับ transactionId ที่ระบุไว้"
 sdk.attachOnce(NxtpSdkEvents.SenderTransactionPrepared, (data) => {
   console.log("SenderTransactionPrepared:", data); // data is fully typed
 });

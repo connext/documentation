@@ -4,17 +4,15 @@ sidebar_position: 1
 
 # การลงโปรแกรม และ ติดตั้ง
 
-TODO:
+Connext นั้นประกอบไปด้วยสองส่วนหลักๆที่ใช้ในการเชื่อมต่อ:
+1. contract ของ connext บนบล็อคเชน (onchain)
+2. connext SDK ที่รันอยู่บนบล็อคเชนแยก (offchain)
 
-Connext consists of two integration touchpoints: 
-1. The onchain connext contracts
-2. The offchain connext SDK
+การเชื่อมต่อ contract นั้นจำเป็นเมื่อคุณต้องการเริ่มต้นธุรกรรมจาก contract อื่นๆ (วิธีทำจะมาในเร็วๆนี้!) และสำหรับอย่างอื่นนั้น ตัว​ SDK ของ Connext จะรวมการใช้งานของผู้พัฒนาเข้าด้วยกันทั้งหมด
 
-A contract integration is only needed if you want to initiate a transaction directly from another contract (guide coming soon!). For anything else, the Connext sdk neatly wraps all functionality for the developer.
+## การติดตั้ง SDK
 
-## Installing the SDK
-
-The SDK is distributed as a typescript package on npm. It is fully isomorphic (can be used the same way in client-side, server-side, and React Native environments).
+SDK นั้นใช้งานในรูปแบบของ typescript package บน npm และตัว SDK นั้น isomorphic อย่างสมบูรณ์​ (สามารถใช้ได้เหมือนกันไม่ว่าจะเป็น ฝั่งผู้ใช้ (client) ฝั่งเซิร์ฟเวอร์ (server) และ React Native environments)
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -42,18 +40,18 @@ npm install @connext/nxtp-sdk
 </TabItem>
 </Tabs>
 
-## Initializing the SDK
+## การเริ่มต้น SDK
 
-The `constructor` accepts the following arguments, in order:
+ตัว `constructor` จะรับ arguments เหล่านี้ตามลำดับ:
 
-- `config`: _Required_. Object with chainConfig, signer and other optional parameters.
-  - `chainConfig`: _Required_. Object with `chainId` as a key, and the following object keys/values. Provide all the chains you intend to support in this argument:
-    - `provider`: _Required_. Ethers [FallbackProvider](https://docs.ethers.io/v5/api/providers/other/#FallbackProvider). Providers are instantiated using [Alchemy](https://www.alchemy.com), [Infura](https://infura.io), or local nodes. `FallbackProvider` is used to provide redunancy from faulty providers.
-    - `subgraph`: _Optional_. Override the subgraph for the specified chain. Most chains will have default subgraph endpoints, you will get an error on instantiation if not.
-  - `signer`: _Required_. An Ethers-compatible [Signer](https://docs.ethers.io/v5/api/signer/) which is instantiated with a private key or injected provider (Metamask).
-- `logger`: _Optional_. An instance of a [Pino](https://getpino.io) logger. If not provided, one will be created.
+- `config`: _จำเป็น_. Object ที่มี chainConfig, ผู้เซ็น (signer) and parameters อื่นๆ.
+  - `chainConfig`: _จำเป็น_. Object ที่มี `chainId` เป็น key, และ object ที่มีค่า keys/values ตามนี้ ให้ใส่บล็อคเชนที่ผู้ใช้งานต้องการจะรอบรับใน argument นี้:
+    - `provider`: _จำเป็น_. [FallbackProvider](https://docs.ethers.io/v5/api/providers/other/#FallbackProvider) ของ Ethers. Providers จะถูกเริ่มต้นด้วย [Alchemy](https://www.alchemy.com), [Infura](https://infura.io), หรือ local nodes. `FallbackProvider` จะถูกใช้งานเพื่อรองรับกรณีที่ provider นั้นผิดพลาด
+    - `subgraph`: _ไม่จำเป็น_. การ override subgraph สำหรับบล็อคเชนนั้นๆ เนื่องจากบล็อคเชนส่วนใหญ่จะมี subgraph endpoints เริ่มต้น คุณจะได้รับ error ในการเริ่มต้นหากบล็อคเชนนั้นไม่มี subgraph endpoints เริ่มต้น
+  - `signer`: _จำเป็น_. [Signer](https://docs.ethers.io/v5/api/signer/) ที่รองรับ Ethers ซึ่งจะถูกเริ่มต้นด้วย private key หรือ injected provider (Metamask)
+- `logger`: _ไม่จำเป็น_. เป็น instance ของ [Pino](https://getpino.io) logger. หากคุณไม่ใส่มา จะตัว logger จะถูกสร้างเองอัตโนมัติ
 
-A basic example:
+ตัวอย่างโดยง่าย:
 
 <Tabs
   defaultValue="ts"

@@ -4,31 +4,29 @@ sidebar_position: 2
 
 # ธุรกรรมข้ามบล็อคเชน
 
-TODO:
+เส้นทางของการส่งธุรกรรมผ่าน Connext นั้นหลักๆประกอบไปด้วย:
 
-The core flow for sending a transaction through Connext consists of:
-
-1. Getting a transfer quote: returns an estimated price and commitment for the transfer.
-2. Starting the transfer: sends the user's transaction on chain A and waits for the network to provide liquidity.
-3. Finishing the transfer: completes the user's transaction on chain B.
+1. การรับธุรกรรมการโอนอ้างอิง (transfer quote): คืนค่าเงินที่ประมาณไว้และการยืนยันธุรกรรมการโอน
+2. เริ่มต้นการโอน: ส่งธุรกรรมของผู้ใช้งานบนบล็อคเชน A และรอให้เครือข่ายมอบสภาพคล่อง
+3. สำเร็จธุรกรรมโอน: สำเร็จธุรกรรมของผู้ใช้งานบนบล็อคเชน B
 
 ## GetTransferQuote
 
-The `getTransferQuote` function accepts the following arguments:
+ฟังก์ชั่น `getTransferQuote` นั้นรับ arguments ต่างๆดังนี้:
 
-- `sendingAssetId`: _Required_. Address of token on the initiating chain. Use `Address(0)` for native assets like $ETH.
-- `sendingChainId`: _Required_. [ChainId](https://chainid.network/) of the initiating chain.
-- `receivingAssetId`: _Required_. Address of token on the receiving chain. Use `Address(0)` for native assets like $ETH.
-- `receivingChainId`: _Required_. [ChainId](https://chainid.network/) of the receiving chain.
-- `receivingAddress`: _Required_. Address that the token will be sent to on receiving chain. If `callData` and `callTo` is provided, then `receivingAddress` acts as a fallback in case of a contract revert on the receiving chain.
-- `amount`: _Required_. Amount of funds (as BigNumber) to be sent either as a transaction or along with a calldata payload.
-- `expiry`: _Optional_. Fallback duration after which a tx is forcibly reverted if there is no response from the network. Recommended: 72 hours.
-- `callTo`: _Optional_. Destination contract address if doing a crosschain contract call.
-- `callData`: _Optional_. Calldata for crosschain contract call.
+- `sendingAssetId`: _จำเป็น_. Address ของ token บนบล็อคเชนเริ่มต้น และสามารถใช้ `Address(0)` สำหรับโทเคนประจำบล็อคเชนนั้นๆเช่น $ETH
+- `sendingChainId`: _จำเป็น_. [ChainId](https://chainid.network/) ของบล็อคเชนที่เริ่มต้น
+- `receivingAssetId`: _จำเป็น_. Address ของ token บนบล็อคเชนที่รอรับ และสามารถใช้ `Address(0)` สำหรับโทเคนประจำบล็อคเชนนั้นๆเช่น $ETH
+- `receivingChainId`: _จำเป็น_. [ChainId](https://chainid.network/) ของบล็อคเชนที่รอรับ
+- `receivingAddress`: _จำเป็น_. Address ที่โทเคนจะส่งไปถึงบนบล็อคเชนที่รอรับ หาก `callData` และ `callTo` นั้นมีการระบุมาให้แล้ว ตัวแปร `receivingAddress` จะมีหน้าที่เป็นที่รองรับในกรณีที่ธุรกรรมบน contract นั้นถูกย้อนกลับ (reverted) บนบล็อคเชนที่รอรับ
+- `amount`: _จำเป็น_. จำนวนของเงิน (ในรูปแบบ BigNumber) ที่จะส่งไป ไม่ว่าจะเป็นรูปแบบของธุรกรรม หรือรูปแบบของ calldata
+- `expiry`: _ไม่จำเป็น_. ระยะเวลาในการรอคอยก่อนที่ธุรกรรมนั้นถูกย้อนกลับ (reverted) หากไม่มีการตอบรับจากเครือข่าย แนะนำให้ตั้งไว้ที่ 72 ชั่วโมง
+- `callTo`: _ไม่จำเป็น_. contract address ที่ต้องการจะเรียกใช้ หากต้องการจะเรียน contract ข้ามบล็อคเชน
+- `callData`: _ไม่จำเป็น_. Calldata สำหรับการเรียก contract ข้ามบล็อคเชน
 
-It returns an [AuctionResponse](https://github.com/connext/nxtp/blob/c4-68/packages/utils/src/messaging.ts#L259) object.
+ฟังก์ชั่นจะคืนค่า [AuctionResponse](https://github.com/connext/nxtp/blob/c4-68/packages/utils/src/messaging.ts#L259) เป็น object
 
-Example:
+ตัวอย่าง:
 
 <Tabs
   defaultValue="ts"
@@ -55,9 +53,9 @@ const feeEstimate = amount.sub(quote.bid.amountReceived);
 </TabItem>
 </Tabs>
 
-## Executing the Transaction
+## การเรียกใช้ธุรกรรม
 
-First, `prepareTransfer` to initiate the transaction to our contracts. Then, wait for the transaction to be prepared on the receiving chain and call `fulfillTransfer`.
+ขั้นแรก `prepareTransfer` เพื่อเริ่มต้นธุรกรรมบน contract ของคุณ จากนั้น รอธุรกรรมให้ได้มีการเตรียมการบนบล็อคเชนที่รอรับ และเรียกใช้ `fulfillTransfer`
 
 <Tabs
   defaultValue="ts"
@@ -85,10 +83,10 @@ await sdk.fulfillTransfer(prepared);
 </TabItem>
 </Tabs>
 
-## Next Steps
+## ขั้นตอนถัดไป
 
-See the other sections in this folder for information on [events](./events), [API](./api-reference), etc.
+ลองดูเนื้อหาส่วนอื่นในโฟลเดอร์สำหรับข้อมูลเกี่ยวกับ [เหตุการณ์ (events)](./events), [API](./api-reference), ฯลฯ
 
-## Full Example
+## ตัวอย่างเต็ม
 
-See the [`test-ui`](https://github.com/connext/nxtp/tree/main/packages/test-ui) for a full working example of a React integration of the SDK.
+สามารถดู [`test-ui`](https://github.com/connext/nxtp/tree/main/packages/test-ui) สำหรับตัวอย่างการทำงานเต็มรูปแบบของการเชื่อม React กับ SDK

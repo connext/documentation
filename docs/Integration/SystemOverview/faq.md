@@ -40,7 +40,7 @@ sidebar_position: 5
 
 ### Connext เปิดใช้งานบน mainnet แล้วรึยัง?
 
-ได้แล้ว! คุณสามารถดูสถานะของเครือข่ายบน [Connext Explorer](connextscan.io/) ที่ชุมชนสร้างไว้
+ได้แล้ว! คุณสามารถดูสถานะของเครือข่ายบน [Connext Explorer](https://connextscan.io) ที่ชุมชนสร้างไว้
 
 ### สามารถใช้งาน Connext ได้ที่ไหน?
 
