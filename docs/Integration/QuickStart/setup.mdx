@@ -6,13 +6,13 @@ sidebar_position: 1
 
 Connext นั้นประกอบไปด้วยสองส่วนหลักๆที่ใช้ในการเชื่อมต่อ:
 1. contract ของ connext บนบล็อคเชน (onchain)
-2. connext SDK ที่รันอยู่บนบล็อคเชนแยก (offchain)
+2. connext SDK ที่รันอยู่นอกบล็อคเชน (offchain)
 
 การเชื่อมต่อ contract นั้นจำเป็นเมื่อคุณต้องการเริ่มต้นธุรกรรมจาก contract อื่นๆ (วิธีทำจะมาในเร็วๆนี้!) และสำหรับอย่างอื่นนั้น ตัว​ SDK ของ Connext จะรวมการใช้งานของผู้พัฒนาเข้าด้วยกันทั้งหมด
 
 ## การติดตั้ง SDK
 
-SDK นั้นใช้งานในรูปแบบของ typescript package บน npm และตัว SDK นั้น isomorphic อย่างสมบูรณ์​ (สามารถใช้ได้เหมือนกันไม่ว่าจะเป็น ฝั่งผู้ใช้ (client) ฝั่งเซิร์ฟเวอร์ (server) และ React Native environments)
+SDK นั้นใช้งานในรูปแบบของ typescript package บน npm และตัว SDK นั้นเป็น isomorphic อย่างสมบูรณ์​ (สามารถใช้ได้เหมือนกันไม่ว่าจะเป็น ฝั่งผู้ใช้ (client) ฝั่งเซิร์ฟเวอร์ (server) และ React Native environments)
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -44,12 +44,12 @@ npm install @connext/nxtp-sdk
 
 ตัว `constructor` จะรับ arguments เหล่านี้ตามลำดับ:
 
-- `config`: _จำเป็น_. Object ที่มี chainConfig, ผู้เซ็น (signer) and parameters อื่นๆ.
-  - `chainConfig`: _จำเป็น_. Object ที่มี `chainId` เป็น key, และ object ที่มีค่า keys/values ตามนี้ ให้ใส่บล็อคเชนที่ผู้ใช้งานต้องการจะรอบรับใน argument นี้:
-    - `provider`: _จำเป็น_. [FallbackProvider](https://docs.ethers.io/v5/api/providers/other/#FallbackProvider) ของ Ethers. Providers จะถูกเริ่มต้นด้วย [Alchemy](https://www.alchemy.com), [Infura](https://infura.io), หรือ local nodes. `FallbackProvider` จะถูกใช้งานเพื่อรองรับกรณีที่ provider นั้นผิดพลาด
-    - `subgraph`: _ไม่จำเป็น_. การ override subgraph สำหรับบล็อคเชนนั้นๆ เนื่องจากบล็อคเชนส่วนใหญ่จะมี subgraph endpoints เริ่มต้น คุณจะได้รับ error ในการเริ่มต้นหากบล็อคเชนนั้นไม่มี subgraph endpoints เริ่มต้น
-  - `signer`: _จำเป็น_. [Signer](https://docs.ethers.io/v5/api/signer/) ที่รองรับ Ethers ซึ่งจะถูกเริ่มต้นด้วย private key หรือ injected provider (Metamask)
-- `logger`: _ไม่จำเป็น_. เป็น instance ของ [Pino](https://getpino.io) logger. หากคุณไม่ใส่มา จะตัว logger จะถูกสร้างเองอัตโนมัติ
+- `config`: _จำเป็น_ Object ที่มี chainConfig, ผู้เซ็น (signer) and parameters อื่นๆ
+  - `chainConfig`: _จำเป็น_ Object ที่มี `chainId` เป็น key, และ object ที่มีค่า keys/values ตามนี้ ให้ใส่บล็อคเชนที่ผู้ใช้งานต้องการจะรอบรับใน argument นี้:
+    - `provider`: _จำเป็น_ [FallbackProvider](https://docs.ethers.io/v5/api/providers/other/#FallbackProvider) ของ Ethers โดย Providers จะถูกเริ่มต้นด้วย [Alchemy](https://www.alchemy.com), [Infura](https://infura.io), หรือ local nodes และ `FallbackProvider` จะถูกใช้งานเพื่อรองรับกรณีที่ provider นั้นผิดพลาด
+    - `subgraph`: _ไม่จำเป็น_ การ override subgraph สำหรับบล็อคเชนนั้นๆ เนื่องจากบล็อคเชนส่วนใหญ่จะมี subgraph endpoints เริ่มต้น คุณจะได้รับ error ในการเริ่มต้นหากบล็อคเชนนั้นไม่มี subgraph endpoints เริ่มต้น
+  - `signer`: _จำเป็น_ [Signer](https://docs.ethers.io/v5/api/signer/) ที่รองรับ Ethers ซึ่งจะถูกเริ่มต้นด้วย private key หรือ injected provider (Metamask)
+- `logger`: _ไม่จำเป็น_ เป็น instance ของ [Pino](https://getpino.io) logger หากคุณไม่ใส่มา จะตัว logger จะถูกสร้างเองอัตโนมัติ
 
 ตัวอย่างโดยง่าย:
 
@@ -65,7 +65,7 @@ npm install @connext/nxtp-sdk
 import { providers, Wallet, utils } from "ethers";
 import { NxtpSdkEvents, NxtpSdk } from "@connext/nxtp-sdk";
 
-// Set up provider to chain mappings
+// ติดตั้ง provider สำหรับการทำ chain mappings
 const chainConfig = {
   4: {
     provider: new providers.FallbackProvider([
@@ -79,12 +79,12 @@ const chainConfig = {
   },
 };
 
-// Get signer from metamask
+// เรียก signer จาก metamask
 await ethereum.request({ method: "eth_requestAccounts" });
 const provider = new providers.Web3Provider(ethereum);
 const _signer = provider.getSigner();
 
-// Instantiate SDK
+// เริ่มต้น SDK
 const sdk = new NxtpSdk({chainConfig: chainProviders, signer: _signer});
 ```
 

@@ -36,7 +36,7 @@ SDK จะรองรับวิธีต่างๆเพื่อรอร�
 sdk.attach(
   NxtpSdkEvents.SenderTransactionPrepared,
   (data) => {
-    console.log("SenderTransactionPrepared:", data); // data is fully typed
+    console.log("SenderTransactionPrepared:", data); // data จะมีการ typing อย่างครบถ้วน
   },
   (data) => data.txData.transactionId === transactionId
 );
@@ -44,19 +44,19 @@ sdk.attach(
 
 ```ts title="การรัน callback บนการเรียกใช้เพียงครั้งเดียวสำหรับ transactionId ที่ระบุไว้"
 sdk.attachOnce(NxtpSdkEvents.SenderTransactionPrepared, (data) => {
-  console.log("SenderTransactionPrepared:", data); // data is fully typed
+  console.log("SenderTransactionPrepared:", data); // data จะมีการ typing อย่างครบถ้วน
 });
 ```
 
-```ts title="Wait for a specific event"
+```ts title=การรอรับ event ที่ระบุไว้"
 try {
   const data = await sdk.waitFor(
     NxtpSdkEvents.ReceiverTransactionPrepared,
     100_000,
     (data) => data.txData.transactionId === transactionId
   );
-  console.log("ReceiverTransactionPrepared:", data); // data is fully typed
+  console.log("ReceiverTransactionPrepared:", data); // data จะมีการ typing อย่างครบถ้วน
 } catch (e) {
-  // did not get event in time
+  // ไม่ได้รับ event ภายในระยะเวลาที่กำหนด
 }
 ```

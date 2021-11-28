@@ -14,15 +14,15 @@ sidebar_position: 2
 
 ฟังก์ชั่น `getTransferQuote` นั้นรับ arguments ต่างๆดังนี้:
 
-- `sendingAssetId`: _จำเป็น_. Address ของ token บนบล็อคเชนเริ่มต้น และสามารถใช้ `Address(0)` สำหรับโทเคนประจำบล็อคเชนนั้นๆเช่น $ETH
-- `sendingChainId`: _จำเป็น_. [ChainId](https://chainid.network/) ของบล็อคเชนที่เริ่มต้น
-- `receivingAssetId`: _จำเป็น_. Address ของ token บนบล็อคเชนที่รอรับ และสามารถใช้ `Address(0)` สำหรับโทเคนประจำบล็อคเชนนั้นๆเช่น $ETH
-- `receivingChainId`: _จำเป็น_. [ChainId](https://chainid.network/) ของบล็อคเชนที่รอรับ
-- `receivingAddress`: _จำเป็น_. Address ที่โทเคนจะส่งไปถึงบนบล็อคเชนที่รอรับ หาก `callData` และ `callTo` นั้นมีการระบุมาให้แล้ว ตัวแปร `receivingAddress` จะมีหน้าที่เป็นที่รองรับในกรณีที่ธุรกรรมบน contract นั้นถูกย้อนกลับ (reverted) บนบล็อคเชนที่รอรับ
-- `amount`: _จำเป็น_. จำนวนของเงิน (ในรูปแบบ BigNumber) ที่จะส่งไป ไม่ว่าจะเป็นรูปแบบของธุรกรรม หรือรูปแบบของ calldata
-- `expiry`: _ไม่จำเป็น_. ระยะเวลาในการรอคอยก่อนที่ธุรกรรมนั้นถูกย้อนกลับ (reverted) หากไม่มีการตอบรับจากเครือข่าย แนะนำให้ตั้งไว้ที่ 72 ชั่วโมง
-- `callTo`: _ไม่จำเป็น_. contract address ที่ต้องการจะเรียกใช้ หากต้องการจะเรียน contract ข้ามบล็อคเชน
-- `callData`: _ไม่จำเป็น_. Calldata สำหรับการเรียก contract ข้ามบล็อคเชน
+- `sendingAssetId`: _จำเป็น_ Address ของ token บนบล็อคเชนเริ่มต้น และสามารถใช้ `Address(0)` สำหรับโทเคนประจำบล็อคเชนนั้นๆเช่น $ETH
+- `sendingChainId`: _จำเป็น_ [ChainId](https://chainid.network/) ของบล็อคเชนที่เริ่มต้น
+- `receivingAssetId`: _จำเป็น_ Address ของ token บนบล็อคเชนที่รอรับ และสามารถใช้ `Address(0)` สำหรับโทเคนประจำบล็อคเชนนั้นๆเช่น $ETH
+- `receivingChainId`: _จำเป็น_ [ChainId](https://chainid.network/) ของบล็อคเชนที่รอรับ
+- `receivingAddress`: _จำเป็น_ Address ที่โทเคนจะส่งไปถึงบนบล็อคเชนที่รอรับ หาก `callData` และ `callTo` นั้นมีการระบุมาให้แล้ว ตัวแปร `receivingAddress` จะมีหน้าที่เป็นที่รองรับในกรณีที่ธุรกรรมบน contract นั้นถูกย้อนกลับ (reverted) บนบล็อคเชนที่รอรับ
+- `amount`: _จำเป็น_ จำนวนของเงิน (ในรูปแบบ BigNumber) ที่จะส่งไป ไม่ว่าจะเป็นรูปแบบของธุรกรรม หรือรูปแบบของ calldata
+- `expiry`: _ไม่จำเป็น_ ระยะเวลาในการรอคอยก่อนที่ธุรกรรมนั้นถูกย้อนกลับ (reverted) หากไม่มีการตอบรับจากเครือข่าย แนะนำให้ตั้งไว้ที่ 72 ชั่วโมง
+- `callTo`: _ไม่จำเป็น_ Contract address ที่ต้องการจะเรียกใช้ หากต้องการจะเรียน contract ข้ามบล็อคเชน
+- `callData`: _ไม่จำเป็น_ Calldata สำหรับการเรียก contract ข้ามบล็อคเชน
 
 ฟังก์ชั่นจะคืนค่า [AuctionResponse](https://github.com/connext/nxtp/blob/c4-68/packages/utils/src/messaging.ts#L259) เป็น object
 
@@ -46,7 +46,7 @@ const quote = await sdk.getTransferQuote({
   amount: utils.parseEther("1"),
 });
 
-// You can validate price paid by user with data from quote
+// คุณสามารถยืนยันราคาที่จ่ายโดยผู้ใช้งานจาก quote
 const feeEstimate = amount.sub(quote.bid.amountReceived);
 ```
 
@@ -66,10 +66,10 @@ const feeEstimate = amount.sub(quote.bid.amountReceived);
 <TabItem value="ts">
 
 ```ts
-// start transfer, will either prompt user for sigs/transactions or sign with unlocked account
+// เริ่มต้นการโอน จะถามผู้ใช้งานสำหรับการเซ็นธุรกรรม หรือเซ็นด้วยบัญชีที่ปลดล็อคแล้ว
 const transfer = await sdk.prepareTransfer(quote);
 
-// wait for receiver prepared event
+// รอ prepared event จากผู้รับ
 const prepared = await sdk.waitFor(
   NxtpSdkEvents.ReceiverTransactionPrepared,
   100_000,
@@ -77,7 +77,7 @@ const prepared = await sdk.waitFor(
 );
 
 await sdk.fulfillTransfer(prepared);
-// done!
+// เรียบร้อย!
 ```
 
 </TabItem>
