@@ -13,7 +13,7 @@ Routers _ไม่สามารถ_ ปิดเวลาไหนก็ได
 - เปลี่ยน [configuration](../Reference/configuration) ของ router ด้วยการตั้ง `cleanupMode` ให้เป็น `true`
 - Restart router ด้วย `docker-compose restart` หรือ `docker-compose down` จากนั้น `docker-compose up -d`
 - สังเกต logs ต่างๆด้วยคำสั่ง `docker logs --tail 100 --follow router` จนกว่าคุณจะเห็น log ขึ้นว่ามีธุรกรรมที่ใช้งานอยู่เป็น 0: `"transactions":0,"msg":"Got active transactions"}`
-- เมื่อทำขั้นตอนก่อนหน้านี้สำเร็จแล้ว จะปลอดภัยที่จะปิด router ด้วย `docker-compose down` หรือ `docker-compose stop`
+- เมื่อทำขั้นตอนก่อนหน้านี้สำเร็จแล้ว คุณสามารถปิด router ได้อย่างปลอดภัยด้วย `docker-compose down` หรือ `docker-compose stop`
 
 ## การอัพเดท router
 

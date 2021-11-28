@@ -11,8 +11,8 @@ sidebar_position: 2
 
 ## ซอร์ฟแวร์ที่ต้องมี
 
-- [ Docker CE (Community Edition) ](https://docs.docker.com/install/) version 20.10.5 or higher
-- [ Docker Compose ](https://docs.docker.com/compose/install/) version 1.27.4 or higher
+- [ Docker CE (Community Edition) ](https://docs.docker.com/install/) เวอร์ชั่น 20.10.5 หรือสูงกว่า
+- [ Docker Compose ](https://docs.docker.com/compose/install/) เวอร์ชั่น 1.27.4 หรือสูงกว่า
 
 ## การตั้งค่าเน็ตเวิร์ค
 
@@ -42,13 +42,13 @@ $ git clone https://github.com/connext/nxtp-router-docker-compose.git
 
 * `ROUTER_VERSION` - เวอร์ชั่นของ router ที่จะใช้ (เช่น `v0.1.0`) สามารถดู[หน้า releases page](https://github.com/connext/nxtp/releases) สำหรับเวอร์ชั่นต่างๆ
 * `ROUTER_EXTERNAL_PORT` - port ที่จะเปิดเผยของ router ระวังไม่ให้เลข port นี้เป็นสาธารณะ
-* `GRAFANA_EXTERNAL_PORT` - port ที่จะเปิดเผยของ Grafana dashboard.
+* `GRAFANA_EXTERNAL_PORT` - port ที่จะเปิดเผยของ Grafana dashboard
 
 ### การตั้งค่า Router
 
 สร้างไฟล์ `config.json` อิงจากไฟล์ `config.example.json` และอย่างน้อย ควรเปลี่ยนค่าเหล่านี้:
 
-- `adminToken` - ชุดอักษรลับในการเรียกใช้คำสั่งที่ต้องให้ความระมัดระวัง
+- `adminToken` - โทเคนลับในการเรียกใช้คำสั่งที่ต้องให้ความระมัดระวัง
 - `chainConfig` - เพิ่มบล็อคเชนที่ต้องการ และ URL ของ provider
 - `mnemonic` - ใช้รหัส mneumonic ที่ใหม่
 - `swapPools` - เปลี่ยนเป็นสินทรัพย์ที่ต้องการ
@@ -63,10 +63,10 @@ $ git clone https://github.com/connext/nxtp-router-docker-compose.git
 $ docker-compose up -d
 ```
 
-ทดสอบว่ามันทำงานปกติไหนด้วยการให้คำสั่ง `/config` endpoint จากนั้น เข้าระบบไปสู่ host หรือ router container และรันทำสั่ง curl ตามนี้
+ทดสอบว่าระบบทำงานปกติไหนด้วยการให้คำสั่ง `/config` endpoint จากนั้น เข้าระบบไปสู่ host หรือ router container และรันทำสั่ง curl ตามนี้
 
 ```shell
-# assumes ROUTER_EXTERNAL_PORT is 8000, on the container itself it will be 8000
+# สมมติว่า ROUTER_EXTERNAL_PORT คือ 8000 ภายใน container ก็จะเป็น 8000
 $ curl localhost:8000/config
 {"signerAddress":"0x9ADA6aa06eF36977569Dc5b38237809c7DF5082a"}
 ```
