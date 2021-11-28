@@ -8,7 +8,7 @@ sidebar_position: 1
 
 โดย testnet ที่รองรับสามารถดูได้ใน [deployments.json](https://github.com/connext/nxtp/blob/main/packages/contracts/deployments.json)
 
-## เชื่อต่อ Dapps กับ Testnet
+## เชื่อมต่อ Dapps กับ Testnet
 
 เริ่มต้น NXTP SDK ด้วยการตั้งค่าสำหรับ testnet ที่ต้องการ
 
@@ -28,12 +28,12 @@ const chainConfig = {
   },
 };
 
-// Get signer from metamask
+// เรียก signer จาก metamask
 await ethereum.request({ method: "eth_requestAccounts" });
 const provider = new providers.Web3Provider(ethereum);
 const _signer = provider.getSigner();
 
-// Instantiate SDK
+// เริ่มต้น SDK
 const sdk = new NxtpSdk(chainProviders, _signer);
 ```
 

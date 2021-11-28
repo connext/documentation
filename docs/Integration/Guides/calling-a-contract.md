@@ -44,7 +44,7 @@ const callData = counter.interface.encodeFunctionData("incrementAndSend", [
   assetId,
   other.address,
   amount,
-]); // encode data using ABI
+]); // เข้ารหัส (encode) ข้อมูลด้วย ABI
 
 const bid = await sdk.getTransferQuote({
   callData,
@@ -55,16 +55,16 @@ const bid = await sdk.getTransferQuote({
   callTo: counter.address,
   receivingAddress: user.address,
   amount: "1000000",
-}); // get quote for transfer
+}); // เรียก quote สำหรับการโอน
 
-// wait for receiver prepared event
+// รอ prepared event จากผู้รับ
 const prepared = await sdk.waitFor(
   NxtpSdkEvents.ReceiverTransactionPrepared,
   100_000,
   (data) => data.txData.transactionId === transfer.transactionId // filter function
 );
 
-// sign the transfer
+// เซ็นการโอน
 await sdk.fulfillTransfer(prepared);
-// on completion, the contract will be called
+// เมื่อสำเร็จแล้ว contract จะถูกเรียก
 ```

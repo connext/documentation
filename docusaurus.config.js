@@ -24,22 +24,22 @@ module.exports = {
       items: [
         {
           href: "/",
-          label: "Integration",
+          label: "การเชื่อมต่อ (Integration)",
           position: "left",
         },
         {
           href: "/Routers/intro",
-          label: "Routers",
+          label: "เร้าเตอร์ (Routers)",
           position: "left",
         },
         {
           href: "https://medium.com/connext",
-          label: "Blog",
+          label: "บล็อก (Blog)",
           position: "right",
         },
         {
           href: "https://chat.connext.network",
-          label: "Chat",
+          label: "พูดคุย",
           position: "right",
         },
         {
@@ -51,7 +51,7 @@ module.exports = {
     },
     footer: {
       style: "dark",
-      copyright: `Copyright © ${new Date().getFullYear()} Connext, Inc.`,
+      copyright: `ลิขสิทธิ์ถูกต้อง © ${new Date().getFullYear()} Connext, Inc.`,
     },
     prism: {
       theme: lightCodeTheme,
