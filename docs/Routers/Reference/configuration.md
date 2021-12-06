@@ -34,6 +34,12 @@ The JSON schema accepts the following keys:
 - `cleanUpMode`: _Optional_. Boolean to set mode to use to not accept new auctions and continue to handle in-progress auctions. Defaults to false.
 - `diagnosticMode`: _Optional_. Boolean to set mode to use to not accept new auctions not run any subgraph loops/handlers for in-depth debugging. Defaults to false.
 
+:::info
+
+You must add a provider for chain 1 (Ethereum mainnet) even if you don't plan to support Ethereum assets. This is because of the price calculation for gas reimbursement.
+
+:::
+
 ## Example Configuration File
 
 ```json
