@@ -3,18 +3,20 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: "Connext Documentation",
-  tagline: "The interoperability protocol of L2 Ethereum.",
-  url: "https://nxtp-docs.connext.network",
-  baseUrl: "/",
+  title: "เอกสาร Connext",
+  tagline: "โปรโตคอลสำหรับการสื่อสารระว่างบล็อคเชนของ Ethereum L2",
+  url: "http://thai-contribute-community.github.io/",
+  baseUrl: "/connext-documentation/",
+  // url: "http://thaicontribute.connext.network/",
+  // baseUrl: "/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/logomark.ico",
-  organizationName: "connext", // Usually your GitHub org/user name.
-  projectName: "connext", // Usually your repo name.
+  organizationName: "thai-contribute-community", // Usually your GitHub org/user name.
+  projectName: "connext-documentation", // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: "Connext Documentation",
+      title: "เอกสาร Connext",
       logo: {
         alt: "My Site Logo",
         src: "img/logomark.png",
@@ -22,22 +24,22 @@ module.exports = {
       items: [
         {
           href: "/",
-          label: "Integration",
+          label: "การเชื่อมต่อ (Integration)",
           position: "left",
         },
         {
           href: "/Routers/intro",
-          label: "Routers",
+          label: "เร้าเตอร์ (Routers)",
           position: "left",
         },
         {
           href: "https://medium.com/connext",
-          label: "Blog",
+          label: "บล็อก (Blog)",
           position: "right",
         },
         {
           href: "https://chat.connext.network",
-          label: "Chat",
+          label: "พูดคุย",
           position: "right",
         },
         {
@@ -45,11 +47,15 @@ module.exports = {
           label: "GitHub",
           position: "right",
         },
+        {
+          type: 'localeDropdown',
+          position: 'right'
+        }
       ],
     },
     footer: {
       style: "dark",
-      copyright: `Copyright © ${new Date().getFullYear()} Connext, Inc.`,
+      copyright: `ลิขสิทธิ์ถูกต้อง © ${new Date().getFullYear()} Connext, Inc.`,
     },
     prism: {
       theme: lightCodeTheme,
@@ -73,4 +79,8 @@ module.exports = {
       },
     ],
   ],
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'th']
+  }
 };

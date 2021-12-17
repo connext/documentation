@@ -1,0 +1,155 @@
+---
+sidebar_position: 1
+---
+
+# REST API
+
+router นั้นจะมี REST API ที่สามารถใช้ในการดึงข้อมูลและเรียกใช้คำสั่งที่สำคัญ โดย API จะเปิดให้ใช้งานที่ IP address ของ router และที่ `ROUTER_EXTERNAL_PORT` ในไฟล์ `.env`
+
+:::danger
+ตามที่ระบุไว้ในส่วนของเนื้อหา [เริ่มต้นที่จะเป็น Router](../Guides/spinning-up) ผู้ใช้งาน **ไม่ควร** เปิด API นี้ให้ใช้งานได้สาธารนะ และการเรียกใช้คำสั่งต่างๆในเอกสารนี้ต้องทำบนพื้นที่ที่ได้รับความเชื่อใจเท่านั้น ตัวอย่างเช่น ภายใน VPC หรือการเรียนโดยตรงจากเครื่องที่รัน router อยู่
+:::
+
+เรามีตัวอย่างสำหรับการเรียกใช้ใน [repository ของ NXTP](https://github.com/connext/nxtp/blob/main/packages/router/example.http)
+
+## Endpoints
+
+### GET /ping
+
+Ping router ที่เปิดใช้งานอยู่
+
+#### ตัวอย่าง Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+  ]
+}>
+<TabItem value="curl">
+
+```shell
+curl -X GET http://ROUTER_EXTERNAL_IP:ROUTER_EXTERNAL_PORT/ping
+```
+
+</TabItem>
+</Tabs>
+
+#### ตัวอย่าง Response
+
+```
+pong
+```
+
+### GET /config
+
+ดึงค่าการตั้งค่าของ router (router's config)
+
+#### ตัวอย่าง Request
+
+<Tabs
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+  ]
+}>
+<TabItem value="curl">
+
+```shell
+curl -X GET http://ROUTER_EXTERNAL_IP:ROUTER_EXTERNAL_PORT/config
+```
+
+</TabItem>
+</Tabs>
+
+#### ตัวอย่าง Response
+
+```json
+{"signerAddress":"0x0EC26F03e3dBA9bb5162D28fD5a3378A25f168d1"}
+```
+
+### POST /remove-liquidity
+
+ถอดสภาพคล่องของ router
+
+#### Request Body
+
+- `adminToken`: โทเคนของ admin
+- `chainId`: ChainId ที่ต้องการถอดสภาพคล่องออก
+- `assetId`: AssetId ของสินทรัพย์ที่ต้องการถอดสภาพออก
+- `amount`: จำนวนของสินทรัพย์ที่ต้องการจะถอน ในหน่วยที่แท้จริง
+- `recipientAddress`: Address ที่จะส่งสภาพคล่องไปหา
+
+#### ตัวอย่าง Request
+
+<Tabs
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+  ]
+}>
+<TabItem value="curl">
+
+```shell
+curl --request POST \
+  --url http://ROUTER_EXTERNAL_IP:ROUTER_EXTERNAL_PORT/remove-liquidity \
+  --header 'content-type: application/json' \
+  --header 'user-agent: vscode-restclient' \
+  --data '{"adminToken": "blahblah","chainId": "100","assetId": "0x0000000000000000000000000000000000000000","amount": "1000000000000000000","recipientAddress": "0x5A9e792143bf2708b4765C144451dCa54f559a19"}'
+```
+
+</TabItem>
+</Tabs>
+
+#### ตัวอย่าง Response
+
+```json
+{"transactionHash":"0x76ed04081dc333c51575b0123459e46d8e7d85563b28b16da78e2597aada4791"}
+```
+
+### POST /cancel-sender
+
+ยกเลิกธุรกรรมของผู้ส่งด้วยตนเอง
+
+:::danger
+
+คำสั่งนี้อันตราย เพราะถ้าคุณยกเลิกธุรกรรมจากฝั่งของผู้ส่งและ router ได้มีการเตรียมการ (`prepare`) ธุรกรรมที่ได้รับมาเรียบร้อยแล้ว (หรืออยู่ในขั้นตอนของการเตรียมการ) router จะสูญเสียเงินได้
+
+:::
+
+#### Request Body
+
+- `adminToken`: โทเคนของ admin
+- `senderChainId`: chainId จากบล็อคเชนของผู้ส่งที่ต้องการจะยกเลิกธุรกรรม
+- `transactionId`: assetId จากธุรกรรมที่จะยกเลิก
+- `user`: Address ของผู้ใช้งาน
+
+#### ตัวอย่าง Request
+
+<Tabs
+  defaultValue="curl"
+  values={[
+    { label: 'cURL', value: 'curl', },
+  ]
+}>
+<TabItem value="curl">
+
+```shell
+curl --request POST \
+  --url http://ROUTER_EXTERNAL_IP:ROUTER_EXTERNAL_PORT/cancel-sender \
+  --header 'content-type: application/json' \
+  --header 'user-agent: vscode-restclient' \
+  --data '{"adminToken": "blahblah","transactionId": "0x76ed04081dc333c51575bf785389e46d8e7d85563b28b16da78e2597aada4791","senderChainId": 137,"user": "0xf4cf09a03f2d9e3b86105d043dd7c45de9d9753c"}'
+```
+
+</TabItem>
+</Tabs>
+
+#### ตัวอย่าง Response
+
+```json
+{"transactionHash":"0x76ed04081dc333c51575b0123459e46d8e7d85563b28b16da78e2597aada4791"}
+```

@@ -1,0 +1,92 @@
+---
+sidebar_position: 2
+---
+
+# ธุรกรรมข้ามบล็อคเชน
+
+เส้นทางของการส่งธุรกรรมผ่าน Connext นั้นหลักๆประกอบไปด้วย:
+
+1. การรับธุรกรรมการโอนอ้างอิง (transfer quote): คืนค่าเงินที่ประมาณไว้และการยืนยันธุรกรรมการโอน
+2. เริ่มต้นการโอน: ส่งธุรกรรมของผู้ใช้งานบนบล็อคเชน A และรอให้เครือข่ายมอบสภาพคล่อง
+3. สำเร็จธุรกรรมโอน: สำเร็จธุรกรรมของผู้ใช้งานบนบล็อคเชน B
+
+## GetTransferQuote
+
+ฟังก์ชั่น `getTransferQuote` นั้นรับ arguments ต่างๆดังนี้:
+
+- `sendingAssetId`: _จำเป็น_ Address ของ token บนบล็อคเชนเริ่มต้น และสามารถใช้ `Address(0)` สำหรับโทเคนประจำบล็อคเชนนั้นๆเช่น $ETH
+- `sendingChainId`: _จำเป็น_ [ChainId](https://chainid.network/) ของบล็อคเชนที่เริ่มต้น
+- `receivingAssetId`: _จำเป็น_ Address ของ token บนบล็อคเชนที่รอรับ และสามารถใช้ `Address(0)` สำหรับโทเคนประจำบล็อคเชนนั้นๆเช่น $ETH
+- `receivingChainId`: _จำเป็น_ [ChainId](https://chainid.network/) ของบล็อคเชนที่รอรับ
+- `receivingAddress`: _จำเป็น_ Address ที่โทเคนจะส่งไปถึงบนบล็อคเชนที่รอรับ หาก `callData` และ `callTo` นั้นมีการระบุมาให้แล้ว ตัวแปร `receivingAddress` จะมีหน้าที่เป็นที่รองรับในกรณีที่ธุรกรรมบน contract นั้นถูกย้อนกลับ (reverted) บนบล็อคเชนที่รอรับ
+- `amount`: _จำเป็น_ จำนวนของเงิน (ในรูปแบบ BigNumber) ที่จะส่งไป ไม่ว่าจะเป็นรูปแบบของธุรกรรม หรือรูปแบบของ calldata
+- `expiry`: _ไม่จำเป็น_ ระยะเวลาในการรอคอยก่อนที่ธุรกรรมนั้นถูกย้อนกลับ (reverted) หากไม่มีการตอบรับจากเครือข่าย แนะนำให้ตั้งไว้ที่ 72 ชั่วโมง
+- `callTo`: _ไม่จำเป็น_ Contract address ที่ต้องการจะเรียกใช้ หากต้องการจะเรียน contract ข้ามบล็อคเชน
+- `callData`: _ไม่จำเป็น_ Calldata สำหรับการเรียก contract ข้ามบล็อคเชน
+
+ฟังก์ชั่นจะคืนค่า [AuctionResponse](https://github.com/connext/nxtp/blob/c4-68/packages/utils/src/messaging.ts#L259) เป็น object
+
+ตัวอย่าง:
+
+<Tabs
+  defaultValue="ts"
+  values={[
+    { label: 'Typescript', value: 'ts', },
+  ]
+}>
+<TabItem value="ts">
+
+```ts
+const quote = await sdk.getTransferQuote({
+  sendingAssetId: "0x9aC2c46d7AcC21c881154D57c0Dc1c55a3139198",
+  sendingChainId: 4,
+  receivingAssetId: "0x8a1Cad3703E0beAe0e0237369B4fcD04228d1682",
+  receivingChainId: 5,
+  receivingAddress: "0x5A9e792143bf2708b4765C144451dCa54f559a11",
+  amount: utils.parseEther("1"),
+});
+
+// คุณสามารถยืนยันราคาที่จ่ายโดยผู้ใช้งานจาก quote
+const feeEstimate = amount.sub(quote.bid.amountReceived);
+```
+
+</TabItem>
+</Tabs>
+
+## การเรียกใช้ธุรกรรม
+
+ขั้นแรก `prepareTransfer` เพื่อเริ่มต้นธุรกรรมบน contract ของคุณ จากนั้น รอธุรกรรมให้ได้มีการเตรียมการบนบล็อคเชนที่รอรับ และเรียกใช้ `fulfillTransfer`
+
+<Tabs
+  defaultValue="ts"
+  values={[
+    { label: 'Typescript', value: 'ts', },
+  ]
+}>
+<TabItem value="ts">
+
+```ts
+// เริ่มต้นการโอน จะถามผู้ใช้งานสำหรับการเซ็นธุรกรรม หรือเซ็นด้วยบัญชีที่ปลดล็อคแล้ว
+const transfer = await sdk.prepareTransfer(quote);
+
+// รอ prepared event จากผู้รับ
+const prepared = await sdk.waitFor(
+  NxtpSdkEvents.ReceiverTransactionPrepared,
+  100_000,
+  (data) => data.txData.transactionId === transfer.transactionId // filter function
+);
+
+await sdk.fulfillTransfer(prepared);
+// เรียบร้อย!
+```
+
+</TabItem>
+</Tabs>
+
+## ขั้นตอนถัดไป
+
+ลองดูเนื้อหาส่วนอื่นในโฟลเดอร์สำหรับข้อมูลเกี่ยวกับ [เหตุการณ์ (events)](./events), [API](./api-reference), ฯลฯ
+
+## ตัวอย่างเต็ม
+
+สามารถดู [`test-ui`](https://github.com/connext/nxtp/tree/main/packages/test-ui) สำหรับตัวอย่างการทำงานเต็มรูปแบบของการเชื่อม React กับ SDK

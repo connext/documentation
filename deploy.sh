@@ -1,0 +1,1 @@
+(export $(cat .env.local | xargs) && yarn deploy)
