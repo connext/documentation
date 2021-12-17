@@ -3,12 +3,10 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: "เอกสาร Connext",
-  tagline: "โปรโตคอลสำหรับการสื่อสารระว่างบล็อคเชนของ Ethereum L2",
-  url: "http://thai-contribute-community.github.io/",
-  baseUrl: "/connext-documentation/",
-  // url: "http://thaicontribute.connext.network/",
-  // baseUrl: "/",
+  title: "Connext Documentation",
+  tagline: "The interoperability protocol of L2 Ethereum.",
+  url: "https://nxtp-docs.connext.network",
+  baseUrl: "/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/logomark.ico",
@@ -16,7 +14,7 @@ module.exports = {
   projectName: "connext-documentation", // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: "เอกสาร Connext",
+      title: "Connext Documentation",
       logo: {
         alt: "My Site Logo",
         src: "img/logomark.png",
@@ -24,22 +22,22 @@ module.exports = {
       items: [
         {
           href: "/",
-          label: "การเชื่อมต่อ (Integration)",
+          label: "Integration",
           position: "left",
         },
         {
           href: "/Routers/intro",
-          label: "เร้าเตอร์ (Routers)",
+          label: "Routers",
           position: "left",
         },
         {
           href: "https://medium.com/connext",
-          label: "บล็อก (Blog)",
+          label: "Blog",
           position: "right",
         },
         {
           href: "https://chat.connext.network",
-          label: "พูดคุย",
+          label: "Chat",
           position: "right",
         },
         {
@@ -55,7 +53,7 @@ module.exports = {
     },
     footer: {
       style: "dark",
-      copyright: `ลิขสิทธิ์ถูกต้อง © ${new Date().getFullYear()} Connext, Inc.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Connext, Inc.`,
     },
     prism: {
       theme: lightCodeTheme,
