@@ -19,5 +19,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# vscode tmp
+deploy.sh
+
+# vscode tmp files
 .vscode

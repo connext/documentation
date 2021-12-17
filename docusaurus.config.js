@@ -10,8 +10,8 @@ module.exports = {
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/logomark.ico",
-  organizationName: "thai-contribute-community", // Usually your GitHub org/user name.
-  projectName: "connext-documentation", // Usually your repo name.
+  organizationName: "connext", // Usually your GitHub org/user name.
+  projectName: "connext", // Usually your repo name.
   themeConfig: {
     navbar: {
       title: "Connext Documentation",
