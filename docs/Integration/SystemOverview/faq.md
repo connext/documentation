@@ -40,7 +40,7 @@ We started Connext in 2017, and have been a core part of the L2 research communi
 
 ### Is Connext live on mainnet?
 
-Yes! You can see the live status of the network on the community-built [Connext Explorer](connextscan.io/).
+Yes! You can see the live status of the network on the community-built [Connext Explorer](https://connextscan.io/).
 
 ### Where can I try Connext?
 
