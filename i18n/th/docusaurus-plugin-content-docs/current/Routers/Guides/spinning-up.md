@@ -49,7 +49,7 @@ $ git clone https://github.com/connext/nxtp-router-docker-compose.git
 สร้างไฟล์ `config.json` อิงจากไฟล์ `config.example.json` และอย่างน้อย ควรเปลี่ยนค่าเหล่านี้:
 
 - `adminToken` - โทเคนลับในการเรียกใช้คำสั่งที่ต้องให้ความระมัดระวัง
-- `chainConfig` - เพิ่มบล็อคเชนที่ต้องการ และ URL ของ provider
+- `chainConfig` - เพิ่มบล็อคเชนที่ต้องการ และ URL ของ provider **โน้ตเพิ่มเติม:** อย่าลืมเพิ่ม providers ของ chain 1 (Ethereum mainnet)
 - `mnemonic` - ใช้รหัส mneumonic ที่ใหม่
 - `swapPools` - เปลี่ยนเป็นสินทรัพย์ที่ต้องการ
 

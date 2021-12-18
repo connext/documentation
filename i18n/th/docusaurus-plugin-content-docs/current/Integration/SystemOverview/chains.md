@@ -15,15 +15,16 @@ sidebar_position: 4
 |     Fantom Opera    |    250   |     ✅    |
 |     Arbitrum One    |   42161  |     ✅    |
 |       Avalanche     |   43114  |     ✅    |
-|       Optimism      |    10    | เมื่อมีการปล่อย OVM 2.0 |
+|       Optimism      |    10    | ✅ |
+|       Moonriver      |    1285    |    ✅    |
 |       Fuse      |    122    |    วางแผนไว้    |
 |       Moonbeam      |    1284    |    วางแผนไว้    |
-|       Moonriver      |    1285    |    วางแผนไว้    |
 |       Celo      |    42220    |    วางแผนไว้    |
 |       Aurora      |    1313161554    |    วางแผนไว้    |
 |       Harmony      |    1666600000    |    วางแผนไว้    |
 |       Evmos      |    TBD    |    วางแผนไว้    |
-|       Nervos      |    TBD    |    วางแผนไว้    |
+|       Neon      |    TBD    |    วางแผนไว้    |
+|       Godwoken      |    TBD    |    วางแผนไว้    |
 |       zkSync      |    TBD    |    วางแผนไว้    |
 |       StarkNet      |    TBD    |    วางแผนไว้    |
 
