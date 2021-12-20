@@ -26,7 +26,7 @@ Want to get started with crosschain interactions in your dApp right away? We ste
 
 The System Overview section covers high level information about crosschain interoperability and how **nxtp**, the protocol underlying Connext, works.
 
-#### [Guides](./developers/getting-started)
+#### [Guides](./QuickStart/setup.mdx)
 
 More guides are coming soon! We'll cover common workflows like calling a contract across chains and tips for UX!
 
