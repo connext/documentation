@@ -15,15 +15,16 @@ sidebar_position: 4
 |     Fantom Opera    |    250   |     ✅    |
 |     Arbitrum One    |   42161  |     ✅    |
 |       Avalanche     |   43114  |     ✅    |
-|       Optimism      |    10    | On OVM 2.0 Launch |
+|       Optimism      |    10    |     ✅    |
+|       Moonriver      |    1285    |     ✅    |
 |       Fuse      |    122    |    Planned    |
 |       Moonbeam      |    1284    |    Planned    |
-|       Moonriver      |    1285    |    Planned    |
 |       Celo      |    42220    |    Planned    |
 |       Aurora      |    1313161554    |    Planned    |
 |       Harmony      |    1666600000    |    Planned    |
 |       Evmos      |    TBD    |    Planned    |
-|       Nervos      |    TBD    |    Planned    |
+|       Neon      |    TBD    |    Planned    |
+|       Godwoken      |    TBD    |    Planned    |
 |       zkSync      |    TBD    |    Planned    |
 |       StarkNet      |    TBD    |    Planned    |
 

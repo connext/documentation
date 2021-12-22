@@ -17,14 +17,10 @@ Example:
 ```typescript
 const chainConfig = {
   4: {
-    provider: new providers.FallbackProvider([
-      new providers.JsonRpcProvider("https://rinkeby.infura.io/..."),
-    ]),
+    providers: ["https://rinkeby.infura.io/..."]),
   },
   5: {
-    provider: new providers.FallbackProvider([
-      new providers.JsonRpcProvider("https://goerli.infura.io/..."),
-    ]),
+    provider: new providers.FallbackProvider(["https://goerli.infura.io/..."]),
   },
 };
 
@@ -34,7 +30,7 @@ const provider = new providers.Web3Provider(ethereum);
 const _signer = provider.getSigner();
 
 // Instantiate SDK
-const sdk = new NxtpSdk(chainProviders, _signer);
+const sdk = await NxtpSdk.create(chainProviders, _signer);
 ```
 
 ## Testing Transfers Using Test ERC20s

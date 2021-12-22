@@ -68,14 +68,10 @@ import { NxtpSdkEvents, NxtpSdk } from "@connext/nxtp-sdk";
 // Set up provider to chain mappings
 const chainConfig = {
   4: {
-    provider: new providers.FallbackProvider([
-      new providers.JsonRpcProvider("https://rinkeby.infura.io/..."),
-    ]),
+    providers: new providers.FallbackProvider(["https://rinkeby.infura.io/..."]),
   },
   5: {
-    provider: new providers.FallbackProvider([
-      new providers.JsonRpcProvider("https://goerli.infura.io/..."),
-    ]),
+    providers: new providers.FallbackProvider(["https://goerli.infura.io/..."]),
   },
 };
 
@@ -85,7 +81,7 @@ const provider = new providers.Web3Provider(ethereum);
 const _signer = provider.getSigner();
 
 // Instantiate SDK
-const sdk = new NxtpSdk({chainConfig: chainProviders, signer: _signer});
+const sdk = await NxtpSdk.create({chainConfig: chainProviders, signer: _signer});
 ```
 
 </TabItem>

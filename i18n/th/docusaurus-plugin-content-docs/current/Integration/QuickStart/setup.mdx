@@ -81,7 +81,7 @@ const provider = new providers.Web3Provider(ethereum);
 const _signer = provider.getSigner();
 
 // เริ่มต้น SDK
-const sdk = await NxtpSdk.sdk({chainConfig: chainProviders, signer: _signer});
+const sdk = await NxtpSdk.create({chainConfig: chainProviders, signer: _signer});
 ```
 
 </TabItem>

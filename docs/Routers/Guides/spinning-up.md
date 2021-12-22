@@ -49,7 +49,7 @@ Modify the following environment variables:
 Create a `config.json` file based on the `config.example.json` file. At minumum, change the following values:
 
 - `adminToken` - A secret string for performing sensitive operations.
-- `chainConfig` - Add your desired chains and provider URLs.
+- `chainConfig` - Add your desired chains and provider URLs. NOTE: Make sure to add chain 1 (Ethereum mainnet) providers.
 - `mnemonic` - Use a unique and secret mnemonic.
 - `swapPools` - Change to desired assets.
 
