@@ -44,16 +44,34 @@ $ git clone https://github.com/connext/nxtp-router-docker-compose.git
 * `ROUTER_EXTERNAL_PORT` - port ที่จะเปิดเผยของ router ระวังไม่ให้เลข port นี้เป็นสาธารณะ
 * `GRAFANA_EXTERNAL_PORT` - port ที่จะเปิดเผยของ Grafana dashboard
 
+### Web3Signer Config
+
+ติดตั้งไฟล์ตั้งค่าของ [Web3Signer](https://docs.web3signer.consensys.net/en/latest/) เพื่อที่จะตั้งค่า private key อย่างปลอดภัย
+
 ### การตั้งค่า Router
 
 สร้างไฟล์ `config.json` อิงจากไฟล์ `config.example.json` และอย่างน้อย ควรเปลี่ยนค่าเหล่านี้:
 
 - `adminToken` - โทเคนลับในการเรียกใช้คำสั่งที่ต้องให้ความระมัดระวัง
 - `chainConfig` - เพิ่มบล็อคเชนที่ต้องการ และ URL ของ provider **โน้ตเพิ่มเติม:** อย่าลืมเพิ่ม providers ของ chain 1 (Ethereum mainnet)
-- `mnemonic` - ใช้รหัส mneumonic ที่ใหม่
+- `web3SignerUrl` - ตั้งให้เป็น `"http://signer:9000"`.
+- `routerContractAddress` - ตั้งให้เป็น address ของ router 
 - `swapPools` - เปลี่ยนเป็นสินทรัพย์ที่ต้องการ
 
 สามารถดูในส่วนของ [การตั้งค่า](../Reference/configuration) สำหรับข้อมูลเพิ่มเติม
+
+## การ Deploy Router Contract
+
+ในแต่ละเชนที่คุณต้องการทำงานด้วย คุณต้องทำการ deploy ตัว router contract ก่อน ซึ่ง contract นี้จะทำหน้าที่เป็นเหมือน "กระเป๋า" และอนุญาตให้ relayers ส่งธุรกรรมในฐานะ router ได้เพื่อที่จะรับค่าธรรมเนียม
+
+คุณสามารถ deploy ตัว router contract ด้วยการไปที่ block explorer บนบล็อคเชนของคุณที่คุณต้องการจะ deploy router บนนั้น จากนั้นใช้งานฟังก์ชั่น Write Contract บนตัว explorer ภายใน `RouterFactory` contract เพื่อเรียกใช้คำสั่ง `createRouter` บน contract `RouterFactory` ด้วยตัวแปรเหล่านี้:
+- `routerSigner`: EOA address ที่สอดคล้องกับ signer ที่ตั้งไว้ของ router และจะเหมือนกันกับทุกเชน
+- `recipient`: Address ที่ router จะได้รับเงินคืนเมื่อเรียกใช้ `removeLiquidity()`.
+- `msg.sender`: นี่คือเจ้าของของ Router Contract สิ่งนี้สามารถเป็น EOA ใดก็ได้ที่ต้องการเก็บเป็นความลับ คุณจะต้องใช้มันในกรณีที่คุณต้องการเปลี่ยนผู้รับหรือ `removeRelayerFee` บน contract Router.sol สำหรับความปลอดภัยเพิ่มเติม คุณสามารถใช้งานฟังก์ชั่น `setOwner()` บน contract และตั้งค่า address นี้เป็น burn address เพื่อป้องกันใครก็ตามมาเปลี่ยนแปลงผู้รับ
+
+ปัจจุบัน router factory address บนทุกเชนนั้นคือ `0x73a37b3EB030cC3f9739CA5C16b7E6802F294122` และ contract นั้นได้รับการยอมรับบนทุกเชนแล้ว หากคุณมีปัญหาหรือคำถามเกี่ยวกับสิ่งนี้ สามารถติดต่อมาที่ทีมงาน Connext ได้เลย! กระบวนการนี้ต้องสำเร็จบนทุกเชน!
+
+โปรดเช็คว่าทีมงาน Connext นั้นรู้ contract address ของ router คุณ รวมทั้ง EOA signer address ด้วย ในกรณีที่ต้องมีการ whitelist เกิดขึ้น!
 
 ## การเริ่มต้นรัน Router
 

@@ -44,16 +44,34 @@ Modify the following environment variables:
 * `ROUTER_EXTERNAL_PORT` - Exposed port of the router. Remember to not expose this port to the public.
 * `GRAFANA_EXTERNAL_PORT` - Exposed port of the Grafana dashboard.
 
+### Web3Signer Config
+
+Set up [Web3Signer](https://docs.web3signer.consensys.net/en/latest/) config files to set the private key securely.
+
 ### Router Config
 
 Create a `config.json` file based on the `config.example.json` file. At minumum, change the following values:
 
 - `adminToken` - A secret string for performing sensitive operations.
 - `chainConfig` - Add your desired chains and provider URLs. NOTE: Make sure to add chain 1 (Ethereum mainnet) providers.
-- `mnemonic` - Use a unique and secret mnemonic.
+- `web3SignerUrl` - Set to `"http://signer:9000"`.
+- `routerContractAddress` - Set to the address of the router contract, see the section below.
 - `swapPools` - Change to desired assets.
 
 See the [Configuration](../Reference/configuration) section for more details.
+
+## Deploying a Router Contract
+
+On each chain you want to operate on you must deploy a router contract. This contract will control act as the router's "wallet" and allow relayers to send transactions on behalf of the router, for a fee.
+
+You can deploy the router contract by going to the block explorer on the chain you want to deploy the router on, then using the Write Contract functionality of the explorer on the `RouterFactory` contract. Call the `createRouter` method on the `RouterFactory` contract with the following parameters:
+- `routerSigner`: EOA address which corresponds to the router's configured signer. Will be the same on all chains.
+- `recipient`: Address at which router will get funds back when it calls `removeLiquidity()`.
+- `msg.sender`: Will be the owner of the Router Contract. This can be any EOA that you can keep secret, you will need to use it in case you want to change recipient or `removeRelayerFee` on Router.sol contract. For extra security, you can use the `setOwner()` function on the contract and set this address to the burn address to prevent anyone from changing the recipient.
+
+The current router factory address on every chain is `0x73a37b3EB030cC3f9739CA5C16b7E6802F294122` and the contract is verified on every chain. If you have any issues/questions about this, please contact the Connext team! This process needs to be completed on all chains!
+
+Make sure the Connext team is aware of your router contract address and EOA signer address in case anything needs whitelisting!
 
 ## Running the Router
 

@@ -4,6 +4,7 @@ sidebar_position: 1
 
 # รายการตรวจสอบสำหรับการรัน Router
 
+- อย่าลืมที่จะเติมแก๊สเมื่อคุณเหลือแก๊สน้อย!
 - [เริ่มต้นที่จะเป็น Router](./spinning-up) และ [การตั่งค่า](../Reference/configuration) สำหรับ testnets
 - [การให้สภาพคล่อง](./providing-liquidity) และค่าแก๊สบน  testnets
 - [การทดสอบ Router](./testing-router) บน testnets
