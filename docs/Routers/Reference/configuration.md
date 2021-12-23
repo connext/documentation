@@ -46,16 +46,19 @@ You must add a provider for chain 1 (Ethereum mainnet) even if you don't plan to
 
 ## Example Configuration File
 
+_These are example RPC URLs. Please get your own RPC URLs!_
+
 ```json
 {
   "adminToken": "supersecret",
   "chainConfig": {
+    "10": {
+      "providers": ["https://mainnet.optimism.io"],
+      "defaultInitialGasPrice": "1000000",
+      "routerContractRelayerAsset": "0x0000000000000000000000000000000000000000"
+    },
     "56": {
-      "providers": [
-        "https://bsc-dataseed.binance.org/",
-        "https://bsc-dataseed1.defibit.io/",
-        "https://bsc-dataseed1.ninicoin.io/"
-      ]
+      "providers": ["https://bscrpc.com/"]
     },
     "100": {
       "providers": [
@@ -64,6 +67,10 @@ You must add a provider for chain 1 (Ethereum mainnet) even if you don't plan to
         "https://xdai.poanetwork.dev/",
         "https://dai.poa.network/"
       ]
+    },
+    "122": {
+      "providers": ["https://rpc.fuse.io/"],
+      "minGas": "100000000000000"
     },
     "137": {
       "providers": ["https://polygon-rpc.com/"],
@@ -78,9 +85,7 @@ You must add a provider for chain 1 (Ethereum mainnet) even if you don't plan to
       "minGas": "100000000000000"
     },
     "42161": {
-      "providers": [
-        "https://arb-mainnet.g.alchemy.com/v2/FJDKJFDKJD"
-      ],
+      "providers": ["https://arb-mainnet.g.alchemy.com/v2/FJDKJFDKJD"],
       "minGas": "100000000000000"
     },
     "43114": {
@@ -108,12 +113,20 @@ You must add a provider for chain 1 (Ethereum mainnet) even if you don't plan to
           "assetId": "0x6B175474E89094C44Da98b954EedeAC495271d0F"
         },
         {
+          "chainId": 10,
+          "assetId": "0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1"
+        },
+        {
           "chainId": 56,
           "assetId": "0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3"
         },
         {
           "chainId": 100,
           "assetId": "0x0000000000000000000000000000000000000000"
+        },
+        {
+          "chainId": 122,
+          "assetId": "0x94Ba7A27c7A95863d1bdC7645AC2951E0cca06bA"
         },
         {
           "chainId": 137,
@@ -141,6 +154,10 @@ You must add a provider for chain 1 (Ethereum mainnet) even if you don't plan to
           "assetId": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
         },
         {
+          "chainId": 10,
+          "assetId": "0x7F5c764cBc14f9669B88837ca1490cCa17c31607"
+        },
+        {
           "chainId": 56,
           "assetId": "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d"
         },
@@ -149,12 +166,20 @@ You must add a provider for chain 1 (Ethereum mainnet) even if you don't plan to
           "assetId": "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83"
         },
         {
+          "chainId": 122,
+          "assetId": "0x620fd5fa44BE6af63715Ef4E65DDFA0387aD13F5"
+        },
+        {
           "chainId": 137,
           "assetId": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174"
         },
         {
           "chainId": 250,
           "assetId": "0x04068da6c83afcfa0e13ba15a6696662335d5b75"
+        },
+        {
+          "chainId": 1285,
+          "assetId": "0xE3F5a90F9cb311505cd691a46596599aA1A0AD7D"
         },
         {
           "chainId": 42161,
@@ -174,6 +199,10 @@ You must add a provider for chain 1 (Ethereum mainnet) even if you don't plan to
           "assetId": "0xdAC17F958D2ee523a2206206994597C13D831ec7"
         },
         {
+          "chainId": 10,
+          "assetId": "0x94b008aA00579c1307B0EF2c499aD98a8ce58e58"
+        },
+        {
           "chainId": 56,
           "assetId": "0x55d398326f99059fF775485246999027B3197955"
         },
@@ -182,12 +211,20 @@ You must add a provider for chain 1 (Ethereum mainnet) even if you don't plan to
           "assetId": "0x4ECaBa5870353805a9F068101A40E0f32ed605C6"
         },
         {
+          "chainId": 122,
+          "assetId": "0xFaDbBF8Ce7D5b7041bE672561bbA99f79c532e10"
+        },
+        {
           "chainId": 137,
           "assetId": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"
         },
         {
           "chainId": 250,
           "assetId": "0x049d68029688eabf473097a2fc38ef61633a3c7a"
+        },
+        {
+          "chainId": 1285,
+          "assetId": "0xB44a9B6905aF7c801311e8F4E76932ee959c663C"
         },
         {
           "chainId": 42161,
