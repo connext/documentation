@@ -36,4 +36,4 @@ We have deployed test tokens to all testnet chains that can be used to easily te
 
 ## Monitoring Liquidity
 
-You can find your router on https://connextscan.io and monitor the liquidity and all transactions
+You can find your router on https://connextscan.io and monitor the liquidity and all transactions!
