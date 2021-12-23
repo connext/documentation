@@ -9,16 +9,20 @@ The router is accepts configuration using the config file `config.json` in the r
 The JSON schema accepts the following keys:
 
 - `adminToken`: _Required_. Secret token used to authenticate admin requests.
-- `mnemonic`: _Required_. The mnemonic used to generate the private key.
+- `routerContractAddress`: _Recommended_. Address of the router contract. If not provided, the router sends transactions itself without a relay. This is deprecated behavior and the router contract should always be used. See the section on [Spinning-Up](../Guides/Spinning-Up) for more info.
+- `web3SignerUrl`: _Recommended_. The URL for a running [Web3Signer](https://docs.web3signer.consensys.net/en/latest/) instance. This is the recommended approach to private key storage.
+- `mnemonic`: _Optional, Discouraged_. The mnemonic used to generate the private key. Using the mnemonic directly in the config file is unsafe and not recommended.
 - `chainConfig`: _Required_. The chain configuration. A JSON object with the following keyed by `chainId` with the following object schema as value:
   - `providers`: _Required_. An array of providers URLs for a chain. Use a minimum of 1 URL, but additional URLs provide more fallback protection against provider issues.
   - `subgraph`: _Optional_. An array of subgraph URLs for a chain. Additional URLs provide more fallback protection against subgraph issues. If not provided, will default to Connext's hosted subgraphs.
+  - `analyticsSubgraph`: _Optional_. An array of subgraph URLs for a chain. Additional URLs provide more fallback protection against subgraph issues. If not provided, will default to Connext's hosted subgraphs.
   - `transactionManagerAddress`: _Optional_. The address of the transaction manager contract. If not provided, will default to the latest deployed contracts.
   - `priceOracleAddress`: _Optional_. The address of the price oracle contract. If not provided, will default to the latest deployed contracts.
+  - `multicallAddress`: _Optional_. The address of the multicall contract. If not provided, will default to the latest deployed contracts.
   - `confirmations`: _Optional_. The number of confirmations required for a transaction to be considered valid on a chain. Defaults to defined values [here](https://github.com/connext/chaindata/blob/29cc0250aff398cdf9326dcb7698d291f3e3015a/crossChain.json).
   - `minGas`: _Optional_. The minimum gas amount required to be held by the router's signer address in order to participate in auctions, specified in Wei. Defaults to `100000000000000000` (0.1 Ether).
-  - `defaultInitialGas`: _Optional_. The default initial gas amount to be used when sending transactions. If not provided, it will be estimated through gas station APIs or the node itself.
-  - `allowFulfillRelay`: _Optional_. Boolean to control whether this router will participate in relaying transactions. Defaults to `true`.
+  - `gasStations`: _Optional_. Array of gas station URLs, defaults to using the RPC's gas estimation.
+  - `allowRelay`: _Optional_. Boolean to control whether this router will participate in relaying transactions on this chain. Defaults to `false`.
   - `relayerFeeThreshold`: _Optional_. Minimum threshold percentage that the relayer fee can be below the router's estimated amount. Defaults to `10`.
   - `subgraphSyncBuffer`: _Optional_. The number of blocks to allow the subgraph's latest block number to be behind the provider's latest block number.
 - `swapPools`: _Required_. An array of swap pools. Each pool is a JSON object with the following keys:
@@ -47,7 +51,6 @@ You must add a provider for chain 1 (Ethereum mainnet) even if you don't plan to
   "adminToken": "supersecret",
   "chainConfig": {
     "56": {
-      "subgraphSyncBuffer": 250,
       "providers": [
         "https://bsc-dataseed.binance.org/",
         "https://bsc-dataseed1.defibit.io/",
