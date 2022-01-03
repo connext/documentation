@@ -52,6 +52,7 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Connext, Inc.`,
     },
     prism: {
+      additionalLanguages: ["solidity"],
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
     },
