@@ -22,6 +22,15 @@ No. Neither the Connext founding team, nor any routers running Connext's protoco
 
 Fees are charged by routers within the network when users send transactions. The Connext team is only a protocol implementer and so does not charge any fees.
 
+Currently, all fees associated with executing a crosschain transaction are levied as follows:
+
+_Sending Chain Fee_: This is the transaction fee on the sending chain for initiating a crosschain transaction. It is configured by the dapp and the user's wallet provider and charged in the native asset of the origin chain.
+
+_Router Fee_: This is the fee taken by router operators for facilitating the transaction. It is designed to be enough to cover the gas costs of the router and give an incentive (currently 0.05% of transaction size) for providing the liquidity. The fee is charged by taking the difference between what the user deposits on the sending chain, and what the router provides on the destination chain.
+
+_Receiving Chain Fee_: This is paid depending on how the transaction is sent. If a user sends it themselves, then the costs are in the native asset of the receiving chain (the gas fee associated with any onchain transaction). If the transaction is sent via relayers, then the cost comes out of the asset you receive (i.e. the USDC relayer fee is deducted from the amount the router put up for you on the destination chain).
+
+
 ### Is Connext audited?
 
 Yes! You can see our audits at https://audits.connext.network.
