@@ -22,13 +22,13 @@ sidebar_position: 4
 |       Celo      |    42220    |    Planned    |
 |       Aurora      |    1313161554    |    Planned    |
 |       Harmony      |    1666600000    |    Planned    |
-|       Evmos      |    TBD    |    Planned    |
+|       Evmos      |    9001    |    Planned    |
 |       Neon      |    TBD    |    Planned    |
 |       Godwoken      |    TBD    |    Planned    |
 |       zkSync      |    TBD    |    Planned    |
 |       StarkNet      |    TBD    |    Planned    |
-|       Boba      |    TBD    |    Planned    |
-|       Metis      |    TBD    |    Planned    |
+|       Boba      |    288    |    Planned    |
+|       Metis Andromeda    |    1088    |    Planned    |
 |       Milkomeda      |    TBD    |    Planned    |
 
 ## Testnets
