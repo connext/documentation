@@ -11,7 +11,7 @@ sidebar_position: 4
 |       Ethereum      |     1    |     ✅    |
 | Binance Smart Chain |    56    |     ✅    |
 |       Polygon       |    137   |     ✅    |
-|         xDai        |    100   |     ✅    |
+|         GnosisChain        |    100   |     ✅    |
 |     Fantom Opera    |    250   |     ✅    |
 |     Arbitrum One    |   42161  |     ✅    |
 |       Avalanche     |   43114  |     ✅    |
