@@ -17,8 +17,8 @@ sidebar_position: 4
 |       Avalanche     |   43114  |     ✅    |
 |       Optimism      |    10    |     ✅    |
 |       Moonriver      |    1285    |     ✅    |
-|       Fuse      |    122    |    Planned    |
-|       Moonbeam      |    1284    |    Planned    |
+|       Fuse      |    122    |    ✅    |
+|       Moonbeam      |    1284    |    ✅    |
 |       Celo      |    42220    |    Planned    |
 |       Aurora      |    1313161554    |    Planned    |
 |       Harmony      |    1666600000    |    Planned    |
@@ -27,6 +27,9 @@ sidebar_position: 4
 |       Godwoken      |    TBD    |    Planned    |
 |       zkSync      |    TBD    |    Planned    |
 |       StarkNet      |    TBD    |    Planned    |
+|       Boba      |    TBD    |    Planned    |
+|       Metis      |    TBD    |    Planned    |
+|       Milkomeda      |    TBD    |    Planned    |
 
 ## Testnets
 
