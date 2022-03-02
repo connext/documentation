@@ -37,11 +37,11 @@ Yes! You can see our audits at https://audits.connext.network.
 
 ### How does Connext work?
 
-Check out our [How it Works](./howitworks) and [Security Model](./securitymodel) sections!
+Check out our [How it Works](/Integration/SystemOverview/howitworks) and [Security Model](/Integration/SystemOverview/securitymodel) sections!
 
 ### How does Connext compare to XYZ interoperability solution?
 
-Check out [Connext vs XYZ](./connextvsxyz) section!
+Check out [Connext vs XYZ](/Integration/SystemOverview/connextvsxyz) section!
 
 ### Why is Connext an authority on L2s and interoperability?
 
@@ -49,7 +49,7 @@ We started Connext in 2017, and have been a core part of the L2 research communi
 
 ### Is Connext live on mainnet?
 
-Yes! You can see the live status of the network on the community-built [Connext Explorer](connextscan.io/).
+Yes! You can see the live status of the network on the community-built [Connext Explorer](https://connextscan.io/).
 
 ### Where can I try Connext?
 
