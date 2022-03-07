@@ -10,7 +10,7 @@ Common procedures and operations for routers are described in this document.
 
 Routers _cannot_ be shut down anytime they desire. They must be shut down through a procedure. This is similar to ETH2 and other validator based systems where unexpected downtime can result in loss of funds. The procedure is as follows:
 
-- Change the router [configuration](../Reference/configuration) to set `cleanupMode` to `true`.
+- Change the router [configuration](../reference/configuration) to set `cleanupMode` to `true`.
 - Restart the router with `docker-compose restart` or `docker-compose down` and then `docker-compose up -d`.
 - Monitor logs with `docker logs --tail 100 --follow router` until you see a log containing 0 active transactions: `"transactions":0,"msg":"Got active transactions"}`.
 - Now it is safe to turn off the router with `docker-compose down` or `docker-compose stop`.

@@ -9,7 +9,7 @@ The router is accepts configuration using the config file `config.json` in the r
 The JSON schema accepts the following keys:
 
 - `adminToken`: _Required_. Secret token used to authenticate admin requests.
-- `routerContractAddress`: _Recommended_. Address of the router contract. If not provided, the router sends transactions itself without a relay. This is deprecated behavior and the router contract should always be used. See the section on [Spinning-Up](../Guides/Spinning-Up) for more info.
+- `routerContractAddress`: _Recommended_. Address of the router contract. If not provided, the router sends transactions itself without a relay. This is deprecated behavior and the router contract should always be used. See the section on [Spinning-Up](../guides/spinning-up) for more info.
 - `web3SignerUrl`: _Recommended_. The URL for a running [Web3Signer](https://docs.web3signer.consensys.net/en/latest/) instance. This is the recommended approach to private key storage.
 - `mnemonic`: _Optional, Discouraged_. The mnemonic used to generate the private key. Using the mnemonic directly in the config file is unsafe and not recommended.
 - `chainConfig`: _Required_. The chain configuration. A JSON object with the following keyed by `chainId` with the following object schema as value:

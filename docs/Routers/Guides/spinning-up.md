@@ -58,7 +58,7 @@ Create a `config.json` file based on the `config.example.json` file. At minumum,
 - `routerContractAddress` - Set to the address of the router contract, see the section below.
 - `swapPools` - Change to desired assets.
 
-See the [Configuration](../Reference/configuration) section for more details.
+See the [Configuration](../reference/configuration) section for more details.
 
 ## Deploying a Router Contract
 

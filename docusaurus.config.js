@@ -12,6 +12,7 @@ module.exports = {
   favicon: "img/logomark.ico",
   organizationName: "connext", // Usually your GitHub org/user name.
   projectName: "connext", // Usually your repo name.
+
   themeConfig: {
     navbar: {
       title: "Connext Documentation",
@@ -22,11 +23,11 @@ module.exports = {
       items: [
         {
           href: "/",
-          label: "Integration",
+          label: "Docs",
           position: "left",
         },
         {
-          href: "/Routers/intro",
+          href: "/routers/intro",
           label: "Routers",
           position: "left",
         },
@@ -36,19 +37,70 @@ module.exports = {
           position: "right",
         },
         {
-          href: "https://chat.connext.network",
-          label: "Chat",
-          position: "right",
+          href: 'https://chat.connext.network',
+          position: 'right',
+          className: 'header-discord-link',
+          'aria-label': 'Discord link',
         },
         {
-          href: "https://github.com/connext/nxtp",
-          label: "GitHub",
-          position: "right",
+          href: 'https://github.com/connext/nxtp',
+          position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
         },
       ],
     },
     footer: {
-      style: "dark",
+      style:"dark",
+      links: [
+        {
+          title: 'Documentation',
+          items: [
+            {
+              label: 'Integration',
+              to: '/',
+            },
+            {
+              label: 'Routers',
+              to: 'routers/intro',
+            },
+            {
+              label: 'API',
+              to: 'docs/api-reference/contract-api',
+            },
+          ],
+        },
+        {
+          title: 'About',
+          items: [
+            {
+              label: 'Team',
+              href: '/'
+            },
+            {
+              label: 'FAQ',
+              href: '/'
+            },
+          ],
+        },
+        {
+          title: 'Community',
+          items: [
+            {
+              label: 'Discord',
+              href: 'https://chat.connext.network',
+            },
+            {
+              label: 'GitHub',
+              href: 'https://github.com/connext/nxtp',
+            },
+            {
+              label: 'Blog',
+              href: 'https://blog.connext.network',
+            },
+          ],
+        },
+      ],
       copyright: `Copyright © ${new Date().getFullYear()} Connext, Inc.`,
     },
     prism: {
@@ -65,7 +117,6 @@ module.exports = {
           path: "./docs",
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
           editUrl: "https://github.com/connext/documentation",
         },
         theme: {

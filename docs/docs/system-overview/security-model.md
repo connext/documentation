@@ -6,7 +6,7 @@ sidebar_position: 3
 
 :::note
 
-We assume below that you already have read the [How it works](./howitworks) section.
+We assume below that you already have read the [How it works](./how-it-works) section.
 
 :::
 

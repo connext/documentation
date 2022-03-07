@@ -23,7 +23,7 @@ The flow is as follows:
 The NXTP system uses a [FulfillHelper](https://github.com/connext/nxtp/blob/22f84b1bf3437231b064143026022df545a25855/packages/contracts/contracts/interpreters/FulfillInterpreter.sol) contract to enable cross-chain meta transactions. The following steps must be completed to call a contract on a receiving chain:
 
 - Generate calldata for the contract call on the receiving chain.
-- Pass in the `callData` (generated calldata above) and `callTo` (address of called contract on receiving chain) params to the `getTransferQuote` and `prepareTransfer` methods on the [NXTP SDK](../APIReference/sdkAPI).
+- Pass in the `callData` (generated calldata above) and `callTo` (address of called contract on receiving chain) params to the `getTransferQuote` and `prepareTransfer` methods on the [NXTP SDK](../api-reference/sdk-api).
 
 The router and relayer will `prepare` and `fulfill` the transaction on the receiving chain with the `callData` and `callTo`.
 
