@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 2
 ---
 
 # FAQ
@@ -37,11 +37,11 @@ Yes! You can see our audits at https://audits.connext.network.
 
 ### How does Connext work?
 
-Check out our [How it Works](./howitworks) and [Security Model](./securitymodel) sections!
+Check out our [How it Works](/Integration/SystemOverview/howitworks) and [Security Model](/Integration/SystemOverview/securitymodel) sections!
 
 ### How does Connext compare to XYZ interoperability solution?
 
-Check out [Connext vs XYZ](./connextvsxyz) section!
+Check out [Connext vs XYZ](/Integration/SystemOverview/connextvsxyz) section!
 
 ### Why is Connext an authority on L2s and interoperability?
 

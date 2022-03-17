@@ -20,7 +20,11 @@ Transactions go through three phases:
 
 If a transaction is not fulfilled within a fixed `expiry`, it reverts and can be reclaimed by the party that called prepare on each chain (initiator). Additionally, transactions can be cancelled unilaterally by the person owed funds on that chain (router for sending chain, user for receiving chain) prior to `expiry`.
 
-It is important to note that neither participant should require a store to complete these transactions. All information to `prepare`, `fulfill`, or `cancel` transactions should be retrievable through contract events.
+:::caution
+
+Participant should require a store to complete these transactions. All information to `prepare`, `fulfill`, or `cancel` transactions should be retrievable through contract events.
+
+:::
 
 ## Architecture
 
@@ -28,9 +32,9 @@ It is important to note that neither participant should require a store to compl
 
 The system contains the following pieces:
 
-- Contracts - hold funds for all network participants, and lock/unlock based on data submitted by users and routers
-- Subgraph - enables scalable querying/responding by caching onchain data and events.
-- TxService - resiliently attempts to send transactions to chain (with retries, etc.)
-- Messaging - prepares, sends, and listens for message data over nats
-- Router - listens for events from messaging service and subgraph, and then dispatches transactions to txService
-- SDK - creates auctions, listens for events and creates transactions on the user side.
+- [**Contracts**](/Integration/APIReference/contractAPI) - hold funds for all network participants, and lock/unlock based on data submitted by users and routers
+- **Subgraph** - enables scalable querying/responding by caching onchain data and events.
+- **TxService** - resiliently attempts to send transactions to chain (with retries, etc.)
+- **Messaging** - prepares, sends, and listens for message data over nats
+- [**Router**](/Routers/intro) - listens for events from messaging service and subgraph, and then dispatches transactions to txService
+- [**SDK**](/Integration/APIReference/sdkAPI) - creates auctions, listens for events and creates transactions on the user side.

@@ -45,6 +45,10 @@ module.exports = {
           label: "GitHub",
           position: "right",
         },
+        {
+          type: "localeDropdown",
+          position: "right",
+        },
       ],
     },
     footer: {
@@ -57,6 +61,14 @@ module.exports = {
       darkTheme: darkCodeTheme,
     },
   },
+  plugins: [
+    [
+      require.resolve("@cmfcmf/docusaurus-search-local"),
+      {
+        indexBlog: false,
+      },
+    ],
+  ],
   presets: [
     [
       "@docusaurus/preset-classic",

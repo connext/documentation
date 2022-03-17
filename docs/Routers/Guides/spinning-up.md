@@ -21,7 +21,7 @@ The router requires the following ports to be open to the public:
 - `4222`
 
 :::danger
-Do NOT expose the `ROUTER_EXTERNAL_PORT` to anyone untrusted! It should only be accessible by the operator in a trusted environment.
+**Do NOT expose the `ROUTER_EXTERNAL_PORT`.** It should only be accessible by the operator in a trusted environment.
 :::
 
 ## Cloning the Repository
@@ -29,8 +29,14 @@ Do NOT expose the `ROUTER_EXTERNAL_PORT` to anyone untrusted! It should only be 
 To spin up a router, first clone the [`nxtp-router-docker-compose`](https://github.com/connext/nxtp-router-docker-compose) repository.
 
 ```shell
-$ git clone https://github.com/connext/nxtp-router-docker-compose.git
+$ git clone https://github.com/connext/nxtp-router-docker-compose.git --depth 1
 ```
+
+:::note
+
+Remove `--depth 1` if you need the full commit history.
+
+:::
 
 ## Basic Configuration
 

@@ -7,7 +7,7 @@ sidebar_position: 1
 The router contains a REST API that can be used to query information as well as perform sensitive tasks. The API is available at the router's IP address and at the `ROUTER_EXTERNAL_PORT` in the `.env` file.
 
 :::danger
-As described in the [Spinning Up](../Guides/spinning-up) section, do NOT expose this API to the internet. The queries in this document must be done from a trusted environment, i.e. inside a VPC or directly on the router host machine.
+As described in the [Spinning Up](../Guides/spinning-up) section, **do NOT expose this API to the internet.** The queries in this document must be done from a trusted environment, i.e. inside a VPC or directly on the router host machine.
 :::
 
 We have examples for the requests in the [NXTP repository](https://github.com/connext/nxtp/blob/main/packages/router/example.http).
