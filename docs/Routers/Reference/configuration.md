@@ -28,7 +28,9 @@ The JSON schema accepts the following keys:
     - `chainId`: _Required_. The chain ID.
 - `logLevel`: _Optional_. The log level. One of `fatal`, `error`, `warn`, `info`, `debug`, `trace`, `silent`. Default is `info`.
 - `port`: _Optional_. The port the router will listen on. Defaults to `8080`.
+- `metrics_port`: _Optional_. The port the router metrics endpoint will listne on. Defaults to `8081`.
 - `host`: _Optional_. The host the router will listen on. Defaults to `0.0.0.0`.
+- `metrics_host`: _Optional_. The host the router metrics endpoint will listen on. Defaults to `0.0.0.0`.
 - `network`: _Optional_. The messaging network to connect to (separate from blockchain network). One of `testnet`, `mainnet`, `local`. Defaults to `mainnet`.
 - `requestLimit`: _Optional_. The minimal period in milliseconds users can request an auction for a particular swap to each router to avoid spam. Defaults to 500 (ms).
 - `cleanUpMode`: _Optional_. Boolean to set mode to use to not accept new auctions and continue to handle in-progress auctions. Defaults to false.
