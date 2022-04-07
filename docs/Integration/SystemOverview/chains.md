@@ -19,6 +19,7 @@ sidebar_position: 4
 |       Moonriver      |    1285    |     ✅    |
 |       Fuse      |    122    |    ✅    |
 |       Moonbeam      |    1284    |    ✅    |
+|       Milkomeda      |    TBD    |    ✅    |
 |       Celo      |    42220    |    Planned    |
 |       Aurora      |    1313161554    |    Planned    |
 |       Harmony      |    1666600000    |    Planned    |
@@ -29,7 +30,7 @@ sidebar_position: 4
 |       StarkNet      |    TBD    |    Planned    |
 |       Boba      |    288    |    Planned    |
 |       Metis Andromeda    |    1088    |    Planned    |
-|       Milkomeda      |    TBD    |    Planned    |
+
 
 ## Testnets
 
