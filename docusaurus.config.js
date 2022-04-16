@@ -21,14 +21,35 @@ module.exports = {
       },
       items: [
         {
-          href: "/",
-          label: "Integration",
+          href: "/Basics/intro",
+          label: "Basics",
+          position: "left",
+        },
+        {
+          href: "/Bridge/intro",
+          label: "Bridge & LP",
+          position: "left",
+        },
+        {
+          href: "/Develop/intro",
+          label: "Develop",
           position: "left",
         },
         {
           href: "/Routers/intro",
           label: "Routers",
           position: "left",
+        },
+        {
+          href: "/Protocol/intro",
+          label: "Protocol",
+          position: "left",
+        },
+        {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
+          dropdownActiveClassDisabled: true,
         },
         {
           href: "https://medium.com/connext",
@@ -44,12 +65,6 @@ module.exports = {
           href: "https://github.com/connext/nxtp",
           label: "GitHub",
           position: "right",
-        },
-        {
-          type: 'docsVersionDropdown',
-          position: 'left',
-          dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
-          dropdownActiveClassDisabled: true,
         },
       ],
     },
