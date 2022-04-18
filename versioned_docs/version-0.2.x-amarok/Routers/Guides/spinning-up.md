@@ -10,6 +10,7 @@ Note: This is an easy way to get started with the router. The router is fully Do
 
 - 8GB RAM
 - 30GB Storage
+- Redis
 
 ## Required Software
 
@@ -44,6 +45,10 @@ Modify the following environment variables:
 * `ROUTER_VERSION` - The version of the router to use (e.g. `v0.1.0`). See the [releases page](https://github.com/connext/nxtp/releases) for the latest released version.
 * `ROUTER_EXTERNAL_PORT` - Exposed port of the router. Remember to not expose this port to the public.
 * `GRAFANA_EXTERNAL_PORT` - Exposed port of the Grafana dashboard.
+
+### Redis Config
+
+The router requires an external Redis instance to be available. Instructions can be found on the [Redis website](https://redis.io/). Advanced users can add Redis to their docker-compose configuration.
 
 ### Web3Signer Config
 
