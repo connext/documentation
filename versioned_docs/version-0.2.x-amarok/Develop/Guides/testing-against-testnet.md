@@ -11,3 +11,5 @@ The Test Token mentioned in the [Testnet Reference](../../Routers/Reference/test
 Please ping the team to request for more testnet assets and swaps added!
 
 ## Connecting a Dapp to Testnets
+
+There are a few ways to interact with Connext's cross-chain functionality. For a contract-to-contract flow, check out the [Contract-to-Contract Interactions](./contract-to-contract-interactions.md) section. For an sdk-based flow, check out the [SDK Interactions](./sdk-interactions.md) section.
