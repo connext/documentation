@@ -6,9 +6,11 @@ sidebar_position: 1
 
 The router is accepts configuration using the config file `config.json` in the root directory of the [docker-compose repo](https://github.com/connext/nxtp-router-docker-compose).
 
+See the [testnet](../Reference/testnet) or mainnet (coming soon) guides for addresses and URLs.
+
 The JSON schema accepts the following keys:
 
-- `sequencerUrl`: The URL of the sequencer. Possible options are: `https://sequencer.testnet.connext.ninja` or `https://sequencer.testnet.staging.connext.ninja`.
+- `sequencerUrl`: The URL of the sequencer.
 - `redis`: _Requires_. Object containing the following keys to configure an external redis instance:
   - `host`: The hostname of the redis instance.
   - `port`: The port of the redis instance.
@@ -73,15 +75,3 @@ _These are example RPC URLs. Please get your own RPC URLs!_
   }
 }
 ```
-
-# Assets
-
-The currently supported assets are listed below.
-
-## Rinkeby (Chain 4, Domain 2000)
-
-- `0xcF4d2994088a8CDE52FB584fE29608b63Ec063B2`: `TEST ERC20`
-
-## Kovan (Chain 42, Domain 3000)
-
-- `0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F`: `TEST ERC20`

@@ -58,9 +58,10 @@ Set up [Web3Signer](https://docs.web3signer.consensys.net/en/latest/) config fil
 
 Create a `config.json` file based on the `config.example.json` file. At minumum, change the following values:
 
-- `server`
-  - `adminToken` - A secret string to secure the REST API sensitive operations.
-- `chains` - Add your desired chains, assets, and provider URLs. Use [`domain` mappings](https://docs.nomad.xyz/dev/domain-ids.html) instead of `chainIds`. Make sure you use multiple providers for each chain! Example with the correct testnet assets.:
+- `sequencerUrl` - The URL of the Sequencer node.
+- `redis` - The Redis instance to use.
+- `server` - Internal HTTP server config (`adminToken`).
+- `chains` - Add your desired chains, assets, and provider URLs. Use [`domain` mappings](https://docs.nomad.xyz/dev/domain-ids.html) instead of `chainIds`. Make sure you use multiple providers for each chain! Example with the current testnet assets:
 ```json
 {
   ...
