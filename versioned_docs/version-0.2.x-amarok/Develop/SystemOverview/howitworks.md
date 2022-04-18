@@ -1,3 +1,32 @@
 ---
 sidebar_position: 1
 ---
+
+# How it works
+
+This iteration of Connext's network utilizes [nxtp](https://github.com/connext/nxtp) and routers as the liquidity and transport layers of the stack. We've partnered with [Nomad](https://www.nomad.xyz/) to provide the messaging layer. All to achieve Modular Interoperability with crosschain communication.
+
+## Core Flow
+
+A transaction flowing through Connext will have the following lifecycle:
+
+- User will initiate the transaction by calling an `xcall` function on our contracts, passing in funds, gas details, arbitrary data, and a target address object (includes chain info). Note that `xcall` is meant to mimic solidity's lower level call as best as possible.
+- The Connext contracts will:
+  - If needed, swap the passed in token to the Nomad version of the same asset.
+  - Call the Nomad contracts with a hash of the tx details to initiate the 30-60m message across chains.
+  - Emit an event with the tx details.
+- Routers observing the origin chain with funds on the destination chain will:
+  - Simulate the transaction (if this fails, the assumption is that this is a more "expressive" crosschain message that requires permissioning and so must go through the slow Nomad process only).
+  - Prepare a signed transaction object using funds on the receiving chain.
+  - Post this object (a "bid") to the auctioneer.
+  - Note: if the router does not have enough funds for the transfer, they may also provide only part of the transfer's value.
+- The auctioneer will be observing all of the underlying chains. Every X blocks, the auctioneer will collect bids for transactions. The auctioneer will be responsible for selecting the correct router (or routers!) for a given tx (can be random). The auctioneer will post batches of these bids to a relayer network to submit them to chain.
+- When a given bid is submitted to chain, the contracts will do the following:
+  - Check that there are enough funds available for the transaction.
+  - Swap the router's Nomad-flavored funds for the canonical asset of the chain if needed.
+  - Send the swapped funds to the correct target (if it is a contract, this will also execute calldata against the target).
+  - Hash the router's params and store a mapping of this hash to the router's address in the contract.
+--> At this point, the user's tx has already been completed!
+- Later, when the Nomad message arrives, a heavily batched tx can be submitted to take all pending hashes received over Nomad and look up whether they have corresponding router addresses in the hash -> router address mapping. If they do, then Nomad assets are minted and given to the router.
+  - Note: if the router gives the incorrect amount of funds to a user or if they execute the wrong calldata, then the router's param hash will not match the hash coming over Nomad and the router will not get reimbursed. This is the core security mechanism that ensures that routers behave correctly.
+  - Note 2: Routers will take a 30-60 minute lockup on their funds when relaying transactions. While this theoretically reduces capital efficiency compared to the existing system, in practice the lack of need to rebalance will mean that routers have more capital available more often regardless.
