@@ -4,7 +4,7 @@ id: my-home-doc
 slug: /
 ---
 
-# Introduction
+# 👋 Welcome!
 
 Connext is the interoperability protocol of L2 Ethereum.
 

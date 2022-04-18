@@ -21,11 +21,6 @@ module.exports = {
       },
       items: [
         {
-          href: "/Basics/intro",
-          label: "Basics",
-          position: "left",
-        },
-        {
           href: "/Bridge/intro",
           label: "Bridge & LP",
           position: "left",

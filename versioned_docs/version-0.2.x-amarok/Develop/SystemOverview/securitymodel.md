@@ -16,4 +16,4 @@ In general, Connext adopts the same core security model as other locking systems
 
 ### Loss of Funds
 
-Barring the possibility of a hack or user error, there is **no** way for users to lose funds in this system. 
+Barring the possibility of a hack or user error, there is **no** way for users to lose funds in this system. Users' transfers will either be immediately routed through "fast liquidity" to the destination chain or will be subject to the 30-minute "slow liquidity" mechanism via Nomad.
