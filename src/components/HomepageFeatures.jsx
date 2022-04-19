@@ -27,7 +27,7 @@ const FeatureList = [
   },
 ];
 
-function Feature({ title, image, description, url }) {
+function Feature({ title, description, url }) {
   return (
     <div className={styles.cardListItem}>
       <section className={styles.cardWrapper}>

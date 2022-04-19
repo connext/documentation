@@ -47,3 +47,19 @@
   align-items: center;
   justify-content: center;
 }
+
+
+
+.logoSection {
+  margin: 20px 0;
+}
+
+.logoHolder {
+  margin: -20px -10px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: stretch;
+  align-items: stretch;
+}

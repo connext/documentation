@@ -5,6 +5,7 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./index.module.css";
 import HomepageFeatures from "../components/HomepageFeatures";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -30,6 +31,18 @@ function HomepageHeader() {
   );
 }
 
+function HomepageImage() {
+  const imageURL = "/static/img/connextLogoBig.png";
+
+  return (
+    <section className={styles.logoSection}>
+      <div className={styles.logoHolder}>
+        <img className={styles.logoPng} src={useBaseUrl(imageURL)} />
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -39,6 +52,7 @@ export default function Home() {
     >
       <HomepageHeader />
       <main>
+        <HomepageImage />
         <HomepageFeatures />
       </main>
     </Layout>
