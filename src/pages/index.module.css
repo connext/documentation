@@ -1,0 +1,65 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+    /* ff 3.6+ */
+    background:-moz-linear-gradient(90deg, rgba(41, 193, 252, 1) 0%, rgba(171, 0, 255, 1) 25%, rgba(251, 176, 59, 1) 50%, rgba(88, 123, 253, 1) 75%, rgba(216, 98, 146, 1) 100%); 
+
+    /* safari 5.1+,chrome 10+ */
+    background:-webkit-linear-gradient(90deg, rgba(41, 193, 252, 1) 0%, rgba(171, 0, 255, 1) 25%, rgba(251, 176, 59, 1) 50%, rgba(88, 123, 253, 1) 75%, rgba(216, 98, 146, 1) 100%);
+
+    /* opera 11.10+ */
+    background:-o-linear-gradient(90deg, rgba(41, 193, 252, 1) 0%, rgba(171, 0, 255, 1) 25%, rgba(251, 176, 59, 1) 50%, rgba(88, 123, 253, 1) 75%, rgba(216, 98, 146, 1) 100%);
+
+    /* ie 6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#D86292', endColorstr='#29C1FC', GradientType=0 );
+
+    /* ie 10+ */
+    background:-ms-linear-gradient(90deg, rgba(41, 193, 252, 1) 0%, rgba(171, 0, 255, 1) 25%, rgba(251, 176, 59, 1) 50%, rgba(88, 123, 253, 1) 75%, rgba(216, 98, 146, 1) 100%);
+
+    /* global 94%+ browsers support */
+    background:linear-gradient(90deg, rgba(41, 193, 252, 1) 0%, rgba(171, 0, 255, 1) 25%, rgba(251, 176, 59, 1) 50%, rgba(88, 123, 253, 1) 75%, rgba(216, 98, 146, 1) 100%);
+
+}
+
+.heroTitle {
+  color: white
+}
+
+.heroSubtitle {
+  color: white;
+}
+
+@media screen and (max-width: 966px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.logoSection {
+  margin: 20px 0;
+}
+
+.logoHolder {
+  margin: -20px -10px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: stretch;
+  align-items: stretch;
+}
