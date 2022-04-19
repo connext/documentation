@@ -1,5 +1,6 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const CardLink = require("./src/remark/CardLink");
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
@@ -41,9 +42,9 @@ module.exports = {
           position: "left",
         },
         {
-          type: 'docsVersionDropdown',
-          position: 'right',
-          dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
+          type: "docsVersionDropdown",
+          position: "right",
+          dropdownItemsAfter: [{ to: "/versions", label: "All versions" }],
           dropdownActiveClassDisabled: true,
         },
         {
@@ -82,6 +83,8 @@ module.exports = {
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
+          remarkPlugins: [CardLink],
+
           editUrl: "https://github.com/connext/documentation",
         },
         theme: {
