@@ -22,11 +22,6 @@ module.exports = {
       },
       items: [
         {
-          href: "/Bridge/intro",
-          label: "Bridge & LP",
-          position: "left",
-        },
-        {
           href: "/Develop/intro",
           label: "Develop",
           position: "left",
@@ -34,11 +29,6 @@ module.exports = {
         {
           href: "/Routers/intro",
           label: "Routers",
-          position: "left",
-        },
-        {
-          href: "/Protocol/intro",
-          label: "Protocol",
           position: "left",
         },
         {
@@ -84,7 +74,6 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           remarkPlugins: [CardLink],
-
           editUrl: "https://github.com/connext/documentation",
         },
         theme: {
