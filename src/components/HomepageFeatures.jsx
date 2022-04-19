@@ -6,21 +6,21 @@ import styles from "./HomepageFeatures.module.css";
 const FeatureList = [
   {
     title: "System Overview",
-    url: "Develop/SystemOverview/howitworks",
+    url: "Develop/SystemOverview/intro",
     description: (
       <>Learn about our how our protocol works and its main system components</>
     ),
   },
   {
-    title: "Quickstart",
-    url: "Develop/QuickStart/intro",
+    title: "Developer Quickstart",
+    url: "Develop/QuickStart/testing-against-testnet",
     description: (
       <>Get from zero to hero real quick by following our Quickstart guide</>
     ),
   },
   {
-    title: "API Reference",
-    url: "Develop/APIReference/intro",
+    title: "Run a Router",
+    url: "Routers/Guides/checklist",
     description: (
       <>Dive into our API and learn how to build using our protocol</>
     ),

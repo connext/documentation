@@ -30,10 +30,6 @@ The System Overview section covers high level information about crosschain inter
 
 More guides are coming soon! We'll cover common workflows like calling a contract across chains and tips for UX!
 
-#### [API Reference](./APIReference/sdkAPI)
-
-API Reference is also coming soon!
-
 ---
 
 Don't know where to start? Come say hi in our [community chat](https://chat.connext.network)!

@@ -4,23 +4,17 @@ id: intro
 ---
 
 # Introduction 
-### Quick Start
-
-Want to get started with crosschain interactions in your dApp right away? We step through the E2E integration flow in our Quick Start guide.
-
-[Quick Start](./Integration/QuickStart/intro)
 
 ### System Overview
 
 The System Overview section covers high level information about crosschain interoperability and how **nxtp**, the protocol underlying Connext, works.
 
-[System Overview](./Integration/SystemOverview/faq)
+[System Overview](./SystemOverview/intro)
+### Quick Start
 
-### API Reference
+Want to get started with crosschain interactions in your dApp right away? We step through the E2E integration flow in our Quick Start guide.
 
-API Reference is also coming soon!
-
-[API Reference](./APIReference/sdkAPI)
+[Quick Start](./QuickStart/testing-against-testnet)
 
 ---
 
