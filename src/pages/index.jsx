@@ -32,7 +32,7 @@ function HomepageHeader() {
 }
 
 function HomepageImage() {
-  const imageURL = "/static/img/connextLogoBig.png";
+  const imageURL = "/img/connextLogoBig.png";
 
   return (
     <section className={styles.logoSection}>
