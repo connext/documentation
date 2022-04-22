@@ -13,6 +13,9 @@ module.exports = {
   favicon: "img/logomark.ico",
   organizationName: "connext", // Usually your GitHub org/user name.
   projectName: "connext", // Usually your repo name.
+  customFields: {
+    description: "Build your next xApp(cross-chain dapp) using Connext.",
+  },
   themeConfig: {
     navbar: {
       title: "Connext Documentation",

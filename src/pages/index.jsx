@@ -31,17 +31,17 @@ function HomepageHeader() {
   );
 }
 
-function HomepageImage() {
-  const imageURL = "/img/connextLogoBig.png";
+// function HomepageImage() {
+//   const imageURL = "/img/connextLogoBig.png";
 
-  return (
-    <section className={styles.logoSection}>
-      <div className={styles.logoHolder}>
-        <img className={styles.logoPng} src={useBaseUrl(imageURL)} />
-      </div>
-    </section>
-  );
-}
+//   return (
+//     <section className={styles.logoSection}>
+//       <div className={styles.logoHolder}>
+//         <img className={styles.logoPng} src={useBaseUrl(imageURL)} />
+//       </div>
+//     </section>
+//   );
+// }
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
@@ -52,7 +52,6 @@ export default function Home() {
     >
       <HomepageHeader />
       <main>
-        <HomepageImage />
         <HomepageFeatures />
       </main>
     </Layout>
