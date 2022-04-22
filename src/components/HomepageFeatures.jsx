@@ -12,13 +12,6 @@ const FeatureList = [
     ),
   },
   {
-    title: "Developer Quickstart",
-    url: "Develop/intro",
-    description: (
-      <>Go from zero to hero real quick</>
-    ),
-  },
-  {
     title: "Run a Router",
     url: "Routers/Guides/checklist",
     description: (
