@@ -150,7 +150,7 @@ The System Overview section covers high level information about crosschain inter
 
 Testnet references, all in one place.
 
-[Quick Start](./Testnet/testing-against-testnet)
+[Testnet References](./Testnet/testing-against-testnet)
 
 ---
 
