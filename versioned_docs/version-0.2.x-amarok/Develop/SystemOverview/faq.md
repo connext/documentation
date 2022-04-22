@@ -47,7 +47,7 @@ In the Amarok network upgrade, we brought Connext's cross-chain functionality an
 
 Yes! Connext's NXTP protocol is live and you can see the live status of the network on the community-built [Connext Explorer](https://connextscan.io/).
 
-As for the Amarok network upgrade, it is currently live on [testnet](../QuickStart/testing-against-testnet.md) and we have plans to bring it to mainnet soon!
+As for the Amarok network upgrade, it is currently live on [testnet](../Testnet/testing-against-testnet.md) and we have plans to bring it to mainnet soon!
 
 ### Where can I try Connext?
 

@@ -23,7 +23,7 @@ function HomepageHeader() {
             className="button button--primary button--lg"
             to="Develop/QuickStart/testing-against-testnet"
           >
-            Connext Quickstart - 5min ⏱️
+            Developer Quickstart - 5min ⏱️
           </Link>
         </div>
       </div>

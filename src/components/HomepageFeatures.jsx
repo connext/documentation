@@ -13,9 +13,9 @@ const FeatureList = [
   },
   {
     title: "Developer Quickstart",
-    url: "Develop/QuickStart/testing-against-testnet",
+    url: "Develop/intro",
     description: (
-      <>Get from zero to hero real quick by following our Quickstart guide</>
+      <>Go from zero to hero real quick</>
     ),
   },
   {
