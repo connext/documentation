@@ -19,10 +19,36 @@ Get started quickly using the Typescript SDK.
   yarn add @connext/sdk@0.2.0-alpha.2 
   ```
 
-2. `create()`
+2. Call `create()`
 
   ```
-  create(nxtpConfig: NxtpSdkConfig, signer: Signer)
+  config = NxtpSdkConfig({
+    "logLevel": "info",
+    "chains": {
+      "1111": {
+        "providers": ["https://rinkeby.infura.io/v3/..."],
+        "assets": [
+          {
+            "name": "TEST",
+            "address": "0xB7b1d3cC52E658922b2aF00c5729001ceA98142C"
+          }
+        ]
+      },
+      "2221": {
+        "providers": ["https://kovan.infura.io/v3/..."],
+        "assets": [
+          {
+            "name": "TEST",
+            "address": "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F"
+          }
+        ]
+      }
+    },
+    "signerAddress": "0x..."
+  });
+
+  sdk.create(config);
+
   ```
 
 3. Construct `xCallArgs`
@@ -44,7 +70,7 @@ Get started quickly using the Typescript SDK.
 
   > Domain IDs for testnet can be referenced in the [Testnet Reference](./Testnet/testing-against-testnet.md/#nomad-chain-ids).
 
-4. Send `xcall`
+4. Call `xcall`
 
   ```
   const txResponse = await sdk.xcall(
@@ -59,7 +85,7 @@ Get started quickly using the Typescript SDK.
 
 ## Interact from a Contract
 
-You can also initiate an `xcall` from a smart contract. This allows Connext to be used as a base cross-chain layer that can be integrated into dApps, turning them into **xApps.
+You can also initiate an `xcall` from a smart contract. This allows Connext to be used as a base cross-chain layer that can be integrated into dApps, turning them into **xApps**.
 
 For example, here are interesting use cases that the protocol enables:
 - Hold a governance vote on one chain and execute the outcome of it on another (plus other DAO operations)
@@ -73,7 +99,7 @@ For example, here are interesting use cases that the protocol enables:
 - Metaverse-to-metaverse interoperability
 
 
-### Skeleton of a xapp
+### Skeleton of a xApp
 
 The contract that initiates the cross-chain interaction.
 ```solidity
