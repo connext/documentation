@@ -13,7 +13,7 @@ URL: `https://sequencer.testnet.connext.ninja`
 
 Testnet assets are mintable and can be minted using the smart contract on Etherscan.
 
-## Kovan (chainId: 42, domainId: 3000)
+## Kovan (chainId: 42, domainId: 2221)
 
 | Contract | Address |
 | --- | --- |
@@ -21,7 +21,7 @@ Testnet assets are mintable and can be minted using the smart contract on Ethers
 | Connext | 0xb10aCCbea65532bB2C45Adb34Da5b89A2A0f67b9 |
 | TestStableSwap | 0x131F747Ba06B8251153F599CD9507946e2122657 |
 
-## Rinkeby (chainId: 4, domainId: 2000)
+## Rinkeby (chainId: 4, domainId: 1111)
 
 | Contract | Address |
 | --- | --- |
