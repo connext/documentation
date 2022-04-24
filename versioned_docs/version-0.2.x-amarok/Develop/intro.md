@@ -16,7 +16,7 @@ Get started quickly using the Typescript SDK.
 1. Install
 
   ```
-  yarn add @connext/sdk@0.2.0-alpha.2 
+  yarn add @connext/sdk@0.2.0-alpha.4 
   ```
 
 2. Call `create()`
