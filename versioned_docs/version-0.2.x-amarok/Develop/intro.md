@@ -7,7 +7,9 @@ id: intro
 
 Connext’s public testnet is currently available on Kovan ←→ Rinkeby. 
 
-Deployed contract addresses can be found in the [Testnet Reference](./Testnet/testing-against-testnet.md/#addresses)
+Deployed contract addresses and other information can be found in the Testnet Reference.
+
+[Testnet Reference](./Testnet/testing-against-testnet.md)
 
 ## Interact from the SDK
 
@@ -68,7 +70,7 @@ Get started quickly using the Typescript SDK.
   }
   ```
 
-  > Domain IDs for testnet can be referenced in the [Testnet Reference](./Testnet/testing-against-testnet.md/#nomad-chain-ids).
+  [Domain IDs](./Testnet/testing-against-testnet.md/#nomad-chain-ids)
 
 4. Call `xcall`
 
@@ -80,7 +82,7 @@ Get started quickly using the Typescript SDK.
 
 5. Track `xcall` status
 
-  See [Tracking an xcall](../Develop/QuickStart/xcall-status.md).
+  [Tracking an xcall](../Develop/Testnet/xcall-status.md)
 
 
 ## Interact from a Contract
@@ -172,12 +174,14 @@ Complete contract examples be found in the [xapp-starter](https://github.com/con
 The System Overview section covers high level information about crosschain interoperability and how **nxtp**, the protocol underlying Connext, works.
 
 [System Overview](./SystemOverview/intro)
-### Testnet References
+### Testnet Reference
 
-Testnet references, all in one place.
+All the contracts, domain IDs, off-chain infra informtion, etc. -- all in one place.
 
-[Testnet References](./Testnet/testing-against-testnet)
+[Testnet Reference](./Testnet/testing-against-testnet)
 
 ---
 
-Don't know where to start? Come say hi in our [community chat](https://chat.connext.network)!
+Don't know where to start? Come say hi in our community chat!
+
+[Chat with us!](https://chat.connext.network)
