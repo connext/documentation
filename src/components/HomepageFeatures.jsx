@@ -15,7 +15,7 @@ const FeatureList = [
     title: "Run a Router",
     url: "Routers/Guides/checklist",
     description: (
-      <>Dive into our API and learn how to build using our protocol</>
+      <>Step through the process of running a router and becoming a core network participant</>
     ),
   },
 ];
