@@ -18,13 +18,13 @@ Get started quickly using the Typescript SDK.
 1. Install
 
   ```
-  yarn add @connext/sdk@0.2.0-alpha.4 
+  yarn add @connext/nxtp-sdk@0.2.0-alpha.6
   ```
 
-2. Call `create()`
+2. Create SDK
 
   ```
-  config = NxtpSdkConfig({
+  const config = {
     "logLevel": "info",
     "chains": {
       "1111": {
@@ -49,7 +49,10 @@ Get started quickly using the Typescript SDK.
     "signerAddress": "0x..."
   });
 
-  sdk.create(config);
+  const sdk = NxtpSdk.create(
+    {...config}, 
+    <signer>
+  );  
 
   ```
 
