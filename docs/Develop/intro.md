@@ -18,8 +18,10 @@ Get started quickly using the Typescript SDK.
 1. Install
 
   ```
-  yarn add @connext/nxtp-sdk@0.2.0-alpha.6
+  yarn add @connext/nxtp-sdk@amarok
   ```
+
+  When prompted, choose the latest 0.2.0-alpha.N version.
 
 2. Create SDK
 
