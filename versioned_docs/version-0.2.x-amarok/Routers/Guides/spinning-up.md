@@ -48,11 +48,11 @@ Modify the following environment variables:
 
 ### Redis Config
 
-The router requires an external Redis instance to be available. Instructions can be found on the [Redis website](https://redis.io/). Advanced users can add Redis to their docker-compose configuration.
+The router uses an internal Redis instance in Docker by default. However, if you prefer to use your external Redis instance, you can set the corresponding `host` and `port` field in `config.json`. Instructions can be found on the [Redis website](https://redis.io/).
 
 ### Web3Signer Config
 
-Set up [Web3Signer](https://docs.web3signer.consensys.net/en/latest/) config files to set the private key securely.
+Set up [Web3Signer](https://docs.web3signer.consensys.net/en/latest/) config files to set the private key securely. Fill the private key of your signer to `key.example.yaml`.
 
 ### Router Config
 
@@ -61,12 +61,12 @@ Create a `config.json` file based on the `config.example.json` file. At minumum,
 - `sequencerUrl` - The URL of the Sequencer node.
 - `redis` - The Redis instance to use.
 - `server` - Internal HTTP server config (`adminToken`).
-- `chains` - Add your desired chains, assets, and provider URLs. Use [`domain` mappings](https://docs.nomad.xyz/dev/domain-ids.html) instead of `chainIds`. Make sure you use multiple providers for each chain! Example with the current testnet assets:
+- `chains` - Add your desired chains, assets, and provider URLs. Use [`domain` mappings](https://docs.nomad.xyz/dev/domain-ids.html) instead of `chainIds`. For more domain ids of chains, please check https://raw.githubusercontent.com/connext/chaindata/main/crossChain.json . Make sure you use multiple providers for each chain! Example with the current testnet assets:
 ```json
 {
   ...
   "chains": {
-    "2000": {
+    "1111": {
       "assets": [
         {
           "address": "0xcF4d2994088a8CDE52FB584fE29608b63Ec063B2",
@@ -75,7 +75,7 @@ Create a `config.json` file based on the `config.example.json` file. At minumum,
       ],
       "providers": ["https://rinkeby.infura.io/v3/...", "https://rpc.ankr.com/eth_rinkeby"]
     },
-    "3000": {
+    "2221": {
       "assets": [
         {
           "address": "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F",
