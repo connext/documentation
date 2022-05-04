@@ -21,7 +21,7 @@ The JSON schema accepts the following keys:
   - `requestLimit`: _Optional_. Unused.
 - `web3SignerUrl`: _Recommended_. The URL for a running [Web3Signer](https://docs.web3signer.consensys.net/en/latest/) instance. This is the recommended approach to private key storage.
 - `mnemonic`: _Optional, Discouraged_. The mnemonic used to generate the private key. Using the mnemonic directly in the config file is unsafe and not recommended.
-- `chains`: _Required_. The chain configuration. A JSON object with the following keyed by `chainId` with the following object schema as value:
+- `chains`: _Required_. The chain configuration. A JSON object with the following keyed by [`domain id`](https://docs.nomad.xyz/dev/domain-ids.html) with the following object schema as value:
   - `providers`: _Required_. An array of providers URLs for a chain. Use a minimum of 1 URL, but additional URLs provide more fallback protection against provider issues.
   - `assets`: _Required_. An array of assets. Each asset is a JSON object with the following keys:
     - `assetId`: _Required_. The asset ID (ERC20 token address). For native assets, use `0x0000000000000000000000000000000000000000`.
@@ -46,7 +46,7 @@ _These are example RPC URLs. Please get your own RPC URLs!_
 ```json
 {
   "chains": {
-    "2000": {
+    "1111": {
       "assets": [
         {
           "address": "0xcF4d2994088a8CDE52FB584fE29608b63Ec063B2",
@@ -55,7 +55,7 @@ _These are example RPC URLs. Please get your own RPC URLs!_
       ],
       "providers": ["https://rinkeby.infura.io/v3/...", "https://rpc.ankr.com/eth_rinkeby"]
     },
-    "3000": {
+    "2221": {
       "assets": [
         {
           "address": "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F",
@@ -70,7 +70,7 @@ _These are example RPC URLs. Please get your own RPC URLs!_
   "sequencerUrl": "https://sequencer.testnet.connext.ninja",
   "server": { "adminToken": "blahblahblah" },
   "redis": {
-    "host": "localhost",
+    "host": "redis",
     "port": 6379
   }
 }
