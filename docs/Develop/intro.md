@@ -23,7 +23,7 @@ Get started quickly using the Typescript SDK.
 
 2. Create SDK
 
-  ```
+  ```ts
   const config = {
     "logLevel": "info",
     "chains": {

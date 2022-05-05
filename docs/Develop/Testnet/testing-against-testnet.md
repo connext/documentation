@@ -10,19 +10,26 @@ The Connext testnet contains various pieces of infrastructure and smart contract
 
 A full reference to deployed contracts can be found in the [deployments.json](https://github.com/connext/nxtp/blob/amarok/packages/deployments/contracts/deployments.json) file.
 
+### Rinkeby (chainId: 4, domainId: 1111)
+
+| Contract | Address |
+| --- | --- |
+| Test Token (TEST ERC20) | 0xB7b1d3cC52E658922b2aF00c5729001ceA98142C |
+| Connext Handler | 0x979588965099F4DEA3CAd850d67ca3356284591e |
+
+### Goerli (chainId: 5, domainId: 3331)
+
+| Contract | Address |
+| --- | --- |
+| Test Token (TEST ERC20) | 0xD426e23A6a9524101CDC017e01dDc3262B7aA65D |
+| Connext Handler | 0xDc495507b830E5D1d8C073D4B12D144e76100816 |
+
 ### Kovan (chainId: 42, domainId: 2221)
 
 | Contract | Address |
 | --- | --- |
 | Test Token (TEST ERC20) | 0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F |
-| Connext | 0x983d9d70c1003baAE321fAA9C36BEb0eA37BD6E3 |
-
-### Rinkeby (chainId: 4, domainId: 1111)
-
-| Contract | Address |
-| --- | --- |
-| Test Token (TEST ERC20) | 0xcF4d2994088a8CDE52FB584fE29608b63Ec063B2 |
-| Connext | 0x3e99898Da8A01Ed909976AF13e4Fa6094326cB10 |
+| Connext Handler | 0x71a52104739064bc35bED4Fc3ba8D9Fb2a84767f |
 
 ## Test Token (TEST)
 
@@ -32,7 +39,7 @@ Please ping the team to request for more testnet assets and swaps added!
 
 ## Nomad Domain IDs
 
-Domain IDs for testnet can be found in Nomad's staging deployments which are available at [staging configs](https://github.com/nomad-xyz/rust/blob/main/configuration/configs/staging.json).
+Domain IDs for testnet can be found in our [chain index](https://github.com/connext/chaindata/blob/main/crossChain.json#) under the `domainId` key for supported chains.
 
 ## Sequencer
 

@@ -78,6 +78,12 @@ module.exports = {
           // Please change this to your repo.
           remarkPlugins: [CardLink],
           editUrl: "https://github.com/connext/documentation",
+          lastVersion: "current",
+          versions: {
+            current: {
+              label: "0.2.x-amarok",
+            },
+          },
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
