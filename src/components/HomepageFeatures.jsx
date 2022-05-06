@@ -5,10 +5,10 @@ import styles from "./HomepageFeatures.module.css";
 
 const FeatureList = [
   {
-    title: "System Overview",
-    url: "Develop/SystemOverview/intro",
+    title: "Build",
+    url: "Develop/Develop/intro",
     description: (
-      <>Learn about our how our protocol works and its main system components</>
+      <>Get started with building your first crosschain application (xapp)</>
     ),
   },
   {

@@ -5,7 +5,7 @@ const CardLink = require("./src/remark/CardLink");
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: "Connext Documentation",
-  tagline: "The interoperability protocol of L2 Ethereum.",
+  tagline: "Fast, trust-minimized communication between blockchains.",
   url: "https://nxtp-docs.connext.network",
   baseUrl: "/",
   onBrokenLinks: "warn",
