@@ -5,17 +5,27 @@ id: intro
 
 # 👋 Welcome!
 
-Connext is the interoperability protocol of L2 Ethereum.
+Connext powers fast, trust-minimized communication between blockchains.
 
-You can use Connext to send transactions of value or calldata across chains and/or rollups. Unlike most other interoperability systems, Connext enables this *without* introducing any new trust assumptions or external validators.
+You can use Connext to build crosschain applications (**xapps**) like:
+- Bridges to transfer value between blockchains
+- Interchain DeFi protocols
+- Chain-agnostic NFTs
+and more!
+
+Our goal is to create a world where:
+1. Users never need to know what chain or rollup they're on (unless they want to!)
+2. Developers can build applications that utilize resources from many chains/rollups simultaneously
 
 ## Contents
 
-These docs contain information for developers integrating Connext and liquidity providers. If you're interested in contributing to the development of the system or curious about the ongoing progress of the Amarok network upgrade, check out the Amarok branch of our [core implementation repo](https://github.com/connext/nxtp/tree/amarok).
+:::note
+These docs are a work in progress! Please bear with us as we work to fill them out.
+:::
 
-## Amarok Upgrade
+These docs are specifically for the interfaces introduced after our [Amarok network upgrade](https://blog.connext.network/announcing-the-amarok-network-upgrade-5046317860a4?source=collection_home---4------4-----------------------) which is currently on testnet. If you're looking for our legacy docs, switch to version 0.1.x in the navbar above.
 
-Amarok is the first network upgrade for Connext which contains core protocol changes to improve the experience for end-users, developers, and router operators.
+If you're interested in contributing to the development of the system or curious about the ongoing progress of the Amarok network upgrade, check out the Amarok branch of our [core implementation repo](https://github.com/connext/nxtp/tree/amarok).
 
 ### Modular Interoperability
 

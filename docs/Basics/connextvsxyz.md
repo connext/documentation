@@ -1,7 +1,3 @@
----
-sidebar_position: 3
----
-
 # Connext vs XYZ
 
 In general, Connext is the *only* EVM-focused interoperability system that is both trust-minimized (no new security assumptions) and highly capital efficient (low fees for users).
