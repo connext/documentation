@@ -6,45 +6,43 @@ sidebar_position: 4
 
 ## Mainnets
 
-| Chain Name          | ChainId  |   Status  |
-|---------------------|----------|:---------:|
-|       Ethereum      |     1    |     ✅    |
-| Binance Smart Chain |    56    |     ✅    |
-|       Polygon       |    137   |     ✅    |
-|         GnosisChain        |    100   |     ✅    |
-|     Fantom Opera    |    250   |     ✅    |
-|     Arbitrum One    |   42161  |     ✅    |
-|       Avalanche     |   43114  |     ✅    |
-|       Optimism      |    10    |     ✅    |
-|       Moonriver      |    1285    |     ✅    |
-|       Fuse      |    122    |    ✅    |
-|       Moonbeam      |    1284    |    ✅    |
-|       Milkomeda      |    TBD    |    ✅    |
-|       Celo      |    42220    |    Planned    |
-|       Aurora      |    1313161554    |    Planned    |
-|       Harmony      |    1666600000    |    Planned    |
-|       Evmos      |    9001    |    Planned    |
-|       Neon      |    TBD    |    Planned    |
-|       Godwoken      |    TBD    |    Planned    |
-|       zkSync      |    TBD    |    Planned    |
-|       StarkNet      |    TBD    |    Planned    |
-|       Boba      |    288    |    Planned    |
-|       Metis Andromeda    |    1088    |    Planned    |
-
+| Chain Name          | ChainId    | Status  |
+| ------------------- | ---------- | :-----: |
+| Ethereum            | 1          |   ✅    |
+| Optimism            | 10         |   ✅    |
+| Binance Smart Chain | 56         |   ✅    |
+| GnosisChain         | 100        |   ✅    |
+| Fuse                | 122        |   ✅    |
+| Polygon             | 137        |   ✅    |
+| Fantom Opera        | 250        |   ✅    |
+| Boba                | 288        |   ✅    |
+| Moonbeam            | 1284       |   ✅    |
+| Moonriver           | 1285       |   ✅    |
+| Milkomeda           | 2001       |   ✅    |
+| Evmos               | 9001       |   ✅    |
+| Arbitrum One        | 42161      |   ✅    |
+| Avalanche           | 43114      |   ✅    |
+| Harmony             | 1666600000 |   ✅    |
+| Celo                | 42220      | Planned |
+| Aurora              | 1313161554 | Planned |
+| Neon                | TBD        | Planned |
+| Godwoken            | TBD        | Planned |
+| zkSync              | TBD        | Planned |
+| StarkNet            | TBD        | Planned |
+| Metis Andromeda     | 1088       | Planned |
 
 ## Testnets
 
-| Chain Name       | ChainId  |    Status   |
-|------------------|----------|:-----------:|
-|      Ropsten      |    3    |      ✅      |
-|      Rinkeby     |     4    |      ✅      |
-|      Goerli      |     5    |      ✅      |
-|       Kovan      |    42    |      ✅      |
-|    BSC Chapel   |    97    |      ✅     |
-|   Polygon Mumbai |   80001  |      ✅     |
-| Arbitrum RinkArby|  421611  |      ✅     |
-|  Avalanche Fuji  |   43113  |      ✅     |
-
+| Chain Name        | ChainId | Status |
+| ----------------- | ------- | :----: |
+| Ropsten           | 3       |   ✅   |
+| Rinkeby           | 4       |   ✅   |
+| Goerli            | 5       |   ✅   |
+| Kovan             | 42      |   ✅   |
+| BSC Chapel        | 97      |   ✅   |
+| Polygon Mumbai    | 80001   |   ✅   |
+| Arbitrum RinkArby | 421611  |   ✅   |
+| Avalanche Fuji    | 43113   |   ✅   |
 
 ## Supporting Other Chains
 
