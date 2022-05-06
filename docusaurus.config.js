@@ -25,6 +25,11 @@ module.exports = {
       },
       items: [
         {
+          href: "/Basics/intro",
+          label: "Basics",
+          position: "left",
+        },
+        {
           href: "/Develop/intro",
           label: "Develop",
           position: "left",
