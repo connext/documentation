@@ -64,7 +64,6 @@ module.exports = {
     },
     footer: {
       style: "dark",
-      copyright: `Copyright © ${new Date().getFullYear()} Connext, Inc.`,
     },
     prism: {
       additionalLanguages: ["solidity"],
