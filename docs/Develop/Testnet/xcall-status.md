@@ -16,17 +16,20 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
         
         ```graphql
         {
-          transfers(
+          originTransfers(
             where: {
-              xcalledTransactionHash: "<your-transaction-hash>"
+              transactionHash: <your-transaction-hash>
             }
           ) {
             transferId
-            xcalledCaller
-            xcalledLocalAsset
-            xcalledLocalAmount
-            xcalledTransactingAsset
-            xcalledTransactionHash
+            caller
+            to
+            originDomain
+            destinationDomain
+            transactingAsset
+            transactingAmount
+            bridgedAsset
+            bridgedAmount
             # other fields if desired
           }
         }
@@ -37,29 +40,20 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
         
         ```graphql
         {
-          transfers(
+          destinationTransfers(
             where: {
-              transferId: "<transferId>"
+              transferId: "0x1435f4978e546819b4e072ece741880a11302bebf221116d7bea1b50a7fbde34"
             }
           ) {
+            to
+            originDomain
+            destinationDomain
+            transactingAsset
+            transactingAmount
+            localAsset
+            localAmount
             executedCaller
-            executedTransactingAmount
-            executedLocalAmount
-            executedTransactingAsset
-            executedLocalAsset
-            executedTransactionHash
-            executedTimestamp
-            executedGasPrice
-            executedGasLimit
-            executedBlockNumber
             reconciledCaller
-            reconciledLocalAsset
-            reconciledLocalAmount
-            reconciledTransactionHash
-            reconciledTimestamp
-            reconciledGasPrice
-            reconciledGasLimit
-            reconciledBlockNumber
             # other fields if desired
           }
         }

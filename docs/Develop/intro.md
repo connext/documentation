@@ -181,7 +181,7 @@ The System Overview section covers high level information about crosschain inter
 [System Overview](./SystemOverview/intro)
 ### Testnet Reference
 
-All the contracts, domain IDs, off-chain infra informtion, etc. -- all in one place.
+All the contracts, domain IDs, off-chain infra information, etc. -- all in one place.
 
 [Testnet Reference](./Testnet/testing-against-testnet)
 
