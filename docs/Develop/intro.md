@@ -74,14 +74,12 @@ Get started quickly using the Typescript SDK.
     destinationDomain: "1111",
   };
 
-  // Desired amount to send
-  const amount = ethers.BigNumber.from("1000000000000000000");
-
   const xCallArgs = {
     params: callParams,
     // This should be the Kovan Test Token
     transactingAssetId: "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F",
-    amount: amount,
+    // Desired amount to send
+    amount: "1000000000000000000",
     // Relayers on testnet don't take a fee
     relayerFee: "0",
   };
