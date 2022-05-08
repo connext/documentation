@@ -14,5 +14,6 @@ sidebar_position: 5
 
 | Chain Name       | ChainId  |    Status   |
 |------------------|----------|:-----------:|
-|      Kovan       |    42    |      ✅      |
 |      Rinkeby     |     4    |      ✅      |
+|      Goerli      |     5    |      ✅      |
+|      Kovan       |    42    |      ✅      |
