@@ -18,7 +18,7 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
         {
           originTransfers(
             where: {
-              transactionHash: <your-transaction-hash>
+              transactionHash: <your_transaction_hash>
             }
           ) {
             transferId
@@ -42,7 +42,7 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
         {
           destinationTransfers(
             where: {
-              transferId: "0x1435f4978e546819b4e072ece741880a11302bebf221116d7bea1b50a7fbde34"
+              transferId: "your_transfer_id"
             }
           ) {
             to

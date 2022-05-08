@@ -5,9 +5,11 @@ id: intro
 
 # Getting Started 
 
-Connext’s public testnet is currently available on Kovan ←→ Rinkeby. 
+The System Overview covers high level information about crosschain interoperability and how **nxtp**, the protocol underlying Connext, works.
 
-Deployed contract addresses and other information can be found in the Testnet Reference.
+[System Overview](./SystemOverview/intro)
+
+Deployed contract addresses, domain IDs, and other information can be found in the Testnet Reference.
 
 [Testnet Reference](./Testnet/testing-against-testnet.md)
 
@@ -23,69 +25,76 @@ Get started quickly using the Typescript SDK.
 
   When prompted, choose the latest 0.2.0-alpha.N version.
 
-2. Create SDK
+2. Construct the `NxtpSdkConfig` and create the SDK
 
   ```ts
-  const config = {
-    "logLevel": "info",
-    "chains": {
+  // Use your MetaMask wallet as a signer, for example
+  const signer = new ethers.Wallet("<your_private_key");
+  const signerAddress = await signer.getAddress();
+
+  // Replace the placeholders with your own providers
+  const nxtpConfig: NxtpSdkConfig = {
+    logLevel: "info",
+    signerAddress: signerAddress,
+    chains: {
       "1111": {
-        "providers": ["https://rinkeby.infura.io/v3/..."],
-        "assets": [
+        providers: ["<rinkeby_rpc_url"],
+        assets: [
           {
-            "name": "TEST",
-            "address": "0xB7b1d3cC52E658922b2aF00c5729001ceA98142C"
-          }
-        ]
+            name: "TEST",
+            address: "0xB7b1d3cC52E658922b2aF00c5729001ceA98142C",
+          },
+        ],
       },
       "2221": {
-        "providers": ["https://kovan.infura.io/v3/..."],
-        "assets": [
+        providers: ["<kovan_rpc_url"],
+        assets: [
           {
-            "name": "TEST",
-            "address": "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F"
-          }
-        ]
-      }
+            name: "TEST",
+            address: "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F",
+          },
+        ],
+      },
     },
-    "signerAddress": "0x..."
-  });
+  };
 
-  const sdk = NxtpSdk.create(
-    {...config}, 
-    <signer>
-  );  
-
+  const sdk = await NxtpSdk.create(nxtpConfig, signer);
   ```
 
-3. Construct `xCallArgs`
+3. Construct the `xCallArgs` for a simple transfer
 
+  ```ts
+  const callParams = {
+    // `to` is the address that should receive the funds
+    to: "<destination_address>",
+    // Empty calldata for a simple transfer
+    callData: "0x",
+    // Send from Kovan -> Rinkeby
+    originDomain: "2221",
+    destinationDomain: "1111",
+  };
+
+  // Desired amount to send
+  const amount = ethers.BigNumber.from("1000000000000000000");
+
+  const xCallArgs = {
+    params: callParams,
+    // This should be the Kovan Test Token
+    transactingAssetId: "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F",
+    amount: amount,
+    // Relayers on testnet don't take a fee
+    relayerFee: "0",
+  };
   ```
-  struct CallParams {
-    address to; // target contract or recipient address
-    bytes callData; // encoded calldata to execute on receiving chain
-    uint32 originDomain; // origin domain ID
-    uint32 destinationDomain; // destination domain ID
-  }
 
-  struct XCallArgs {
-    CallParams params;
-    address transactingAssetId;
-    uint256 amount;
-  }
+4. Send it!
+
+  ```ts
+  const txReceipt = sdk.xcall(xCallArgs);
+  console.log(txReceipt);
   ```
 
-  [Domain IDs](./Testnet/testing-against-testnet.md/#nomad-chain-ids)
-
-4. Call `xcall`
-
-  ```
-  const txResponse = await sdk.xcall(
-    XCallArgs
-  )
-  ```
-
-5. Track `xcall` status
+5. Track the `xcall` status
 
   [Tracking an xcall](../Develop/Testnet/xcall-status.md)
 
@@ -147,7 +156,8 @@ function deposit(
   IConnext.XCallArgs memory xcallArgs = IConnext.XCallArgs({
     params: callParams,
     transactingAssetId: asset,
-    amount: amount
+    amount: amount,
+    relayerFee: 0
   });
 
   connext.xcall(xcallArgs);
@@ -172,18 +182,10 @@ function deposit(
 ...
 ```
 
-Complete contract examples be found in the [xapp-starter](https://github.com/connext/xapp-starter/) repo.
+Complete contract examples be found in our starter kit:
 
-### System Overview
+[xapp-starter](https://github.com/connext/xapp-starter/)
 
-The System Overview section covers high level information about crosschain interoperability and how **nxtp**, the protocol underlying Connext, works.
-
-[System Overview](./SystemOverview/intro)
-### Testnet Reference
-
-All the contracts, domain IDs, off-chain infra information, etc. -- all in one place.
-
-[Testnet Reference](./Testnet/testing-against-testnet)
 
 ---
 

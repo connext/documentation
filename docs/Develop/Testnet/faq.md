@@ -28,6 +28,6 @@ No, you do not need to deploy or even interact with Nomad contracts directly.
 
 See [Nomad Domaind IDs](./testing-against-testnet.md/#nomad-domain-ids).
 
-### What are the Connext contracts addresses?
+### Where are the Connext contracts?
 
 See [Deployed Contract Addresses](./testing-against-testnet.md/#deployed-contract-addresses).
