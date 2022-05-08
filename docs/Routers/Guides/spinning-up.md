@@ -31,6 +31,7 @@ To spin up a router, first clone the [`nxtp-router-docker-compose`](https://gith
 
 ```shell
 $ git clone https://github.com/connext/nxtp-router-docker-compose.git
+$ cd nxtp-router-docker-compose/
 $ git checkout amarok
 ```
 
