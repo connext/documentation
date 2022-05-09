@@ -4,9 +4,11 @@ sidebar_position: 1
 
 # FAQ
 
+This is a list of Frequently Asked Questions for the Amarok public testnet.
+
 ### What chains are supported?
 
-The list will be updated in [Supported Chains](../../Basics/chains.md/#supported-chains).
+The list will be updated in [Supported Chains](../Basics/chains.md/#supported-chains).
 
 ### What assets are supported?
 

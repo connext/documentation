@@ -5,8 +5,8 @@ import styles from "./HomepageFeatures.module.css";
 
 const FeatureList = [
   {
-    title: "Build",
-    url: "Develop/intro",
+    title: "Start Building",
+    url: "Developers/getting-started",
     description: (
       <>Get started with building your first crosschain application (xapp)</>
     ),

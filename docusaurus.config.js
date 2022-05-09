@@ -30,8 +30,8 @@ module.exports = {
           position: "left",
         },
         {
-          href: "/Develop/intro",
-          label: "Develop",
+          href: "/Developers/getting-started",
+          label: "Developers",
           position: "left",
         },
         {

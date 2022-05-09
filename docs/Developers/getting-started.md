@@ -1,17 +1,17 @@
 ---
 sidebar_position: 1
-id: intro
+id: getting-started
 ---
 
 # Getting Started 
 
-The System Overview covers high level information about crosschain interoperability and how **nxtp**, the protocol underlying Connext, works.
+Details of the transaction flow based on the Amarok upgrade.
 
-[System Overview](./SystemOverview/intro)
+[Transaction Flow](../Basics/howitworks.md)
 
 Deployed contract addresses, domain IDs, and other information can be found in the Testnet Reference.
 
-[Testnet Reference](./Testnet/testing-against-testnet.md)
+[Testnet Reference](./testing-against-testnet.md)
 
 ## Interact from the SDK
 
@@ -114,7 +114,7 @@ In this example, we'll demonstrate how to execute an `xcall` to transfer funds f
 
 6. Track the `xcall` status.
 
-  [Tracking an xcall](../Develop/Testnet/xcall-status.md)
+  [Tracking an xcall](../Developers/xcall-status.md)
 
 
 ## Interact from a Contract
@@ -200,7 +200,9 @@ function deposit(
 ...
 ```
 
-Complete contract examples be found in our starter kit:
+### xApp Starter Kit
+
+Complete contract examples be found in our starter kit.
 
 [xapp-starter](https://github.com/connext/xapp-starter/)
 
