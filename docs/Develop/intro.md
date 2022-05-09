@@ -17,7 +17,9 @@ Deployed contract addresses, domain IDs, and other information can be found in t
 
 Get started quickly using the Typescript SDK.
 
-1. Install
+In this example, we'll demonstrate how to execute an `xcall` to transfer funds from your wallet on Kovan to a destination address on Rinkeby.
+
+1. Install the SDK.
 
   ```
   yarn add @connext/nxtp-sdk@amarok
@@ -25,11 +27,15 @@ Get started quickly using the Typescript SDK.
 
   When prompted, choose the latest 0.2.0-alpha.N version.
 
-2. Construct the `NxtpSdkConfig` and create the SDK
+2. Construct the `NxtpSdkConfig` and create the SDK.
 
   ```ts
   // Use your MetaMask wallet as a signer, for example
-  const signer = new ethers.Wallet("<your_private_key");
+  const privateKey = "<your_private_key";
+
+  // Connect to a provider on the sending chain
+  const provider = new ethers.providers.JsonRpcProvider("<kovan_rpc_url");
+  const signer = new ethers.Wallet(privateKey).connect(provider);
   const signerAddress = await signer.getAddress();
 
   // Replace the placeholders with your own providers
@@ -58,10 +64,10 @@ Get started quickly using the Typescript SDK.
     },
   };
 
-  const sdk = await NxtpSdk.create(nxtpConfig, signer);
+  const { nxtpSdkBase } = await create(nxtpConfig);
   ```
 
-3. Construct the `xCallArgs` for a simple transfer
+3. Construct the `xCallArgs` for a simple transfer.
 
   ```ts
   const callParams = {
@@ -85,14 +91,28 @@ Get started quickly using the Typescript SDK.
   };
   ```
 
-4. Send it!
+4. Approve the asset transfer.
 
   ```ts
-  const txReceipt = sdk.xcall(xCallArgs);
-  console.log(txReceipt);
+  const approveTxReq = await nxtpSdkBase.approveIfNeeded(
+    xCallArgs.params.originDomain,
+    xCallArgs.transactingAssetId,
+    xCallArgs.amount
+  )
+  const approveTxReceipt = await signer.sendTransaction(approveTxReq);
+  const approveResult = await approveTxReceipt.wait();
   ```
 
-5. Track the `xcall` status
+5. Send it!
+
+  ```ts
+  const xcallTxReq = await nxtpSdkBase.xcall(xCallArgs);
+  xcallTxReq.gasLimit = ethers.BigNumber.from("30000000"); 
+  const xcallTxReceipt = await signer.sendTransaction(xcallTxReq);
+  const xcallResult = await xcallTxReceipt.wait();
+  ```
+
+6. Track the `xcall` status.
 
   [Tracking an xcall](../Develop/Testnet/xcall-status.md)
 
