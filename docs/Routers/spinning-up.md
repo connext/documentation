@@ -106,8 +106,8 @@ $ docker-compose up -d
 Test if it's working by querying the `/config` endpoint. Log into the host or the router container and run the following curl command:
 
 ```shell
-# assumes ROUTER_EXTERNAL_PORT is 8080, on the container itself it will be 8080
-$ curl localhost:8080/config
+# assumes ROUTER_EXTERNAL_PORT is 8000, on the container itself it will be 8000
+$ curl localhost:8000/config
 {"signerAddress":"0x627306090abaB3A6e1400e9345bC60c78a8BEf57"}
 ```
 
