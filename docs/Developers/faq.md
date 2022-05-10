@@ -33,3 +33,11 @@ See [Nomad Domaind IDs](./testing-against-testnet.md/#nomad-domain-ids).
 ### Where are the Connext contracts?
 
 See [Deployed Contract Addresses](./testing-against-testnet.md/#deployed-contract-addresses).
+
+### How do I take my token crosschain?
+
+There are a few steps to take, so please reach out to us for assistance:
+
+- The Connext team whitelists your asset (for now, this is required).
+- You transfer some of the assets across the bridge.
+- If the destination asset has the mad*asset as the adopted asset (there's no existing pool, no representative asset exists yet), then the Token Registry will deploy a new token and set it as canonical.
