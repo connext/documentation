@@ -70,6 +70,7 @@ module.exports = {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
     },
+    sidebarCollapsible: false
   },
   presets: [
     [
