@@ -99,7 +99,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Connext. Built with Docusaurus.`,
+      copyright: `Published in ${new Date().getFullYear()} by Connext. Built with Docusaurus.`,
     },
     prism: {
       additionalLanguages: ["solidity"],
