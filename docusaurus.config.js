@@ -25,18 +25,23 @@ module.exports = {
       },
       items: [
         {
-          href: "/Basics/intro",
+          href: "/basics/intro",
           label: "Basics",
           position: "left",
         },
         {
-          href: "/Developers/getting-started",
+          href: "/developers/getting-started",
           label: "Developers",
           position: "left",
         },
         {
-          href: "/Routers/checklist",
+          href: "/routers/checklist",
           label: "Routers",
+          position: "left",
+        },
+        {
+          href: "/faq",
+          label: "FAQ ",
           position: "left",
         },
         {
@@ -45,33 +50,65 @@ module.exports = {
           dropdownItemsAfter: [{ to: "/versions", label: "All versions" }],
           dropdownActiveClassDisabled: true,
         },
-        {
-          href: "https://medium.com/connext",
-          label: "Blog",
-          position: "right",
-        },
-        {
-          href: "https://chat.connext.network",
-          label: "Chat",
-          position: "right",
-        },
-        {
-          href: "https://github.com/connext/nxtp",
-          label: "GitHub",
-          position: "right",
-        },
       ],
     },
     footer: {
       style: "dark",
+      links: [
+        {
+          title: "Community",
+          items: [
+            {
+              href: "https://medium.com/connext",
+              label: "Blog",
+            },
+            {
+              href: "https://chat.connext.network",
+              label: "Chat",
+            },
+            {
+              href: "https://github.com/connext/nxtp",
+              label: "GitHub",
+            },
+          ],
+        },
+        {
+          title: "Project",
+          items: [
+            {
+              href: "https://www.connext.network/",
+              label: "Homepage",
+            },
+            {
+              href: "https://connextscan.io/",
+              label: "Explorer",
+            },
+            {
+              href: "https://bridge.connext.network/",
+              label: "Bridge",
+            },
+          ],
+        },
+        {
+          title: "More",
+          items: [
+            {
+              href: "https://connextscan.io/status",
+              label: "Status",
+            },
+          ],
+        },
+      ],
+      copyright: `Copyright © ${new Date().getFullYear()} Connext. Built with Docusaurus.`,
     },
     prism: {
       additionalLanguages: ["solidity"],
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
     },
-    sidebarCollapsible: false
+    sidebarCollapsible: false,
   },
+  plugins: [require.resolve("@easyops-cn/docusaurus-search-local")],
   presets: [
     [
       "@docusaurus/preset-classic",

@@ -28,7 +28,7 @@ mkdir simple-xtransfer && cd simple-xtransfer
 yarn init
 ```
 
-We'll use TypeScript / Node.js in this example. 
+We'll use TypeScript / Node.js in this example.
 
 ```bash
 yarn add @types/node typescript 

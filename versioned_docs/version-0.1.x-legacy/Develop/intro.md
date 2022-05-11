@@ -18,11 +18,11 @@ This means that cases like **migrating** a token from chain A to chain B are not
 
 These docs contain information for developers integrating Connext and liquidity providers. If you're interested in contributing to the development of the system, check out the READMEs in our [core implementation repo](https://github.com/connext/nxtp).
 
-#### [Quick Start](./Integration/QuickStart/setup)
+#### [Quick Start](./QuickStart/setup)
 
 Want to get started with crosschain interactions in your dApp right away? We step through the E2E integration flow in our Quick Start guide.
 
-#### [System Overview](./Integration/SystemOverview/faq)
+#### [System Overview](./SystemOverview/faq)
 
 The System Overview section covers high level information about crosschain interoperability and how **nxtp**, the protocol underlying Connext, works.
 
@@ -30,7 +30,7 @@ The System Overview section covers high level information about crosschain inter
 
 More guides are coming soon! We'll cover common workflows like calling a contract across chains and tips for UX!
 
-#### [API Reference](./APIReference/sdkAPI)
+#### [API Reference](/APIReference/sdkAPI)
 
 API Reference is also coming soon!
 
