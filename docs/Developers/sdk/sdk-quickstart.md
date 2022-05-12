@@ -24,7 +24,7 @@ If you have an existing project, you can skip to [Install dependencies](./sdk-qu
 Create the project folder and initialize the package.
 
 ```bash
-mkdir simple-xtransfer && cd simple-xtransfer
+mkdir node-examples && cd node-examples
 yarn init
 ```
 
@@ -36,9 +36,9 @@ yarn add -D @types/chai
 yarn tsc --init
 ```
 
-We want to use top-level await so we'll set the compiler options accordingly. Replace the contents of `tsconfig.json` with:
+We want to use top-level await so we'll set the compiler options accordingly.
 
-```json
+```json title="tsconfig.json"
 {
   "compilerOptions": {
     "outDir": "./dist",
@@ -50,27 +50,28 @@ We want to use top-level await so we'll set the compiler options accordingly. Re
 }
 ```
 
-And add these scripts to your `package.json`:
+And add the following to your `package.json`:
 
-```json
+```json title="package.json"
+"type": "module",
 "scripts": {
-  "build": "tsc && mv dist/index.js dist/index.mjs",
-  "xtransfer": "node dist/index.mjs"
+  "build": "tsc",
+  "xtransfer": "node dist/xtransfer.js"
 }
 ```
 
-Create an `index.ts` in your project directory, where we will write all the code in this example.
+Create `xtransfer.ts` in your project directory, where we will write all the code in this example.
 
 ```bash
-mkdir src && touch src/index.ts
+mkdir src && touch src/xtransfer.ts
 ```
 
 ### 2. Install dependencies
 
-Install the SDK. When prompted, choose the latest `0.2.0-alpha.N` version.
+Install the SDK.
 
 ```bash
-yarn add @connext/nxtp-sdk@amarok
+yarn add @connext/nxtp-sdk
 ```
 
 Also, install `ethers`.
@@ -81,12 +82,14 @@ yarn add ethers
 
 ### 3. Pull in imports
 
-Let's start populating `index.ts`. We only need a few imports for this example.
+We only need a few imports for this example.
 
-```ts
+```ts title="src/xtransfer.ts"
 import { create, NxtpSdkConfig } from "@connext/nxtp-sdk";
 import { ethers } from "ethers";
 ```
+
+The rest of this guide will be working with this file.
 
 ### 4. Create a Signer
 
@@ -136,7 +139,7 @@ const nxtpConfig: NxtpSdkConfig = {
 };
 ```
 
-Not sure where those IDs came from? They refer to the [Nomad Domain IDs](../testing-against-testnet.md#nomad-domain-ids) which are a custom mapping of ID to specific execution environment (not always equivalent to "chain", hence we have Domain IDs). 
+> Not sure where those IDs came from? They refer to the [Nomad Domain IDs](../testing-against-testnet.md#nomad-domain-ids) which are a custom mapping of ID to specific execution environment (not always equivalent to "chain", hence we have Domain IDs). 
 
 ### 6. Create the SDK
 
@@ -168,9 +171,9 @@ const xCallArgs = {
 
 ### 8. Approve the asset transfer
 
-This is necessary because funds will first be sent to the Connext contract before being bridged.
+This is necessary because funds will first be sent to the ConnextHandler contract before being bridged.
 
-`approveIfNeeded()` is a helper function that finds the right Connext contract and executes the standard "increase allowance" flow for an asset.
+`approveIfNeeded()` is a helper function that finds the right contract address and executes the standard "increase allowance" flow for an asset.
 
 ```ts
 const approveTxReq = await nxtpSdkBase.approveIfNeeded(
