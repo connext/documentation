@@ -10,4 +10,4 @@ Once this is done, follow the following steps using the block explorer for the d
 
 - Acquire assets for providing liquidity (assets are listed in [testnet](../developers/testing-against-testnet.md#test-token-test) or mainnet (COMING SOON)).
 - Approve tokens for the Connext.sol contract address.
-- Call the function `addLiquidityFor` on the Connext.sol contract using your router address and the asset address as `local`.
+- Call the function `addLiquidityFor` on the Connext.sol contract using your router address and the asset address as `local`. Alternatively, you can use the Connext Router UI at https://testnet.amarok.connextscan.io/router/<YOUR_ROUTER_ADDRESS> to illustratively add the liquidity. 
