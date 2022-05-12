@@ -1,3 +1,6 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
 ---
 sidebar_position: 2
 ---
@@ -85,7 +88,7 @@ await sdk.fulfillTransfer(prepared);
 
 ## Next Steps
 
-See the other sections in this folder for information on [events](./events), [API](/develop/QuickStart/api-reference), etc.
+See the other sections in this folder for information on [events](./events), etc.
 
 ## Full Example
 
