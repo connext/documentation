@@ -20,7 +20,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--primary button--lg"
-            to="Developers/getting-started"
+            to="developers/getting-started"
           >
             Developer Quickstart
           </Link>
@@ -34,8 +34,8 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      title={`Welcome to the ${siteConfig.title}`}
+      description="Learn how to build integrations and deploy liquidity against Connext and Amarok with our docs"
     >
       <HomepageHeader />
       <main>
