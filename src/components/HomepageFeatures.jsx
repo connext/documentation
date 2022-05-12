@@ -23,7 +23,7 @@ const FeatureList = [
   },
   {
     title: "Connext SDK",
-    url: "/developers/sdk/intro",
+    url: "/developers/sdk/sdk-quickstart",
     description: (
       <>
         Learn about our SDK with simple to follow conceptual overviews detailed
