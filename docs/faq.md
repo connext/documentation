@@ -6,9 +6,9 @@ sidebar_position: 1
 
 This is a list of Frequently Asked Questions for the Amarok public testnet.
 
-### What chains are supported?
+## What chains are supported?
 
-The list will be updated in [Supported Chains](../Basics/chains.md/#supported-chains).
+The list will be updated in [Supported Chains](./basics/chains.md/#supported-chains).
 
 ### What assets are supported?
 
@@ -16,25 +16,25 @@ Currently, only a test ERC20 “Test Token (TEST)”.
 
 > Trying to send native ETH will not work at the moment because it requires a wrapped token on the receiving side which has not yet been whitelisted. This will be added shortly!
 
-### What if I just want to test my receiving chain function?
+## What if I just want to test my receiving chain function?
 
 If there’s no token transfer involved then just set 0 for the `amount`.
 
 > Make sure you use the Test Token for `transactingAssetId` until the native token (above) has been whitelisted.
 
-### Do I need to do anything with the Nomad contracts?
+## Do I need to do anything with the Nomad contracts?
 
 No, you do not need to deploy or even interact with Nomad contracts directly.
 
-### How do I find the different domainIds?
+## How do I find the different domainIds?
 
-See [Nomad Domaind IDs](./testing-against-testnet.md/#nomad-domain-ids).
+See [Nomad Domaind IDs](./developers/testing-against-testnet.md/#nomad-domain-ids).
 
-### Where are the Connext contracts?
+## Where are the Connext contracts?
 
-See [Deployed Contract Addresses](./testing-against-testnet.md/#deployed-contract-addresses).
+See [Deployed Contract Addresses](./developers/testing-against-testnet.md/#deployed-contract-addresses).
 
-### How do I take my token crosschain?
+## How do I take my token crosschain?
 
 There are a few steps to take, so please reach out to us for assistance:
 

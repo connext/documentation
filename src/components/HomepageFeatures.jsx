@@ -6,16 +6,29 @@ import styles from "./HomepageFeatures.module.css";
 const FeatureList = [
   {
     title: "Start Building",
-    url: "Developers/getting-started",
+    url: "/developers/getting-started",
     description: (
       <>Get started with building your first crosschain application (xapp)</>
     ),
   },
   {
     title: "Run a Router",
-    url: "Routers/checklist",
+    url: "/routers/checklist",
     description: (
-      <>Step through the process of running a router and becoming a core network participant</>
+      <>
+        Step through the process of running a router and becoming a core network
+        participant
+      </>
+    ),
+  },
+  {
+    title: "Connext SDK",
+    url: "/developers/sdk/sdk-quickstart",
+    description: (
+      <>
+        Learn about our SDK with simple to follow conceptual overviews detailed
+        descriptions of APIs
+      </>
     ),
   },
 ];

@@ -5,7 +5,6 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./index.module.css";
 import HomepageFeatures from "../components/HomepageFeatures";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -21,7 +20,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--primary button--lg"
-            to="Developers/getting-started"
+            to="developers/getting-started"
           >
             Developer Quickstart
           </Link>
@@ -31,24 +30,12 @@ function HomepageHeader() {
   );
 }
 
-// function HomepageImage() {
-//   const imageURL = "/img/connextLogoBig.png";
-
-//   return (
-//     <section className={styles.logoSection}>
-//       <div className={styles.logoHolder}>
-//         <img className={styles.logoPng} src={useBaseUrl(imageURL)} />
-//       </div>
-//     </section>
-//   );
-// }
-
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      title={`Welcome to the ${siteConfig.title}`}
+      description="Learn how to build integrations and deploy liquidity against Connext and Amarok with our docs"
     >
       <HomepageHeader />
       <main>

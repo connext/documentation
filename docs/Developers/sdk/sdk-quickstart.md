@@ -5,7 +5,7 @@ id: sdk-quickstart
 
 # SDK Quickstart
 
-The Connext SDK allows developers to interact with the Connext protocol in standard Node.js or web environments. This quickstart will show you how to build on top of Connext using the TypeScript SDK. 
+The Connext SDK allows developers to interact with the Connext protocol in standard Node.js or web environments. This quickstart will show you how to build on top of Connext using the TypeScript SDK.
 
 This example (and others) can be found in our xApp Starter Kit, under `src/sdk-interactions`.
 
@@ -19,7 +19,7 @@ In this quickstart, we'll demonstrate how to execute an `xcall` to transfer fund
 
 ### 1. Setup project
 
-If you have an existing project, you can skip to [Install dependencies](./sdk-quickstart.md#2-install-dependencies).
+If you have an existing project, you can skip to [Install dependencies](./sdk-quickstart#2-install-dependencies).
 
 Create the project folder and initialize the package.
 
@@ -28,7 +28,7 @@ mkdir simple-xtransfer && cd simple-xtransfer
 yarn init
 ```
 
-We'll use TypeScript / Node.js in this example. 
+We'll use TypeScript / Node.js in this example.
 
 ```bash
 yarn add @types/node typescript 
@@ -205,4 +205,4 @@ yarn xtransfer
 
 You can use the transaction hash from the transaction receipt we logged above to track the status of the `xcall`, following instructions here.
 
-[Tracking an xcall](../xcall-status.md)
+[Tracking an xcall](../xcall-status)
