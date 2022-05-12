@@ -5,9 +5,9 @@ id: sdk-quickstart
 
 # SDK Quickstart
 
-The Connext SDK allows developers to interact with the Connext protocol in standard Node.js or web environments. This quickstart will show you how to build on top of Connext using the TypeScript SDK. 
+The Connext SDK allows developers to interact with the Connext protocol in standard Node.js or web environments. This quickstart will go through how to build on top of Connext using the TypeScript SDK. 
 
-This example (and others) can be found in our xApp Starter Kit, under `src/sdk-interactions`.
+These examples (and others) can be found in our xApp Starter Kit, under `src/sdk-interactions`.
 
 [xApp Starter Kit](https://github.com/connext/xapp-starter/)
 
@@ -15,7 +15,7 @@ This example (and others) can be found in our xApp Starter Kit, under `src/sdk-i
 
 ## Cross-Chain Transfer
 
-In this quickstart, we'll demonstrate how to execute an `xcall` to transfer funds from your wallet on Kovan to a destination address on Rinkeby.
+In this quickstart, we'll demonstrate how to execute an `xcall` to transfer funds from a wallet on Kovan to a destination address on Rinkeby.
 
 ### 1. Setup project
 
@@ -32,7 +32,7 @@ We'll use TypeScript / Node.js in this example.
 
 ```bash
 yarn add @types/node typescript 
-yarn add -D @types/chai
+yarn add -D @types/chain
 yarn tsc --init
 ```
 
@@ -50,7 +50,7 @@ We want to use top-level await so we'll set the compiler options accordingly.
 }
 ```
 
-And add the following to your `package.json`:
+And add the following to `package.json`:
 
 ```json title="package.json"
 "type": "module",
@@ -60,7 +60,7 @@ And add the following to your `package.json`:
 }
 ```
 
-Create `xtransfer.ts` in your project directory, where we will write all the code in this example.
+Create `xtransfer.ts` in project directory, where we will write all the code in this example.
 
 ```bash
 mkdir src && touch src/xtransfer.ts
@@ -93,14 +93,14 @@ The rest of this guide will be working with this file.
 
 ### 4. Create a Signer
 
-Use your MetaMask wallet as a [Signer](https://docs.ethers.io/v5/api/signer/).
+Use a wallet (i.e. MetaMask) as a [Signer](https://docs.ethers.io/v5/api/signer/).
 
 ```ts
-const privateKey = "<your_private_key>";
+const privateKey = "<wallet_private_key>";
 let signer = new ethers.Wallet(privateKey);
 ```
 
-And connect it to a [Provider](https://docs.ethers.io/v5/api/providers/) on the sending chain. You can get providers from [Infura](https://infura.io/), [Alchemy](https://www.alchemy.com/), or whatever you prefer.
+And connect it to a [Provider](https://docs.ethers.io/v5/api/providers/) on the sending chain ([Infura](https://infura.io/), [Alchemy](https://www.alchemy.com/), etc).
 
 ```ts
 const provider = new ethers.providers.JsonRpcProvider("<kovan_rpc_url>");
@@ -193,7 +193,7 @@ Send the `xcall`.
 const xcallTxReq = await nxtpSdkBase.xcall(xCallArgs);
 xcallTxReq.gasLimit = ethers.BigNumber.from("30000000"); 
 const xcallTxReceipt = await signer.sendTransaction(xcallTxReq);
-console.log(xcallTxReceipt); // so you can see the transaction hash
+console.log(xcallTxReceipt); // so we can see the transaction hash
 const xcallResult = await xcallTxReceipt.wait();
 ```
 
@@ -206,6 +206,93 @@ yarn xtransfer
 
 ### 10. Track the `xcall`
 
-You can use the transaction hash from the transaction receipt we logged above to track the status of the `xcall`, following instructions here.
+We can use the transaction hash from the transaction receipt we logged above to track the status of the `xcall`, following instructions here.
+
+[Tracking an xcall](../xcall-status.md)
+
+After the DestinationTransfer shows up on the Rinkeby side, the freshly transferred tokens should show up in the destination wallet.
+
+--- 
+
+## Cross-Chain Mint (unpermissioned)
+
+We can also send arbitrary `calldata`, along with the `xcall`, to be executed on the destination domain.
+
+In this example, we're going to construct some `calldata` targeting an existing contract function to avoid having to deploy a new contract. We'll aim for the `mint` function of the [Test ERC20 Token (TEST) contract](https://rinkeby.etherscan.io/address/0xB7b1d3cC52E658922b2aF00c5729001ceA98142C#writeContract) to demonstrate this. 
+
+> Minting usually requires permissioning but the Test Token has a public `mint` function (callable by anyone!) that we can leverage for this example. Hence, this is an "unpermissioned" `xcall` with calldata - nothing extra needs to be done on the destination side.
+
+### 7. Encode the `calldata`
+
+After creating the SDK (steps 1-6 above), we have to create and encode the `calldata`.
+
+To do this, we'll just grab the Test Token contract's ABI (we only care about the `mint` function here) and encode the `calldata` with the correct arguments.
+
+```js
+const contractABI = [
+  "function mint(address account, uint256 amount)"
+];
+const iface = new ethers.utils.Interface(contractABI);
+
+const calldata = iface.encodeFunctionData(
+  "mint", 
+  [
+    "0x6d2A06543D23Cc6523AE5046adD8bb60817E0a94", // address to mint tokens for
+    ethers.BigNumber.from("100000000000000000000") // amount to mint (100 TEST)
+  ]
+)
+```
+
+### 8. Construct the `xCallArgs`
+
+Now with the `calldata` ready, we supply it to the `xCallArgs`.
+
+```js
+const callParams = {
+  to: "0xB7b1d3cC52E658922b2aF00c5729001ceA98142C", // Rinkeby Test Token - this is the contract we are targeting
+  //highlight-next-line
+  callData: calldata, 
+  originDomain: "2221", // send from Kovan
+  destinationDomain: "1111", // to Rinkeby
+};
+
+const xCallArgs = {
+  params: callParams,
+  transactingAssetId: "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F", // the Kovan Test Token
+  amount: "0", // not sending any funds
+  relayerFee: "0", // relayers on testnet don't take a fee
+};
+```
+
+### 9. Send it!
+
+Notice that we specified `amount: "0"` above so we're not sending any funds with this `xcall`. Therefore, we can skip the approval dance and just send the transaction.
+
+```ts title="*same code*"
+const xcallTxReq = await nxtpSdkBase.xcall(xCallArgs);
+xcallTxReq.gasLimit = ethers.BigNumber.from("30000000"); 
+const xcallTxReceipt = await signer.sendTransaction(xcallTxReq);
+console.log(xcallTxReceipt); // so we can see the transaction hash
+const xcallResult = await xcallTxReceipt.wait();
+```
+
+Add a new script to `package.json`:
+
+```json title="package.json"
+"scripts": {
+  "xmint": "node dist/xmint.js"
+}
+```
+
+Finally, run the following to fire off the cross-chain mint!
+
+```shell
+yarn build
+yarn xmint
+```
+
+### 10. Track the `xcall`
+
+Again, we use the transaction hash from the transaction receipt to track the status of the xcall and we can check the destination wallet to make sure the right amount of funds were minted.
 
 [Tracking an xcall](../xcall-status.md)
