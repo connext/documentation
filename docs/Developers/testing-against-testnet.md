@@ -17,8 +17,6 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
 | Test Token (TEST ERC20) | 0xB7b1d3cC52E658922b2aF00c5729001ceA98142C |
 | Connext Handler | 0x979588965099F4DEA3CAd850d67ca3356284591e |
 
-> If you try to add liquidity with [Rinkeby Etherscan](https://rinkeby.etherscan.io/) and only find there is no `AddLiquidityFor` method in the `Write Contract` section, you can manually call it with your constructed calldata: 0xe070da09 (method address) + the amount you want to provide in hex + the token address + the router address. See the `input data` section of this transaction for a example (https://rinkeby.etherscan.io/tx/0x0b2fbbf0034fefc3bda7738fa81894e051e015da37343ff7663e7419f6dd1329).
-
 ### Goerli (chainId: 5, domainId: 3331)
 
 | Contract | Address |
