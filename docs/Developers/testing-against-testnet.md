@@ -8,7 +8,7 @@ The Connext testnet contains various pieces of infrastructure and smart contract
 
 ## Deployed Contract Addresses
 
-A full reference to deployed contracts can be found in the [deployments.json](https://github.com/connext/nxtp/blob/amarok/packages/deployments/contracts/deployments.json) file.
+A full reference to deployed contracts can be found in the [deployments.json](https://github.com/connext/nxtp/blob/main/packages/deployments/contracts/deployments.json) file.
 
 ### Rinkeby (chainId: 4, domainId: 1111)
 
