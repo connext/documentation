@@ -1,3 +1,6 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
 ---
 sidebar_position: 1
 ---
@@ -14,8 +17,6 @@ A contract integration is only needed if you want to initiate a transaction dire
 
 The SDK is distributed as a typescript package on npm. It is fully isomorphic (can be used the same way in client-side, server-side, and React Native environments).
 
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
 
 <Tabs
   defaultValue="yarn"

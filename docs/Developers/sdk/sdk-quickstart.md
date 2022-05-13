@@ -19,7 +19,7 @@ In this quickstart, we'll demonstrate how to execute an `xcall` to transfer fund
 
 ### 1. Setup project
 
-If you have an existing project, you can skip to [Install dependencies](./sdk-quickstart.md#2-install-dependencies).
+If you have an existing project, you can skip to [Install dependencies](./sdk-quickstart#2-install-dependencies).
 
 Create the project folder and initialize the package.
 
@@ -295,4 +295,4 @@ yarn xmint
 
 Again, we use the transaction hash from the transaction receipt to track the status of the xcall and we can check the destination wallet to make sure the right amount of funds were minted.
 
-[Tracking an xcall](../xcall-status.md)
+[Tracking an xcall](../xcall-status)

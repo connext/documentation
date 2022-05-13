@@ -46,6 +46,7 @@ Modify the following environment variables:
 * `ROUTER_VERSION` - The version of the router to use (e.g. `v0.1.0`). See the [releases page](https://github.com/connext/nxtp/releases) for the latest released version.
 * `ROUTER_EXTERNAL_PORT` - Exposed port of the router. Remember to not expose this port to the public.
 * `GRAFANA_EXTERNAL_PORT` - Exposed port of the Grafana dashboard.
+* `LOGDNA_KEY` - This key is used by logna container. You can get this key by sign up [here](https://app.logdna.com/)
 
 ### Redis Config
 
