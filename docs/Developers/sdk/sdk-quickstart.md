@@ -5,9 +5,9 @@ id: sdk-quickstart
 
 # SDK Quickstart
 
-The Connext SDK allows developers to interact with the Connext protocol in standard Node.js or web environments. This quickstart will show you how to build on top of Connext using the TypeScript SDK.
+The Connext SDK allows developers to interact with the Connext protocol in standard Node.js or web environments. This quickstart will go through how to build on top of Connext using the TypeScript SDK. 
 
-This example (and others) can be found in our xApp Starter Kit, under `src/sdk-interactions`.
+These examples (and others) can be found in our xApp Starter Kit, under `src/sdk-interactions`.
 
 [xApp Starter Kit](https://github.com/connext/xapp-starter/)
 
@@ -15,7 +15,7 @@ This example (and others) can be found in our xApp Starter Kit, under `src/sdk-i
 
 ## Cross-Chain Transfer
 
-In this quickstart, we'll demonstrate how to execute an `xcall` to transfer funds from your wallet on Kovan to a destination address on Rinkeby.
+In this quickstart, we'll demonstrate how to execute an `xcall` to transfer funds from a wallet on Kovan to a destination address on Rinkeby.
 
 ### 1. Setup project
 
@@ -24,7 +24,7 @@ If you have an existing project, you can skip to [Install dependencies](./sdk-qu
 Create the project folder and initialize the package.
 
 ```bash
-mkdir simple-xtransfer && cd simple-xtransfer
+mkdir node-examples && cd node-examples
 yarn init
 ```
 
@@ -32,13 +32,13 @@ We'll use TypeScript / Node.js in this example.
 
 ```bash
 yarn add @types/node typescript 
-yarn add -D @types/chai
+yarn add -D @types/chain
 yarn tsc --init
 ```
 
-We want to use top-level await so we'll set the compiler options accordingly. Replace the contents of `tsconfig.json` with:
+We want to use top-level await so we'll set the compiler options accordingly.
 
-```json
+```json title="tsconfig.json"
 {
   "compilerOptions": {
     "outDir": "./dist",
@@ -50,27 +50,28 @@ We want to use top-level await so we'll set the compiler options accordingly. Re
 }
 ```
 
-And add these scripts to your `package.json`:
+And add the following to `package.json`:
 
-```json
+```json title="package.json"
+"type": "module",
 "scripts": {
-  "build": "tsc && mv dist/index.js dist/index.mjs",
-  "xtransfer": "node dist/index.mjs"
+  "build": "tsc",
+  "xtransfer": "node dist/xtransfer.js"
 }
 ```
 
-Create an `index.ts` in your project directory, where we will write all the code in this example.
+Create `xtransfer.ts` in project directory, where we will write all the code in this example.
 
 ```bash
-mkdir src && touch src/index.ts
+mkdir src && touch src/xtransfer.ts
 ```
 
 ### 2. Install dependencies
 
-Install the SDK. When prompted, choose the latest `0.2.0-alpha.N` version.
+Install the SDK.
 
 ```bash
-yarn add @connext/nxtp-sdk@amarok
+yarn add @connext/nxtp-sdk
 ```
 
 Also, install `ethers`.
@@ -81,23 +82,25 @@ yarn add ethers
 
 ### 3. Pull in imports
 
-Let's start populating `index.ts`. We only need a few imports for this example.
+We only need a few imports for this example.
 
-```ts
+```ts title="src/xtransfer.ts"
 import { create, NxtpSdkConfig } from "@connext/nxtp-sdk";
 import { ethers } from "ethers";
 ```
 
+The rest of this guide will be working with this file.
+
 ### 4. Create a Signer
 
-Use your MetaMask wallet as a [Signer](https://docs.ethers.io/v5/api/signer/).
+Use a wallet (i.e. MetaMask) as a [Signer](https://docs.ethers.io/v5/api/signer/).
 
 ```ts
-const privateKey = "<your_private_key>";
+const privateKey = "<wallet_private_key>";
 let signer = new ethers.Wallet(privateKey);
 ```
 
-And connect it to a [Provider](https://docs.ethers.io/v5/api/providers/) on the sending chain. You can get providers from [Infura](https://infura.io/), [Alchemy](https://www.alchemy.com/), or whatever you prefer.
+And connect it to a [Provider](https://docs.ethers.io/v5/api/providers/) on the sending chain ([Infura](https://infura.io/), [Alchemy](https://www.alchemy.com/), etc).
 
 ```ts
 const provider = new ethers.providers.JsonRpcProvider("<kovan_rpc_url>");
@@ -136,7 +139,7 @@ const nxtpConfig: NxtpSdkConfig = {
 };
 ```
 
-Not sure where those IDs came from? They refer to the [Nomad Domain IDs](../testing-against-testnet.md#nomad-domain-ids) which are a custom mapping of ID to specific execution environment (not always equivalent to "chain", hence we have Domain IDs). 
+> Not sure where those IDs came from? They refer to the [Nomad Domain IDs](../testing-against-testnet.md#nomad-domain-ids) which are a custom mapping of ID to specific execution environment (not always equivalent to "chain", hence we have Domain IDs). 
 
 ### 6. Create the SDK
 
@@ -168,9 +171,9 @@ const xCallArgs = {
 
 ### 8. Approve the asset transfer
 
-This is necessary because funds will first be sent to the Connext contract before being bridged.
+This is necessary because funds will first be sent to the ConnextHandler contract before being bridged.
 
-`approveIfNeeded()` is a helper function that finds the right Connext contract and executes the standard "increase allowance" flow for an asset.
+`approveIfNeeded()` is a helper function that finds the right contract address and executes the standard "increase allowance" flow for an asset.
 
 ```ts
 const approveTxReq = await nxtpSdkBase.approveIfNeeded(
@@ -190,7 +193,7 @@ Send the `xcall`.
 const xcallTxReq = await nxtpSdkBase.xcall(xCallArgs);
 xcallTxReq.gasLimit = ethers.BigNumber.from("30000000"); 
 const xcallTxReceipt = await signer.sendTransaction(xcallTxReq);
-console.log(xcallTxReceipt); // so you can see the transaction hash
+console.log(xcallTxReceipt); // so we can see the transaction hash
 const xcallResult = await xcallTxReceipt.wait();
 ```
 
@@ -203,6 +206,93 @@ yarn xtransfer
 
 ### 10. Track the `xcall`
 
-You can use the transaction hash from the transaction receipt we logged above to track the status of the `xcall`, following instructions here.
+We can use the transaction hash from the transaction receipt we logged above to track the status of the `xcall`, following instructions here.
+
+[Tracking an xcall](../xcall-status.md)
+
+After the DestinationTransfer shows up on the Rinkeby side, the freshly transferred tokens should show up in the destination wallet.
+
+--- 
+
+## Cross-Chain Mint (unpermissioned)
+
+We can also send arbitrary `calldata`, along with the `xcall`, to be executed on the destination domain.
+
+In this example, we're going to construct some `calldata` targeting an existing contract function to avoid having to deploy a new contract. We'll aim for the `mint` function of the [Test ERC20 Token (TEST) contract](https://rinkeby.etherscan.io/address/0xB7b1d3cC52E658922b2aF00c5729001ceA98142C#writeContract) to demonstrate this. 
+
+> Minting usually requires permissioning but the Test Token has a public `mint` function (callable by anyone!) that we can leverage for this example. Hence, this is an "unpermissioned" `xcall` with calldata - nothing extra needs to be done on the destination side.
+
+### 7. Encode the `calldata`
+
+After creating the SDK (steps 1-6 above), we have to create and encode the `calldata`.
+
+To do this, we'll just grab the Test Token contract's ABI (we only care about the `mint` function here) and encode the `calldata` with the correct arguments.
+
+```js
+const contractABI = [
+  "function mint(address account, uint256 amount)"
+];
+const iface = new ethers.utils.Interface(contractABI);
+
+const calldata = iface.encodeFunctionData(
+  "mint", 
+  [
+    "0x6d2A06543D23Cc6523AE5046adD8bb60817E0a94", // address to mint tokens for
+    ethers.BigNumber.from("100000000000000000000") // amount to mint (100 TEST)
+  ]
+)
+```
+
+### 8. Construct the `xCallArgs`
+
+Now with the `calldata` ready, we supply it to the `xCallArgs`.
+
+```js
+const callParams = {
+  to: "0xB7b1d3cC52E658922b2aF00c5729001ceA98142C", // Rinkeby Test Token - this is the contract we are targeting
+  //highlight-next-line
+  callData: calldata, 
+  originDomain: "2221", // send from Kovan
+  destinationDomain: "1111", // to Rinkeby
+};
+
+const xCallArgs = {
+  params: callParams,
+  transactingAssetId: "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F", // the Kovan Test Token
+  amount: "0", // not sending any funds
+  relayerFee: "0", // relayers on testnet don't take a fee
+};
+```
+
+### 9. Send it!
+
+Notice that we specified `amount: "0"` above so we're not sending any funds with this `xcall`. Therefore, we can skip the approval dance and just send the transaction.
+
+```ts title="*same code*"
+const xcallTxReq = await nxtpSdkBase.xcall(xCallArgs);
+xcallTxReq.gasLimit = ethers.BigNumber.from("30000000"); 
+const xcallTxReceipt = await signer.sendTransaction(xcallTxReq);
+console.log(xcallTxReceipt); // so we can see the transaction hash
+const xcallResult = await xcallTxReceipt.wait();
+```
+
+Add a new script to `package.json`:
+
+```json title="package.json"
+"scripts": {
+  "xmint": "node dist/xmint.js"
+}
+```
+
+Finally, run the following to fire off the cross-chain mint!
+
+```shell
+yarn build
+yarn xmint
+```
+
+### 10. Track the `xcall`
+
+Again, we use the transaction hash from the transaction receipt to track the status of the xcall and we can check the destination wallet to make sure the right amount of funds were minted.
 
 [Tracking an xcall](../xcall-status)
