@@ -159,6 +159,8 @@ const callParams = {
   callData: "0x", // empty calldata for a simple transfer
   originDomain: "2221", // send from Kovan
   destinationDomain: "1111", // to Rinkeby
+  forceSlow: false, // option that allows users to take the Nomad slow path (~30 mins) instead of paying routers a 0.05% fee on their transaction
+  receiveLocal: false // option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
 };
 
 const xCallArgs = {
@@ -254,6 +256,8 @@ const callParams = {
   callData: calldata, 
   originDomain: "2221", // send from Kovan
   destinationDomain: "1111", // to Rinkeby
+  forceSlow: false, // option that allows users to take the Nomad slow path (~30 mins) instead of paying routers a 0.05% fee on their transaction
+  receiveLocal: false // option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
 };
 
 const xCallArgs = {
