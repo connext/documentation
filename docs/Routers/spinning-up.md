@@ -71,7 +71,7 @@ Create a `config.json` file based on the `config.example.json` file. At minumum,
     "1111": {
       "assets": [
         {
-          "address": "0xcF4d2994088a8CDE52FB584fE29608b63Ec063B2",
+          "address": "0xB7b1d3cC52E658922b2aF00c5729001ceA98142C",
           "name": "TEST"
         }
       ],
@@ -85,6 +85,17 @@ Create a `config.json` file based on the `config.example.json` file. At minumum,
         }
       ],
       "providers": ["https://kovan.infura.io/v3/..."]
+    },
+    "3331": {
+      "providers": [
+        "https://goerli.infura.io/v3/..."
+      ],
+      "assets": [
+        {
+          "address": "0xD426e23A6a9524101CDC017e01dDc3262B7aA65D",
+          "name": "TEST"
+        }
+      ]
     }
   }
 }
