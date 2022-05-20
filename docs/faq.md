@@ -8,7 +8,7 @@ This is a list of Frequently Asked Questions for the Amarok public testnet.
 
 ## What chains are supported?
 
-The list will be updated in [Supported Chains](./basics/chains.md/#supported-chains).
+The list will be updated in [Supported Chains](./basics/chains#supported-chains).
 
 ### What assets are supported?
 
@@ -28,11 +28,11 @@ No, you do not need to deploy or even interact with Nomad contracts directly.
 
 ## How do I find the different domainIds?
 
-See [Nomad Domaind IDs](./developers/testing-against-testnet.md/#nomad-domain-ids).
+See [Nomad Domain IDs](./developers/testing-against-testnet#nomad-domain-ids).
 
 ## Where are the Connext contracts?
 
-See [Deployed Contract Addresses](./developers/testing-against-testnet.md/#deployed-contract-addresses).
+See [Deployed Contract Addresses](./developers/testing-against-testnet#deployed-contract-addresses).
 
 ## How do I take my token crosschain?
 

@@ -139,7 +139,7 @@ const nxtpConfig: NxtpSdkConfig = {
 };
 ```
 
-> Not sure where those IDs came from? They refer to the [Nomad Domain IDs](../testing-against-testnet.md#nomad-domain-ids) which are a custom mapping of ID to specific execution environment (not always equivalent to "chain", hence we have Domain IDs). 
+> Not sure where those IDs came from? They refer to the [Nomad Domain IDs](../testing-against-testnet#nomad-domain-ids) which are a custom mapping of ID to specific execution environment (not always equivalent to "chain", hence we have Domain IDs). 
 
 ### 6. Create the SDK
 
@@ -210,7 +210,7 @@ yarn xtransfer
 
 We can use the transaction hash from the transaction receipt we logged above to track the status of the `xcall`, following instructions here.
 
-[Tracking an xcall](../xcall-status.md)
+[Tracking an xcall](../xcall-status)
 
 After the DestinationTransfer shows up on the Rinkeby side, the freshly transferred tokens should show up in the destination wallet.
 

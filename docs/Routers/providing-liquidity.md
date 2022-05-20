@@ -13,7 +13,7 @@ Deprecated: In order to provide liquidity, the router must be whitelisted by the
 
 Once this is done, follow the following steps using the block explorer for the desired chain:
 
-- Acquire assets by calling `Mint` function for providing liquidity (assets are listed in [testnet](../developers/testing-against-testnet.md#test-token-test) or mainnet (COMING SOON)).
+- Acquire assets by calling `Mint` function for providing liquidity (assets are listed in [testnet](../developers/testing-against-testnet#test-token-test) or mainnet (COMING SOON)).
 - Approve tokens for the Connext.sol contract address.
 - Call the function `addLiquidityFor` on the Connext.sol contract using your router address and the asset address as `local`.
 

@@ -21,11 +21,11 @@ If you're interested in writing smart contracts that integrate with Connext's de
 
 See below for a rundown of the detailed transaction flow based on the Amarok upgrade.
 
-[Transaction Flow](../Basics/howitworks.md)
+[Transaction Flow](../basics/howitworks)
 
 Deployed contract addresses, domain IDs, and other useful information can be found in the Testnet Reference.
 
-[Testnet Reference](./testing-against-testnet.md)
+[Testnet Reference](./testing-against-testnet)
 
 ---
 ## Help
