@@ -71,7 +71,7 @@ Create a `config.json` file based on the `config.example.json` file. At minumum,
     "1111": {
       "assets": [
         {
-          "address": "0xB7b1d3cC52E658922b2aF00c5729001ceA98142C",
+          "address": "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
           "name": "TEST"
         }
       ],
@@ -80,7 +80,7 @@ Create a `config.json` file based on the `config.example.json` file. At minumum,
     "2221": {
       "assets": [
         {
-          "address": "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F",
+          "address": "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
           "name": "TEST"
         }
       ],
@@ -92,7 +92,7 @@ Create a `config.json` file based on the `config.example.json` file. At minumum,
       ],
       "assets": [
         {
-          "address": "0xD426e23A6a9524101CDC017e01dDc3262B7aA65D",
+          "address": "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
           "name": "TEST"
         }
       ]
