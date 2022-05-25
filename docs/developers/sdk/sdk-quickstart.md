@@ -32,7 +32,7 @@ We'll use TypeScript / Node.js in this example.
 
 ```bash
 yarn add @types/node typescript 
-yarn add -D @types/chain
+yarn add -D @types/chai
 yarn tsc --init
 ```
 
