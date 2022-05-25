@@ -159,6 +159,9 @@ const callParams = {
   callData: "0x", // empty calldata for a simple transfer
   originDomain: "2221", // send from Kovan
   destinationDomain: "1111", // to Rinkeby
+  recovery: "<destination_address>", // fallback address to send funds to if execution fails on destination side
+  callback: ethers.constants.AddressZero, // zero address because we don't expect a callback for a simple transfer 
+  callbackFee: "0", // relayers on testnet don't take a fee
   forceSlow: false, // option that allows users to take the Nomad slow path (~30 mins) instead of paying routers a 0.05% fee on their transaction
   receiveLocal: false // option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
 };

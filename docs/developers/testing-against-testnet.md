@@ -14,22 +14,22 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
 
 | Contract | Address |
 | --- | --- |
-| Test Token (TEST ERC20) | 0xB7b1d3cC52E658922b2aF00c5729001ceA98142C |
-| Connext Handler | 0x979588965099F4DEA3CAd850d67ca3356284591e |
+| Test Token (TEST ERC20) | 0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9 |
+| Connext Handler | 0x3e99898Da8A01Ed909976AF13e4Fa6094326cB10 |
 
 ### Goerli (chainId: 5, domainId: 3331)
 
 | Contract | Address |
 | --- | --- |
-| Test Token (TEST ERC20) | 0xD426e23A6a9524101CDC017e01dDc3262B7aA65D |
-| Connext Handler | 0xDc495507b830E5D1d8C073D4B12D144e76100816 |
+| Test Token (TEST ERC20) | 0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9 |
+| Connext Handler | 0x2307Ed9f152FA9b3DcDfe2385d279D8C2A9DF2b0 |
 
 ### Kovan (chainId: 42, domainId: 2221)
 
 | Contract | Address |
 | --- | --- |
-| Test Token (TEST ERC20) | 0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F |
-| Connext Handler | 0x71a52104739064bc35bED4Fc3ba8D9Fb2a84767f |
+| Test Token (TEST ERC20) | 0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9 |
+| Connext Handler | 0x3366A61A701FA84A86448225471Ec53c5c4ad49f |
 
 ## Test Token (TEST)
 

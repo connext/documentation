@@ -89,6 +89,9 @@ Finally, we construct the `XCallArgs` and call `xcall` on the Connext contract.
       callData: "",
       originDomain: originDomain,
       destinationDomain: destinationDomain,
+      recovery: to,
+      callback: ethers.constants.AddressZero, 
+      callbackFee: "0",
       forceSlow: false,
       receiveLocal: false
     });
@@ -103,6 +106,9 @@ Finally, we construct the `XCallArgs` and call `xcall` on the Connext contract.
 
 A few parameters to note: 
 - `callData` is empty here because we're only sending funds
+- `recovery` is a fallback address to send funds to if execution fails on destination side
+- `callback` is the zero address because we don't expect a callback
+- `callbackFee` is a fee paid to relayers; relayers don't take any fees on testnet so it's set to 0 
 - `forceSlow` is an option that allows users to take the Nomad slow path (~30 mins) instead of paying routers a 0.05% fee on their transaction
 - `receiveLocal` is an option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
 - `relayerFee` is a fee paid to relayers; relayers don't take any fees on testnet so it's set to 0
@@ -179,6 +185,9 @@ As before, we construct the `XCallArgs` and call `xcall` on the Connext contract
       callData: callData,
       originDomain: originDomain,
       destinationDomain: destinationDomain,
+      recovery: to,
+      callback: ethers.constants.AddressZero,
+      callbackFee: 0,
       forceSlow: false,
       receiveLocal: false
     });
@@ -243,6 +252,9 @@ contract Source {
       callData: callData,
       originDomain: originDomain,
       destinationDomain: destinationDomain,
+      recovery: to,
+      callback: ethers.constants.AddressZero,
+      callbackFee: 0,
       //highlight-next-line
       forceSlow: true,
       receiveLocal: false
