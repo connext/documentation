@@ -49,6 +49,19 @@ More information on this partnership can be found in this [Medium post](https://
 
 An external proof mechanism is no longer needed. Instead, a Router can simply front capital on the destination chain, and then wait for data from the origin chain to be ported over the messaging layer to destination, where both the user and router transactions can be compared for validity (and the router can replenish their capital). This enables contract-only development processes which greatly simplifies devX.
 
+### How do I add my chain to Connext?
+
+Connext does not charge any fee to onboard new chains.
+You can learn about our process for onboarding new chains in our [Chain Onboarding Guide](https://www.notion.so/connext/How-can-Connext-Bridge-add-my-Chain-fa8b43cac720467a88b5c94f81804091)
+
+### What is our Fee model?
+
+We consider connext a public good, and thus Connext does not charge end users for bridging tokens from one network to another.
+
+A few different entities are involved in Connext’s cross-chain transactions and incentives are built into the system to motivate their participation. Like other systems, incentives are primarily in the form of service provider fees.
+
+Liquidity providers, aka Routers, take a standard 0.05% fee over bridged amounts to reward them for providing liquidity, along with gas refunds to compensate for expenses they incur.
+
 ### Consensus Routing
 
 To achieve offchain consensus between routers for completing transactions. This will eventually use Tendermint consensus and will start with a centralized sequencer in the first phase of launch.
