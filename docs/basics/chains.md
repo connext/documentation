@@ -4,6 +4,15 @@ sidebar_position: 5
 
 # Supported Chains
 
+At mainnet launch we aim to have chain parity to our current mainnet, supporting all major 17 chains we support right now. 
+During the transitionary period until then, we only support Ethereum Testnet chains.
+
+## Supported Tokens & Deployed Contracts
+
+At mainnet launch we aim to have chain parity to our current mainnet, supporting all tokens (and more!) we currently support.
+During the transitionary period until then, we only support the $TEST token. Contracts for the $TEST token can be found on our [testing aginst testnet page](../developers/testing-against-testnet)
+
+
 ## Mainnets
 
 | Chain Name          | ChainId  |   Status  |
