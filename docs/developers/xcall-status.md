@@ -21,6 +21,7 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
               transactionHash: "<your_transaction_hash>"
             }
           ) {
+            status
             transferId
             caller
             to
@@ -30,6 +31,7 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
             transactingAmount
             bridgedAsset
             bridgedAmount
+            callData
             # other fields if desired
           }
         }
@@ -45,6 +47,7 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
               transferId: "<your_transfer_id>"
             }
           ) {
+            status
             to
             originDomain
             destinationDomain
@@ -54,6 +57,7 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
             localAmount
             executedCaller
             reconciledCaller
+            callData
             # other fields if desired
           }
         }
