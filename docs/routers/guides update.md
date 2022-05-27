@@ -1,4 +1,6 @@
-# The guides are listed here in various languages. Text guides and video guides.
+# The guides are listed here in various languages. 
+Text guides and video guides.
+
 ## Text Guides
 - Russian:
 1) https://7nda.medium.com/%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D1%80%D0%BE%D1%83%D1%82%D0%B5%D1%80%D0%B0-connext-d6335e7e962e
@@ -7,8 +9,8 @@
 4) https://medium.com/@alexzhurba/spinning-up-connext-router-fe3260912f0a
 
 - English:
-1) https://github.com/martynovalek/NXTP-Router-setup (+ quick install script)
-2) https://github.com/NunoyHaxxana/nxtp-router-setup (+ quick install script)
+1) https://github.com/martynovalek/NXTP-Router-setup (**+ quick install script**)
+2) https://github.com/NunoyHaxxana/nxtp-router-setup (**+ quick install script**)
 3) https://mirror.xyz/cyberg.eth/vxkEyroJ0vCnAXEuTl36-5UUrYjCf0V6tf59_PPGLQ0
 4) https://medium.com/@Yuuno46/router-track-guide-ii-c2d1b7da3d35
 5) https://dramatic-fox-ea1.notion.site/Spinning-up-Connext-Router-20591e06bf2149f0b9d41fa6754469c0
@@ -32,7 +34,7 @@
 
 - Ukraine:
 1) https://88vgk88.medium.com/%D0%BD%D0%B0%D0%BB%D0%B0%D1%88%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F-%D1%80%D0%BE%D1%83%D1%82%D0%B5%D1%80%D0%B0-connext-3cd0fbdc5596
-
+===
 ## Video Guides
 - Russian:
 1) https://youtu.be/jwRR45-ycSw
