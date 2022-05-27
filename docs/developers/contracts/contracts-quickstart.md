@@ -90,7 +90,7 @@ Finally, we construct the `XCallArgs` and call `xcall` on the Connext contract.
       originDomain: originDomain,
       destinationDomain: destinationDomain,
       recovery: to,
-      callback: ethers.constants.AddressZero, 
+      callback: address(0), 
       callbackFee: "0",
       forceSlow: false,
       receiveLocal: false
@@ -186,7 +186,7 @@ As before, we construct the `XCallArgs` and call `xcall` on the Connext contract
       originDomain: originDomain,
       destinationDomain: destinationDomain,
       recovery: to,
-      callback: ethers.constants.AddressZero,
+      callback: address(0),
       callbackFee: 0,
       forceSlow: false,
       receiveLocal: false
@@ -253,7 +253,7 @@ contract Source {
       originDomain: originDomain,
       destinationDomain: destinationDomain,
       recovery: to,
-      callback: ethers.constants.AddressZero,
+      callback: address(0),
       callbackFee: 0,
       //highlight-next-line
       forceSlow: true,
