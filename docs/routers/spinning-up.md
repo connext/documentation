@@ -54,7 +54,7 @@ The router uses an internal Redis instance in Docker by default. However, if you
 
 ### Web3Signer Config
 
-Set up [Web3Signer](https://docs.web3signer.consensys.net/en/latest/) config files to set the private key securely. Fill the private key of your signer to `key.example.yaml`.
+Set up [Web3Signer](https://docs.web3signer.consensys.net/en/latest/) config files to set the private key securely. Create a key.yaml file based on the key.example.yaml file. Fill the private key of your signer to `key.yaml`.
 
 ### Router Config
 
