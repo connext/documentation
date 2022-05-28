@@ -42,6 +42,7 @@
 1. [Running a Router Guide](https://www.youtube.com/watch?v=ShNRtdV4URA&t=873s) (Digital Ocean) (Easy to follow)
 2. [Running a Router Guide](https://www.youtube.com/watch?v=Tt6zBupfbF0)
 3. [Running a Router Guide](https://www.youtube.com/watch?v=Tt6zBupfbF0) (Digital Ocean)
+4. [Running a Router Guide](https://www.youtube.com/watch?v=Do3z5Ikp5ac) 
 
 ### Chinese
 1. Running a Router Guide ([Youtube](https://www.youtube.com/watch?v=E-zGm45dWsc) / [Bilibili](https://www.bilibili.com/video/BV1q3411G7pd/))
