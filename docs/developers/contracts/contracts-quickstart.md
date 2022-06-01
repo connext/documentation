@@ -113,6 +113,8 @@ A few parameters to note:
 - `receiveLocal` is an option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
 - `relayerFee` is a fee paid to relayers; relayers don't take any fees on testnet so it's set to 0
 
+A detailed reference of all the `xcall` arguments can be found [here](../xcall-params.md).
+
 ---
 
 ## Unpermissioned

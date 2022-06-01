@@ -174,6 +174,8 @@ const xCallArgs = {
 };
 ```
 
+A detailed reference of all the `xcall` arguments can be found [here](../xcall-params.md).
+
 ### 8. Approve the asset transfer
 
 This is necessary because funds will first be sent to the ConnextHandler contract before being bridged.
