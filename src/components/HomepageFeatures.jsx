@@ -6,14 +6,14 @@ import styles from "./HomepageFeatures.module.css";
 const FeatureList = [
   {
     title: "Start Building",
-    url: "/developers/getting-started",
+    url: "/developers/intro",
     description: (
       <>Get started with building your first crosschain application (xapp)</>
     ),
   },
   {
     title: "Run a Router",
-    url: "/routers/checklist",
+    url: "/routers/intro",
     description: (
       <>
         Step through the process of running a router and becoming a core network
