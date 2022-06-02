@@ -70,4 +70,4 @@ To achieve offchain consensus between routers for completing transactions. This 
 
 Want to get started with crosschain interactions in your dApp? Start building and integrating Connext's cross-chain functionality into your project!
 
-[Get Started](../developers/getting-started)
+[Get Started](../developers/intro)
