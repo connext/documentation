@@ -174,6 +174,8 @@ const xCallArgs = {
 };
 ```
 
+A detailed reference of all the `xcall` arguments can be found [here](../xcall-params.md).
+
 ### 8. Approve the asset transfer
 
 This is necessary because funds will first be sent to the ConnextHandler contract before being bridged.
@@ -259,6 +261,9 @@ const callParams = {
   callData: calldata, 
   originDomain: "2221", // send from Kovan
   destinationDomain: "1111", // to Rinkeby
+  recovery: "<destination_address>", // fallback address to send funds to if execution fails on destination side
+  callback: ethers.constants.AddressZero, // zero address because we don't expect a callback 
+  callbackFee: "0", // relayers on testnet don't take a fee
   forceSlow: false, // option that allows users to take the Nomad slow path (~30 mins) instead of paying routers a 0.05% fee on their transaction
   receiveLocal: false // option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
 };

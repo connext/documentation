@@ -25,29 +25,32 @@ module.exports = {
       },
       items: [
         {
-          href: "/basics/intro",
+          type: "doc",
+          docId: "basics/intro",
           label: "Basics",
           position: "left",
         },
         {
-          href: "/developers/getting-started",
+          type: "doc",
+          docId: "developers/intro",
           label: "Developers",
           position: "left",
         },
         {
-          href: "/routers/checklist",
+          type: "doc",
+          docId: "routers/intro",
           label: "Routers",
           position: "left",
         },
         {
-          href: "/faq",
+          type: "doc",
+          docId: "faq",
           label: "FAQ ",
           position: "left",
         },
         {
           type: "docsVersionDropdown",
           position: "right",
-          dropdownItemsAfter: [{ to: "/versions", label: "All versions" }],
           dropdownActiveClassDisabled: true,
         },
       ],
