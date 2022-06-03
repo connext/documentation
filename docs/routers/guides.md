@@ -45,3 +45,10 @@
 
 ### Chinese
 1. Running a Router Guide ([Youtube](https://www.youtube.com/watch?v=E-zGm45dWsc) / [Bilibili](https://www.bilibili.com/video/BV1q3411G7pd/))
+
+## Script
+1. [Auto setup and update script](https://github.com/NunoyHaxxana/nxtp-router-setup)
+2. [Shell script to download and update to the latest version](https://github.com/NunoyHaxxana/Router-Connext-Quests-2)
+
+## Tools
+1. [Discord alerting system](https://github.com/NunoyHaxxana/Router-Connext-Quests-3)
