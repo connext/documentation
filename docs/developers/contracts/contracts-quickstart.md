@@ -330,6 +330,84 @@ With the `onlyExecutor` modifier in place, our permissioned function is secured.
 
 ---
 
+## Callbacks
+
+One awesome feature we've introduced is the ability to use JS-style callbacks to respond to results of calls from the destination domain on the origin domain. You can read the [detailed spec here](https://github.com/connext/nxtp/discussions/883).
+
+Let's see how this works by building on the Permissioned example.
+
+### Source Contract
+
+All we need to do is implement the `ICallback` interface in a contract on the origin domain. This could be a separate contract or the Source contract itself. The important step is to change the `callback` parameter to the address of whichever contract is implementing this interface.
+
+We'll have our Source contract handle the callback.
+
+```solidity title="Source.sol"
+
+    // function updateValue
+    ...
+
+    IConnextHandler.CallParams memory callParams = IConnextHandler.CallParams({
+      to: to,
+      callData: callData,
+      originDomain: originDomain,
+      destinationDomain: destinationDomain,
+      recovery: to,
+      //highlight-next-line
+      callback: address(this),
+      callbackFee: 0,
+      forceSlow: true,
+      receiveLocal: false
+    });
+
+    ...
+}
+```
+
+The return data from the execution of the function call on the destination domain is sent with the callback so we can do whatever we want with those results. To keep this simple, our `callback` function simply emits a `CallbackCalled` Event with the `newValue` we sent.
+
+
+```solidity
+...
+import {ICallback} from "nxtp/core/promise/interfaces/ICallback.sol";
+
+contract Source {
+  event CallbackCalled(bytes32 transferId, bool success, uint256 newValue); 
+
+  ...
+
+  function callback(
+    bytes32 transferId,
+    bool success,
+    bytes memory data
+  ) external {
+    uint256 newValue = abi.decode(data, (uint256));
+    emit CallbackCalled(transferId, success, newValue);
+  }
+}
+```
+
+### Target Contract
+
+On the Target side, the function must return some data. 
+
+```solidity title="Target.sol"
+  function updateValue(uint256 newValue) 
+    external onlyExecutor 
+    //highlight-next-line
+    returns (uint256)
+  {
+    value = newValue;
+    //highlight-next-line
+    return newValue;
+  }
+}
+```
+
+That's it! Connext will now send the callback execution back to the origin domain to be processed by relayers. 
+
+**Note**: Origin-side relayers have not been set up to process callbacks yet. This will be added shortly!
+
 ## Deploy and Experiment
 
 To deploy these contracts and try out the `xcalls` yourself, clone the [xApp Starter Kit](https://github.com/connext/xapp-starter/) and see the README for full instructions!
