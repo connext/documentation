@@ -34,6 +34,7 @@
 ### English
 1. [Running a Router Guide](https://youtu.be/jwRR45-ycSw)
 2. [Running a Router Guide](https://drive.google.com/drive/folders/1y9a3QDr7z0wvxhiauOSePz9ThkspUdFG) (Local Home Computer)
+3. [Running a Router Guide](https://www.youtube.com/watch?v=TTbssVrhL2s) (Hetzner)
 
 ### Russian
 1. [Running a Router Guide](https://www.youtube.com/watch?v=2_OAz9nIls8)
