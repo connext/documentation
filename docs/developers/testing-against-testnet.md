@@ -44,3 +44,15 @@ Domain IDs for testnet can be found in our [chain index](https://github.com/conn
 ## Sequencer
 
 URL: `https://sequencer.testnet.connext.ninja`
+
+## Testnet Bridge
+
+Note this new Bridge UI is still under development. Here you can mint TEST tokens via the faucet and also send tokens. 
+
+URL: `https://amarok-testnet.coinhippo.io/`
+
+## Testnet Connextscan
+
+This is the testnet scanner site where you can track the status of transfers by `transferId`. 
+
+URL: `https://testnet.amarok.connextscan.io/`
