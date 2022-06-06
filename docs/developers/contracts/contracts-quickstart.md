@@ -91,7 +91,7 @@ Finally, we construct the `XCallArgs` and call `xcall` on the Connext contract.
       destinationDomain: destinationDomain,
       recovery: to,
       callback: address(0), 
-      callbackFee: "0",
+      callbackFee: 0,
       forceSlow: false,
       receiveLocal: false
     });
