@@ -122,7 +122,7 @@ const nxtpConfig: NxtpSdkConfig = {
       assets: [
         {
           name: "TEST",
-          address: "0xB7b1d3cC52E658922b2aF00c5729001ceA98142C",
+          address: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
         },
       ],
     },
@@ -131,7 +131,7 @@ const nxtpConfig: NxtpSdkConfig = {
       assets: [
         {
           name: "TEST",
-          address: "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F",
+          address: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
         },
       ],
     },
@@ -168,7 +168,7 @@ const callParams = {
 
 const xCallArgs = {
   params: callParams,
-  transactingAssetId: "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F", // the Kovan Test Token
+  transactingAssetId: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9", // the Kovan Test Token
   amount: "1000000000000000000", // amount to send (1 TEST)
   relayerFee: "0", // relayers on testnet don't take a fee
 };
@@ -225,7 +225,7 @@ After the DestinationTransfer shows up on the Rinkeby side, the freshly transfer
 
 We can also send arbitrary `calldata`, along with the `xcall`, to be executed on the destination domain.
 
-In this example, we're going to construct some `calldata` targeting an existing contract function to avoid having to deploy a new contract. We'll aim for the `mint` function of the [Test ERC20 Token (TEST) contract](https://rinkeby.etherscan.io/address/0xB7b1d3cC52E658922b2aF00c5729001ceA98142C#writeContract) to demonstrate this. 
+In this example, we're going to construct some `calldata` targeting an existing contract function to avoid having to deploy a new contract. We'll aim for the `mint` function of the [Test ERC20 Token (TEST) contract](https://rinkeby.etherscan.io/address/0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9#writeContract) to demonstrate this. 
 
 > Minting usually requires permissioning but the Test Token has a public `mint` function (callable by anyone!) that we can leverage for this example. Hence, this is an "unpermissioned" `xcall` with calldata - nothing extra needs to be done on the destination side.
 
@@ -244,7 +244,7 @@ const iface = new ethers.utils.Interface(contractABI);
 const calldata = iface.encodeFunctionData(
   "mint", 
   [
-    "0x6d2A06543D23Cc6523AE5046adD8bb60817E0a94", // address to mint tokens for
+    await signer.getAddress(), // address to mint tokens for
     ethers.BigNumber.from("100000000000000000000") // amount to mint (100 TEST)
   ]
 )
@@ -256,7 +256,7 @@ Now with the `calldata` ready, we supply it to the `xCallArgs`.
 
 ```js
 const callParams = {
-  to: "0xB7b1d3cC52E658922b2aF00c5729001ceA98142C", // Rinkeby Test Token - this is the contract we are targeting
+  to: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9", // Rinkeby Test Token - this is the contract we are targeting
   //highlight-next-line
   callData: calldata, 
   originDomain: "2221", // send from Kovan
@@ -270,7 +270,7 @@ const callParams = {
 
 const xCallArgs = {
   params: callParams,
-  transactingAssetId: "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F", // the Kovan Test Token
+  transactingAssetId: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9", // the Kovan Test Token
   amount: "0", // not sending any funds
   relayerFee: "0", // relayers on testnet don't take a fee
 };
