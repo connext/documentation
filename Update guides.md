@@ -5,7 +5,8 @@
 1. [Running a Router Guide](https://medium.com/@roojthemighty/how-to-spin-up-a-router-on-connext-network-ver-eng-4ff391b05d94) (Digital Ocean)
 2. [Running a Router Guide](https://teletype.in/@moodman/s83IWlWwfsm)
 3. [Running a Router Guide](https://mirror.xyz/cyberg.eth/vxkEyroJ0vCnAXEuTl36-5UUrYjCf0V6tf59_PPGLQ0)
-	@@ -10,38 +12,46 @@
+4. [Running a Router Guide](https://dramatic-fox-ea1.notion.site/Spinning-up-Connext-Router-20591e06bf2149f0b9d41fa6754469c0#6415e09af8454f78b4233ac8fcacac79)
+5. [Running a Router Guide](https://github.com/louwo/Guide-for-routers)	
 6. [Adding Liquidity Guide](https://medium.com/@nizeimbaboy.2/how-to-add-liquidity-in-connext-f0f6bfedeabc)
 
 ### Russian
