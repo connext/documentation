@@ -1,51 +1,107 @@
-# Guides
+# Guía de configuración del router
 
-## Articles
-### English
-1. [Running a Router Guide](https://medium.com/@roojthemighty/how-to-spin-up-a-router-on-connext-network-ver-eng-4ff391b05d94) (Digital Ocean)
-2. [Running a Router Guide](https://teletype.in/@moodman/s83IWlWwfsm)
-3. [Running a Router Guide](https://mirror.xyz/cyberg.eth/vxkEyroJ0vCnAXEuTl36-5UUrYjCf0V6tf59_PPGLQ0)
-4. [Running a Router Guide](https://dramatic-fox-ea1.notion.site/Spinning-up-Connext-Router-20591e06bf2149f0b9d41fa6754469c0#6415e09af8454f78b4233ac8fcacac79)
-5. [Running a Router Guide](https://github.com/louwo/Guide-for-routers)	
-6. [Adding Liquidity Guide](https://medium.com/@nizeimbaboy.2/how-to-add-liquidity-in-connext-f0f6bfedeabc)
+## Configuración del router Connext
 
-### Russian
-1. [Running a Router Guide](https://7nda.medium.com/%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D1%80%D0%BE%D1%83%D1%82%D0%B5%D1%80%D0%B0-connext-d6335e7e962e)
-2. [Running a Router Guide](https://github.com/cybernekit/RouterSetupGuide)
-3. [Running a Router Guide](https://teletype.in/@landeros/zd69DV9Z1lY)
-4. [Running a Router Guide](https://medium.com/@alexzhurba/spinning-up-connext-router-fe3260912f0a)
+[![LOGO](https://images.squarespace-cdn.com/content/v1/619f86b8de2c6f4f7fa201c0/8eaeca35-ccf3-495f-9e9a-19fbec796187/connext__Logo+%2B+WhiteText+MultiColor.png)](https://www.connext.network/)
 
-### Spanish
+### Vamos a empezar nuestra instalación
 
-1. [Running a Router Guide](https://medium.com/@vartoff03/iniciar-un-router-connext-es-3a17e9be3da8)
+#### 1. Inicialmente hay que actualizar los paquetes e instalar Docker
+```
+sudo apt update && sudo apt upgrade -y
+sudo apt-get install ca-certificates curl gnupg lsb-release -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
 
-### Thai
-1. [Running a Router Guide](https://medium.com/@roojthemighty/how-to-spin-up-a-router-on-connext-network-ver-%E0%B9%84%E0%B8%97%E0%B8%A2-f5405ac3a6dc) (Digital Ocean)
-2. [Running a Router Guide](https://medium.com/@nizeimbaboy.2/how-to-run-node-connext-node-v-%E0%B8%A0%E0%B8%B2%E0%B8%A9%E0%B8%B2%E0%B9%84%E0%B8%97%E0%B8%A2-6a6cd3406e19) (Digital Ocean)
-3. [Running a Router Guide](https://github.com/PS-PSN/Connext/blob/main/Setup%20Routers%20(Thai))
-4. [Running a Router Guide](https://medium.com/@arsarawutpad/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%95%E0%B8%B4%E0%B8%94%E0%B8%95%E0%B8%B1%E0%B9%89%E0%B8%87-connext-router-testnet-17f941252652)
-5. [Minting $TEST Tokens](https://medium.com/@roojthemighty/how-to-mint-test-tokens-on-connext-testnet-e14c5fbafafe)
-6. [Running a Router and Adding Liquidity Guide](https://docs.google.com/document/d/1mmoVazi3hOC6nAqRJMK1VuKPPomi64zv9oxA0nSncFk/edit?usp=sharing)
-7. [Adding Liquidity Guide](https://medium.com/@nizeimbaboy.2/how-to-add-liquidity-in-connext-2655559eea46)
+#### 2. A continuación, debe instalar docker-compose
+```
+mkdir -p ~/.docker/cli-plugins/
+curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
+chmod +x ~/.docker/cli-plugins/docker-compose
+sudo chown $USER /var/run/docker.sock
+```
+#### 2.1 Compruebe la versión con el comando
+```
+docker-compose --version
+```
 
-### Chinese
-1. [Running a Router Guide](https://gist.github.com/bynil/ae29155040c0d6c84ddf497a8462d3d6)
-2. [Running a Router Guide](https://mirror.xyz/bullcoin.eth/c-ZKFX4_IsyRM-TJgg8KHoMjtm7E8nov_x9EcErzDeo)
-3. [Running a Router Guide](https://mirror.xyz/exploring.eth/fwb657xWhr5Q3mvoNes0eYT75yZtE6_hqVgOF3dVZSY)
+#### 3. Instalar el propio router
+```
+cd ~
+git clone https://github.com/connext/nxtp-router-docker-compose.git
+cd nxtp-router-docker-compose
+git checkout amarok
+```
 
+#### 4. Preparar los archivos de claves y de configuración
+```
+mv .env.example .env
+mv key.example.yaml key.yaml
+```
 
-## Videos
-### English
-1. [Running a Router Guide](https://youtu.be/jwRR45-ycSw)
-2. [Running a Router Guide](https://drive.google.com/drive/folders/1y9a3QDr7z0wvxhiauOSePz9ThkspUdFG) (Local Home Computer)
+#### En el archivo .env se debe especificar la versión actual (en el momento de escribir este artículo sha-0039612)
 
-### Russian
-1. [Running a Router Guide](https://www.youtube.com/watch?v=2_OAz9nIls8)
+#### 5. Ahora tenemos que editar la configuración
+```
+nano config.toml
+```
 
-### Thai
-1. [Running a Router Guide](https://www.youtube.com/watch?v=ShNRtdV4URA&t=873s) (Digital Ocean) (Easy to follow)
-2. [Running a Router Guide](https://www.youtube.com/watch?v=Tt6zBupfbF0)
-3. [Running a Router Guide](https://www.youtube.com/watch?v=Tt6zBupfbF0) (Digital Ocean)
+#### 5.1 Introduzcamos en ella nuestra frase mnemotécnica después de “redis”
+```
+{
+  "logLevel": "debug",
+  "sequencerUrl": "https://sequencer.testnet.connext.ninja",
+  "web3SignerUrl": "http://signer:9000",
+  "mnemonic": "frase mnemotécnica",
+  "redis": {
+    "host": "redis",
+    "port": 6379
+  },
+  "server": {
+    "adminToken": "abacus",
+    "port": 8080
+  },
+  "chains": {
+    "1111": {
+      "assets": [
+        {
+          "address": "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
+          "name": "TEST"
+        }
+      ],
+      "providers": ["https://rinkeby.infura.io/v3/a0bd8cc79d5a4c6d9c02327769a18777"]
+    },
+    "2221": {
+      "providers": ["https://kovan.infura.io/v3/a0bd8cc79d5a4c6d9c02327769a18777"],
+      "assets": [
+        {
+          "address": "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
+          "name": "TEST"
+        }
+      ]
+    },
+        "3331": {
+      "providers": ["https://goerli.infura.io/v3/a0bd8cc79d5a4c6d9c02327769a18777"],
+      "assets": [
+        {
+          "address": "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
+          "name": "TEST"
+        }
+      ]
+    }
+  }
+}
+```
 
-### Chinese
-1. Running a Router Guide ([Youtube](https://www.youtube.com/watch?v=E-zGm45dWsc) / [Bilibili](https://www.bilibili.com/video/BV1q3411G7pd/))
+#### 6. Después, lanzamos nuestro contenedor
+```
+cd ~/nxtp-router-docker-compose
+docker-compose create
+docker-compose up -d
+```
+
+#### 7. Vaya al enlace https://testnet.amarok.connextscan.io/router/<dirección de la cartera>.
+![Image text](https://github.com/VArt03/documentation/blob/0418fe5be8ef0213207229266e78a5774354cb9f/ocr%20(1).jpg)
+
+#### Haga clic en Manage Router y añada cualquier número de fichas de prueba en cada red utilizando [el grifo](https://amarok-testnet.coinhippo.io/)
