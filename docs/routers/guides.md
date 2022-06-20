@@ -11,6 +11,10 @@
 5. [Running a Ruter Guide](https://github.com/louwo/Guide-for-routers)
 6. [Adding Liquidity Guide](https://medium.com/@nizeimbaboy.2/how-to-add-liquidity-in-connext-f0f6bfedeabc)
 
+### French
+
+1.  [Running a Router Guide](https://mirror.xyz/0x5214F449553f572F30dE3717CaCA29088A386eEb/BJaHlfi2PoMGN349sIZhim-U1_aa79sIacyZV4ON4As)
+
 ### Russian
 
 1. [Running a Router Guide](https://7nda.medium.com/%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D1%80%D0%BE%D1%83%D1%82%D0%B5%D1%80%D0%B0-connext-d6335e7e962e)
