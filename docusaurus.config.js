@@ -17,6 +17,29 @@ module.exports = {
     description: "Build your next xApp(cross-chain dapp) using Connext.",
   },
   themeConfig: {
+    algolia: {
+      // The application ID provided by Algolia
+      appId: "Z3QNOPOJN1",
+
+      // Public API key: it is safe to commit it
+      apiKey: "397370f03046aa9f9a7fc65aee13f0d1",
+
+      indexName: "connext",
+
+      // Optional: see doc section below
+      contextualSearch: true,
+
+      // // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
+      // externalUrlRegex: "external\\.com|domain\\.com",
+
+      // Optional: Algolia search parameters
+      searchParameters: {},
+
+      // Optional: path for search page that enabled by default (`false` to disable it)
+      searchPagePath: "search",
+
+      //... other Algolia params
+    },
     navbar: {
       title: "Connext Documentation",
       logo: {

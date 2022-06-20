@@ -41,3 +41,7 @@ There are a few steps to take, so please reach out to us for assistance:
 - The Connext team whitelists your asset (for now, this is required).
 - You transfer some of the assets across the bridge.
 - If the destination asset has the mad*asset as the adopted asset (there's no existing pool, no representative asset exists yet), then the Token Registry will deploy a new token and set it as canonical.
+
+## Are there size limits to calldata?
+
+Yes, this is limited by Nomad's (currently arbitrary) message size limit defined in the [Home contract](https://github.com/nomad-xyz/monorepo/blob/main/packages/contracts-core/contracts/Home.sol#L34).
