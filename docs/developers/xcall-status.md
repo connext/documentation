@@ -12,7 +12,6 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
 
 | Chain | Subgraph |
 | --- | --- |
-| Kovan | [v0-Kovan](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-kovan) |
 | Rinkeby | [v0-Rinkeby](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-rinkeby) |
 | Goerli | [v0-Goerli](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-goerli) |
 

@@ -24,13 +24,6 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
 | Test Token (TEST ERC20) | [0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9](https://goerli.etherscan.io/address/0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9) |
 | Connext Handler | [0xEC3A723DE47a644b901DC269829bf8718F175EBF](https://louper.dev/diamond/0xEC3A723DE47a644b901DC269829bf8718F175EBF?network=goerli) |
 
-### Kovan (chainId: 42, domainId: 2221)
-
-| Contract | Address |
-| --- | --- |
-| Test Token (TEST ERC20) | [0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9](https://kovan.etherscan.io/address/0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9) |
-| Connext Handler | [0x3366A61A701FA84A86448225471Ec53c5c4ad49f](https://louper.dev/diamond/0x3366A61A701FA84A86448225471Ec53c5c4ad49f?network=kovan) |
-
 ## Test Token (TEST)
 
 The Test ERC20 Token has an open mint function with the signature `mint(address account, uint256 amount)`. These test ERC20 tokens can be freely minted by anyone and they are collateralized by routers on the test network to enable swaps between them on the different chains.
