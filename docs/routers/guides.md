@@ -39,6 +39,10 @@
 2. [Running a Router Guide](https://mirror.xyz/bullcoin.eth/c-ZKFX4_IsyRM-TJgg8KHoMjtm7E8nov_x9EcErzDeo)
 3. [Running a Router Guide](https://mirror.xyz/exploring.eth/fwb657xWhr5Q3mvoNes0eYT75yZtE6_hqVgOF3dVZSY)
 
+### Spanish
+
+1. [Running a Router Guide](https://github.com/VArtOff/Connext-Guide/blob/main/Spanish%20Guide.md)
+
 ## Videos
 
 ### English
