@@ -73,4 +73,4 @@
 
 ## Tools
 1. [Discord alerting system](https://github.com/NunoyHaxxana/Router-Connext-Quests-3)
-- Script for monitoring docker and send alert to discord
+- Script for monitoring docker and send alert to Discord
