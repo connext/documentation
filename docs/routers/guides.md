@@ -48,7 +48,9 @@
 
 ## Script
 1. [Auto setup and update script](https://github.com/NunoyHaxxana/nxtp-router-setup)
+- Script for install Connext Router with the latest release and auto update function
 2. [Shell script to download and update to the latest version](https://github.com/NunoyHaxxana/Router-Connext-Quests-2)
+- Auto install script with automatic private key generation and auto update function
 
 ## Tools
 1. [Discord alerting system](https://github.com/NunoyHaxxana/Router-Connext-Quests-3)
