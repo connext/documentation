@@ -60,8 +60,8 @@ The `transfer` function will take some arguments to use in the `xcall`.
   function transfer(
     address to, // the destination address (e.g. a wallet)
     address asset, // address of token on source domain 
-    uint32 originDomain, // e.g. from Kovan (2111)
-    uint32 destinationDomain, // to Rinkeby (1111)
+    uint32 originDomain, // e.g. from Rinkeby (1111)
+    uint32 destinationDomain, // to Goerli (3331)
     uint256 amount // amount to transfer
   ) external {
 ```
@@ -91,7 +91,7 @@ Finally, we construct the `XCallArgs` and call `xcall` on the Connext contract.
       destinationDomain: destinationDomain,
       recovery: to,
       callback: address(0), 
-      callbackFee: "0",
+      callbackFee: 0,
       forceSlow: false,
       receiveLocal: false
     });
@@ -112,6 +112,8 @@ A few parameters to note:
 - `forceSlow` is an option that allows users to take the Nomad slow path (~30 mins) instead of paying routers a 0.05% fee on their transaction
 - `receiveLocal` is an option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
 - `relayerFee` is a fee paid to relayers; relayers don't take any fees on testnet so it's set to 0
+
+A detailed reference of all the `xcall` arguments can be found [here](../xcall-params.md).
 
 ---
 
@@ -164,8 +166,8 @@ Then we define this source-side contract's `updateValue` function, which require
   function updateValue(
     address to, // the address of the target contract
     address asset, // address of token on source domain (needed for now)
-    uint32 originDomain, // e.g. from Kovan (2111)
-    uint32 destinationDomain, // to Rinkeby (1111)
+    uint32 originDomain, // e.g. from Rinkeby (1111)
+    uint32 destinationDomain, // to Goerli (3331)
     uint256 newValue // value to update to
   ) external payable {
 ```
@@ -327,6 +329,84 @@ With the `onlyExecutor` modifier in place, our permissioned function is secured.
 ```
 
 ---
+
+## Callbacks
+
+One awesome feature we've introduced is the ability to use JS-style callbacks to respond to results of calls from the destination domain on the origin domain. You can read the [detailed spec here](https://github.com/connext/nxtp/discussions/883).
+
+Let's see how this works by building on the Permissioned example.
+
+### Source Contract
+
+All we need to do is implement the `ICallback` interface in a contract on the origin domain. This could be a separate contract or the Source contract itself. The important step is to change the `callback` parameter to the address of whichever contract is implementing this interface.
+
+We'll have our Source contract handle the callback.
+
+```solidity title="Source.sol"
+
+    // function updateValue
+    ...
+
+    IConnextHandler.CallParams memory callParams = IConnextHandler.CallParams({
+      to: to,
+      callData: callData,
+      originDomain: originDomain,
+      destinationDomain: destinationDomain,
+      recovery: to,
+      //highlight-next-line
+      callback: address(this),
+      callbackFee: 0,
+      forceSlow: true,
+      receiveLocal: false
+    });
+
+    ...
+}
+```
+
+The return data from the execution of the function call on the destination domain is sent with the callback so we can do whatever we want with those results. To keep this simple, our `callback` function simply emits a `CallbackCalled` Event with the `newValue` we sent.
+
+
+```solidity
+...
+import {ICallback} from "nxtp/core/promise/interfaces/ICallback.sol";
+
+contract Source {
+  event CallbackCalled(bytes32 transferId, bool success, uint256 newValue); 
+
+  ...
+
+  function callback(
+    bytes32 transferId,
+    bool success,
+    bytes memory data
+  ) external {
+    uint256 newValue = abi.decode(data, (uint256));
+    emit CallbackCalled(transferId, success, newValue);
+  }
+}
+```
+
+### Target Contract
+
+On the Target side, the function must return some data. 
+
+```solidity title="Target.sol"
+  function updateValue(uint256 newValue) 
+    external onlyExecutor 
+    //highlight-next-line
+    returns (uint256)
+  {
+    value = newValue;
+    //highlight-next-line
+    return newValue;
+  }
+}
+```
+
+That's it! Connext will now send the callback execution back to the origin domain to be processed by relayers. 
+
+**Note**: Origin-side relayers have not been set up to process callbacks yet. This will be added shortly!
 
 ## Deploy and Experiment
 

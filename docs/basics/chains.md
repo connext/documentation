@@ -25,7 +25,6 @@ During the transitionary period until then, we only support the $TEST token. Con
 |------------------|----------|:-----------:|
 |      Rinkeby     |     4    |      ✅      |
 |      Goerli      |     5    |      ✅      |
-|      Kovan       |    42    |      ✅      |
 
 ### How do I add my chain to Connext?
 
