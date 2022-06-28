@@ -68,7 +68,7 @@ mkdir src && touch src/xtransfer.ts
 
 ### 2. Install dependencies
 
-Install the SDK.
+Install the SDK. Use the latest `0.2.0-beta.*` version for Amarok (see versions [here](https://www.npmjs.com/package/@connext/nxtp-sdk))
 
 ```bash
 yarn add @connext/nxtp-sdk
