@@ -60,9 +60,9 @@ The `transfer` function will take some arguments to use in the `xcall`.
 ```solidity
   function transfer(
     address to, // the destination address (e.g. a wallet)
-    address asset, // address of token on source domain
-    uint32 originDomain, // e.g. from Kovan (2221)
-    uint32 destinationDomain, // to Rinkeby (1111)
+    address asset, // address of token on source domain 
+    uint32 originDomain, // e.g. from Rinkeby (1111)
+    uint32 destinationDomain, // to Goerli (3331)
     uint256 amount // amount to transfer
   ) external {
 ```
@@ -169,8 +169,8 @@ Then we define this source-side contract's `updateValue` function, which require
   function updateValue(
     address to, // the address of the target contract
     address asset, // address of token on source domain (needed for now)
-    uint32 originDomain, // e.g. from Kovan (2111)
-    uint32 destinationDomain, // to Rinkeby (1111)
+    uint32 originDomain, // e.g. from Rinkeby (1111)
+    uint32 destinationDomain, // to Goerli (3331)
     uint256 newValue // value to update to
   ) external payable {
 ```

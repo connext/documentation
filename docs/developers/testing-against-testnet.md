@@ -15,21 +15,16 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
 | Contract | Address |
 | --- | --- |
 | Test Token (TEST ERC20) | [0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9](https://rinkeby.etherscan.io/address/0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9) |
-| Connext Handler | [0x2307Ed9f152FA9b3DcDfe2385d279D8C2A9DF2b0](https://louper.dev/diamond/0x2307Ed9f152FA9b3DcDfe2385d279D8C2A9DF2b0?network=rinkeby) |
+| ConnextHandler | [0x2307Ed9f152FA9b3DcDfe2385d279D8C2A9DF2b0](https://louper.dev/diamond/0x2307Ed9f152FA9b3DcDfe2385d279D8C2A9DF2b0?network=rinkeby) |
+| PromiseRouter | [0x6e4Eaa2A41f9c211C8511540BbB1D971B1483128](https://rinkeby.etherscan.io/address/0x6e4Eaa2A41f9c211C8511540BbB1D971B1483128) |
 
 ### Goerli (chainId: 5, domainId: 3331)
 
 | Contract | Address |
 | --- | --- |
 | Test Token (TEST ERC20) | [0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9](https://goerli.etherscan.io/address/0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9) |
-| Connext Handler | [0xEC3A723DE47a644b901DC269829bf8718F175EBF](https://louper.dev/diamond/0xEC3A723DE47a644b901DC269829bf8718F175EBF?network=goerli) |
-
-### Kovan (chainId: 42, domainId: 2221)
-
-| Contract | Address |
-| --- | --- |
-| Test Token (TEST ERC20) | [0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9](https://kovan.etherscan.io/address/0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9) |
-| Connext Handler | [0x3366A61A701FA84A86448225471Ec53c5c4ad49f](https://louper.dev/diamond/0x3366A61A701FA84A86448225471Ec53c5c4ad49f?network=kovan) |
+| ConnextHandler | [0xEC3A723DE47a644b901DC269829bf8718F175EBF](https://louper.dev/diamond/0xEC3A723DE47a644b901DC269829bf8718F175EBF?network=goerli) |
+| PromiseRouter | [0x84bbbAC6B8fD5FA8Ab03890e4e7484a5fAa5C9fA](https://goerli.etherscan.io/address/0x84bbbAC6B8fD5FA8Ab03890e4e7484a5fAa5C9fA) |
 
 ## Test Token (TEST)
 

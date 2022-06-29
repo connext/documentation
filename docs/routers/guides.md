@@ -11,6 +11,10 @@
 5. [Running a Ruter Guide](https://github.com/louwo/Guide-for-routers)
 6. [Adding Liquidity Guide](https://medium.com/@nizeimbaboy.2/how-to-add-liquidity-in-connext-f0f6bfedeabc)
 
+### French
+
+1.  [Running a Router Guide](https://mirror.xyz/0x5214F449553f572F30dE3717CaCA29088A386eEb/BJaHlfi2PoMGN349sIZhim-U1_aa79sIacyZV4ON4As)
+
 ### Russian
 
 1. [Running a Router Guide](https://7nda.medium.com/%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D0%BA-%D1%80%D0%BE%D1%83%D1%82%D0%B5%D1%80%D0%B0-connext-d6335e7e962e)
@@ -41,6 +45,7 @@
 
 1. [Running a Router Guide](https://youtu.be/jwRR45-ycSw)
 2. [Running a Router Guide](https://drive.google.com/drive/folders/1y9a3QDr7z0wvxhiauOSePz9ThkspUdFG) (Local Home Computer)
+3. [Running a Router Guide](https://www.youtube.com/watch?v=TTbssVrhL2s) (Hetzner)
 
 ### Russian
 
@@ -49,9 +54,23 @@
 ### Thai
 
 1. [Running a Router Guide](https://www.youtube.com/watch?v=ShNRtdV4URA&t=873s) (Digital Ocean) (Easy to follow)
-2. [Running a Router Guide](https://www.youtube.com/watch?v=Tt6zBupfbF0)
 3. [Running a Router Guide](https://www.youtube.com/watch?v=Tt6zBupfbF0) (Digital Ocean)
+4. [Running a Router Guide](https://www.youtube.com/watch?v=Do3z5Ikp5ac) 
+4. [Adding Liquidity Guide](https://youtu.be/xJ16II1axjU)
 
 ### Chinese
 
 1. Running a Router Guide ([Youtube](https://www.youtube.com/watch?v=E-zGm45dWsc) / [Bilibili](https://www.bilibili.com/video/BV1q3411G7pd/))
+
+### Ukraine
+1. [Running a Router Guide](https://medium.com/@88vgk88/%D0%BD%D0%B0%D0%BB%D0%B0%D1%88%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F-%D1%80%D0%BE%D1%83%D1%82%D0%B5%D1%80%D0%B0-connext-3cd0fbdc5596)
+
+## Script
+1. [Auto setup and update script](https://github.com/NunoyHaxxana/nxtp-router-setup)
+- Script for install Connext Router with the latest release and auto update function
+2. [Shell script to download and update to the latest version](https://github.com/NunoyHaxxana/Router-Connext-Quests-2)
+- Auto install script with automatic private key generation and auto update function
+
+## Tools
+1. [Discord alerting system](https://github.com/NunoyHaxxana/Router-Connext-Quests-3)
+- Script for monitoring docker and send alert to Discord

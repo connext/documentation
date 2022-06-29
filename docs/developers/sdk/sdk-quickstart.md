@@ -15,7 +15,7 @@ These examples (and others) can be found in our xApp Starter Kit, under `src/sdk
 
 ## Cross-Chain Transfer
 
-In this quickstart, we'll demonstrate how to execute an `xcall` to transfer funds from a wallet on Kovan to a destination address on Rinkeby.
+In this quickstart, we'll demonstrate how to execute an `xcall` to transfer funds from a wallet on Rinkeby to a destination address on Goerli.
 
 ### 1. Setup project
 
@@ -68,7 +68,7 @@ mkdir src && touch src/xtransfer.ts
 
 ### 2. Install dependencies
 
-Install the SDK.
+Install the SDK. Use the latest `0.2.0-beta.*` version for Amarok (see versions [here](https://www.npmjs.com/package/@connext/nxtp-sdk))
 
 ```bash
 yarn add @connext/nxtp-sdk
@@ -103,7 +103,7 @@ let signer = new ethers.Wallet(privateKey);
 And connect it to a [Provider](https://docs.ethers.io/v5/api/providers/) on the sending chain ([Infura](https://infura.io/), [Alchemy](https://www.alchemy.com/), etc).
 
 ```ts
-const provider = new ethers.providers.JsonRpcProvider("<kovan_rpc_url>");
+const provider = new ethers.providers.JsonRpcProvider("<rinkeby_rpc_url>");
 signer = signer.connect(provider);
 const signerAddress = await signer.getAddress();
 ```
@@ -126,8 +126,8 @@ const nxtpConfig: NxtpSdkConfig = {
         },
       ],
     },
-    "2221": {
-      providers: ["<kovan_rpc_url>"],
+    "3331": {
+      providers: ["<goerli_rpc_url>"],
       assets: [
         {
           name: "TEST",
@@ -157,8 +157,8 @@ Now, we construct the arguments that will be passed into the `xcall`.
 const callParams = {
   to: "<destination_address>", // the address that should receive the funds
   callData: "0x", // empty calldata for a simple transfer
-  originDomain: "2221", // send from Kovan
-  destinationDomain: "1111", // to Rinkeby
+  originDomain: "1111", // send from Rinkeby
+  destinationDomain: "3331", // to Goerli
   recovery: "<destination_address>", // fallback address to send funds to if execution fails on destination side
   callback: ethers.constants.AddressZero, // zero address because we don't expect a callback for a simple transfer 
   callbackFee: "0", // relayers on testnet don't take a fee
@@ -168,7 +168,7 @@ const callParams = {
 
 const xCallArgs = {
   params: callParams,
-  transactingAssetId: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9", // the Kovan Test Token
+  transactingAssetId: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9", // the Rinkeby Test Token
   amount: "1000000000000000000", // amount to send (1 TEST)
   relayerFee: "0", // relayers on testnet don't take a fee
 };
@@ -217,7 +217,7 @@ We can use the transaction hash from the transaction receipt we logged above to 
 
 [Tracking an xcall](../xcall-status)
 
-After the DestinationTransfer shows up on the Rinkeby side, the freshly transferred tokens should show up in the destination wallet.
+After the DestinationTransfer shows up on the Goerli side, the freshly transferred tokens should show up in the destination wallet.
 
 --- 
 
@@ -225,7 +225,7 @@ After the DestinationTransfer shows up on the Rinkeby side, the freshly transfer
 
 We can also send arbitrary `calldata`, along with the `xcall`, to be executed on the destination domain.
 
-In this example, we're going to construct some `calldata` targeting an existing contract function to avoid having to deploy a new contract. We'll aim for the `mint` function of the [Test ERC20 Token (TEST) contract](https://rinkeby.etherscan.io/address/0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9#writeContract) to demonstrate this. 
+In this example, we're going to construct some `calldata` targeting an existing contract function to avoid having to deploy a new contract. We'll aim for the `mint` function of the [Test ERC20 Token (TEST) contract](https://goerli.etherscan.io/address/0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9#writeContract) to demonstrate this. 
 
 > Minting usually requires permissioning but the Test Token has a public `mint` function (callable by anyone!) that we can leverage for this example. Hence, this is an "unpermissioned" `xcall` with calldata - nothing extra needs to be done on the destination side.
 
@@ -259,8 +259,8 @@ const callParams = {
   to: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9", // Rinkeby Test Token - this is the contract we are targeting
   //highlight-next-line
   callData: calldata, 
-  originDomain: "2221", // send from Kovan
-  destinationDomain: "1111", // to Rinkeby
+  originDomain: "1111", // send from Rinkeby
+  destinationDomain: "3331", // to Goerli
   recovery: "<destination_address>", // fallback address to send funds to if execution fails on destination side
   callback: ethers.constants.AddressZero, // zero address because we don't expect a callback 
   callbackFee: "0", // relayers on testnet don't take a fee
@@ -270,7 +270,7 @@ const callParams = {
 
 const xCallArgs = {
   params: callParams,
-  transactingAssetId: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9", // the Kovan Test Token
+  transactingAssetId: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9", // the Rinkeby Test Token
   amount: "0", // not sending any funds
   relayerFee: "0", // relayers on testnet don't take a fee
 };
