@@ -123,6 +123,7 @@ const nxtpConfig: NxtpSdkConfig = {
         {
           name: "TEST",
           address: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
+          symbol: "TEST",
         },
       ],
     },
@@ -132,6 +133,7 @@ const nxtpConfig: NxtpSdkConfig = {
         {
           name: "TEST",
           address: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
+          symbol: "TEST",
         },
       ],
     },
