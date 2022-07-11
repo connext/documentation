@@ -37,17 +37,17 @@ For that we will use the nodes provided by the service [Infura](https://infura.
 
   2.1 Register at [infura.io](https://infura.io/) and create new project:
   
-  <img width="1000" alt="screenshot" src="https://user-images.githubusercontent.com/88688304/170812549-0cc07f55-abae-4ad4-9ede-6a9ba7d812ce.png">
+  <img width="1000" alt="screenshot" src="https://user-images.githubusercontent.com/88688304/170812549-0cc07f55-abae-4ad4-9ede-6a9ba7d812ce.png"/>
 
-<img width="1000" alt="screenshot" src="https://user-images.githubusercontent.com/88688304/170812576-f7d57b0f-b455-4cab-b6fb-8cdf48f148b8.png">
+<img width="1000" alt="screenshot" src="https://user-images.githubusercontent.com/88688304/170812576-f7d57b0f-b455-4cab-b6fb-8cdf48f148b8.png"/>
 
   2.2 Open settings:
   
-  <img width="1000" alt="screenshot" src="https://user-images.githubusercontent.com/88688304/170812595-66f5557e-8fc3-42c8-a08e-82ff270bcab2.png">
+  <img width="1000" alt="screenshot" src="https://user-images.githubusercontent.com/88688304/170812595-66f5557e-8fc3-42c8-a08e-82ff270bcab2.png"/>
 
   2.3 And copy your project ID. It will be the same on any network
   
-  <img width="1000" alt="screenshot" src="https://user-images.githubusercontent.com/88688304/170812613-de163f51-3cd6-4a47-aeda-680d812e3b53.png">
+  <img width="1000" alt="screenshot" src="https://user-images.githubusercontent.com/88688304/170812613-de163f51-3cd6-4a47-aeda-680d812e3b53.png"/>
 
 **Keep this data handy, you will need it for further installation**
 
@@ -233,6 +233,13 @@ Now we have to add liquidity on 3 test chains to our Router and make some transa
 <img width="550" alt="faucet" src="https://user-images.githubusercontent.com/88688304/178159703-d72e7269-c13c-464b-ac5b-5946a826ec6f.png"><br/>
 3. Go to https://testnet.amarok.connextscan.io/router/ROUTER_ADDR (paste your router address at the end of the link)<br/>
 4. Select `manage router` and add some tokens to liquidity. Keep some tokens on your wallet balance to send a few transactions<br/>
-   <img height="350" alt="image" src="https://user-images.githubusercontent.com/88688304/178160096-125d8b0c-fb20-4597-adce-627ddfe07c2b.png"/> <img height="350" alt="image" src="https://user-images.githubusercontent.com/88688304/178160123-76b140c6-2a46-466a-b0b1-bfe21a2c00f3.png"/>
+   <img height="350" alt="image" src="https://user-images.githubusercontent.com/88688304/178160096-125d8b0c-fb20-4597-adce-627ddfe07c2b.png"> <img height="350" alt="image" src="https://user-images.githubusercontent.com/88688304/178160123-76b140c6-2a46-466a-b0b1-bfe21a2c00f3.png">
 5. Go to https://amarok-testnet.coinhippo.io/ again and make some transactions.
 6. The transactions takes usually 2-3 minutes. Sometimes it can takes much more time. Please give your feedback on discord channel [#testnet-feedback](https://discord.com/channels/454734546869551114/991374224293908562)
+
+---
+# Usefull links
+- All about Routers — link<br/>
+- How to deploy your router using helm — [Guide](https://github.com/connext/nxtp-router-helm/tree/amarok)<br/>
+- How to setup monitoring for your Router — link guide<br/>
+- Security settings — link guide
