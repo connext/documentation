@@ -15,16 +15,16 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
 | Contract | Address |
 | --- | --- |
 | Test Token (TEST ERC20) | [0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9](https://rinkeby.etherscan.io/address/0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9) |
-| ConnextHandler | [0x2307Ed9f152FA9b3DcDfe2385d279D8C2A9DF2b0](https://louper.dev/diamond/0x2307Ed9f152FA9b3DcDfe2385d279D8C2A9DF2b0?network=rinkeby) |
-| PromiseRouter | [0x6e4Eaa2A41f9c211C8511540BbB1D971B1483128](https://rinkeby.etherscan.io/address/0x6e4Eaa2A41f9c211C8511540BbB1D971B1483128) |
+| ConnextHandler | [0x4cAA6358a3d9d1906B5DABDE60A626AAfD80186F](https://louper.dev/diamond/0x4cAA6358a3d9d1906B5DABDE60A626AAfD80186F?network=rinkeby) |
+| PromiseRouter | [0xC02530858cE0260a1c4f214CF2d5b7c4E5986485](https://rinkeby.etherscan.io/address/0xC02530858cE0260a1c4f214CF2d5b7c4E5986485) |
 
 ### Goerli (chainId: 5, domainId: 3331)
 
 | Contract | Address |
 | --- | --- |
-| Test Token (TEST ERC20) | [0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9](https://goerli.etherscan.io/address/0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9) |
-| ConnextHandler | [0xEC3A723DE47a644b901DC269829bf8718F175EBF](https://louper.dev/diamond/0xEC3A723DE47a644b901DC269829bf8718F175EBF?network=goerli) |
-| PromiseRouter | [0x84bbbAC6B8fD5FA8Ab03890e4e7484a5fAa5C9fA](https://goerli.etherscan.io/address/0x84bbbAC6B8fD5FA8Ab03890e4e7484a5fAa5C9fA) |
+| Test Token (TEST ERC20) | [0x26FE8a8f86511d678d031a022E48FfF41c6a3e3b](https://goerli.etherscan.io/address/0x26FE8a8f86511d678d031a022E48FfF41c6a3e3b) |
+| ConnextHandler | [0x6c9a905Ab3f4495E2b47f5cA131ab71281E0546e](https://louper.dev/diamond/0x6c9a905Ab3f4495E2b47f5cA131ab71281E0546e?network=goerli) |
+| PromiseRouter | [0xD7DAE26f3C54CEE823a02C6fD25d4301860F2B33](https://goerli.etherscan.io/address/0xD7DAE26f3C54CEE823a02C6fD25d4301860F2B33) |
 
 ## Test Token (TEST)
 
