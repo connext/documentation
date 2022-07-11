@@ -233,7 +233,7 @@ Now we have to add liquidity on 3 test chains to our Router and make some transa
 <img width="550" alt="faucet" src="https://user-images.githubusercontent.com/88688304/178159703-d72e7269-c13c-464b-ac5b-5946a826ec6f.png"><br/>
 3. Go to https://testnet.amarok.connextscan.io/router/ROUTER_ADDR (paste your router address at the end of the link)<br/>
 4. Select `manage router` and add some tokens to liquidity. Keep some tokens on your wallet balance to send a few transactions<br/>
-   <img height="350" alt="image" src="https://user-images.githubusercontent.com/88688304/178160096-125d8b0c-fb20-4597-adce-627ddfe07c2b.png"> <img height="350" alt="image" src="https://user-images.githubusercontent.com/88688304/178160123-76b140c6-2a46-466a-b0b1-bfe21a2c00f3.png">
+   <img height="350" alt="image" src="https://user-images.githubusercontent.com/88688304/178160096-125d8b0c-fb20-4597-adce-627ddfe07c2b.png"/> <img height="350" alt="image" src="https://user-images.githubusercontent.com/88688304/178160123-76b140c6-2a46-466a-b0b1-bfe21a2c00f3.png"/>
 5. Go to https://amarok-testnet.coinhippo.io/ again and make some transactions.
 6. The transactions takes usually 2-3 minutes. Sometimes it can takes much more time. Please give your feedback on discord channel [#testnet-feedback](https://discord.com/channels/454734546869551114/991374224293908562)
 
