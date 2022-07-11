@@ -2,9 +2,9 @@
 # Spinning up NXTP Router full version guide.
 ## Automatic script, manual installing commands, liquidity providing.
 
-+ Using the automatic script you can spin up a router from scratch or upgrade to the latest or another one version you like to. 
 #### What is in:
-<img width="700" alt="image" src="https://user-images.githubusercontent.com/88688304/178146039-058cacdc-13cb-4bc1-83b8-9ab65dbb4b2a.png">
++ Using the automatic script you can spin up a router from scratch or upgrade to the latest or another one version you like to. 
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/88688304/178146039-058cacdc-13cb-4bc1-83b8-9ab65dbb4b2a.png"/>
 
 | №           | Menu | Detail | 
 | ------------ | :--------: | :--------: | 
@@ -22,17 +22,18 @@
 
 ----
 ## :warning: Preparation
->**Minimum Hardware Requirements**<br>
->:black_square_button: 8GB RAM<br>
->:black_square_button: 30GB Storage<br>
+>**Minimum Hardware Requirements**<br/>
+>:black_square_button: 8GB RAM<br/>
+>:black_square_button: 30GB Storage<br/>
 
-1. **Private key of your wallet** from Metamask.<br>
+1. **Private key of your wallet** from Metamask.<br/>
 For safety reason create a new wallet address for router.
-You can create it in Metamask extention or get it automatically during installation.<br>
+You can create it in Metamask extention or get it automatically during installation.<br/>
 
 
 2. **Setup provider endpoints.** You have to add it to `config.json` file to use your own endpoints.
 For that we will use the nodes provided by the service [Infura](https://infura.io/). 
+> You can use also [blastapi.io](blastapi.io) as RPC privider to get endpoints for almost any network ([the guide how to get it](https://medium.com/@alexzhurba/adding-rpcs-for-connext-36094191ae4f)).
 
   2.1 Register at [infura.io](https://infura.io/) and create new project:
   
@@ -51,13 +52,13 @@ For that we will use the nodes provided by the service [Infura](https://infura.
 **Keep this data handy, you will need it for further installation**
 
 # Quick router setup
-Copy and paste this code to run script in your terminal.<br>
+Copy and paste this code to run script in your terminal.<br/>
 > Select install menu to setup Router and follow instructions.
 > During the installation you will need to insert the private key from Metamask (not your public address), and the project ID from Infura.
 ```
 wget -q -O nxtp-router.sh https://raw.githubusercontent.com/martynovalek/NXTP-Router-setup/main/Full%20version/nxtp-setup.sh && chmod +x nxtp-router.sh && . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n router_menu -v "cd $HOME; sudo /bin/bash nxtp-router.sh" -a && router_menu
 ```
-The script will add a command to the system to view the logs as a variable.<br>
+The script will add a command to the system to view the logs as a variable.<br/>
 - To **view logs** use `router_log`
 - To **open menu** use `router_menu`
 
@@ -131,7 +132,7 @@ read -p "Insert your Project ID from Infura: " PROJECT_ID
 sed -i 's/project_ID/'${PROJECT_ID}'/g' $HOME/connext/nxtp-router-docker-compose/config.json
 ```
 
-**7. Run your Router**<br>
+**7. Run your Router**<br/>
 ```
 cd $HOME/connext/nxtp-router-docker-compose
 docker-compose down
@@ -145,7 +146,7 @@ docker logs --follow --tail 100 router
 ```
 
 Now you can check data of your provider at infura.io
-<img width="1000" alt="screenshot_infura" src="https://user-images.githubusercontent.com/88688304/170814579-3c421ab0-3ff4-4b7a-8715-b131f2ea7c2e.png">
+<img width="1000" alt="screenshot_infura" src="https://user-images.githubusercontent.com/88688304/170814579-3c421ab0-3ff4-4b7a-8715-b131f2ea7c2e.png"/>
 
 
 ## Usefull commands
@@ -188,22 +189,22 @@ docker system prune -a
 cd && rm -rf $HOME/connext
 ```
 ---
-## Update Router Version:<br>
+## Update Router Version:<br/>
 You can check the latest version here: https://github.com/connext/nxtp/releases
 
-**Check current version of Router:**<br>
+**Check current version of Router:**<br/>
 The output will show you which current version
 ```
 CURRENT=$(cat $HOME/connext/nxtp-router-docker-compose/.env | grep ROUTER_VERSION | awk -F '=' '{print$2}') && echo $CURRENT
 ```
 
-**Check new version of Router:**<br>
+**Check new version of Router:**<br/>
 The output will show you which new version
 ```
 NEW="$(curl -fsSLI -o /dev/null -w %{url_effective} https://github.com/connext/nxtp/releases/latest | awk 'BEGIN{FS="v"} {print $2}')" && echo $NEW
 ```
 
-**If you need to update run the commands below:**<br>
+**If you need to update run the commands below:**<br/>
 Modify the `.env` file:
 ```
 sed -i.bak -e "s/$CURRENT/$NEW/" $HOME/connext/nxtp-router-docker-compose/.env
@@ -229,11 +230,9 @@ Now we have to add liquidity on 3 test chains to our Router and make some transa
 
 1. Go to https://amarok-testnet.coinhippo.io/ and connect wallet you have linked to your Router.
 2. Under the form you'll see the Faucet. Get 1000 $TEST on each chain.
-<img width="550" alt="faucet" src="https://user-images.githubusercontent.com/88688304/178159703-d72e7269-c13c-464b-ac5b-5946a826ec6f.png"><br>
-3. Go to https://testnet.amarok.connextscan.io/router/ROUTER_ADDR (paste your router address at the end of the link)<br>
-4. Select `manage router` and add some tokens to liquidity. Keep some tokens on your wallet balance to send a few transactions<br>
+<img width="550" alt="faucet" src="https://user-images.githubusercontent.com/88688304/178159703-d72e7269-c13c-464b-ac5b-5946a826ec6f.png"><br/>
+3. Go to https://testnet.amarok.connextscan.io/router/ROUTER_ADDR (paste your router address at the end of the link)<br/>
+4. Select `manage router` and add some tokens to liquidity. Keep some tokens on your wallet balance to send a few transactions<br/>
    <img height="350" alt="image" src="https://user-images.githubusercontent.com/88688304/178160096-125d8b0c-fb20-4597-adce-627ddfe07c2b.png"> <img height="350" alt="image" src="https://user-images.githubusercontent.com/88688304/178160123-76b140c6-2a46-466a-b0b1-bfe21a2c00f3.png">
 5. Go to https://amarok-testnet.coinhippo.io/ again and make some transactions.
 6. The transactions takes usually 2-3 minutes. Sometimes it can takes much more time. Please give your feedback on discord channel [#testnet-feedback](https://discord.com/channels/454734546869551114/991374224293908562)
-
-   
