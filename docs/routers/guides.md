@@ -39,6 +39,10 @@
 2. [Running a Router Guide](https://mirror.xyz/bullcoin.eth/c-ZKFX4_IsyRM-TJgg8KHoMjtm7E8nov_x9EcErzDeo)
 3. [Running a Router Guide](https://mirror.xyz/exploring.eth/fwb657xWhr5Q3mvoNes0eYT75yZtE6_hqVgOF3dVZSY)
 
+### Spanish
+
+1. [Running a Router Guide](https://github.com/VArtOff/Connext-Guide/blob/main/Spanish%20Guide.md)
+
 ## Videos
 
 ### English
@@ -64,3 +68,13 @@
 
 ### Ukraine
 1. [Running a Router Guide](https://medium.com/@88vgk88/%D0%BD%D0%B0%D0%BB%D0%B0%D1%88%D1%82%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F-%D1%80%D0%BE%D1%83%D1%82%D0%B5%D1%80%D0%B0-connext-3cd0fbdc5596)
+
+## Script
+1. [Auto setup and update script](https://github.com/NunoyHaxxana/nxtp-router-setup)
+- Script for install Connext Router with the latest release and auto update function
+2. [Shell script to download and update to the latest version](https://github.com/NunoyHaxxana/Router-Connext-Quests-2)
+- Auto install script with automatic private key generation and auto update function
+
+## Tools
+1. [Discord alerting system](https://github.com/NunoyHaxxana/Router-Connext-Quests-3)
+- Script for monitoring docker and send alert to Discord
