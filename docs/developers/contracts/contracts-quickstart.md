@@ -90,29 +90,31 @@ Finally, we construct the `XCallArgs` and call `xcall` on the Connext contract.
       callData: "",
       originDomain: originDomain,
       destinationDomain: destinationDomain,
+      agent: to,
       recovery: to,
+      forceSlow: false,
+      receiveLocal: false,
       callback: address(0),
       callbackFee: 0,
-      forceSlow: false,
-      receiveLocal: false
+      relayerFee: 0
     });
 
     IConnextHandler.XCallArgs memory xcallArgs = IConnextHandler.XCallArgs({
       params: callParams,
       transactingAssetId: asset,
-      amount: amount,
-      relayerFee: 0
+      amount: amount
     });
 ```
 
 A few parameters to note:
 
 - `callData` is empty here because we're only sending funds
+- `agent` is the address that is allowed to execute the transaction on the destination side in addition to relayers; this allows for the user (or user-specified address) to self-execute the transaction in case relayers don't for any reason
 - `recovery` is a fallback address to send funds to if execution fails on destination side
-- `callback` is the zero address because we don't expect a callback
-- `callbackFee` is a fee paid to relayers; relayers don't take any fees on testnet so it's set to 0
 - `forceSlow` is an option that allows users to take the Nomad slow path (~30 mins) instead of paying routers a 0.05% fee on their transaction
 - `receiveLocal` is an option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
+- `callback` is the zero address because we don't expect a callback
+- `callbackFee` is a fee paid to relayers; relayers don't take any fees on testnet so it's set to 0
 - `relayerFee` is a fee paid to relayers; relayers don't take any fees on testnet so it's set to 0
 
 A detailed reference of all the `xcall` arguments can be found [here](../xcall-params.md).
@@ -190,18 +192,19 @@ As before, we construct the `XCallArgs` and call `xcall` on the Connext contract
       callData: callData,
       originDomain: originDomain,
       destinationDomain: destinationDomain,
+      agent: to,
       recovery: to,
+      forceSlow: false,
+      receiveLocal: false,
       callback: address(0),
       callbackFee: 0,
-      forceSlow: false,
-      receiveLocal: false
+      relayerFee: 0
     });
 
     IConnextHandler.XCallArgs memory xcallArgs = IConnextHandler.XCallArgs({
       params: callParams,
       transactingAssetId: asset,
-      amount: 0,
-      relayerFee: 0
+      amount: 0
     });
 
     connext.xcall(xcallArgs);
@@ -257,19 +260,20 @@ contract Source {
       callData: callData,
       originDomain: originDomain,
       destinationDomain: destinationDomain,
+      agent: to,
       recovery: to,
-      callback: address(0),
-      callbackFee: 0,
       //highlight-next-line
       forceSlow: true,
-      receiveLocal: false
+      receiveLocal: false,
+      callback: address(0),
+      callbackFee: 0,
+      relayerFee: 0
     });
 
     IConnextHandler.XCallArgs memory xcallArgs = IConnextHandler.XCallArgs({
       params: callParams,
       transactingAssetId: asset,
-      amount: 0,
-      relayerFee: 0
+      amount: 0
     });
 
     connext.xcall(xcallArgs);
@@ -355,12 +359,14 @@ We'll have our Source contract handle the callback.
       callData: callData,
       originDomain: originDomain,
       destinationDomain: destinationDomain,
+      agent: to,
       recovery: to,
+      forceSlow: true,
+      receiveLocal: false,
       //highlight-next-line
       callback: address(this),
       callbackFee: 0,
-      forceSlow: true,
-      receiveLocal: false
+      relayerFee: 0
     });
 
     ...
