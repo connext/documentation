@@ -168,7 +168,7 @@ const callParams = {
   callback: ethers.constants.AddressZero, // zero address because we don't expect a callback for a simple transfer 
   callbackFee: "0", // relayers on testnet don't take a fee
   relayerFee: "0", // relayers on testnet don't take a fee
-  slippageTol: "9995", // tolerate .05% slippage
+  slippageTol: "9995" // max basis points allowed due to slippage (9995 to tolerate .05% slippage)
 };
 
 const xCallArgs = {
@@ -271,7 +271,8 @@ const callParams = {
   receiveLocal: false, // option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
   callback: ethers.constants.AddressZero, // zero address because we don't expect a callback 
   callbackFee: "0", // relayers on testnet don't take a fee
-  relayerFee: "0", // relayers on testnet don't take a fee
+  relayerFee: "0", // relayers on testnet don't take a fee,
+  slippageTol: "9995" // max basis points allowed due to slippage (9995 to tolerate .05% slippage)
 };
 
 const xCallArgs = {

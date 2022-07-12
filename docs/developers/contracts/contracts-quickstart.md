@@ -96,7 +96,8 @@ Finally, we construct the `XCallArgs` and call `xcall` on the Connext contract.
       receiveLocal: false,
       callback: address(0),
       callbackFee: 0,
-      relayerFee: 0
+      relayerFee: 0,
+      slippageTol: 9995
     });
 
     IConnextHandler.XCallArgs memory xcallArgs = IConnextHandler.XCallArgs({
@@ -116,6 +117,7 @@ A few parameters to note:
 - `callback` is the zero address because we don't expect a callback
 - `callbackFee` is a fee paid to relayers; relayers don't take any fees on testnet so it's set to 0
 - `relayerFee` is a fee paid to relayers; relayers don't take any fees on testnet so it's set to 0
+- `slippageTol` is the max basis points allowed due to slippage (9995 to tolerate .05% slippage)
 
 A detailed reference of all the `xcall` arguments can be found [here](../xcall-params.md).
 
@@ -198,7 +200,8 @@ As before, we construct the `XCallArgs` and call `xcall` on the Connext contract
       receiveLocal: false,
       callback: address(0),
       callbackFee: 0,
-      relayerFee: 0
+      relayerFee: 0,
+      slippageTol: 9995
     });
 
     IConnextHandler.XCallArgs memory xcallArgs = IConnextHandler.XCallArgs({
@@ -267,7 +270,8 @@ contract Source {
       receiveLocal: false,
       callback: address(0),
       callbackFee: 0,
-      relayerFee: 0
+      relayerFee: 0,
+      slippageTol: 9995
     });
 
     IConnextHandler.XCallArgs memory xcallArgs = IConnextHandler.XCallArgs({
@@ -366,7 +370,8 @@ We'll have our Source contract handle the callback.
       //highlight-next-line
       callback: address(this),
       callbackFee: 0,
-      relayerFee: 0
+      relayerFee: 0,
+      slippageTol: 9995
     });
 
     ...
