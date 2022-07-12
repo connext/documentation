@@ -19,7 +19,6 @@ struct XCallArgs {
   CallParams params;
   address transactingAssetId;
   uint256 amount;
-  uint256 relayerFee;
 }
 ```
 
@@ -31,14 +30,6 @@ This refers to the contract address of the asset that is meant to be bridged, in
 
 The amount of tokens to bridge specified in standard format (i.e. to send 1 USDC, a token with 10^18 decimals, you must specify the amount as `1000000000000000000`).
 
-### relayerFee
-
-This is a fee paid to relayers for relaying the transaction to the other domain. The fee must be high enough to satisfy relayers’ cost conditions for relaying a transaction, which includes the gas fee plus a bit extra as incentive. This is paid in the origin domain’s native asset - it’s locked on the origin domain and eventually claimed by the relayer. 
-
-Connext contracts will assert that the `relayerFee` matches what is sent in `msg.value` for the `xcall`. If, for any reason, the initial `relayerFee` is set too low, [BridgeFacet.sol](https://github.com/connext/nxtp/blob/main/packages/deployments/contracts/contracts/core/connext/facets/BridgeFacet.sol) has a `bumpTransfer` function that can be called on the origin domain to bump (increase) the initial fee until it’s sufficient for relayers.
-
-On the Connext Amarok testnet, this can be set to `0` because relayers on testnet don’t take any fees.
-
 ## CallParams
 
 The remaining argument for `XCallArgs` is `CallParams`. 
@@ -49,11 +40,13 @@ struct CallParams {
   bytes callData;
   uint32 originDomain;
   uint32 destinationDomain;
+  address agent;
   address recovery;
-  address callback;
-  uint256 callbackFee;
   bool forceSlow;
   bool receiveLocal;
+  address callback;
+  uint256 callbackFee;
+  uint256 relayerFee;
 }
 ```
 
@@ -73,9 +66,21 @@ In the case of bridging funds only, this should be empty. If arbitrary calldata 
 
 These refer to domain IDs that are mapped by Nomad. These domain IDs are not equivalent to “chain IDs”. See [Nomad Domain IDs](.testing-against-testnet#nomad-domain-ids).
 
+### agent
+
+This is the address that is allowed to execute transactions on behalf of `to` on the destination chain. Usually this is a relayer's job but the user can specify an address (including themselves) to do it instead.
+
 ### recovery
 
 A recovery address on the destination side to send funds to if the execution fails. This ensures that funds sent with failed calls are still accessible.
+
+### forceSlow
+
+Setting this to true allows users to force the `xcall` through the Nomad slow path (~30 mins) and save on the 0.05% transaction fee levied by routers. Note that this only has an effect on fast path transfers since slow path `xcall`s will go through slow path regardless. This is simply an option for users who don’t care for speed to optimize on cost.
+
+### receiveLocal
+
+Setting this to true allows users to receive the local Nomad-flavored asset instead of the adopted asset on the destination domain. 
 
 ### callback
 
@@ -85,10 +90,14 @@ The address of a contract that implements the [ICallback](https://github.com/con
 
 Similar to the relayerFee except this is for paying relayers on the callback execution. Again, this can be set to 0 on the Connext Amarok testnet. This fee is also bumpable from the origin domain!
 
-### forceSlow
+### relayerFee
 
-Setting this to true allows users to force the `xcall` through the Nomad slow path (~30 mins) and save on the 0.05% transaction fee levied by routers. Note that this only has an effect on fast path transfers since slow path `xcall`s will go through slow path regardless. This is simply an option for users who don’t care for speed to optimize on cost.
+This is a fee paid to relayers for relaying the transaction to the other domain. The fee must be high enough to satisfy relayers’ cost conditions for relaying a transaction, which includes the gas fee plus a bit extra as incentive. This is paid in the origin domain’s native asset - it’s locked on the origin domain and eventually claimed by the relayer. 
 
-### receiveLocal
+Connext contracts will assert that the `relayerFee` matches what is sent in `msg.value` for the `xcall`. If, for any reason, the initial `relayerFee` is set too low, [BridgeFacet.sol](https://github.com/connext/nxtp/blob/main/packages/deployments/contracts/contracts/core/connext/facets/BridgeFacet.sol) has a `bumpTransfer` function that can be called on the origin domain to bump (increase) the initial fee until it’s sufficient for relayers.
 
-Setting this to true allows users to receive the local Nomad-flavored asset instead of the adopted asset on the destination domain. 
+On the Connext Amarok testnet, this can be set to `0` because relayers on testnet don’t take any fees.
+
+### slippageTol
+
+The max basis points of the original amount allowed due to slippage (i.e. would be 9995 to tolerate .05% slippage).
