@@ -47,6 +47,7 @@ struct CallParams {
   address callback;
   uint256 callbackFee;
   uint256 relayerFee;
+  uint256 slippageTol;
 }
 ```
 
