@@ -98,13 +98,13 @@ git checkout amarok
 ## Basic configuration
 <details><summary>Check about it</summary>
   
-  ### Network Configuration
+### Network Configuration
    
-  The router does not require any ports to be open for inbound access.
+The router does not require any ports to be open for inbound access.
 
-  :::danger
-  Do NOT expose the `ROUTER_EXTERNAL_PORT` to anyone untrusted! It should only be accessible by the operator in a trusted environment.
-  :::
+:::danger
+Do NOT expose the `ROUTER_EXTERNAL_PORT` to anyone untrusted! It should only be accessible by the operator in a trusted environment.
+:::
 
 ### Environment Config
 
