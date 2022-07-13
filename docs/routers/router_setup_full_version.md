@@ -94,6 +94,14 @@ git clone https://github.com/connext/nxtp-router-docker-compose.git
 cd $HOME/connext/nxtp-router-docker-compose
 git checkout amarok
 ```
+
+**Get and pull the latest released Router version**
+> You can check the latest version here: https://github.com/connext/nxtp/releases
+```
+LATEST="$(curl -fsSLI -o /dev/null -w %{url_effective} https://github.com/connext/nxtp/releases/latest | awk 'BEGIN{FS="v"} {print $2}')" && echo $LATEST
+docker pull ghcr.io/connext/router:$LATEST
+```
+
 ***
 ## :warning: Basic configuration
 <details><summary>Check about it</summary>
@@ -180,12 +188,6 @@ See the [Configuration](./configuration) section for more details.
 
 ***
 
-**Get and pull the latest released Router version**
-> You can check the latest version here: https://github.com/connext/nxtp/releases
-```
-LATEST="$(curl -fsSLI -o /dev/null -w %{url_effective} https://github.com/connext/nxtp/releases/latest | awk 'BEGIN{FS="v"} {print $2}')" && echo $LATEST
-docker pull ghcr.io/connext/router:$LATEST
-```
 
 **4. Setup `.env` file**
 ```
