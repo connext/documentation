@@ -97,7 +97,7 @@ git checkout amarok
 ***
 ## :warning: Basic configuration
 <details><summary>Check about it</summary>
-  
+
 ### Network Configuration
 
 The router does not require any ports to be open for inbound access.
