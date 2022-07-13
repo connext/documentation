@@ -95,11 +95,11 @@ cd $HOME/connext/nxtp-router-docker-compose
 git checkout amarok
 ```
 ***
-## Basic configuration
+## :warning: Basic configuration
 <details><summary>Check about it</summary>
   
 ### Network Configuration
-   
+
 The router does not require any ports to be open for inbound access.
 
 :::danger
