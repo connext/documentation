@@ -1,5 +1,5 @@
 ![image](https://user-images.githubusercontent.com/88688304/178145701-0447ede1-b90a-4d9a-ae0f-dd588a6b34e5.png)
-# Spinning up NXTP Router full version guide.
+# Spinning up NXTP Router guide
 ## Automatic script, manual installing commands, liquidity providing.
 
 #### What is in:
@@ -18,7 +18,7 @@
 | 8            | Quit | Quit on menu | 
 
 + Using manual installing commands you can understand exactly how the installation process step by step works.
-+ You will know what to do next when the installation is complete. Add liquidity to your router and take part in the testnet.
++ Add liquidity to your router and take part in the testnet.
 
 ----
 ## :warning: Requirements
