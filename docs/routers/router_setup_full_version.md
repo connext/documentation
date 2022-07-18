@@ -21,11 +21,12 @@
 + You will know what to do next when the installation is complete. Add liquidity to your router and take part in the testnet.
 
 ----
-## :warning: Preparation
+## :warning: Requirements
 >**Minimum Hardware Requirements**<br/>
 >:black_square_button: 8GB RAM<br/>
 >:black_square_button: 30GB Storage<br/>
 
+## Preparation
 1. **Private key of your wallet** from Metamask.<br/>
 For safety reason create a new wallet address for router.
 You can create it in Metamask extention or get it automatically during installation.<br/>
@@ -104,7 +105,7 @@ docker pull ghcr.io/connext/router:$LATEST
 
 ***
 ## :warning: Basic configuration
-<details><summary>Check about it</summary>
+<details><summary>Read more about configuration files...</summary>
 
 ### Network Configuration
 
@@ -327,7 +328,4 @@ Now we have to add liquidity on 3 test chains to our Router and make some transa
 
 ---
 # Usefull links
-- All about Routers — link<br/>
 - How to deploy your router using helm — [Guide](https://github.com/connext/nxtp-router-helm/tree/amarok)<br/>
-- How to setup monitoring for your Router — link guide<br/>
-- Security settings — link guide
