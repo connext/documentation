@@ -1,5 +1,10 @@
-![image](https://user-images.githubusercontent.com/88688304/178145701-0447ede1-b90a-4d9a-ae0f-dd588a6b34e5.png)
+---
+sidebar_position: 2
+---
 # Spinning up NXTP Router guide
+
+![image](https://user-images.githubusercontent.com/88688304/178145701-0447ede1-b90a-4d9a-ae0f-dd588a6b34e5.png)
+
 ## Automatic script, manual installing commands, liquidity providing.
 
 #### What is in:
