@@ -61,6 +61,7 @@ For that we will use the nodes provided by the service [Infura](https://infura.
 Copy and paste this code to run script in your terminal.<br/>
 > Select install menu to setup Router and follow instructions.
 > During the installation you will need to insert the private key from Metamask (not your public address), and the project ID from Infura.
+
 ```
 wget -q -O nxtp-router.sh https://raw.githubusercontent.com/martynovalek/NXTP-Router-setup/main/Full%20version/nxtp-setup.sh && chmod +x nxtp-router.sh && . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n router_menu -v "cd $HOME; sudo /bin/bash nxtp-router.sh" -a && router_menu
 ```
@@ -103,6 +104,7 @@ git checkout amarok
 
 **Get and pull the latest released Router version**
 > You can check the latest version here: https://github.com/connext/nxtp/releases
+
 ```
 LATEST="$(curl -fsSLI -o /dev/null -w %{url_effective} https://github.com/connext/nxtp/releases/latest | awk 'BEGIN{FS="v"} {print $2}')" && echo $LATEST
 docker pull ghcr.io/connext/router:$LATEST
