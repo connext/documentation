@@ -65,7 +65,7 @@ In the case of bridging funds only, this should be empty. If arbitrary calldata 
 
 ### originDomain / destinationDomain
 
-These refer to domain IDs that are mapped by Nomad. These domain IDs are not equivalent to “chain IDs”. See [Nomad Domain IDs](.testing-against-testnet#nomad-domain-ids).
+These refer to domain IDs that are mapped by Nomad. These domain IDs are not equivalent to “chain IDs”. See [Nomad Domain IDs](./testing-against-testnet#nomad-domain-ids).
 
 ### agent
 

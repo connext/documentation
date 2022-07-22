@@ -36,7 +36,7 @@ Please ping the team to request for more testnet assets and swaps added!
 
 ## Nomad Domain IDs
 
-Domain IDs for testnet can be found in our [chain index](https://github.com/connext/chaindata/blob/main/crossChain.json#) under the `domainId` key for supported chains.
+Domain IDs for testnet can be found [here](https://docs.nomad.xyz/developers/environments/domain-chain-ids).
 
 ## Sequencer
 
