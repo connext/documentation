@@ -123,9 +123,9 @@ A detailed reference of all the `xcall` arguments can be found [here](../xcall-p
 
 ---
 
-## Unpermissioned
+## Unauthenticated
 
-While simple transfers are technically unpermissioned, we'll treat cross-domain calls that send `calldata` a bit differently because they involve a target contract on the destination side.
+While simple transfers are technically unauthenticated, we'll treat cross-domain calls that send `calldata` a bit differently because they involve a target contract on the destination side.
 
 ### Target Contract
 
@@ -141,7 +141,7 @@ contract Target {
 }
 ```
 
-Our goal is to call the `updateValue` function, which is unpermissioned (i.e. callable by anyone), from a different domain.
+Our goal is to call the `updateValue` function, which is unauthenticated (i.e. callable by anyone), from a different domain.
 
 ### Source Contract
 
@@ -217,9 +217,9 @@ As before, we construct the `XCallArgs` and call `xcall` on the Connext contract
 
 ---
 
-## Permissioned
+## Authenticated
 
-The most interesting cross-chain use cases can only be accomplished through permissioned calls on the destination domain. With permissioning requirements, a xapp developer must carefully implement permissioning checks. We'll see how this is done in the following example.
+The most interesting cross-chain use cases can only be accomplished through authenticated calls on the destination domain. With authentication requirements, a xapp developer must carefully implement authentication checks. We'll see how this is done in the following example.
 
 Let's say our target contract contains a function that **_only our source contract should be able to call_**.
 
@@ -229,11 +229,11 @@ Let's say our target contract contains a function that **_only our source contra
   }
 ```
 
-You'll notice we have a custom modifier `onlyExecutor` on this function. This signals some kind of permissioning requirement - we'll dig into that in a bit. For the permissioned flow, it's actually easier to consider the source contract first.
+You'll notice we have a custom modifier `onlyExecutor` on this function. This signals some kind of authentication requirement - we'll dig into that in a bit. For the authenticated flow, it's actually easier to consider the source contract first.
 
 ### Source Contract
 
-This is the exact same contract as the source contract for the unpermissioned example above, except that `forceSlow: true` because permissioned calls must flow through the Nomad slow path.
+This is the exact same contract as the source contract for the unauthenticated example above, except that `forceSlow: true` because authenticated calls must flow through the Nomad slow path.
 
 To recap: inside the `updateValue` function, we simply create `calldata` to match the target function signature, construct the `XCallArgs`, and call `xcall` with it.
 
@@ -287,7 +287,7 @@ contract Source {
 
 ### Target Contract
 
-The target contract now has to be written carefully given our permissioning requirements. Remember that **_only our source contract should be able to call_** the target function.
+The target contract now has to be written carefully given our authentication requirements. Remember that **_only our source contract should be able to call_** the target function.
 
 Import `IConnextHandler` and `IExecutor` interfaces.
 
@@ -296,7 +296,7 @@ import {IExecutor} from "nxtp/interfaces/IExecutor.sol";
 import {IConnextHandler} from "nxtp/interfaces/IConnextHandler.sol";
 ```
 
-In the constructor, we pass the address of the origin-side contract and the Domain ID of the origin domain. We also pass in the address of the Connext Executor contract which should be the only allowed caller of the target function. These are crucial pieces of information that we will check against to uphold our permissioning requirement.
+In the constructor, we pass the address of the origin-side contract and the Domain ID of the origin domain. We also pass in the address of the Connext Executor contract which should be the only allowed caller of the target function. These are crucial pieces of information that we will check against to uphold our authentication requirement.
 
 ```solidity
 contract Target {
@@ -330,7 +330,7 @@ Here's the `onlyExecutor` modifier we saw earlier. In it, we use the `IExecutor`
   }
 ```
 
-With the `onlyExecutor` modifier in place, our permissioned function is secured.
+With the `onlyExecutor` modifier in place, our authenticated function is secured.
 
 ```solidity
   function updateValue(uint256 newValue) external onlyExecutor {
@@ -345,7 +345,7 @@ With the `onlyExecutor` modifier in place, our permissioned function is secured.
 
 One awesome feature we've introduced is the ability to use JS-style callbacks to respond to results of calls from the destination domain on the origin domain. You can read the [detailed spec here](https://github.com/connext/nxtp/discussions/883).
 
-Let's see how this works by building on the Permissioned example.
+Let's see how this works by building on the Authenticated example.
 
 ### Source Contract
 

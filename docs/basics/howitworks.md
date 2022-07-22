@@ -19,7 +19,7 @@ A transaction flowing through Connext will have the following lifecycle:
   - Emit an event with the transaction details.
 
 - Routers observing the origin chain with funds on the destination chain will:
-  - Simulate the transaction (if this fails, the assumption is that this is a more "expressive" crosschain message that requires permissioning and so must go through the slow Nomad process only).
+  - Simulate the transaction (if this fails, the assumption is that this is a more "expressive" crosschain message that requires authentication and so must go through the slow Nomad process only).
   - Prepare a signed transaction object using funds on the receiving chain.
   - Post this object (a "bid") to the auctioneer.
   - *Note: if the router does not have enough funds for the transfer, they may also provide only part of the transfer's value.*

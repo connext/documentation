@@ -225,13 +225,13 @@ After the DestinationTransfer shows up on the Goerli side, the freshly transferr
 
 --- 
 
-## Cross-Chain Mint (unpermissioned)
+## Cross-Chain Mint (unauthenticated)
 
 We can also send arbitrary `calldata`, along with the `xcall`, to be executed on the destination domain.
 
 In this example, we're going to construct some `calldata` targeting an existing contract function to avoid having to deploy a new contract. We'll aim for the `mint` function of the [Test ERC20 Token (TEST) contract](https://goerli.etherscan.io/address/0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9#writeContract) to demonstrate this. 
 
-> Minting usually requires permissioning but the Test Token has a public `mint` function (callable by anyone!) that we can leverage for this example. Hence, this is an "unpermissioned" `xcall` with calldata - nothing extra needs to be done on the destination side.
+> Minting usually requires authentication but the Test Token has a public `mint` function (callable by anyone!) that we can leverage for this example. Hence, this is an "unauthenticated" `xcall` with calldata - nothing extra needs to be done on the destination side.
 
 ### 7. Encode the `calldata`
 
