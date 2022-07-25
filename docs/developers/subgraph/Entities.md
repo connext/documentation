@@ -31,8 +31,6 @@ Description:
 | amount | BigInt! |  |
 | router | Router! |  |
 | asset | Asset! |  |
-|  |  |  |
-|  |  |  |
 
 
 ## Router
