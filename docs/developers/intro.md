@@ -32,7 +32,7 @@ Deployed contract addresses, domain IDs, and other useful information can be fou
 
 Specific questions might be answered in the FAQ.
 
-[FAQ](./faq)
+[FAQ](../faq)
 
 Have other questions or need support? Our core team and vibrant community members are highly active in our Discord server!
 
