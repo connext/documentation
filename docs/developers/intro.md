@@ -27,6 +27,13 @@ Deployed contract addresses, domain IDs, and other useful information can be fou
 
 [Testnet Reference](./testing-against-testnet)
 
+--
+## Subgraph
+
+See below for a description of the GraphQL Endpoint for querying Connext contract Data
+
+[Subgraph](../subgraph/SubgraphData)
+
 ---
 ## Help
 
