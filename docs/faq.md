@@ -47,11 +47,9 @@ Example:
   0x26fe8a8f86511d678d031a022e48fff41c6a3e3b # the contract address of the canonical TestERC20
   ```
 
-## What if I just want to test my receiving chain function?
+## What if I just want to test the destination-side target function?
 
-If there’s no token transfer involved then just set 0 for the `amount`.
-
-> Make sure you use the Test Token for `transactingAssetId` until the native token (above) has been whitelisted.
+If there’s no token transfer involved then just set `transactingAsetId: address(0)` and `amount: 0`.
 
 ## Do I need to do anything with the Nomad contracts?
 
