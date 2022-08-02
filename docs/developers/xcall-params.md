@@ -24,7 +24,7 @@ struct XCallArgs {
 
 ### transactingAssetId
 
-This refers to the contract address of the asset that is meant to be bridged, including any ERC20-compliant token. Usually, a xapp will have a higher-level function wrapping `xcall` in which the asset address will be passed-through as an argument to allow the user to specify which asset they want to work with.
+This refers to the contract address of the asset that is meant to be bridged, including any ERC20-compliant token. Usually, a xapp will have a higher-level function wrapping `xcall` in which the asset address will be passed-through as an argument to allow the user to specify which asset they want to work with. Using `address(0)` here means the native token, of which the Connext contracts will use the wrapped version. 
 
 ### amount
 

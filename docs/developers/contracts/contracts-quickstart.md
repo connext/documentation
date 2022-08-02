@@ -172,7 +172,6 @@ Then we define this source-side contract's `updateValue` function, which require
 ```solidity
   function updateValue(
     address to, // the address of the target contract
-    address asset, // address of token on source domain (needed for now)
     uint32 originDomain, // e.g. from Rinkeby (1111)
     uint32 destinationDomain, // to Goerli (3331)
     uint256 newValue // value to update to
@@ -206,8 +205,8 @@ As before, we construct the `XCallArgs` and call `xcall` on the Connext contract
 
     IConnextHandler.XCallArgs memory xcallArgs = IConnextHandler.XCallArgs({
       params: callParams,
-      transactingAssetId: asset,
-      amount: 0
+      transactingAssetId: address(0), // we can just use the zero address
+      amount: 0                       // since we aren't transferring any funds
     });
 
     connext.xcall(xcallArgs);
@@ -249,7 +248,6 @@ contract Source {
 
   function updateValue(
     address to,
-    address asset,
     uint32 originDomain,
     uint32 destinationDomain,
     uint256 newValue
@@ -276,7 +274,7 @@ contract Source {
 
     IConnextHandler.XCallArgs memory xcallArgs = IConnextHandler.XCallArgs({
       params: callParams,
-      transactingAssetId: asset,
+      transactingAssetId: address(0),
       amount: 0
     });
 
