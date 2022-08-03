@@ -96,6 +96,48 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
   </tbody>
 </table>
 
+### Mumbai (chainId: 80001, domainId: 9991)
+
+<table>
+    <tbody>
+      <tr>
+        <th>Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>Test Token (TEST ERC20)</td>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0x21c5a4dAeAf9625c781Aa996E9229eA95EE4Ff77">
+            0x21c5a4dAeAf9625c781Aa996E9229eA95EE4Ff77
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>ConnextHandler</td>
+        <td>
+          <a href="https://louper.dev/diamond/0x765cbd312ad84A791908000DF58d879e4eaf768b?network=mumbai">
+            0x765cbd312ad84A791908000DF58d879e4eaf768b
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>TokenRegistry</td>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0xB4dd8604E6E720A5a2a47a82920707A825cEF995">
+            0xB4dd8604E6E720A5a2a47a82920707A825cEF995
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>PromiseRouter</td>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0xFe391d6ca29085075C2483efB3E0Ba125cd6EE1e">
+            0xFe391d6ca29085075C2483efB3E0Ba125cd6EE1e
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
 <details>
 
@@ -144,7 +186,7 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
     </tbody>
   </table>
 
-  ### Goerli (chainId: 5, domainId: 3331)
+  ### Goerli Staging (chainId: 5, domainId: 3331)
 
   <table>
     <tbody>
@@ -187,8 +229,50 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
     </tbody>
   </table>
 
-  </details>
+  ### Mumbai Staging (chainId: 80001, domainId: 9991)
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>Test Token (TEST ERC20)</td>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0x21c5a4dAeAf9625c781Aa996E9229eA95EE4Ff77">
+            0x21c5a4dAeAf9625c781Aa996E9229eA95EE4Ff77
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>ConnextHandler</td>
+        <td>
+          <a href="https://louper.dev/diamond/0xf21Ad79d25d3E2eCAEe99e09c237EfDD83fdAfEB?network=mumbai">
+            0xf21Ad79d25d3E2eCAEe99e09c237EfDD83fdAfEB
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>TokenRegistry</td>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0x655CbDD0D91C2966A3d8768A395BFB195195D7D7">
+            0x655CbDD0D91C2966A3d8768A395BFB195195D7D7
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>PromiseRouter</td>
+        <td>
+          <a href="https://rinkeby.etherscan.io/address/0xF261345AeF655c02Dea4703ddf2B4b23119f4ce8">
+            0xF261345AeF655c02Dea4703ddf2B4b23119f4ce8
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  </details>
 
 ## Test Token (TEST)
 
