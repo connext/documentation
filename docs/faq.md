@@ -12,10 +12,7 @@ The list will be updated in [Supported Chains](./basics/chains#supported-chains)
 
 ## What assets are supported?
 
-Currently, only a test ERC20 “Test Token (TEST)”.
-
-> Trying to send native ETH will not work at the moment because it requires a wrapped token on the receiving side which has not yet been whitelisted. This will be added shortly!
-
+See the deployed addresses for assets at [Deployed Contract Addresses](./developers/testing-against-testnet#deployed-contract-addresses)
 ## How do I find the canonical details of a token?
 
 The canonical domainId and tokenId of a token can be found by calling the [`getTokenId`](https://github.com/connext/nxtp/blob/3d0af2251b2d8d244d2617be6fb738c09a571022/packages/deployments/contracts/contracts/core/connext/helpers/TokenRegistry.sol#L176) function of `TokenRegistry`.
