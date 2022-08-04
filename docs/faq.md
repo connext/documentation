@@ -12,7 +12,12 @@ The list will be updated in [Supported Chains](./basics/chains#supported-chains)
 
 ## What assets are supported?
 
-See the deployed addresses for assets at [Deployed Contract Addresses](./developers/testing-against-testnet#deployed-contract-addresses)
+See the deployed addresses for assets at [Deployed Contract Addresses](./developers/testing-against-testnet#deployed-contract-addresses).
+
+## What does it mean when referring to "canonical", "representation", and "adopted" assets?
+
+<img src="static/img/faq/assets.png" alt="drawing" width="1000"/>
+
 ## How do I find the canonical details of a token?
 
 The canonical domainId and tokenId of a token can be found by calling the [`getTokenId`](https://github.com/connext/nxtp/blob/3d0af2251b2d8d244d2617be6fb738c09a571022/packages/deployments/contracts/contracts/core/connext/helpers/TokenRegistry.sol#L176) function of `TokenRegistry`.
