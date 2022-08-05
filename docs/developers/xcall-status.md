@@ -14,6 +14,7 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
 | --- | --- |
 | Rinkeby | [v0-Rinkeby](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-rinkeby) |
 | Goerli | [v0-Goerli](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-goerli) |
+| Mumbai | [v0-Mumbai](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-mumbai) |
 
 1.  Make note of the transaction hash that interacted with the Connext contract
 
