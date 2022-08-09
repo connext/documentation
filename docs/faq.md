@@ -16,7 +16,7 @@ See the deployed addresses for assets at [Deployed Contract Addresses](./develop
 
 ## What does it mean when referring to "canonical", "representation", and "adopted" assets?
 
-<img src="static/img/faq/assets.png" alt="drawing" width="1000"/>
+<img src="/img/faq/assets.png" alt="drawing" width="1000"/>
 
 ## How do I find the canonical details of a token?
 
