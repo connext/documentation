@@ -55,15 +55,6 @@ _These are example RPC URLs. Please get your own RPC URLs!_
       ],
       "providers": ["https://rinkeby.infura.io/v3/...", "https://rpc.ankr.com/eth_rinkeby"]
     },
-    "2221": {
-      "assets": [
-        {
-          "address": "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
-          "name": "TEST"
-        }
-      ],
-      "providers": ["https://kovan.infura.io/v3/..."]
-    },
     "3331": {
       "providers": [
         "https://goerli.infura.io/v3/..."

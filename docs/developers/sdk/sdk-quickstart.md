@@ -15,7 +15,7 @@ These examples (and others) can be found in our xApp Starter Kit, under `src/sdk
 
 ## Cross-Chain Transfer
 
-In this quickstart, we'll demonstrate how to execute an `xcall` to transfer funds from a wallet on Kovan to a destination address on Rinkeby.
+In this quickstart, we'll demonstrate how to execute an `xcall` to transfer funds from a wallet on Rinkeby to a destination address on Goerli.
 
 ### 1. Setup project
 
@@ -68,7 +68,7 @@ mkdir src && touch src/xtransfer.ts
 
 ### 2. Install dependencies
 
-Install the SDK.
+Install the SDK. Use the latest `0.2.0-beta.*` version for Amarok (see versions [here](https://www.npmjs.com/package/@connext/nxtp-sdk))
 
 ```bash
 yarn add @connext/nxtp-sdk
@@ -103,7 +103,7 @@ let signer = new ethers.Wallet(privateKey);
 And connect it to a [Provider](https://docs.ethers.io/v5/api/providers/) on the sending chain ([Infura](https://infura.io/), [Alchemy](https://www.alchemy.com/), etc).
 
 ```ts
-const provider = new ethers.providers.JsonRpcProvider("<kovan_rpc_url>");
+const provider = new ethers.providers.JsonRpcProvider("<rinkeby_rpc_url>");
 signer = signer.connect(provider);
 const signerAddress = await signer.getAddress();
 ```
@@ -122,16 +122,18 @@ const nxtpConfig: NxtpSdkConfig = {
       assets: [
         {
           name: "TEST",
-          address: "0xB7b1d3cC52E658922b2aF00c5729001ceA98142C",
+          address: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
+          symbol: "TEST",
         },
       ],
     },
-    "2221": {
-      providers: ["<kovan_rpc_url>"],
+    "3331": {
+      providers: ["<goerli_rpc_url>"],
       assets: [
         {
           name: "TEST",
-          address: "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F",
+          address: "0x26FE8a8f86511d678d031a022E48FfF41c6a3e3b",
+          symbol: "TEST",
         },
       ],
     },
@@ -157,22 +159,26 @@ Now, we construct the arguments that will be passed into the `xcall`.
 const callParams = {
   to: "<destination_address>", // the address that should receive the funds
   callData: "0x", // empty calldata for a simple transfer
-  originDomain: "2221", // send from Kovan
-  destinationDomain: "1111", // to Rinkeby
+  originDomain: "1111", // send from Rinkeby
+  destinationDomain: "3331", // to Goerli
+  agent: "<destination_address>" // address allowed to execute in addition to relayers  
   recovery: "<destination_address>", // fallback address to send funds to if execution fails on destination side
+  forceSlow: false, // option that allows users to take the Nomad slow path (~30 mins) instead of paying routers a 0.05% fee on their transaction
+  receiveLocal: false, // option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
   callback: ethers.constants.AddressZero, // zero address because we don't expect a callback for a simple transfer 
   callbackFee: "0", // relayers on testnet don't take a fee
-  forceSlow: false, // option that allows users to take the Nomad slow path (~30 mins) instead of paying routers a 0.05% fee on their transaction
-  receiveLocal: false // option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
+  relayerFee: "0", // relayers on testnet don't take a fee
+  slippageTol: "9995" // max basis points allowed due to slippage (9995 to tolerate .05% slippage)
 };
 
 const xCallArgs = {
   params: callParams,
-  transactingAssetId: "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F", // the Kovan Test Token
-  amount: "1000000000000000000", // amount to send (1 TEST)
-  relayerFee: "0", // relayers on testnet don't take a fee
+  transactingAssetId: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9", // the Rinkeby Test Token
+  amount: "1000000000000000000" // amount to send (1 TEST)
 };
 ```
+
+A detailed reference of all the `xcall` arguments can be found [here](../xcall-params.md).
 
 ### 8. Approve the asset transfer
 
@@ -215,17 +221,17 @@ We can use the transaction hash from the transaction receipt we logged above to 
 
 [Tracking an xcall](../xcall-status)
 
-After the DestinationTransfer shows up on the Rinkeby side, the freshly transferred tokens should show up in the destination wallet.
+After the DestinationTransfer shows up on the Goerli side, the freshly transferred tokens should show up in the destination wallet.
 
 --- 
 
-## Cross-Chain Mint (unpermissioned)
+## Cross-Chain Mint (unauthenticated)
 
 We can also send arbitrary `calldata`, along with the `xcall`, to be executed on the destination domain.
 
-In this example, we're going to construct some `calldata` targeting an existing contract function to avoid having to deploy a new contract. We'll aim for the `mint` function of the [Test ERC20 Token (TEST) contract](https://rinkeby.etherscan.io/address/0xB7b1d3cC52E658922b2aF00c5729001ceA98142C#writeContract) to demonstrate this. 
+In this example, we're going to construct some `calldata` targeting an existing contract function to avoid having to deploy a new contract. We'll aim for the `mint` function of the [Test ERC20 Token (TEST) contract](https://goerli.etherscan.io/address/0x26FE8a8f86511d678d031a022E48FfF41c6a3e3b#writeContract) to demonstrate this. 
 
-> Minting usually requires permissioning but the Test Token has a public `mint` function (callable by anyone!) that we can leverage for this example. Hence, this is an "unpermissioned" `xcall` with calldata - nothing extra needs to be done on the destination side.
+> Minting usually requires authentication but the Test Token has a public `mint` function (callable by anyone!) that we can leverage for this example. Hence, this is an "unauthenticated" `xcall` with calldata - nothing extra needs to be done on the destination side.
 
 ### 7. Encode the `calldata`
 
@@ -242,7 +248,7 @@ const iface = new ethers.utils.Interface(contractABI);
 const calldata = iface.encodeFunctionData(
   "mint", 
   [
-    "0x6d2A06543D23Cc6523AE5046adD8bb60817E0a94", // address to mint tokens for
+    await signer.getAddress(), // address to mint tokens for
     ethers.BigNumber.from("100000000000000000000") // amount to mint (100 TEST)
   ]
 )
@@ -254,26 +260,31 @@ Now with the `calldata` ready, we supply it to the `xCallArgs`.
 
 ```js
 const callParams = {
-  to: "0xB7b1d3cC52E658922b2aF00c5729001ceA98142C", // Rinkeby Test Token - this is the contract we are targeting
+  to: "0x26FE8a8f86511d678d031a022E48FfF41c6a3e3b", // Goerli Test Token - this is the contract we are targeting
   //highlight-next-line
   callData: calldata, 
-  originDomain: "2221", // send from Kovan
-  destinationDomain: "1111", // to Rinkeby
+  originDomain: "1111", // send from Rinkeby
+  destinationDomain: "3331", // to Goerli
+  agent: "<destination_address>" // address allowed to execute in addition to relayers  
+  recovery: "<destination_address>", // fallback address to send funds to if execution fails on destination side
   forceSlow: false, // option that allows users to take the Nomad slow path (~30 mins) instead of paying routers a 0.05% fee on their transaction
-  receiveLocal: false // option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
+  receiveLocal: false, // option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
+  callback: ethers.constants.AddressZero, // zero address because we don't expect a callback 
+  callbackFee: "0", // relayers on testnet don't take a fee
+  relayerFee: "0", // relayers on testnet don't take a fee,
+  slippageTol: "9995" // max basis points allowed due to slippage (9995 to tolerate .05% slippage)
 };
 
 const xCallArgs = {
   params: callParams,
-  transactingAssetId: "0xB5AabB55385bfBe31D627E2A717a7B189ddA4F8F", // the Kovan Test Token
-  amount: "0", // not sending any funds
-  relayerFee: "0", // relayers on testnet don't take a fee
+  transactingAssetId: ethers.constants.AddressZero 
+  amount: "0" // not sending any funds
 };
 ```
 
 ### 9. Send it!
 
-Notice that we specified `amount: "0"` above so we're not sending any funds with this `xcall`. Therefore, we can skip the approval dance and just send the transaction.
+Notice that we specified the zero address for `transactingAssetId` and `amount: "0"` above since we're not sending any funds with this `xcall`. Therefore, we can skip the approval dance and just send the transaction.
 
 ```ts title="*same code*"
 const xcallTxReq = await nxtpSdkBase.xcall(xCallArgs);
