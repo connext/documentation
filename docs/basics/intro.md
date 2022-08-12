@@ -25,7 +25,7 @@ These docs are a work in progress! Please bear with us as we work to fill them o
 
 These docs are specifically for the interfaces introduced after our [Amarok network upgrade](https://blog.connext.network/announcing-the-amarok-network-upgrade-5046317860a4?source=collection_home---4------4-----------------------) which is currently on testnet. If you're looking for our legacy docs, switch to version 0.1.x in the navbar above.
 
-If you're interested in contributing to the development of the system or curious about the ongoing progress of the Amarok network upgrade, check out the Amarok branch of our [core implementation repo](https://github.com/connext/nxtp/tree/amarok).
+If you're interested in contributing to the development of the system or curious about the ongoing progress of the Amarok network upgrade, check out the main branch of our [core implementation repo](https://github.com/connext/nxtp/tree/amarok).
 
 ### Modular Interoperability
 
@@ -48,6 +48,11 @@ More information on this partnership can be found in this [Medium post](https://
 ### No More Offchain Auctioning / Signature Dependencies
 
 An external proof mechanism is no longer needed. Instead, a Router can simply front capital on the destination chain, and then wait for data from the origin chain to be ported over the messaging layer to destination, where both the user and router transactions can be compared for validity (and the router can replenish their capital). This enables contract-only development processes which greatly simplifies devX.
+
+### How do I add my chain to Connext?
+
+Connext does not charge any fee to onboard new chains.
+You can learn about our process for onboarding new chains in our [Chain Onboarding Guide](https://www.notion.so/connext/How-can-Connext-Bridge-add-my-Chain-fa8b43cac720467a88b5c94f81804091)
 
 ### What is our Fee model?
 
