@@ -105,7 +105,7 @@ Create a `config.json` file based on the `config.example.json` file. At minumum,
   - `host` - Set to the host name of your external Redis instance.
   - `port` - Set to the port of your external Redis instance.
 
-See the [Configuration](./configuration) section for more details.
+See the [Configuration](./Reference/configuration) section for more details.
 
 ## Running the Router
 
