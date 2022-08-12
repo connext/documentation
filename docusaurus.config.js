@@ -17,6 +17,12 @@ module.exports = {
     description: "Build your next xApp(cross-chain dapp) using Connext.",
   },
   themeConfig: {
+    matomo: {
+      matomoUrl: "https://connextnetwork.matomo.cloud/",
+      siteId: "5",
+      phpLoader: "matomo.php",
+      jsLoader: "matomo.js",
+    },
     algolia: {
       // The application ID provided by Algolia
       appId: "Z3QNOPOJN1",
@@ -36,7 +42,7 @@ module.exports = {
       searchParameters: {},
 
       // Optional: path for search page that enabled by default (`false` to disable it)
-      searchPagePath: "search",
+      searchPagePath: false,
 
       //... other Algolia params
     },
@@ -132,9 +138,11 @@ module.exports = {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
     },
-    sidebarCollapsible: false,
   },
-  plugins: [require.resolve("@easyops-cn/docusaurus-search-local")],
+  plugins: [
+    require.resolve("@easyops-cn/docusaurus-search-local"),
+    "docusaurus-plugin-matomo",
+  ],
   presets: [
     [
       "@docusaurus/preset-classic",
@@ -143,6 +151,7 @@ module.exports = {
           path: "./docs",
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
+          sidebarCollapsible: false,
           // Please change this to your repo.
           remarkPlugins: [CardLink],
           editUrl: "https://github.com/connext/documentation",
