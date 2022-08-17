@@ -51,7 +51,7 @@ Example:
 
 ## What if I just want to test the destination-side target function?
 
-If there’s no token transfer involved then just set `transactingAsetId: address(0)` and `amount: 0`.
+If there’s no token transfer involved then just set `transactingAssetId: address(0)` and `amount: 0`.
 
 ## Do I need to do anything with the Nomad contracts?
 
