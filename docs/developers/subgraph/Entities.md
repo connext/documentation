@@ -1,11 +1,9 @@
 ---
 sidebar_position: 2
 title: Subgraph Entities
-
-
 ---
 
-# Entities
+## Entities
 
 - [`Asset`](#asset)
 - [`AssetBalance`](#assetbalance)
@@ -13,7 +11,7 @@ title: Subgraph Entities
 - [`OriginTransfer`](#origintransfer)
 - [`DestinationTransfer`](#destinationtransfer)
 
-# Asset
+## Asset
 
 Description:
 
@@ -26,7 +24,7 @@ Description:
 | canonicalDomain | BigInt! |                                                                      |
 | blockNumber     | BigInt! | needed in case multiple locals are stored under the same canonicalId |
 
-# AssetBalance
+## AssetBalance
 
 Description:
 
@@ -37,7 +35,7 @@ Description:
 | router | Router! |             |
 | asset  | Asset!  |             |
 
-# Router
+## Router
 
 Description: Router represents a router and its associated liquidity
 
@@ -51,7 +49,7 @@ Description: Router represents a router and its associated liquidity
 | proposedTimestamp | BigInt           |                                                   |
 | assetBalances     | [AssetBalance!]! | Derived from the assets controlled by this router |
 
-# OriginTransfer
+## OriginTransfer
 
 Description:
 
@@ -81,7 +79,7 @@ Description:
 | gasLimit          | BigInt         | XCalled Transaction:                                                      |
 | blockNumber       | BigInt         | XCalled Transaction:                                                      |
 
-# DestinationTransfer
+## DestinationTransfer
 
 Description:
 
