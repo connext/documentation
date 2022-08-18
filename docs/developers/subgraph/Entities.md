@@ -7,11 +7,11 @@ title: Subgraph Entities
 
 # Entities
 
-- ['Asset'](#asset)
-- ['AssetBalance'](#assetbalance)
-- ['Router'](#router)
-- ['OriginTransfer'](#origintransfer)
-- ['DestinationTransfer'](#destinationtransfer)
+- [`Asset`](#asset)
+- [`AssetBalance`](#assetbalance)
+- [`Router`](#router)
+- [`OriginTransfer`](#origintransfer)
+- [`DestinationTransfer`](#destinationtransfer)
 
 # Asset
 
