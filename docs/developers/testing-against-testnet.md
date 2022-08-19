@@ -352,7 +352,100 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
     </tbody>
   </table>
 
-  </details>
+
+</details>
+
+<details>
+
+  <summary>Staging Contracts - AMB</summary>
+
+  ### Goerli Staging (chainId: 5, domainId: 1735353714)
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>Test Token (TEST ERC20)</td>
+        <td>
+          <a href="https://goerli.etherscan.io/address/0x30C687780AD7946d77C62b3413A95D5126B57cA1">
+            0x30C687780AD7946d77C62b3413A95D5126B57cA1
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>ConnextHandler</td>
+        <td>
+          <a href="https://louper.dev/diamond/0x8664bE4C5C12c718838b5dCd8748B66F3A0f6A18?network=goerli">
+            0x8664bE4C5C12c718838b5dCd8748B66F3A0f6A18
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>TokenRegistry</td>
+        <td>
+          <a href="https://goerli.etherscan.io/address/0x5de9262dC4e34EA0c8459048001050C3530e892D">
+            0x5de9262dC4e34EA0c8459048001050C3530e892D
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>PromiseRouter</td>
+        <td>
+          <a href="https://goerli.etherscan.io/address/0xd78F609E1F3e6db7aac1D88745f3493EA6F86Adf">
+            0xd78F609E1F3e6db7aac1D88745f3493EA6F86Adf
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  ### Optimism-Goerli (chainId: 420, domainId: 1735356532)
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>Test Token (TEST ERC20)</td>
+        <td>
+          <a href="https://blockscout.com/optimism/goerli/address/0xf21Ad79d25d3E2eCAEe99e09c237EfDD83fdAfEB">
+            0xf21Ad79d25d3E2eCAEe99e09c237EfDD83fdAfEB
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>ConnextHandler</td>
+        <td>
+          <a href="https://blockscout.com/optimism/goerli/address/0xB7CF5324641bD9F82903504c56c9DE2193B4822F">
+            0xB7CF5324641bD9F82903504c56c9DE2193B4822F
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>TokenRegistry</td>
+        <td>
+          <a href="https://blockscout.com/optimism/goerli/address/0x76e2030331865d2FD5B93DcAD5b8C754D5184a3a">
+            0x76e2030331865d2FD5B93DcAD5b8C754D5184a3a
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>PromiseRouter</td>
+        <td>
+          <a href="https://blockscout.com/optimism/goerli/address/0x910b23227b190f235aCb1708Ff5CFa13f6C38923">
+            0x910b23227b190f235aCb1708Ff5CFa13f6C38923
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</details>
 
 ## Test Token (TEST)
 
