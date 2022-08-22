@@ -386,16 +386,16 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
       <tr>
         <td>TokenRegistry</td>
         <td>
-          <a href="https://goerli.etherscan.io/address/0x5de9262dC4e34EA0c8459048001050C3530e892D">
-            0x5de9262dC4e34EA0c8459048001050C3530e892D
+          <a href="https://goerli.etherscan.io/address/0x458a2AE80fbe7e043ec18b62515423e63Ee5cBed">
+            0x458a2AE80fbe7e043ec18b62515423e63Ee5cBed
           </a>
         </td>
       </tr>
       <tr>
         <td>PromiseRouter</td>
         <td>
-          <a href="https://goerli.etherscan.io/address/0xd78F609E1F3e6db7aac1D88745f3493EA6F86Adf">
-            0xd78F609E1F3e6db7aac1D88745f3493EA6F86Adf
+          <a href="https://goerli.etherscan.io/address/0x3E3d48C7636A446C59423C95A89F1dE40f3a1F22">
+            0x3E3d48C7636A446C59423C95A89F1dE40f3a1F22
           </a>
         </td>
       </tr>
@@ -429,16 +429,16 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
       <tr>
         <td>TokenRegistry</td>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x76e2030331865d2FD5B93DcAD5b8C754D5184a3a">
-            0x76e2030331865d2FD5B93DcAD5b8C754D5184a3a
+          <a href="https://blockscout.com/optimism/goerli/address/0x35d3a7C14de030dC9a1375009620c99369827a5E">
+            0x35d3a7C14de030dC9a1375009620c99369827a5E
           </a>
         </td>
       </tr>
       <tr>
         <td>PromiseRouter</td>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x910b23227b190f235aCb1708Ff5CFa13f6C38923">
-            0x910b23227b190f235aCb1708Ff5CFa13f6C38923
+          <a href="https://blockscout.com/optimism/goerli/address/0xdd247dc5C3f446825FB00eA5bA074B6BAE8E2cae">
+            0xdd247dc5C3f446825FB00eA5bA074B6BAE8E2cae
           </a>
         </td>
       </tr>
