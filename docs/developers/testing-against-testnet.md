@@ -17,6 +17,17 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
   ### Goerli (chainId: 5, domainId: 1735353714)
 
   <table>
+    <tr>
+      <th>Chain ID</th>
+      <th>Domain ID</th>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>1735353714</td>
+    </tr>
+  </table>
+
+  <table>
     <tbody>
       <tr>
         <th>Contract</th>
@@ -67,6 +78,17 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
 
   ### Optimism-Goerli (chainId: 420, domainId: 1735356532)
 
+  <table>
+    <tr>
+      <th>Chain ID</th>
+      <th>Domain ID</th>
+    </tr>
+    <tr>
+      <td>420</td>
+      <td>1735356532</td>
+    </tr>
+  </table>
+  
   <table>
     <tbody>
       <tr>
@@ -130,7 +152,18 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
 
   <summary>Staging Testnet Contracts</summary>
 
-  ### Goerli (chainId: 5, domainId: 1735353714)
+  ### Goerli
+
+  <table>
+    <tr>
+      <th>Chain ID</th>
+      <th>Domain ID</th>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>1735353714</td>
+    </tr>
+  </table>
 
   <table>
     <tbody>
@@ -181,7 +214,18 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
     </tbody>
   </table>
 
-  ### Optimism-Goerli (chainId: 420, domainId: 1735356532)
+  ### Optimism-Goerli 
+
+  <table>
+    <tr>
+      <th>Chain ID</th>
+      <th>Domain ID</th>
+    </tr>
+    <tr>
+      <td>420</td>
+      <td>1735356532</td>
+    </tr>
+  </table>
 
   <table>
     <tbody>
@@ -208,8 +252,8 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
       <tr>
         <td>Wrapped Ether ERC20 (WETH) [adopted]</td>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x4200000000000000000000000000000000000006">
-            0x4200000000000000000000000000000000000006
+          <a href="https://blockscout.com/optimism/goerli/address/0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6">
+            0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6
           </a>
         </td>
       </tr>
