@@ -10,119 +10,13 @@ The Connext testnet contains various pieces of infrastructure and smart contract
 
 A full reference to deployed contracts can be found in the [deployments.json](https://github.com/connext/nxtp/blob/main/packages/deployments/contracts/deployments.json) file.
 
-### Rinkeby (chainId: 4, domainId: 1111)
+<details>
 
-<table>
-  <tbody>
-    <tr>
-      <th>Contract</th>
-      <th>Address</th>
-    </tr>
-    <tr>
-      <td>Test Token ERC20 (TEST) [adopted]</td>
-      <td>
-        <a href="https://rinkeby.etherscan.io/address/0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9">
-          0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>Wrapped Ether ERC20 (madWETH) [representation]</td>
-      <td>
-        <a href="https://rinkeby.etherscan.io/address/0xF25927315D101aC04C631878570152658defa7Db">
-          0xF25927315D101aC04C631878570152658defa7Db
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>Wrapped Ether ERC20 (WETH) [adopted]</td>
-      <td>
-        <a href="https://rinkeby.etherscan.io/address/0xc778417E063141139Fce010982780140Aa0cD5Ab">
-          0xc778417E063141139Fce010982780140Aa0cD5Ab
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>ConnextHandler</td>
-      <td>
-        <a href="https://louper.dev/diamond/0x4cAA6358a3d9d1906B5DABDE60A626AAfD80186F?network=rinkeby">
-          0x4cAA6358a3d9d1906B5DABDE60A626AAfD80186F
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>TokenRegistry</td>
-      <td>
-        <a href="https://rinkeby.etherscan.io/address/0x1A3BA482D98CCB858AEacB3B839f952390099cE6">
-          0x1A3BA482D98CCB858AEacB3B839f952390099cE6
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>PromiseRouter</td>
-      <td>
-        <a href="https://rinkeby.etherscan.io/address/0xC02530858cE0260a1c4f214CF2d5b7c4E5986485">
-          0xC02530858cE0260a1c4f214CF2d5b7c4E5986485
-        </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <summary>Production Contracts - Legacy</summary>
 
-### Goerli (chainId: 5, domainId: 3331)
+  ### Rinkeby (chainId: 4, domainId: 1111)
 
-<table>
-  <tbody>
-    <tr>
-      <th>Contract</th>
-      <th>Address</th>
-    </tr>
-    <tr>
-      <td>Test Token ERC20 (TEST) [canonical]</td>
-      <td>
-        <a href="https://goerli.etherscan.io/address/0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1">
-          0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>Wrapped Ether ERC20 (WETH) [canonical]</td>
-      <td>
-        <a href="https://goerli.etherscan.io/address/0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6">
-          0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>ConnextHandler</td>
-      <td>
-        <a href="https://louper.dev/diamond/0x6c9a905Ab3f4495E2b47f5cA131ab71281E0546e?network=goerli">
-          0x6c9a905Ab3f4495E2b47f5cA131ab71281E0546e
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>TokenRegistry</td>
-      <td>
-        <a href="https://goerli.etherscan.io/address/0x51192fD98635FD32C2bfc0A2F4e362D864A4B8b1">
-          0x51192fD98635FD32C2bfc0A2F4e362D864A4B8b1
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>PromiseRouter</td>
-      <td>
-        <a href="https://goerli.etherscan.io/address/0xD7DAE26f3C54CEE823a02C6fD25d4301860F2B33">
-          0xD7DAE26f3C54CEE823a02C6fD25d4301860F2B33
-        </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-### Mumbai (chainId: 80001, domainId: 9991)
-
-<table>
+  <table>
     <tbody>
       <tr>
         <th>Contract</th>
@@ -131,57 +25,169 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
       <tr>
         <td>Test Token ERC20 (TEST) [adopted]</td>
         <td>
-          <a href="https://mumbai.polygonscan.com/address/0x21c5a4dAeAf9625c781Aa996E9229eA95EE4Ff77">
-            0x21c5a4dAeAf9625c781Aa996E9229eA95EE4Ff77
+          <a href="https://rinkeby.etherscan.io/address/0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9">
+            0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9
           </a>
         </td>
       </tr>
-    <tr>
-      <td>Wrapped Ether ERC20 (madWETH) [representation]</td>
-      <td>
-        <a href="https://mumbai.polygonscan.com/address/0x4E2FCcA06dA37869047d84b82364d1831E5aa7E1">
-          0x4E2FCcA06dA37869047d84b82364d1831E5aa7E1
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td>Wrapped Ether ERC20 (WETH) [adopted]</td>
-      <td>
-        <a href="https://mumbai.polygonscan.com/address/0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa">
-          0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa
-        </a>
-      </td>
-    </tr>
+      <tr>
+        <td>Wrapped Ether ERC20 (madWETH) [representation]</td>
+        <td>
+          <a href="https://rinkeby.etherscan.io/address/0xF25927315D101aC04C631878570152658defa7Db">
+            0xF25927315D101aC04C631878570152658defa7Db
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>Wrapped Ether ERC20 (WETH) [adopted]</td>
+        <td>
+          <a href="https://rinkeby.etherscan.io/address/0xc778417E063141139Fce010982780140Aa0cD5Ab">
+            0xc778417E063141139Fce010982780140Aa0cD5Ab
+          </a>
+        </td>
+      </tr>
       <tr>
         <td>ConnextHandler</td>
         <td>
-          <a href="https://louper.dev/diamond/0x765cbd312ad84A791908000DF58d879e4eaf768b?network=mumbai">
-            0x765cbd312ad84A791908000DF58d879e4eaf768b
+          <a href="https://louper.dev/diamond/0x4cAA6358a3d9d1906B5DABDE60A626AAfD80186F?network=rinkeby">
+            0x4cAA6358a3d9d1906B5DABDE60A626AAfD80186F
           </a>
         </td>
       </tr>
       <tr>
         <td>TokenRegistry</td>
         <td>
-          <a href="https://mumbai.polygonscan.com/address/0xB4dd8604E6E720A5a2a47a82920707A825cEF995">
-            0xB4dd8604E6E720A5a2a47a82920707A825cEF995
+          <a href="https://rinkeby.etherscan.io/address/0x1A3BA482D98CCB858AEacB3B839f952390099cE6">
+            0x1A3BA482D98CCB858AEacB3B839f952390099cE6
           </a>
         </td>
       </tr>
       <tr>
         <td>PromiseRouter</td>
         <td>
-          <a href="https://mumbai.polygonscan.com/address/0xFe391d6ca29085075C2483efB3E0Ba125cd6EE1e">
-            0xFe391d6ca29085075C2483efB3E0Ba125cd6EE1e
+          <a href="https://rinkeby.etherscan.io/address/0xC02530858cE0260a1c4f214CF2d5b7c4E5986485">
+            0xC02530858cE0260a1c4f214CF2d5b7c4E5986485
           </a>
         </td>
       </tr>
     </tbody>
   </table>
 
+  ### Goerli (chainId: 5, domainId: 3331)
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>Test Token ERC20 (TEST) [canonical]</td>
+        <td>
+          <a href="https://goerli.etherscan.io/address/0x26FE8a8f86511d678d031a022E48FfF41c6a3e3b">
+            0x26FE8a8f86511d678d031a022E48FfF41c6a3e3b
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>Wrapped Ether ERC20 (WETH) [canonical]</td>
+        <td>
+          <a href="https://goerli.etherscan.io/address/0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6">
+            0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>ConnextHandler</td>
+        <td>
+          <a href="https://louper.dev/diamond/0x6c9a905Ab3f4495E2b47f5cA131ab71281E0546e?network=goerli">
+            0x6c9a905Ab3f4495E2b47f5cA131ab71281E0546e
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>TokenRegistry</td>
+        <td>
+          <a href="https://goerli.etherscan.io/address/0x51192fD98635FD32C2bfc0A2F4e362D864A4B8b1">
+            0x51192fD98635FD32C2bfc0A2F4e362D864A4B8b1
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>PromiseRouter</td>
+        <td>
+          <a href="https://goerli.etherscan.io/address/0xD7DAE26f3C54CEE823a02C6fD25d4301860F2B33">
+            0xD7DAE26f3C54CEE823a02C6fD25d4301860F2B33
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  ### Mumbai (chainId: 80001, domainId: 9991)
+
+  <table>
+      <tbody>
+        <tr>
+          <th>Contract</th>
+          <th>Address</th>
+        </tr>
+        <tr>
+          <td>Test Token ERC20 (TEST) [adopted]</td>
+          <td>
+            <a href="https://mumbai.polygonscan.com/address/0x21c5a4dAeAf9625c781Aa996E9229eA95EE4Ff77">
+              0x21c5a4dAeAf9625c781Aa996E9229eA95EE4Ff77
+            </a>
+          </td>
+        </tr>
+      <tr>
+        <td>Wrapped Ether ERC20 (madWETH) [representation]</td>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0x4E2FCcA06dA37869047d84b82364d1831E5aa7E1">
+            0x4E2FCcA06dA37869047d84b82364d1831E5aa7E1
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>Wrapped Ether ERC20 (WETH) [adopted]</td>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa">
+            0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa
+          </a>
+        </td>
+      </tr>
+        <tr>
+          <td>ConnextHandler</td>
+          <td>
+            <a href="https://louper.dev/diamond/0x765cbd312ad84A791908000DF58d879e4eaf768b?network=mumbai">
+              0x765cbd312ad84A791908000DF58d879e4eaf768b
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>TokenRegistry</td>
+          <td>
+            <a href="https://mumbai.polygonscan.com/address/0xB4dd8604E6E720A5a2a47a82920707A825cEF995">
+              0xB4dd8604E6E720A5a2a47a82920707A825cEF995
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>PromiseRouter</td>
+          <td>
+            <a href="https://mumbai.polygonscan.com/address/0xFe391d6ca29085075C2483efB3E0Ba125cd6EE1e">
+              0xFe391d6ca29085075C2483efB3E0Ba125cd6EE1e
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+</details>
+
 <details>
 
-  <summary>Staging Contracts</summary>
+  <summary>Staging Contracts - Legacy</summary>
 
   ### Rinkeby Staging (chainId: 4, domainId: 1111)
 
@@ -352,12 +358,11 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
     </tbody>
   </table>
 
-
 </details>
 
 <details>
 
-  <summary>Staging Contracts - AMB</summary>
+  <summary>Staging Contracts - AMB Interim</summary>
 
   ### Goerli Staging (chainId: 5, domainId: 1735353714)
 
@@ -386,16 +391,16 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
       <tr>
         <td>TokenRegistry</td>
         <td>
-          <a href="https://goerli.etherscan.io/address/0x5de9262dC4e34EA0c8459048001050C3530e892D">
-            0x5de9262dC4e34EA0c8459048001050C3530e892D
+          <a href="https://goerli.etherscan.io/address/0x458a2AE80fbe7e043ec18b62515423e63Ee5cBed">
+            0x458a2AE80fbe7e043ec18b62515423e63Ee5cBed
           </a>
         </td>
       </tr>
       <tr>
         <td>PromiseRouter</td>
         <td>
-          <a href="https://goerli.etherscan.io/address/0xd78F609E1F3e6db7aac1D88745f3493EA6F86Adf">
-            0xd78F609E1F3e6db7aac1D88745f3493EA6F86Adf
+          <a href="https://goerli.etherscan.io/address/0x3E3d48C7636A446C59423C95A89F1dE40f3a1F22">
+            0x3E3d48C7636A446C59423C95A89F1dE40f3a1F22
           </a>
         </td>
       </tr>
@@ -429,16 +434,151 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
       <tr>
         <td>TokenRegistry</td>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x76e2030331865d2FD5B93DcAD5b8C754D5184a3a">
-            0x76e2030331865d2FD5B93DcAD5b8C754D5184a3a
+          <a href="https://blockscout.com/optimism/goerli/address/0x35d3a7C14de030dC9a1375009620c99369827a5E">
+            0x35d3a7C14de030dC9a1375009620c99369827a5E
           </a>
         </td>
       </tr>
       <tr>
         <td>PromiseRouter</td>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x910b23227b190f235aCb1708Ff5CFa13f6C38923">
-            0x910b23227b190f235aCb1708Ff5CFa13f6C38923
+          <a href="https://blockscout.com/optimism/goerli/address/0xdd247dc5C3f446825FB00eA5bA074B6BAE8E2cae">
+            0xdd247dc5C3f446825FB00eA5bA074B6BAE8E2cae
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</details>
+
+<details>
+
+  <summary>Production Contracts - AMB Interim</summary>
+
+  ### Ethereum (chainId: 1, domainId: 6648936)
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>Test Token (TEST ERC20)</td>
+        <td>
+          <a href="https://goerli.etherscan.io">
+            TBD
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>ConnextHandler</td>
+        <td>
+          <a href="https://louper.dev">
+            TBD
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>TokenRegistry</td>
+        <td>
+          <a href="https://goerli.etherscan.io">
+            TBD
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>PromiseRouter</td>
+        <td>
+          <a href="https://goerli.etherscan.io">
+            TBD
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  ### Optimism (chainId: TBD, domainId: TBD)
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>Test Token (TEST ERC20)</td>
+        <td>
+          <a href="https://goerli.etherscan.io">
+            TBD
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>ConnextHandler</td>
+        <td>
+          <a href="https://louper.dev">
+            TBD
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>TokenRegistry</td>
+        <td>
+          <a href="https://goerli.etherscan.io">
+            TBD
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>PromiseRouter</td>
+        <td>
+          <a href="https://goerli.etherscan.io">
+            TBD
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  ### Arbitrum (chainId: TBD, domainId: TBD)
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>Test Token (TEST ERC20)</td>
+        <td>
+          <a href="https://goerli.etherscan.io">
+            TBD
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>ConnextHandler</td>
+        <td>
+          <a href="https://louper.dev">
+            TBD
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>TokenRegistry</td>
+        <td>
+          <a href="https://goerli.etherscan.io">
+            TBD
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>PromiseRouter</td>
+        <td>
+          <a href="https://goerli.etherscan.io">
+            TBD
           </a>
         </td>
       </tr>
