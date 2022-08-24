@@ -12,7 +12,7 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
 
 <details>
 
-  <summary>Production Contracts - Legacy</summary>
+  <summary>Production Testnet Contracts - Legacy</summary>
 
   ### Rinkeby (chainId: 4, domainId: 1111)
 
@@ -187,9 +187,9 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
 
 <details>
 
-  <summary>Staging Contracts - Legacy</summary>
+  <summary>Staging Testnet Contracts - Legacy</summary>
 
-  ### Rinkeby Staging (chainId: 4, domainId: 1111)
+  ### Rinkeby (chainId: 4, domainId: 1111)
 
   <table>
     <tbody>
@@ -248,7 +248,7 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
     </tbody>
   </table>
 
-  ### Goerli Staging (chainId: 5, domainId: 3331)
+  ### Goerli (chainId: 5, domainId: 3331)
 
   <table>
     <tbody>
@@ -299,7 +299,7 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
     </tbody>
   </table>
 
-  ### Mumbai Staging (chainId: 80001, domainId: 9991)
+  ### Mumbai (chainId: 80001, domainId: 9991)
 
   <table>
     <tbody>
@@ -362,9 +362,9 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
 
 <details>
 
-  <summary>Production Contracts - AMB Interim</summary>
+  <summary>Production Testnet Contracts - AMB Interim</summary>
 
-  ### Ethereum (chainId: 1, domainId: 6648936)
+  ### Goerli (chainId: 5, domainId: 1735353714)
 
   <table>
     <tbody>
@@ -375,39 +375,47 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
       <tr>
         <td>Test Token (TEST ERC20)</td>
         <td>
-          <a href="https://goerli.etherscan.io">
-            TBD
+          <a href="https://goerli.etherscan.io/address/0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1">
+            0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>Wrapped Ether ERC20 (WETH) [canonical]</td>
+        <td>
+          <a href="https://goerli.etherscan.io/address/0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6">
+            0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6
           </a>
         </td>
       </tr>
       <tr>
         <td>ConnextHandler</td>
         <td>
-          <a href="https://louper.dev">
-            TBD
+          <a href="https://louper.dev/diamond/0xB4C1340434920d70aD774309C75f9a4B679d801e?network=goerli">
+            0xB4C1340434920d70aD774309C75f9a4B679d801e
           </a>
         </td>
       </tr>
       <tr>
         <td>TokenRegistry</td>
         <td>
-          <a href="https://goerli.etherscan.io">
-            TBD
+          <a href="https://goerli.etherscan.io/address/0x3f95CEF37566D0B101b8F9349586757c5D1F2504">
+            0x3f95CEF37566D0B101b8F9349586757c5D1F2504
           </a>
         </td>
       </tr>
       <tr>
         <td>PromiseRouter</td>
         <td>
-          <a href="https://goerli.etherscan.io">
-            TBD
+          <a href="https://goerli.etherscan.io/address/0xD25575eD38fa0F168c9Ba4E61d887B6b3433F350">
+            0xD25575eD38fa0F168c9Ba4E61d887B6b3433F350
           </a>
         </td>
       </tr>
     </tbody>
   </table>
 
-  ### Optimism (chainId: TBD, domainId: TBD)
+  ### Optimism-Goerli (chainId: 420, domainId: 1735356532)
 
   <table>
     <tbody>
@@ -424,69 +432,42 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
         </td>
       </tr>
       <tr>
-        <td>ConnextHandler</td>
+        <td>Wrapped Ether ERC20 (madWETH) [representation]</td>
         <td>
-          <a href="https://louper.dev">
-            TBD
+          <a href="https://blockscout.com/optimism/goerli/address/0x6dC42a10F89Da5dAE486De606B1Dc4d8C5Ed1bfE">
+            0x6dC42a10F89Da5dAE486De606B1Dc4d8C5Ed1bfE
           </a>
         </td>
       </tr>
       <tr>
-        <td>TokenRegistry</td>
+        <td>Wrapped Ether ERC20 (WETH) [adopted]</td>
         <td>
-          <a href="https://goerli.etherscan.io">
-            TBD
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>PromiseRouter</td>
-        <td>
-          <a href="https://goerli.etherscan.io">
-            TBD
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  ### Arbitrum (chainId: TBD, domainId: TBD)
-
-  <table>
-    <tbody>
-      <tr>
-        <th>Contract</th>
-        <th>Address</th>
-      </tr>
-      <tr>
-        <td>Test Token (TEST ERC20)</td>
-        <td>
-          <a href="https://goerli.etherscan.io">
-            TBD
+          <a href="https://blockscout.com/optimism/goerli/address/0x4200000000000000000000000000000000000006">
+            0x4200000000000000000000000000000000000006
           </a>
         </td>
       </tr>
       <tr>
         <td>ConnextHandler</td>
         <td>
-          <a href="https://louper.dev">
-            TBD
+          <a href="https://blockscout.com/optimism/goerli/address/0xe37f1f55eab648dA87047A03CB03DeE3d3fe7eC7">
+            0xe37f1f55eab648dA87047A03CB03DeE3d3fe7eC7
           </a>
         </td>
       </tr>
       <tr>
         <td>TokenRegistry</td>
         <td>
-          <a href="https://goerli.etherscan.io">
-            TBD
+          <a href="https://blockscout.com/optimism/goerli/address/0x67fE7B3a2f14c6AC690329D433578eEFE59954C8">
+            0x67fE7B3a2f14c6AC690329D433578eEFE59954C8
           </a>
         </td>
       </tr>
       <tr>
         <td>PromiseRouter</td>
         <td>
-          <a href="https://goerli.etherscan.io">
-            TBD
+          <a href="https://blockscout.com/optimism/goerli/address/0x7aA60f0D8E234EdCbcB119d0e569376E93431Ee2">
+            0x7aA60f0D8E234EdCbcB119d0e569376E93431Ee2
           </a>
         </td>
       </tr>
@@ -497,9 +478,9 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
 
 <details>
 
-  <summary>Staging Contracts - AMB Interim</summary>
+  <summary>Staging Testnet Contracts - AMB Interim</summary>
 
-  ### Goerli Staging (chainId: 5, domainId: 1735353714)
+  ### Goerli (chainId: 5, domainId: 1735353714)
 
   <table>
     <tbody>
