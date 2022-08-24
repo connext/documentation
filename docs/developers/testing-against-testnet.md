@@ -14,7 +14,7 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
 
   <summary>Production Testnet Contracts</summary>
 
-  ### Goerli (chainId: 5, domainId: 1735353714)
+  ### Goerli
 
   <table>
     <tr>
@@ -76,7 +76,7 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
     </tbody>
   </table>
 
-  ### Optimism-Goerli (chainId: 420, domainId: 1735356532)
+  ### Optimism-Goerli
 
   <table>
     <tr>
