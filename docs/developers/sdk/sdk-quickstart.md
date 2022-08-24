@@ -132,7 +132,7 @@ const nxtpConfig: NxtpSdkConfig = {
       assets: [
         {
           name: "TEST",
-          address: "0x26FE8a8f86511d678d031a022E48FfF41c6a3e3b",
+          address: "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1",
           symbol: "TEST",
         },
       ],
@@ -229,7 +229,7 @@ After the DestinationTransfer shows up on the Goerli side, the freshly transferr
 
 We can also send arbitrary `calldata`, along with the `xcall`, to be executed on the destination domain.
 
-In this example, we're going to construct some `calldata` targeting an existing contract function to avoid having to deploy a new contract. We'll aim for the `mint` function of the [Test ERC20 Token (TEST) contract](https://goerli.etherscan.io/address/0x26FE8a8f86511d678d031a022E48FfF41c6a3e3b#writeContract) to demonstrate this. 
+In this example, we're going to construct some `calldata` targeting an existing contract function to avoid having to deploy a new contract. We'll aim for the `mint` function of the [Test ERC20 Token (TEST) contract](https://goerli.etherscan.io/address/0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1#writeContract) to demonstrate this. 
 
 > Minting usually requires authentication but the Test Token has a public `mint` function (callable by anyone!) that we can leverage for this example. Hence, this is an "unauthenticated" `xcall` with calldata - nothing extra needs to be done on the destination side.
 
@@ -260,7 +260,7 @@ Now with the `calldata` ready, we supply it to the `xCallArgs`.
 
 ```js
 const callParams = {
-  to: "0x26FE8a8f86511d678d031a022E48FfF41c6a3e3b", // Goerli Test Token - this is the contract we are targeting
+  to: "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1", // Goerli Test Token - this is the contract we are targeting
   //highlight-next-line
   callData: calldata, 
   originDomain: "1111", // send from Rinkeby

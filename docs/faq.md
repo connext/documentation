@@ -46,7 +46,7 @@ Example:
   Returns:
 
   ```bash
-  0x26fe8a8f86511d678d031a022e48fff41c6a3e3b # the contract address of the canonical TestERC20
+  0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1 # the contract address of the canonical TestERC20
   ```
 
 ## What if I just want to test the destination-side target function?

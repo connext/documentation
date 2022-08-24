@@ -259,8 +259,8 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
       <tr>
         <td>Test Token (TEST ERC20)</td>
         <td>
-          <a href="https://goerli.etherscan.io/address/0x26FE8a8f86511d678d031a022E48FfF41c6a3e3b">
-            0x26FE8a8f86511d678d031a022E48FfF41c6a3e3b
+          <a href="https://goerli.etherscan.io/address/0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1">
+            0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1
           </a>
         </td>
       </tr>
@@ -334,8 +334,8 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
       <tr>
         <td>ConnextHandler</td>
         <td>
-          <a href="https://louper.dev/diamond/0xf21Ad79d25d3E2eCAEe99e09c237EfDD83fdAfEB?network=mumbai">
-            0xf21Ad79d25d3E2eCAEe99e09c237EfDD83fdAfEB
+          <a href="https://louper.dev/diamond/0x68Db1c8d85C09d546097C65ec7DCBFF4D6497CbF?network=mumbai">
+            0x68Db1c8d85C09d546097C65ec7DCBFF4D6497CbF
           </a>
         </td>
       </tr>
@@ -418,8 +418,8 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
       <tr>
         <td>Test Token (TEST ERC20)</td>
         <td>
-          <a href="https://goerli.etherscan.io">
-            TBD
+          <a href="https://blockscout.com/optimism/goerli/address/0x68Db1c8d85C09d546097C65ec7DCBFF4D6497CbF">
+            0x68Db1c8d85C09d546097C65ec7DCBFF4D6497CbF
           </a>
         </td>
       </tr>
