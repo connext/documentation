@@ -106,8 +106,8 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
       <tr>
         <td>Wrapped Ether ERC20 (madWETH) [representation]</td>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x6dC42a10F89Da5dAE486De606B1Dc4d8C5Ed1bfE">
-            0x6dC42a10F89Da5dAE486De606B1Dc4d8C5Ed1bfE
+          <a href="https://blockscout.com/optimism/goerli/address/0x39B061B7e41DE8B721f9aEcEB6b3f17ECB7ba63E">
+            0x39B061B7e41DE8B721f9aEcEB6b3f17ECB7ba63E
           </a>
         </td>
       </tr>
