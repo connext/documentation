@@ -362,98 +362,6 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
 
 <details>
 
-  <summary>Staging Contracts - AMB Interim</summary>
-
-  ### Goerli Staging (chainId: 5, domainId: 1735353714)
-
-  <table>
-    <tbody>
-      <tr>
-        <th>Contract</th>
-        <th>Address</th>
-      </tr>
-      <tr>
-        <td>Test Token (TEST ERC20)</td>
-        <td>
-          <a href="https://goerli.etherscan.io/address/0x30C687780AD7946d77C62b3413A95D5126B57cA1">
-            0x30C687780AD7946d77C62b3413A95D5126B57cA1
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>ConnextHandler</td>
-        <td>
-          <a href="https://louper.dev/diamond/0x8664bE4C5C12c718838b5dCd8748B66F3A0f6A18?network=goerli">
-            0x8664bE4C5C12c718838b5dCd8748B66F3A0f6A18
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>TokenRegistry</td>
-        <td>
-          <a href="https://goerli.etherscan.io/address/0x458a2AE80fbe7e043ec18b62515423e63Ee5cBed">
-            0x458a2AE80fbe7e043ec18b62515423e63Ee5cBed
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>PromiseRouter</td>
-        <td>
-          <a href="https://goerli.etherscan.io/address/0x3E3d48C7636A446C59423C95A89F1dE40f3a1F22">
-            0x3E3d48C7636A446C59423C95A89F1dE40f3a1F22
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  ### Optimism-Goerli (chainId: 420, domainId: 1735356532)
-
-  <table>
-    <tbody>
-      <tr>
-        <th>Contract</th>
-        <th>Address</th>
-      </tr>
-      <tr>
-        <td>Test Token (TEST ERC20)</td>
-        <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0xf21Ad79d25d3E2eCAEe99e09c237EfDD83fdAfEB">
-            0xf21Ad79d25d3E2eCAEe99e09c237EfDD83fdAfEB
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>ConnextHandler</td>
-        <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0xB7CF5324641bD9F82903504c56c9DE2193B4822F">
-            0xB7CF5324641bD9F82903504c56c9DE2193B4822F
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>TokenRegistry</td>
-        <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x35d3a7C14de030dC9a1375009620c99369827a5E">
-            0x35d3a7C14de030dC9a1375009620c99369827a5E
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td>PromiseRouter</td>
-        <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0xdd247dc5C3f446825FB00eA5bA074B6BAE8E2cae">
-            0xdd247dc5C3f446825FB00eA5bA074B6BAE8E2cae
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-</details>
-
-<details>
-
   <summary>Production Contracts - AMB Interim</summary>
 
   ### Ethereum (chainId: 1, domainId: 6648936)
@@ -579,6 +487,122 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
         <td>
           <a href="https://goerli.etherscan.io">
             TBD
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</details>
+
+<details>
+
+  <summary>Staging Contracts - AMB Interim</summary>
+
+  ### Goerli Staging (chainId: 5, domainId: 1735353714)
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>Test Token (TEST ERC20)</td>
+        <td>
+          <a href="https://goerli.etherscan.io/address/0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1">
+            0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>Wrapped Ether ERC20 (WETH) [canonical]</td>
+        <td>
+          <a href="https://goerli.etherscan.io/address/0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6">
+            0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>ConnextHandler</td>
+        <td>
+          <a href="https://louper.dev/diamond/0x8664bE4C5C12c718838b5dCd8748B66F3A0f6A18?network=goerli">
+            0x8664bE4C5C12c718838b5dCd8748B66F3A0f6A18
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>TokenRegistry</td>
+        <td>
+          <a href="https://goerli.etherscan.io/address/0x458a2AE80fbe7e043ec18b62515423e63Ee5cBed">
+            0x458a2AE80fbe7e043ec18b62515423e63Ee5cBed
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>PromiseRouter</td>
+        <td>
+          <a href="https://goerli.etherscan.io/address/0x3E3d48C7636A446C59423C95A89F1dE40f3a1F22">
+            0x3E3d48C7636A446C59423C95A89F1dE40f3a1F22
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  ### Optimism-Goerli (chainId: 420, domainId: 1735356532)
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>Test Token (TEST ERC20)</td>
+        <td>
+          <a href="https://blockscout.com/optimism/goerli/address/0x68Db1c8d85C09d546097C65ec7DCBFF4D6497CbF">
+            0x68Db1c8d85C09d546097C65ec7DCBFF4D6497CbF
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>Wrapped Ether ERC20 (madWETH) [representation]</td>
+        <td>
+          <a href="https://blockscout.com/optimism/goerli/address/0x6dC42a10F89Da5dAE486De606B1Dc4d8C5Ed1bfE">
+            0x6dC42a10F89Da5dAE486De606B1Dc4d8C5Ed1bfE
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>Wrapped Ether ERC20 (WETH) [adopted]</td>
+        <td>
+          <a href="https://blockscout.com/optimism/goerli/address/0x4200000000000000000000000000000000000006">
+            0x4200000000000000000000000000000000000006
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>ConnextHandler</td>
+        <td>
+          <a href="https://blockscout.com/optimism/goerli/address/0xB7CF5324641bD9F82903504c56c9DE2193B4822F">
+            0xB7CF5324641bD9F82903504c56c9DE2193B4822F
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>TokenRegistry</td>
+        <td>
+          <a href="https://blockscout.com/optimism/goerli/address/0x35d3a7C14de030dC9a1375009620c99369827a5E">
+            0x35d3a7C14de030dC9a1375009620c99369827a5E
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td>PromiseRouter</td>
+        <td>
+          <a href="https://blockscout.com/optimism/goerli/address/0xdd247dc5C3f446825FB00eA5bA074B6BAE8E2cae">
+            0xdd247dc5C3f446825FB00eA5bA074B6BAE8E2cae
           </a>
         </td>
       </tr>
