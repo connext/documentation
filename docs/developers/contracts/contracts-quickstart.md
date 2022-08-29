@@ -37,10 +37,11 @@ Let's start with a simple example of sending funds across domains. We can write 
 
 ### Contract
 
-First, we need to import the `IConnextHandler` interface. We'll also use solmate's `ERC20` implementation to handle the token we intend to transfer.
+First, we need to import the `IConnextHandler` interface along with `CallParams` and `XCallArgs`. We'll also use solmate's `ERC20` implementation to handle the token we intend to transfer.
 
 ```solidity title="Transfer.sol"
-import {IConnextHandler} from "nxtp/interfaces/IConnextHandler.sol";
+import {IConnextHandler} from "nxtp/core/connext/interfaces/IConnextHandler.sol";
+import {CallParams, XCallArgs} from "nxtp/core/connext/libraries/LibConnextStorage.sol";
 import {ERC20} from "@solmate/tokens/ERC20.sol";
 ```
 
@@ -61,8 +62,8 @@ The `transfer` function will take some arguments to use in the `xcall`.
   function transfer(
     address to, // the destination address (e.g. a wallet)
     address asset, // address of token on source domain 
-    uint32 originDomain, // e.g. from Rinkeby (1111)
-    uint32 destinationDomain, // to Goerli (3331)
+    uint32 originDomain, // e.g. from Goerli (1735353714)
+    uint32 destinationDomain, // to Optimism-Goerli (1735356532)
     uint256 amount // amount to transfer
   ) external {
 ```
@@ -85,39 +86,32 @@ So tokens will be sent from `User's wallet` -> `Transfer.sol` -> `ConnextHandler
 Finally, we construct the `XCallArgs` and call `xcall` on the Connext contract.
 
 ```solidity
-    IConnextHandler.CallParams memory callParams = IConnextHandler.CallParams({
+    CallParams memory callParams = CallParams({
       to: to,
-      callData: "",
+      callData: "", // empty here because we're only sending funds
       originDomain: originDomain,
       destinationDomain: destinationDomain,
-      agent: to,
-      recovery: to,
-      forceSlow: false,
-      receiveLocal: false,
-      callback: address(0),
-      callbackFee: 0,
-      relayerFee: 0,
-      slippageTol: 9995
+      agent: msg.sender, // address allowed to execute transaction on destination side in addition to relayers
+      recovery: msg.sender, // fallback address to send funds to if execution fails on destination side
+      forceSlow: false, // option to force slow path instead of paying 0.05% fee on fast liquidity transfers
+      receiveLocal: false, // option to receive the local bridge-flavored asset instead of the adopted asset
+      callback: address(0), // zero address because we don't expect a callback
+      callbackFee: 0, // fee paid to relayers; relayers don't take any fees on testnet
+      relayerFee: 0, // fee paid to relayers; relayers don't take any fees on testnet
+      destinationMinOut: (amount / 100) * 97 // the minimum amount that the user will accept due to slippage from the StableSwap pool
     });
 
-    IConnextHandler.XCallArgs memory xcallArgs = IConnextHandler.XCallArgs({
+    XCallArgs memory xcallArgs = XCallArgs({
       params: callParams,
-      transactingAssetId: asset,
-      amount: amount
+      transactingAsset: asset,
+      transactingAmount: amount,
+      originMinOut: (amount / 100) * 97 // the minimum amount that the user will accept due to slippage from the StableSwap pool
     });
+
+    connext.xcall(xcallArgs);
+  }
+}
 ```
-
-A few parameters to note:
-
-- `callData` is empty here because we're only sending funds
-- `agent` is the address that is allowed to execute the transaction on the destination side in addition to relayers; this allows for the user (or user-specified address) to self-execute the transaction in case relayers don't for any reason
-- `recovery` is a fallback address to send funds to if execution fails on destination side
-- `forceSlow` is an option that allows users to take the Nomad slow path (~30 mins) instead of paying routers a 0.05% fee on their transaction
-- `receiveLocal` is an option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
-- `callback` is the zero address because we don't expect a callback
-- `callbackFee` is a fee paid to relayers; relayers don't take any fees on testnet so it's set to 0
-- `relayerFee` is a fee paid to relayers; relayers don't take any fees on testnet so it's set to 0
-- `slippageTol` is the max basis points allowed due to slippage (9995 to tolerate .05% slippage)
 
 A detailed reference of all the `xcall` arguments can be found [here](../xcall-params.md).
 
@@ -148,17 +142,14 @@ Our goal is to call the `updateValue` function, which is unauthenticated (i.e. c
 The source contract initiates the cross-chain interaction with Connext. There isn't much difference between this contract and the one from the transfer example above. The only major differences are:
 
 - we aren't sending funds with the `xcall` so the entire approval dance isn't necessary
-- we are sending `calldata` so we need to contruct it
+- we are sending `calldata` so we need to construct it
 
-Import the `IConnextHandler` interface.
+We have the same imports and constructor.
 
 ```solidity title="Source.sol"
-import {IConnextHandler} from "nxtp/interfaces/IConnextHandler.sol";
-```
+import {IConnextHandler} from "nxtp/core/connext/interfaces/IConnextHandler.sol";
+import {CallParams, XCallArgs} from "nxtp/core/connext/libraries/LibConnextStorage.sol";
 
-The contract will take the address of a deployed `ConnextHandler.sol` as a constructor argument.
-
-```solidity
 contract Source {
   IConnextHandler public immutable connext;
 
@@ -167,13 +158,13 @@ contract Source {
   }
 ```
 
-Then we define this source-side contract's `updateValue` function, which requires a set of arguments necessary for the `xcall` later.
+Then we define this source-side contract's `xChainUpdate` function, which requires a set of arguments necessary for the `xcall` later.
 
 ```solidity
-  function updateValue(
+  function xChainUpdate(
     address to, // the address of the target contract
-    uint32 originDomain, // e.g. from Rinkeby (1111)
-    uint32 destinationDomain, // to Goerli (3331)
+    uint32 originDomain, // e.g. from Goerli (1735353714)
+    uint32 destinationDomain, // to Optimism-Goerli (1735356532)
     uint256 newValue // value to update to
   ) external payable {
 ```
@@ -188,31 +179,34 @@ We create the `calldata` by encoding the target contract's `updateValue` functio
 As before, we construct the `XCallArgs` and call `xcall` on the Connext contract.
 
 ```solidity
-    IConnextHandler.CallParams memory callParams = IConnextHandler.CallParams({
+    CallParams memory callParams = CallParams({
       to: to,
       callData: callData,
       originDomain: originDomain,
       destinationDomain: destinationDomain,
-      agent: to,
-      recovery: to,
-      forceSlow: false,
-      receiveLocal: false,
-      callback: address(0),
-      callbackFee: 0,
-      relayerFee: 0,
-      slippageTol: 9995
+      agent: msg.sender, // address allowed to execute transaction on destination side in addition to relayers
+      recovery: msg.sender, // fallback address to send funds to if execution fails on destination side
+      forceSlow: false, // option to force slow path instead of paying 0.05% fee on fast liquidity transfers
+      receiveLocal: false, // option to receive the local bridge-flavored asset instead of the adopted asset
+      callback: address(0), // zero address because we don't expect a callback
+      callbackFee: 0, // fee paid to relayers for the callback; no fees on testnet
+      relayerFee: 0, // fee paid to relayers for the forward call; no fees on testnet
+      destinationMinOut: 0 // not sending funds so minimum can be 0
     });
 
-    IConnextHandler.XCallArgs memory xcallArgs = IConnextHandler.XCallArgs({
+    XCallArgs memory xcallArgs = XCallArgs({
       params: callParams,
-      transactingAssetId: address(0), // we can just use the zero address
-      amount: 0                       // since we aren't transferring any funds
+      transactingAsset: address(0), // 0 address is the native gas token
+      transactingAmount: 0, // not sending funds with this calldata-only xcall
+      originMinOut: 0 // not sending funds so minimum can be 0
     });
 
     connext.xcall(xcallArgs);
   }
 }
 ```
+
+Once these contracts are deployed, anyone can call `xChainUpdate` on the source contract of the origin domain to change the value stored in the target contract of the destination domain.
 
 ---
 
@@ -232,12 +226,13 @@ You'll notice we have a custom modifier `onlyExecutor` on this function. This si
 
 ### Source Contract
 
-This is the exact same contract as the source contract for the unauthenticated example above, except that `forceSlow: true` because authenticated calls must flow through the Nomad slow path.
+This is the exact same contract as the source contract for the unauthenticated example above except that `forceSlow: true`. See the notes about this parameter [here](../xcall-params.md).
 
-To recap: inside the `updateValue` function, we simply create `calldata` to match the target function signature, construct the `XCallArgs`, and call `xcall` with it.
+To recap: inside the `xChainUpdate` function, we simply create `calldata` to match the target function signature, construct the `XCallArgs`, and call `xcall` with it.
 
 ```solidity title="Source.sol"
-import {IConnextHandler} from "nxtp/interfaces/IConnextHandler.sol";
+import {IConnextHandler} from "nxtp/core/connext/interfaces/IConnextHandler.sol";
+import {CallParams, XCallArgs} from "nxtp/core/connext/libraries/LibConnextStorage.sol";
 
 contract Source {
   IConnextHandler public immutable connext;
@@ -246,7 +241,7 @@ contract Source {
     connext = _connext;
   }
 
-  function updateValue(
+  function xChainUpdate(
     address to,
     uint32 originDomain,
     uint32 destinationDomain,
@@ -256,26 +251,27 @@ contract Source {
     bytes4 selector = bytes4(keccak256("updateValue(uint256)"));
     bytes memory callData = abi.encodeWithSelector(selector, newValue);
 
-    IConnextHandler.CallParams memory callParams = IConnextHandler.CallParams({
+    CallParams memory callParams = CallParams({
       to: to,
       callData: callData,
       originDomain: originDomain,
       destinationDomain: destinationDomain,
-      agent: to,
-      recovery: to,
+      agent: msg.sender, // address allowed to execute transaction on destination side in addition to relayers
+      recovery: msg.sender, // fallback address to send funds to if execution fails on destination side
       //highlight-next-line
-      forceSlow: true,
-      receiveLocal: false,
-      callback: address(0),
-      callbackFee: 0,
-      relayerFee: 0,
-      slippageTol: 9995
+      forceSlow: true, // this must be true for authenticated calls
+      receiveLocal: false, // option to receive the local bridge-flavored asset instead of the adopted asset
+      callback: address(0), // zero address because we don't expect a callback
+      callbackFee: 0, // fee paid to relayers for the callback; no fees on testnet
+      relayerFee: 0, // fee paid to relayers for the forward call; no fees on testnet
+      destinationMinOut: 0 // not sending funds so minimum can be 0
     });
 
-    IConnextHandler.XCallArgs memory xcallArgs = IConnextHandler.XCallArgs({
+    XCallArgs memory xcallArgs = XCallArgs({
       params: callParams,
-      transactingAssetId: address(0),
-      amount: 0
+      transactingAsset: address(0), // 0 address is the native gas token
+      transactingAmount: 0, // not sending funds with this calldata-only xcall
+      originMinOut: 0 // not sending funds so minimum can be 0
     });
 
     connext.xcall(xcallArgs);
@@ -287,21 +283,22 @@ contract Source {
 
 The target contract now has to be written carefully given our authentication requirements. Remember that **_only our source contract should be able to call_** the target function.
 
-Import `IConnextHandler` and `IExecutor` interfaces.
+Import the `IConnextHandler` and `IExecutor` interfaces. We also need the `LibCrossDomainProperty` library which will allow us to check the origin domain and sender contract.
 
 ```solidity title="Target.sol"
-import {IExecutor} from "nxtp/interfaces/IExecutor.sol";
-import {IConnextHandler} from "nxtp/interfaces/IConnextHandler.sol";
+import {IConnextHandler} from "nxtp/core/connext/interfaces/IConnextHandler.sol";
+import {IExecutor} from "nxtp/core/connext/interfaces/IExecutor.sol";
+import {LibCrossDomainProperty} from "nxtp/core/connext/libraries/LibCrossDomainProperty.sol";
 ```
 
 In the constructor, we pass the address of the origin-side contract and the Domain ID of the origin domain. We also pass in the address of the Connext Executor contract which should be the only allowed caller of the target function. These are crucial pieces of information that we will check against to uphold our authentication requirement.
 
 ```solidity
 contract Target {
-  uint256 public value;
-  address public originContract; // The address of Source.sol
-  uint32 public originDomain; // The origin Domain ID
-  address public executor; // The address of Executor.sol
+  uint256 public value; // the value we want to update from origin
+  address public originContract; // the address of Source.sol
+  uint32 public originDomain; // the origin Domain ID
+  address public executor; // the address of Executor.sol
 
   constructor(
     address _originContract,
@@ -314,14 +311,14 @@ contract Target {
   }
 ```
 
-Here's the `onlyExecutor` modifier we saw earlier. In it, we use the `IExecutor` utility functions `originSender()` and `origin()` to check that the originating call came from the expected source contract and domain. We also need to check that the `msg.sender` is the Connext Executor contract - otherwise, any calling contract could just return the contract and domain that we're expecting.
+Here's the `onlyExecutor` modifier we saw earlier. In it, we use the `LibCrossDomainProperty` library functions `originSender()` and `origin()` to check that the originating call came from the expected origin contract and domain. We also need to check that the `msg.sender` is the Connext Executor contract - otherwise, any calling contract could just spoof the origin contract and domain that we're expecting.
 
 ```solidity
   modifier onlyExecutor() {
     require(
-      IExecutor(msg.sender).originSender() == originContract &&
-      IExecutor(msg.sender).origin() == originDomain &&
-      msg.sender == executor,
+      LibCrossDomainProperty.originSender(msg.data) == originContract &&
+        LibCrossDomainProperty.origin(msg.data) == originDomain &&
+        msg.sender == address(executor),
       "Expected origin contract on origin domain called by Executor"
     );
     _;
@@ -337,6 +334,8 @@ With the `onlyExecutor` modifier in place, our authenticated function is secured
 }
 ```
 
+Now the target contract can only be updated by a cross-chain call from the source contract!
+
 ---
 
 ## Callbacks
@@ -347,51 +346,91 @@ Let's see how this works by building on the Authenticated example.
 
 ### Source Contract
 
-All we need to do is implement the `ICallback` interface in a contract on the origin domain. This could be a separate contract or the Source contract itself. The important step is to change the `callback` parameter to the address of whichever contract is implementing this interface.
+To enable callback handling, some contract on the origin domain must implement the `ICallback` interface. This could be a separate contract or the Source contract itself. 
 
-We'll have our Source contract handle the callback.
+We'll have our Source contract handle the callback. To do so, Source should import the `ICallback` interface and change the `callback` param to the address of the contract implementing this interface. It will also need a reference to the Connext PromiseRouter contract so we add that to the constructor.
 
 ```solidity title="Source.sol"
+import {IConnextHandler} from "nxtp/core/connext/interfaces/IConnextHandler.sol";
+import {CallParams, XCallArgs} from "nxtp/core/connext/libraries/LibConnextStorage.sol";
+//highlight-next-line
+import {ICallback} from "nxtp/core/promise/interfaces/ICallback.sol";
 
-    // function updateValue
-    ...
+contract Source {
+  IConnextHandler public immutable connext;
+  address public immutable promiseRouter;
 
-    IConnextHandler.CallParams memory callParams = IConnextHandler.CallParams({
+  constructor(
+    IConnextHandler _connext, 
+    //highlight-next-line
+    address _promiseRouter
+  ) {
+    connext = _connext;
+    //highlight-next-line
+    promiseRouter = _promiseRouter;
+  }
+
+  function xChainUpdate(
+    address to,
+    uint32 originDomain,
+    uint32 destinationDomain,
+    uint256 newValue
+  ) external payable {
+
+    bytes4 selector = bytes4(keccak256("updateValue(uint256)"));
+    bytes memory callData = abi.encodeWithSelector(selector, newValue);
+
+    CallParams memory callParams = CallParams({
       to: to,
       callData: callData,
       originDomain: originDomain,
       destinationDomain: destinationDomain,
-      agent: to,
-      recovery: to,
-      forceSlow: true,
-      receiveLocal: false,
+      agent: msg.sender, // address allowed to execute transaction on destination side in addition to relayers
+      recovery: msg.sender, // fallback address to send funds to if execution fails on destination side
+      forceSlow: true, // this must be true for authenticated calls
+      receiveLocal: false, // option to receive the local bridge-flavored asset instead of the adopted asset
       //highlight-next-line
-      callback: address(this),
-      callbackFee: 0,
-      relayerFee: 0,
-      slippageTol: 9995
+      callback: address(this), // this contract implements the callback
+      callbackFee: 0, // fee paid to relayers for the callback; no fees on testnet
+      relayerFee: 0, // fee paid to relayers for the forward call; no fees on testnet
+      destinationMinOut: 0 // not sending funds so minimum can be 0
     });
 
-    ...
-}
+    XCallArgs memory xcallArgs = XCallArgs({
+      params: callParams,
+      transactingAsset: address(0), // 0 address is the native gas token
+      transactingAmount: 0, // not sending funds with this calldata-only xcall
+      originMinOut: 0 // not sending funds so minimum can be 0
+    });
+
+    connext.xcall(xcallArgs);
+  }
 ```
 
-The return data from the execution of the function call on the destination domain is sent with the callback so we can do whatever we want with those results. To keep this simple, our `callback` function simply emits a `CallbackCalled` Event with the `newValue` we sent.
+The callback-handling contract needs a reference to the Connext PromiseRouter similarly to how the Target contract needs a reference to the Connext Executor. The contract implementing `callback` should have a modifier that only allows the Connext PromiseRouter to execute the callback.
 
 ```solidity
-...
-import {ICallback} from "nxtp/core/promise/interfaces/ICallback.sol";
+  modifier onlyPromiseRouter () {
+    require(
+      msg.sender == address(promiseRouter),
+      "Expected PromiseRouter"
+    );
+    _;
+  }
+```
 
-contract Source {
+Now we'll implement the `callback` function. 
+
+The return data from the destination domain is sent with the callback so we can do whatever we want with it. In this case, we'll simply emit an event with the `newValue` we sent so that the callback can be used on the origin domain to verify a successful update on the destination domain.
+
+```solidity
   event CallbackCalled(bytes32 transferId, bool success, uint256 newValue);
-
-  ...
 
   function callback(
     bytes32 transferId,
     bool success,
     bytes memory data
-  ) external {
+  ) external onlyPromiseRouter {
     uint256 newValue = abi.decode(data, (uint256));
     emit CallbackCalled(transferId, success, newValue);
   }
@@ -400,9 +439,10 @@ contract Source {
 
 ### Target Contract
 
-On the Target side, the function must return some data.
+On the Target side, the function just needs to return some data.
 
 ```solidity title="Target.sol"
+...
   function updateValue(uint256 newValue)
     external onlyExecutor
     //highlight-next-line
@@ -421,4 +461,4 @@ That's it! Connext will now send the callback execution back to the origin domai
 
 ## Deploy and Experiment
 
-To deploy these contracts and try out the `xcalls` yourself, clone the [xApp Starter Kit](https://github.com/connext/xapp-starter/) and see the README for full instructions!
+To deploy these contracts and try out the `xcalls` yourself, clone the [xApp Starter Kit](https://github.com/connext/xapp-starter/) and see the README for full instructions.
