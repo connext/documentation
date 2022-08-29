@@ -36,7 +36,9 @@ The amount of tokens to bridge specified in standard format (i.e. to send 1 USDC
 
 ### `originMinOut`
 
-The minimum amount received after the swap from adopted -> local on the origin domain. This is the way to specify slippage due to the StableSwap Pool, if applicable.
+The minimum amount received after the swap from adopted -> local on the origin domain. This is the way to specify slippage due to the StableSwap Pool, if applicable. 
+
+For example, to achieve 3% slippage tolerance this can be calculated as `(amount / 100) * 97`.
 
 ---
 
@@ -116,3 +118,5 @@ Connext contracts will assert that the `relayerFee` matches what is sent in `msg
 ### `destinationMinOut`
 
 The minimum amount received after the swap from local -> adopted on the destination domain. This is the way to specify slippage due to the StableSwap Pool, if applicable.
+
+For example, to achieve 3% slippage tolerance this can be calculated as `(amount / 100) * 97`.
