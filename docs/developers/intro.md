@@ -27,6 +27,10 @@ Deployed contract addresses, domain IDs, and other useful information can be fou
 
 [Testnet Reference](./testing-against-testnet)
 
+Detailed explanation of `xcall` parameters.
+
+[XCall Params](./xcall-params)
+
 ---
 
 ## Subgraph
