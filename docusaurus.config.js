@@ -1,5 +1,5 @@
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const lightCodeTheme = require("prism-react-renderer/themes/okaidia");
+const darkCodeTheme = require("prism-react-renderer/themes/okaidia");
 const CardLink = require("./src/remark/CardLink");
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
