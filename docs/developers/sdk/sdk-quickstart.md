@@ -15,7 +15,7 @@ These examples (and others) can be found in our xApp Starter Kit, under `src/sdk
 
 ## Cross-Chain Transfer
 
-In this quickstart, we'll demonstrate how to execute an `xcall` to transfer funds from a wallet on Rinkeby to a destination address on Goerli.
+In this quickstart, we'll demonstrate how to execute an `xcall` to transfer funds from a wallet on Goerli to a destination address on Optimism-Goerli.
 
 ### 1. Setup project
 
@@ -55,7 +55,7 @@ And add the following to `package.json`:
 ```json title="package.json"
 "type": "module",
 "scripts": {
-  "build": "tsc",
+  "build": "tsc && node dist/xtransfer.js",
   "xtransfer": "node dist/xtransfer.js"
 }
 ```
@@ -96,14 +96,14 @@ The rest of this guide will be working with this file.
 Use a wallet (i.e. MetaMask) as a [Signer](https://docs.ethers.io/v5/api/signer/).
 
 ```ts
-const privateKey = "<wallet_private_key>";
+const privateKey = "<PRIVATE_KEY>";
 let signer = new ethers.Wallet(privateKey);
 ```
 
 And connect it to a [Provider](https://docs.ethers.io/v5/api/providers/) on the sending chain ([Infura](https://infura.io/), [Alchemy](https://www.alchemy.com/), etc).
 
 ```ts
-const provider = new ethers.providers.JsonRpcProvider("<rinkeby_rpc_url>");
+const provider = new ethers.providers.JsonRpcProvider("<GOERLI_RPC_URL>");
 signer = signer.connect(provider);
 const signerAddress = await signer.getAddress();
 ```
@@ -117,23 +117,23 @@ const nxtpConfig: NxtpSdkConfig = {
   logLevel: "info",
   signerAddress: signerAddress,
   chains: {
-    "1111": {
-      providers: ["<rinkeby_rpc_url>"],
+    "1735353714": {
+      providers: ["<GOERLI_RPC_URL>"],
       assets: [
         {
           name: "TEST",
-          address: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
           symbol: "TEST",
+          address: "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1",
         },
       ],
     },
-    "3331": {
-      providers: ["<goerli_rpc_url>"],
+    "1735356532": {
+      providers: ["<OPTIMISM_GOERLI_RPC_URL>"],
       assets: [
         {
           name: "TEST",
-          address: "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1",
           symbol: "TEST",
+          address: "0x68Db1c8d85C09d546097C65ec7DCBFF4D6497CbF",
         },
       ],
     },
@@ -145,10 +145,14 @@ const nxtpConfig: NxtpSdkConfig = {
 
 ### 6. Create the SDK
 
-Simply call `create()` with the config from above.
+Simply call `create()` with the config from above. We'll also fetch the signer address and set the amount to send.
 
 ```ts
 const {nxtpSdkBase} = await create(nxtpConfig);
+
+const signerAddress = await signer.getAddress();
+
+const amount = 1000000000000000000; // amount to send (1 TEST)
 ```
 
 ### 7. Construct the `xCallArgs`
@@ -157,24 +161,25 @@ Now, we construct the arguments that will be passed into the `xcall`.
 
 ```ts
 const callParams = {
-  to: "<destination_address>", // the address that should receive the funds
+  to: signerAddress, // the address that should receive the funds
   callData: "0x", // empty calldata for a simple transfer
-  originDomain: "1111", // send from Rinkeby
-  destinationDomain: "3331", // to Goerli
-  agent: "<destination_address>" // address allowed to execute in addition to relayers  
-  recovery: "<destination_address>", // fallback address to send funds to if execution fails on destination side
-  forceSlow: false, // option that allows users to take the Nomad slow path (~30 mins) instead of paying routers a 0.05% fee on their transaction
-  receiveLocal: false, // option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
-  callback: ethers.constants.AddressZero, // zero address because we don't expect a callback for a simple transfer 
-  callbackFee: "0", // relayers on testnet don't take a fee
-  relayerFee: "0", // relayers on testnet don't take a fee
-  slippageTol: "9995" // max basis points allowed due to slippage (9995 to tolerate .05% slippage)
+  originDomain: "1735353714", // send from Goerli
+  destinationDomain: "1735356532", // to Optimism-Goerli
+  agent: signerAddress, // address allowed to execute transaction on destination side in addition to relayers
+  recovery: signerAddress, // fallback address to send funds to if execution fails on destination side
+  forceSlow: false, // option to force slow path instead of paying 0.05% fee on fast liquidity transfers
+  receiveLocal: false, // option to receive the local bridge-flavored asset instead of the adopted asset
+  callback: ethers.constants.AddressZero, // zero address because we don't expect a callback
+  callbackFee: "0", // fee paid to relayers; relayers don't take any fees on testnet
+  relayerFee: "0", // fee paid to relayers; relayers don't take any fees on testnet
+  destinationMinOut: (amount * 0.97).toString(), // the minimum amount that the user will accept due to slippage from the StableSwap pool (3% here)
 };
 
 const xCallArgs = {
   params: callParams,
-  transactingAssetId: "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9", // the Rinkeby Test Token
-  amount: "1000000000000000000" // amount to send (1 TEST)
+  transactingAsset: "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1", // the Goerli Test Token
+  transactingAmount: amount.toString(), 
+  originMinOut: (amount * 0.97).toString() // the minimum amount that the user will accept due to slippage from the StableSwap pool (3% here)
 };
 ```
 
@@ -189,11 +194,11 @@ This is necessary because funds will first be sent to the ConnextHandler contrac
 ```ts
 const approveTxReq = await nxtpSdkBase.approveIfNeeded(
   xCallArgs.params.originDomain,
-  xCallArgs.transactingAssetId,
-  xCallArgs.amount
+  xCallArgs.transactingAsset,
+  xCallArgs.transactingAmount
 )
 const approveTxReceipt = await signer.sendTransaction(approveTxReq);
-const approveResult = await approveTxReceipt.wait();
+await approveTxReceipt.wait();
 ```
 
 ### 9. Send it!
@@ -202,16 +207,15 @@ Send the `xcall`.
 
 ```ts
 const xcallTxReq = await nxtpSdkBase.xcall(xCallArgs);
-xcallTxReq.gasLimit = ethers.BigNumber.from("30000000"); 
+xcallTxReq.gasLimit = ethers.BigNumber.from("20000000"); 
 const xcallTxReceipt = await signer.sendTransaction(xcallTxReq);
-console.log(xcallTxReceipt); // so we can see the transaction hash
+console.log(xcallTxReceipt);
 const xcallResult = await xcallTxReceipt.wait();
 ```
 
 Finally, run the following to fire off the cross-chain transfer!
 
 ```shell
-yarn build
 yarn xtransfer
 ```
 
@@ -221,7 +225,7 @@ We can use the transaction hash from the transaction receipt we logged above to 
 
 [Tracking an xcall](../xcall-status)
 
-After the DestinationTransfer shows up on the Goerli side, the freshly transferred tokens should show up in the destination wallet.
+After the DestinationTransfer shows up on the Optimism-Goerli side, the freshly transferred tokens should show up in the destination wallet.
 
 --- 
 
@@ -229,7 +233,7 @@ After the DestinationTransfer shows up on the Goerli side, the freshly transferr
 
 We can also send arbitrary `calldata`, along with the `xcall`, to be executed on the destination domain.
 
-In this example, we're going to construct some `calldata` targeting an existing contract function to avoid having to deploy a new contract. We'll aim for the `mint` function of the [Test ERC20 Token (TEST) contract](https://goerli.etherscan.io/address/0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1#writeContract) to demonstrate this. 
+In this example, we're going to construct some `calldata` targeting an existing contract function to avoid having to deploy a new contract. We'll aim for the `mint` function of the [Test ERC20 Token (TEST) contract](https://blockscout.com/optimism/goerli/address/0x68Db1c8d85C09d546097C65ec7DCBFF4D6497CbF/write-contract) to demonstrate this. 
 
 > Minting usually requires authentication but the Test Token has a public `mint` function (callable by anyone!) that we can leverage for this example. Hence, this is an "unauthenticated" `xcall` with calldata - nothing extra needs to be done on the destination side.
 
@@ -248,7 +252,7 @@ const iface = new ethers.utils.Interface(contractABI);
 const calldata = iface.encodeFunctionData(
   "mint", 
   [
-    await signer.getAddress(), // address to mint tokens for
+    await signer.getAddress(), // the address that should receive the minted funds
     ethers.BigNumber.from("100000000000000000000") // amount to mint (100 TEST)
   ]
 )
@@ -260,25 +264,25 @@ Now with the `calldata` ready, we supply it to the `xCallArgs`.
 
 ```js
 const callParams = {
-  to: "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1", // Goerli Test Token - this is the contract we are targeting
-  //highlight-next-line
+  to: "0x68Db1c8d85C09d546097C65ec7DCBFF4D6497CbF", // Opt-Goerli Test Token contract - the target
   callData: calldata, 
-  originDomain: "1111", // send from Rinkeby
-  destinationDomain: "3331", // to Goerli
-  agent: "<destination_address>" // address allowed to execute in addition to relayers  
-  recovery: "<destination_address>", // fallback address to send funds to if execution fails on destination side
-  forceSlow: false, // option that allows users to take the Nomad slow path (~30 mins) instead of paying routers a 0.05% fee on their transaction
-  receiveLocal: false, // option for users to receive the local Nomad-flavored asset instead of the adopted asset on the destination side
-  callback: ethers.constants.AddressZero, // zero address because we don't expect a callback 
-  callbackFee: "0", // relayers on testnet don't take a fee
-  relayerFee: "0", // relayers on testnet don't take a fee,
-  slippageTol: "9995" // max basis points allowed due to slippage (9995 to tolerate .05% slippage)
+  originDomain: "1735353714", // send from Goerli
+  destinationDomain: "1735356532", // to Optimism-Goerli
+  agent: signerAddress, // address allowed to transaction on destination side in addition to relayers
+  recovery: await signer.getAddress(), // fallback address to send funds to if execution fails on destination side
+  forceSlow: false, // option to force Nomad slow path (~30 mins) instead of paying 0.05% fee
+  receiveLocal: false, // option to receive the local Nomad-flavored asset instead of the adopted asset
+  callback: ethers.constants.AddressZero, // no callback so use the zero address
+  callbackFee: "0", // fee paid to relayers for the callback; no fees on testnet
+  relayerFee: "0", // fee paid to relayers for the forward call; no fees on testnet
+  destinationMinOut: "0", // not sending funds so minimum can be 0
 };
 
 const xCallArgs = {
   params: callParams,
-  transactingAssetId: ethers.constants.AddressZero 
-  amount: "0" // not sending any funds
+  transactingAsset: "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1", // not sending funds so use any registered asset
+  transactingAmount: "0", // not sending funds with this calldata-only xcall
+  originMinOut: "0" // not sending funds so minimum can be 0
 };
 ```
 
@@ -288,9 +292,9 @@ Notice that we specified the zero address for `transactingAssetId` and `amount: 
 
 ```ts title="*same code*"
 const xcallTxReq = await nxtpSdkBase.xcall(xCallArgs);
-xcallTxReq.gasLimit = ethers.BigNumber.from("30000000"); 
+xcallTxReq.gasLimit = ethers.BigNumber.from("20000000"); 
 const xcallTxReceipt = await signer.sendTransaction(xcallTxReq);
-console.log(xcallTxReceipt); // so we can see the transaction hash
+console.log(xcallTxReceipt);
 const xcallResult = await xcallTxReceipt.wait();
 ```
 
@@ -298,14 +302,13 @@ Add a new script to `package.json`:
 
 ```json title="package.json"
 "scripts": {
-  "xmint": "node dist/xmint.js"
+  "xmint": "tsc && node dist/xmint.js"
 }
 ```
 
 Finally, run the following to fire off the cross-chain mint!
 
 ```shell
-yarn build
 yarn xmint
 ```
 
