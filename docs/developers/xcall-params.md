@@ -22,7 +22,7 @@ struct XCallArgs {
   uint256 originMinOut;
 }
 ```
-### `transactingAssetId`
+### `transactingAsset`
 
 Refers to the contract address of the asset that is to be bridged. This could be the adopted, local, or canonical asset (see [this](../faq#what-does-it-mean-when-referring-to-canonical-representation-and-adopted-assets) for an explanation of the different kinds of assets).
 
@@ -30,7 +30,7 @@ Usually a xApp will have a higher-level function wrapping `xcall` in which the a
 
 If the `xcall` is calldata-only (e.g. doesn't bridge any funds), any registered asset can be used here as long as `amount: 0`.
 
-### `amount`
+### `transactingAmount`
 
 The amount of tokens to bridge specified in standard format (i.e. to send 1 USDC, a token with 10^18 decimals, you must specify the amount as `1000000000000000000`).
 
