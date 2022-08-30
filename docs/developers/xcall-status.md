@@ -12,9 +12,8 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
 
 | Chain | Subgraph |
 | --- | --- |
-| Rinkeby | [v0-Rinkeby](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-rinkeby) |
 | Goerli | [v0-Goerli](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-goerli) |
-| Mumbai | [v0-Mumbai](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-mumbai) |
+| Optimism-Goerli | [v0-Opt-Goerli](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-opt-goerli) |
 
 1.  Make note of the transaction hash that interacted with the Connext contract
 
@@ -28,18 +27,23 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
               transactionHash: "<your_transaction_hash>"
             }
           ) {
-            status
+            # Meta Data
+            chainId
             transferId
-            caller
+            nonce
             to
+            callData
             originDomain
             destinationDomain
+            forceSlow
+            receiveLocal
+            recovery
+            callback
+            callbackFee
+            # Asset Data
             transactingAsset
             transactingAmount
-            bridgedAsset
-            bridgedAmount
-            callData
-            # other fields if desired
+            status
           }
         }
         ```
@@ -54,18 +58,45 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
               transferId: "<your_transfer_id>"
             }
           ) {
-            status
+            # Meta Data
+            chainId
+            transferId
+            nonce
             to
+            callData
             originDomain
             destinationDomain
-            transactingAsset
-            transactingAmount
+            forceSlow
+            receiveLocal
+            recovery
+            callback
+            callbackFee
+            # Asset Data
             localAsset
             localAmount
+            transactingAsset
+            transactingAmount
+            sponsorVaultRelayerFee
+            # Executed event Data
+            status
+            routers {
+              id
+            }
+            originSender
+            # Executed Transaction
             executedCaller
+            executedTransactionHash
+            executedTimestamp
+            executedGasPrice
+            executedGasLimit
+            executedBlockNumber
+            # Reconciled Transaction
             reconciledCaller
-            callData
-            # other fields if desired
+            reconciledTransactionHash
+            reconciledTimestamp
+            reconciledGasPrice
+            reconciledGasLimit
+            reconciledBlockNumber
           }
         }
         ```
