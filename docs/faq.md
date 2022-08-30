@@ -53,13 +53,13 @@ Example:
 
 If there’s no token transfer involved then just set `transactingAssetId: address(0)` and `amount: 0`.
 
-## Do I need to do anything with the Nomad contracts?
+## Do I need to do anything with the AMB contracts?
 
-No, you do not need to deploy or even interact with Nomad contracts directly.
+No, you do not need to deploy or even interact with AMB contracts directly.
 
 ## How do I find the different domainIds?
 
-See [Nomad Domain IDs](./developers/testing-against-testnet#nomad-domain-ids).
+See [Domain IDs](./developers/testing-against-testnet#domain-ids).
 
 ## Where are the Connext contracts?
 
@@ -71,8 +71,8 @@ There are a few steps to take, so please reach out to us for assistance:
 
 - The Connext team whitelists your asset (for now, this is required).
 - You transfer some of the assets across the bridge.
-- If the destination asset has the mad*asset as the adopted asset (there's no existing pool, no representative asset exists yet), then the Token Registry will deploy a new token and set it as canonical.
+- If the destination asset has the amb flavored asset as the adopted asset (there's no existing pool, no representative asset exists yet), then the Token Registry will deploy a new token and set it as canonical.
 
 ## Are there size limits to calldata?
 
-Yes, this is limited by Nomad's (currently arbitrary) message size limit defined in the [Home contract](https://github.com/nomad-xyz/monorepo/blob/main/packages/contracts-core/contracts/Home.sol#L34).
+

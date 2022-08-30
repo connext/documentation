@@ -21,10 +21,10 @@ During the transitionary period until then, we only support the $TEST token. Con
 
 ## Testnets
 
-| Chain Name       | ChainId  |    Status   |
-|------------------|----------|:-----------:|
-|      Rinkeby     |     4    |      ✅      |
-|      Goerli      |     5    |      ✅      |
+| Chain Name       | ChainId  | Domain ID  |    Status    |
+|------------------|----------|---------- -|:------------:|
+|      Goerli      |     4    | 1735353714 |      ✅      |
+|    Opt-Goerli    |     5    | 1735356532 |      ✅      |
 
 ### How do I add my chain to Connext?
 

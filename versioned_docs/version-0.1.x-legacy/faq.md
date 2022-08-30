@@ -22,13 +22,13 @@ If there’s no token transfer involved then just set 0 for the `amount`.
 
 > Make sure you use the Test Token for `transactingAssetId` until the native token (above) has been whitelisted.
 
-## Do I need to do anything with the Nomad contracts?
+## Do I need to do anything with the AMB contracts?
 
-No, you do not need to deploy or even interact with Nomad contracts directly.
+No, you do not need to deploy or even interact with AMB contracts directly.
 
 ## How do I find the different domainIds?
 
-See [Nomad Domain IDs](./developers/testing-against-testnet#nomad-domain-ids).
+See [Domain IDs](./developers/testing-against-testnet#domain-ids).
 
 ## Where are the Connext contracts?
 

@@ -8,9 +8,9 @@ id: intro
 Connext powers fast, trust-minimized communication between blockchains.
 
 You can use Connext to build crosschain applications (**xapps**) like:
-- Bridges to transfer value between blockchains
-- Interchain DeFi protocols
-- Chain-agnostic NFTs
+- Bridges to transfer ERC-20 tokens between blockchains
+- Crosschain DeFi protocols
+- Crosschain NFTs
 and more!
 
 Our goal is to create a world where:
@@ -19,31 +19,29 @@ Our goal is to create a world where:
 
 ## Contents
 
-:::note
-These docs are a work in progress! Please bear with us as we work to fill them out.
-:::
-
 These docs are specifically for the interfaces introduced after our [Amarok network upgrade](https://blog.connext.network/announcing-the-amarok-network-upgrade-5046317860a4?source=collection_home---4------4-----------------------) which is currently on testnet. If you're looking for our legacy docs, switch to version 0.1.x in the navbar above.
 
-If you're interested in contributing to the development of the system or curious about the ongoing progress of the Amarok network upgrade, check out the main branch of our [core implementation repo](https://github.com/connext/nxtp/tree/amarok).
+If you're interested in contributing to the development of the system or curious about the ongoing progress of the Amarok network upgrade, check out the main branch of our [core implementation repo](https://github.com/connext/nxtp/tree/main).
 
 ### Modular Interoperability
 
-Amarok introduces the concept of a crosschain communication **protocol stack** with NXTP as the liquidity layer, Nomad as the messaging layer, and Connext routers as the transport layer.
+Amarok introduces the concept of a crosschain communication **protocol stack** with NXTP as the liquidity layer, AMB bridges as the messaging layer, and Connext routers as the transport layer.
 
 |         Layer         |                           Protocol/Stakeholders                            |
 | :-------------------: | :------------------------------------------------------------------------: |
 |   Application Layer   |                      Crosschain Applications (Xapps)                       |
 |    Liquidity Layer    |                                    Nxtp                                    |
-| Gateway/Routing Layer | Interchain Gateway Protocol (routes to the correct messaging protocol!) |
-|    Messaging Layer    |                       Nomad, IBC, XCMP, Rollup AMBs                        |
+| Gateway/Routing Layer | Interchain Gateway Protocol (routes to the correct messaging protocol!)    |
+|    Messaging Layer    |                       Rollup AMBs, IBC, XCMP, etc                          |
 |    Transport Layer    |                              Connext Routers                               |
 
 ### Generalized Crosschain Messaging
 
-We've partnered with Nomad, a crosschain communication protocol that uses ORU-style fraud proofs for security. In tandem, the stack built on top of Connext and Nomad provides the same instant transfers where possible and also enables generalized crosschain operations, using an optimistic latency window of 30 minutes for _some_ calls.
+We are working with a temporary solution that uses existing AMBs for rollups and sidechains to relay messages and a system of Connectors to plug those into one another. This solution will minimize release delays while still allowing us to move toward a fully optimistic bridge as soon as possible.
 
-More information on this partnership can be found in this [Medium post](https://medium.com/connext/connext-has-partnered-with-nomad-e20cd8e62e31).
+In tandem, the stack built on top of Connext and AMBs provides the same instant transfers where possible and also enables generalized crosschain operations, using an optimistic latency window of 60 minutes for _some_ calls.
+
+More information on this solution can be found in this [blog post](https://blog.connext.network/amarok-amb-update-77f142c22db3).
 
 ### No More Offchain Auctioning / Signature Dependencies
 

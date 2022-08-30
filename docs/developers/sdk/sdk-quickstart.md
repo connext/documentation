@@ -141,7 +141,7 @@ const nxtpConfig: NxtpSdkConfig = {
 };
 ```
 
-> Not sure where those IDs came from? They refer to the [Nomad Domain IDs](../testing-against-testnet#nomad-domain-ids) which are a custom mapping of ID to specific execution environment (not always equivalent to "chain", hence we have Domain IDs). 
+> Not sure where those IDs came from? They refer to the Domain IDs which are a custom mapping of ID to specific execution environment (not always equivalent to "chain", hence we have Domain IDs). The chain id is a hashed value of the chain name.
 
 ### 6. Create the SDK
 
@@ -270,8 +270,8 @@ const callParams = {
   destinationDomain: "1735356532", // to Optimism-Goerli
   agent: signerAddress, // address allowed to transaction on destination side in addition to relayers
   recovery: await signer.getAddress(), // fallback address to send funds to if execution fails on destination side
-  forceSlow: false, // option to force Nomad slow path (~30 mins) instead of paying 0.05% fee
-  receiveLocal: false, // option to receive the local Nomad-flavored asset instead of the adopted asset
+  forceSlow: false, // option to force AMB slow path (~30 mins) instead of paying 0.05% fee
+  receiveLocal: false, // option to receive the local AMB-flavored asset instead of the adopted asset
   callback: ethers.constants.AddressZero, // no callback so use the zero address
   callbackFee: "0", // fee paid to relayers for the callback; no fees on testnet
   relayerFee: "0", // fee paid to relayers for the forward call; no fees on testnet
