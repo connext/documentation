@@ -71,8 +71,8 @@ Description:
 | message           | Bytes          | Event Data:                                                               |
 | transactingAsset  | Bytes          | Asset: The asset address that gets sent in                                |
 | transactingAmount | BigInt         | Asset: Amount of asset sent in.                                           |
-| bridgedAsset      | Bytes          | Asset: AMB Bridge asset address being bridged.                                 |
-| bridgedAmount     | BigInt         | Asset: Amount of bridged AMB Bridge asset.                                     |
+| bridgedAsset      | Bytes          | Asset: AMB Bridge asset address being bridged.                            |
+| bridgedAmount     | BigInt         | Asset: Amount of bridged AMB Bridge asset.                                |
 | caller            | Bytes          | XCalled Transaction:                                                      |
 | transactionHash   | Bytes          | XCalled Transaction: Transaction Hash                                     |
 | timestamp         | BigInt         | XCalled Transaction:                                                      |
