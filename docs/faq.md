@@ -14,7 +14,7 @@ An updated list can be found at [Supported Chains](./basics/chains#supported-cha
 
 See the deployed addresses for assets at [Deployed Contract Addresses](./developers/testing-against-testnet#deployed-contract-addresses).
 
-## What does it mean when referring to "canonical", "representation", and "adopted" assets?
+## What do "canonical", "representation", "adopted", and "local" assets mean?
 
 <img src="/img/faq/assets.png" alt="drawing" width="1000"/>
 
