@@ -252,8 +252,8 @@ A full reference to deployed contracts can be found in the [deployments.json](ht
       <tr>
         <td>Wrapped Ether ERC20 (WETH) [adopted]</td>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6">
-            0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6
+          <a href="https://blockscout.com/optimism/goerli/address/0x4E283927E35b7118eA546Ef58Ea60bfF59E857DB">
+            0x4E283927E35b7118eA546Ef58Ea60bfF59E857DB
           </a>
         </td>
       </tr>
