@@ -148,7 +148,7 @@ Create a `config.json` file based on the `config.example.json` file. At minumum,
 - `sequencerUrl` - The URL of the Sequencer node.
 - `redis` - The Redis instance to use.
 - `server` - Internal HTTP server config (`adminToken`).
-- `chains` - Add your desired chains, assets, and provider URLs. Use [`domain` mappings](https://docs.nomad.xyz/dev/domain-ids.html) instead of `chainIds`. For more domain ids of chains, please check https://raw.githubusercontent.com/connext/chaindata/main/crossChain.json . Make sure you use multiple providers for each chain! Example with the current testnet assets:
+- `chains` - Add your desired chains, assets, and provider URLs. Use [Domain IDs](./developers/testing-against-testnet#domain-ids). instead of `chainIds`. For more domain ids of chains, please check https://raw.githubusercontent.com/connext/chaindata/main/crossChain.json . Make sure you use multiple providers for each chain! Example with the current testnet assets:
 ```json
 {
   ...

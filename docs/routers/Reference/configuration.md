@@ -21,7 +21,7 @@ The JSON schema accepts the following keys:
   - `requestLimit`: _Optional_. Unused.
 - `web3SignerUrl`: _Recommended_. The URL for a running [Web3Signer](https://docs.web3signer.consensys.net/en/latest/) instance. This is the recommended approach to private key storage.
 - `mnemonic`: _Optional, Discouraged_. The mnemonic used to generate the private key. Using the mnemonic directly in the config file is unsafe and not recommended.
-- `chains`: _Required_. The chain configuration. A JSON object with the following keyed by [`domain id`](https://docs.nomad.xyz/dev/domain-ids.html) with the following object schema as value:
+- `chains`: _Required_. The chain configuration. A JSON object with the following keyed by [Domain IDs](./developers/testing-against-testnet#domain-ids) with the following object schema as value:
   - `providers`: _Required_. An array of providers URLs for a chain. Use a minimum of 1 URL, but additional URLs provide more fallback protection against provider issues.
   - `assets`: _Required_. An array of assets. Each asset is a JSON object with the following keys:
     - `assetId`: _Required_. The asset ID (ERC20 token address). For native assets, use `0x0000000000000000000000000000000000000000`.

@@ -5,11 +5,12 @@ title: Subgraph Entities
 
 ## Entities
 
-- [`Asset`](#asset)
-- [`AssetBalance`](#assetbalance)
-- [`Router`](#router)
-- [`OriginTransfer`](#origintransfer)
-- [`DestinationTransfer`](#destinationtransfer)
+- [Entities](#entities)
+- [Asset](#asset)
+- [AssetBalance](#assetbalance)
+- [Router](#router)
+- [OriginTransfer](#origintransfer)
+- [DestinationTransfer](#destinationtransfer)
 
 ## Asset
 
@@ -70,8 +71,8 @@ Description:
 | message           | Bytes          | Event Data:                                                               |
 | transactingAsset  | Bytes          | Asset: The asset address that gets sent in                                |
 | transactingAmount | BigInt         | Asset: Amount of asset sent in.                                           |
-| bridgedAsset      | Bytes          | Asset: Nomad asset address being bridged.                                 |
-| bridgedAmount     | BigInt         | Asset: Amount of bridged nomad asset.                                     |
+| bridgedAsset      | Bytes          | Asset: AMB Bridge asset address being bridged.                            |
+| bridgedAmount     | BigInt         | Asset: Amount of bridged AMB Bridge asset.                                |
 | caller            | Bytes          | XCalled Transaction:                                                      |
 | transactionHash   | Bytes          | XCalled Transaction: Transaction Hash                                     |
 | timestamp         | BigInt         | XCalled Transaction:                                                      |
