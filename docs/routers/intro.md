@@ -54,15 +54,15 @@ There are two types of liquidity providers in the Connext Network. Routers are c
   <img src="https://pbs.twimg.com/media/FT3JAOLWUAAs-xk?format=png&name=small" />
 </p>
 
-The reason for claiming the funds back from the AMB is because Connext Network uses an AMB as the settlement layer. The AMB locks assets on the sender chain (ex. DAI) and mints a representation of those assets on the destination chain (ambDAI). The process will work perfectly for chains that used ambAssets as their dominant token type, such as the Evmos chain (any IBC-connected chain in the future). When the user sends DAI and receives ambDAI in Evmos, they can instantly swap it on a DEX.
+The reason for claiming the funds back from the AMB is because Connext Network uses an AMB as the settlement layer. The AMB locks assets on the sender chain (ex. DAI) and mints a representation of those assets on the destination chain (ambDAI). The process will work perfectly for chains that used AMB assets as their dominant token type, such as the Evmos chain (any IBC-connected chain in the future). When the user sends DAI and receives ambDAI in Evmos, they can instantly swap it on a DEX.
 
 <p align="center">
   <img src="https://pbs.twimg.com/media/FT3JbcJWIAId0c2?format=jpg&name=small" />
 </p>
 
-**What if ambAssets are not the adopted assets on that chain?**
+**What if AMB Assets are not the adopted assets on that chain?**
 
-Polygon chain, for example, the dominant representation of assets, comes from the Polygon official bridge. The representation of ETH on Polygon is PoSETH (they called it normal “ETH”). If we gave ambDAI to the users on Polygon, they would not be able to use them immediately as those assets are not the adopted assets. Therefore, we need to swap ambAssets to the adopted assets on that chain. This is where passive LPing come in. 
+Polygon chain, for example, the dominant representation of assets, comes from the Polygon official bridge. The representation of ETH on Polygon is PoSETH (they called it normal “ETH”). If we gave ambDAI to the users on Polygon, they would not be able to use them immediately as those assets are not the adopted assets. Therefore, we need to swap AMB assets to the adopted assets on that chain. This is where passive LPing come in. 
 
 Stableswaps AMMs (Automated Market Maker for assets that value tends to be pegged to each other) or passive LPs will be deployed on each chain. The Connext Network will automatically go through the AMM if they need to swap the assets type. The AMM will be a Curve-fork, and the LP providers will receive some fee based on the transaction size. Depending on the route, the flow might include 2 AMMs to convert the adopted asset types on one chain into madAssets and then reconverted back on the destination chain afterwards (mostly happens when bridging between EVM chains).
 
@@ -70,9 +70,9 @@ Stableswaps AMMs (Automated Market Maker for assets that value tends to be pegge
   <img src="https://pbs.twimg.com/media/FT3N4swXEAU6yuu?format=jpg&name=small" />
 </p>
 
-> ambAssets are the only assets that can be moved trustlessly across separate domains and chains through an AMB
+> AMB Assets are the only assets that can be moved trustlessly across separate domains and chains through an AMB
 
-***To conclude, there are two types of LPs after the Amarok upgrade: active and passive. For active LP, it is the router that provides instant liquidity. For passive LP, the Stableswap AMM converts between ambAssets (AMB token type) and adopted assets when necessary.***
+***To conclude, there are two types of LPs after the Amarok upgrade: active and passive. For active LP, it is the router that provides instant liquidity. For passive LP, the Stableswap AMM converts between AMB Assets (AMB token type) and adopted assets when necessary.***
 
 
 ## To understand more about Connext, please read:
