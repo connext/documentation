@@ -163,7 +163,6 @@ Then we define this source-side contract's `xChainUpdate` function, which requir
 ```solidity
   function xChainUpdate(
     address to, // the address of the target contract
-    address asset, // address of token on source domain  
     uint32 originDomain, // e.g. from Goerli (1735353714)
     uint32 destinationDomain, // to Optimism-Goerli (1735356532)
     uint256 newValue // value to update to
@@ -197,7 +196,7 @@ As before, we construct the `XCallArgs` and call `xcall` on the Connext contract
 
     XCallArgs memory xcallArgs = XCallArgs({
       params: callParams,
-      transactingAsset: asset, // even though this isn't used, we need a registered asset here
+      transactingAsset: address(0), // 0 address is the native gas token
       transactingAmount: 0, // not sending funds with this calldata-only xcall
       originMinOut: 0 // not sending funds so minimum can be 0
     });
@@ -244,7 +243,6 @@ contract Source {
 
   function xChainUpdate(
     address to,
-    address asset,
     uint32 originDomain,
     uint32 destinationDomain,
     uint256 newValue
@@ -271,7 +269,7 @@ contract Source {
 
     XCallArgs memory xcallArgs = XCallArgs({
       params: callParams,
-      transactingAsset: asset, // even though this isn't used, we need a registered asset here
+      transactingAsset: address(0), // 0 address is the native gas token
       transactingAmount: 0, // not sending funds with this calldata-only xcall
       originMinOut: 0 // not sending funds so minimum can be 0
     });
@@ -374,7 +372,6 @@ contract Source {
 
   function xChainUpdate(
     address to,
-    address asset,
     uint32 originDomain,
     uint32 destinationDomain,
     uint256 newValue
@@ -401,7 +398,7 @@ contract Source {
 
     XCallArgs memory xcallArgs = XCallArgs({
       params: callParams,
-      transactingAsset: asset, // even though this isn't used, we need a registered asset here
+      transactingAsset: address(0), // 0 address is the native gas token
       transactingAmount: 0, // not sending funds with this calldata-only xcall
       originMinOut: 0 // not sending funds so minimum can be 0
     });
