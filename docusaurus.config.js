@@ -55,8 +55,8 @@ module.exports = {
       items: [
         {
           type: "doc",
-          docId: "basics/intro",
-          label: "Basics",
+          docId: "core_concepts/background",
+          label: "Core Concepts",
           position: "left",
         },
         {
