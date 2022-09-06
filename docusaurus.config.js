@@ -73,8 +73,8 @@ module.exports = {
         },
         {
           type: "doc",
-          docId: "faq",
-          label: "FAQ ",
+          docId: "resources/intro",
+          label: "Resources",
           position: "left",
         },
         {
