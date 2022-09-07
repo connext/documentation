@@ -53,10 +53,12 @@ We want to use top-level await so we'll set the compiler options accordingly.
 And add the following to `package.json`:
 
 ```json title="package.json"
-"type": "module",
-"scripts": {
-  "build": "tsc && node dist/xtransfer.js",
-  "xtransfer": "node dist/xtransfer.js"
+{
+  "type": "module",
+  "scripts": {
+    "build": "tsc && node dist/xtransfer.js",
+    "xtransfer": "node dist/xtransfer.js"
+  }
 }
 ```
 
