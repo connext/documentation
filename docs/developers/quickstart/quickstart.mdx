@@ -115,7 +115,7 @@ contract XTransfer {
   ERC20 public token = ERC20(0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1); 
 
   // Function that the user will call
-  function transfer(address to, uint256 amount) external {
+  function transfer(address recipient, uint256 amount) external {
     require(
       token.allowance(msg.sender, address(this)) >= amount,
       "User must approve amount to this contract"
@@ -128,7 +128,7 @@ contract XTransfer {
     token.approve(address(connext), amount);
 
     CallParams memory callParams = CallParams({
-      to: to, // wallet receiving the funds on the destination
+      to: recipient, // wallet receiving the funds on the destination
       callData: "", // empty here because we're only sending funds
       originDomain: 1735353714, // from Goerli
       destinationDomain: 1735356532, // to Optimism-Goerli
@@ -160,7 +160,7 @@ You can use [Etherscan and write](https://goerli.etherscan.io/address/0x7ea6eA49
 
 <img src="/img/developers/TestERC20_Etherscan_Approve.png" alt="TestERC20 Etherscan Approve" width="400"/>
 
-The full token flow moves from `User's wallet` -> `XTransfer` -> `ConnextHandler` -> `to`.
+The full token flow moves from `User's wallet` -> `XTransfer` -> `ConnextHandler` -> `recipient`.
 
 
 ## Next Steps
