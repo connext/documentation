@@ -72,12 +72,6 @@ module.exports = {
           position: "left",
         },
         {
-          type: "doc",
-          docId: "reference/intro",
-          label: "References",
-          position: "left",
-        },
-        {
           type: "docsVersionDropdown",
           position: "right",
           dropdownActiveClassDisabled: true,
