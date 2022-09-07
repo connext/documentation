@@ -27,21 +27,21 @@ export const actions = [
     title: "What is Connext",
     href: "#",
     icon: InformationCircleIcon,
-    to: "./protocol/introduction",
+    to: "./core_concepts/background",
     text: `Learn about the core concepts of the Connext Protocol. Brige basics, trust assumptions, security and more.`,
   },
   {
     title: "What is xcall",
     href: "#",
     icon: QuestionMarkCircleIcon,
-    to: "./sdk/how-to-use-xcall",
-    text: `x`,
+    to: "./developers/sdk/how-to-use-xcall",
+    text: `Learn how to use xcall to interact with the Connext Protocol. An intro to xCall, the arguments, and more.`,
   },
   {
     title: "Smart contract overview",
     href: "#",
     icon: BookOpenIcon,
-    to: "./protocol/reference/smart-contracts",
+    to: "./developers/contracts/contracts-quickstart",
     text: `Learn about the architecture of the Connext Protocol smart contracts made up of the Core and Periphery libraries.`,
   },
 ];
@@ -67,12 +67,12 @@ export const Guides = [
   {
     title: "SDK Quick Start",
     text: "Integrate with the Connext Protocol using JavaScript",
-    to: "./sdk/guides/quick-start",
+    to: "./developers/sdk/sdk-quickstart",
   },
   {
-    title: "Implementing a Swap",
-    text: "Start swapping from a smart contract in Solidity",
-    to: "./protocol/guides/swaps/single-swaps",
+    title: "Solidity Quick Start",
+    text: "Integrate with the Connext Protocol using Solidty",
+    to: "./developers/contracts/contracts-quickstart",
   },
 ];
 

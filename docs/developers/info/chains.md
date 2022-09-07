@@ -10,7 +10,7 @@ During the transitionary period until then, we only support Ethereum Testnet cha
 ## Supported Tokens & Deployed Contracts
 
 At mainnet launch we aim to have chain parity to our current mainnet, supporting all tokens (and more!) we currently support.
-During the transitionary period until then, we only support the $TEST token. Contracts for the $TEST token can be found on our [testing against testnet page](../developers/testing-against-testnet)
+During the transitionary period until then, we only support the $TEST token. Contracts for the $TEST token can be found on our [testing against testnet page](../testing-against-testnet)
 
 
 ## Mainnets

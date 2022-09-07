@@ -24,7 +24,7 @@ struct XCallArgs {
 ```
 ### `transactingAsset`
 
-Refers to the contract address of the asset that is to be bridged. This could be the adopted, local, or canonical asset (see [this](../faq#what-does-it-mean-when-referring-to-canonical-representation-and-adopted-assets) for an explanation of the different kinds of assets).
+Refers to the contract address of the asset that is to be bridged. This could be the adopted, local, or canonical asset (see [this](./faq#what-does-it-mean-when-referring-to-canonical-representation-and-adopted-assets) for an explanation of the different kinds of assets).
 
 Usually a xApp will have a higher-level function wrapping `xcall` in which the asset will be passed as an argument. This allows users to specify which asset they want to work with.
 

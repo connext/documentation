@@ -1,3 +1,8 @@
+---
+sidebar_position: 1
+id: how-to-use-xcall
+---
+
 # XCall Me Maybe
 
 ## The Entrypoint

@@ -21,7 +21,7 @@ If you're interested in writing smart contracts that integrate with Connext's de
 
 See below for a rundown of the detailed transaction flow based on the Amarok upgrade.
 
-[Transaction Flow](../basics/howitworks)
+[Transaction Flow](./info/howitworks)
 
 Deployed contract addresses, domain IDs, and other useful information can be found in the Testnet Reference.
 
@@ -44,7 +44,7 @@ See below for a description of the GraphQL Endpoint for querying Connext contrac
 
 Specific questions might be answered in the FAQ.
 
-[FAQ](../faq)
+[FAQ](./faq)
 
 Have other questions or need support? Our core team and vibrant community members are highly active in our Discord server!
 

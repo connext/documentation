@@ -8,7 +8,7 @@ This is a list of Frequently Asked Questions for the Amarok public testnet.
 
 ## What chains are supported?
 
-An updated list can be found at [Supported Chains](./basics/chains#supported-chains).
+An updated list can be found at [Supported Chains](./info/chains#supported-chains).
 
 ## What assets are supported?
 
