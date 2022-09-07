@@ -15,13 +15,12 @@ import SearchBar from "@theme-original/SearchBar";
 
 import {
   InformationCircleIcon,
-  QuestionMarkCircleIcon,
+  LinkIcon,
   BookOpenIcon,
   ChatIcon,
   CodeIcon,
   SwitchHorizontalIcon,
 } from "@heroicons/react/outline";
-
 export const actions = [
   {
     title: "What is Connext",
@@ -31,17 +30,17 @@ export const actions = [
     text: `Learn about the core concepts of the Connext Protocol. Brige basics, trust assumptions, security and more.`,
   },
   {
-    title: "What is xcall",
+    title: "Build with xcall",
     href: "#",
-    icon: QuestionMarkCircleIcon,
-    to: "./developers/sdk/how-to-use-xcall",
-    text: `Learn how to use xcall to interact with the Connext Protocol. An intro to xCall, the arguments, and more.`,
+    icon: LinkIcon,
+    to: "./developers/quickstart",
+    text: `Learn how to use the cross-chain primitive to interact with the Connext Protocol.`,
   },
   {
     title: "Smart contract overview",
     href: "#",
     icon: BookOpenIcon,
-    to: "./developers/contracts/contracts-quickstart",
+    to: "./developers/contracts",
     text: `Learn about the architecture of the Connext Protocol smart contracts made up of the Core and Periphery libraries.`,
   },
 ];
