@@ -20,9 +20,9 @@ For example, here are interesting use cases that the protocol enables:
 
 Start building cross-chain applications in no time with our Quickstart or see our Guides for more in-depth examples.
 
-[Quickstart](./quickstart/contract-quickstart.mdx)
+[Quickstart](./quickstart/quickstart.mdx)
 
-[Guides](./guides/introduction.md) for more in-depth examples. 
+[Guides](./guides/introduction.md)
 
 ---
 ## Help

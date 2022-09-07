@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# Tracking an `xcall`
+# Tracking an xcall
 
 Note: We will be building additional utilities to make tracking the full flow of `xcall`s easier in the near future. 
 
