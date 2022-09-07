@@ -73,8 +73,8 @@ module.exports = {
         },
         {
           type: "doc",
-          docId: "resources/intro",
-          label: "Resources",
+          docId: "reference/intro",
+          label: "References",
           position: "left",
         },
         {
