@@ -2,7 +2,8 @@ import React from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 
-import "./styles.module.css";
+import styles from "./index.module.css";
+
 import styled from "@emotion/styled";
 
 import Discord from "/static/img/discord.svg";
@@ -26,22 +27,22 @@ export const actions = [
     title: "What is Connext",
     href: "#",
     icon: InformationCircleIcon,
-    to: "./protocol/introduction",
+    to: "./core_concepts/background",
     text: `Learn about the core concepts of the Connext Protocol. Brige basics, trust assumptions, security and more.`,
+  },
+  {
+    title: "What is xcall",
+    href: "#",
+    icon: QuestionMarkCircleIcon,
+    to: "./developers/sdk/how-to-use-xcall",
+    text: `Learn how to use xcall to interact with the Connext Protocol. An intro to xCall, the arguments, and more.`,
   },
   {
     title: "Smart contract overview",
     href: "#",
     icon: BookOpenIcon,
-    to: "./protocol/reference/smart-contracts",
+    to: "./developers/contracts/contracts-quickstart",
     text: `Learn about the architecture of the Connext Protocol smart contracts made up of the Core and Periphery libraries.`,
-  },
-  {
-    title: "TS SDK",
-    href: "#",
-    icon: QuestionMarkCircleIcon,
-    to: "./sdk/introduction",
-    text: `The SDK is designed to assist developers when interacting with the protocol in any environment that can execute JavaScript.`,
   },
 ];
 
@@ -66,12 +67,12 @@ export const Guides = [
   {
     title: "SDK Quick Start",
     text: "Integrate with the Connext Protocol using JavaScript",
-    to: "./sdk/guides/quick-start",
+    to: "./developers/sdk/sdk-quickstart",
   },
   {
-    title: "Implementing a Swap",
-    text: "Start swapping from a smart contract in Solidity",
-    to: "./protocol/guides/swaps/single-swaps",
+    title: "Solidity Quick Start",
+    text: "Integrate with the Connext Protocol using Solidty",
+    to: "./developers/contracts/contracts-quickstart",
   },
 ];
 
@@ -274,19 +275,101 @@ export default function Home() {
               <SearchBar />{" "}
             </HideMedium>
 
-            <p
+            <TwoRow
               style={{
-                maxWidth: "640px",
-                margin: "1rem ",
-                fontWeight: 500,
+                gap: "56px",
+                marginTop: "4rem",
               }}
             >
-              Connext powers fast, trust-minimized communication between
-              blockchains. Our goal is to create a world where users never need
-              to know what chain or rollup they're on (unless they want to!) and
-              developers can build applications that utilize resources from many
-              chains/rollups simultaneously
-            </p>
+              <p
+                style={{
+                  maxWidth: "640px",
+                  margin: "1rem ",
+                  fontWeight: 500,
+                  textAlign: "left",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                Connext powers fast, trust-minimized communication between
+                blockchains.
+                <br />
+                <br />
+                Our goal is to create a world where users never need to know
+                what chain or rollup they're on (unless they want to!) and
+                developers can build applications that utilize resources from
+                many chains/rollups simultaneously.
+                <br />
+                <br />
+                Get started with xcall in less than 10 lines of code!
+              </p>
+              <div class={styles.hack_hero_code_editor}>
+                <div class={styles.hack_code_editor_top}>
+                  <div class={styles.hack_hero_dots_container}>
+                    <div class={styles.hack_hero_dot}></div>
+                    <div class={styles.hack_hero_dot}></div>
+                    <div class={styles.hack_hero_dot}></div>
+                  </div>
+                </div>
+                <div class={styles.hack_code_editor_bottom}>
+                  <div class={styles.hack_code_editor_dots}>
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <div>5</div>
+                    <div>6</div>
+                    <div>7</div>
+                    <div>8</div>
+                    <div>9</div>
+                    <div>10</div>
+                  </div>
+                  <div class={styles.hack_code_text_container}>
+                    <div>
+                      <span style={{ color: "#7ED321" }}>connext</span>
+                      <span style={{ color: "#BD10E0" }}>.</span>
+                      <span style={{ color: "#9013FE" }}>xcall</span>(
+                      <span style={{ color: "#4A90E2" }}>XCallArgs</span>(
+                    </div>
+                    <div>
+                      &nbsp;&nbsp;
+                      {<span style={{ color: "#4A90E2" }}>CallParams</span>}(
+                    </div>
+
+                    <div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <span style={{ color: "#417505" }}>to</span>:
+                      ‹recipient_or_contract›,
+                    </div>
+                    <div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <span style={{ color: "#417505" }}>callData</span>:
+                      ‹encoded_calldata›,
+                    </div>
+                    <div>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <span style={{ color: "#417505" }}>callback</span>:
+                      ‹async_handler›,
+                    </div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;...</div>
+                    <div>&nbsp;&nbsp;),</div>
+                    <div>
+                      &nbsp;&nbsp;
+                      <span style={{ color: "#417505" }}>transactingAsset</span>
+                      : ‹ERC20›,
+                    </div>
+                    <div>
+                      &nbsp;&nbsp;
+                      <span style={{ color: "#417505" }}>
+                        transactingAmount
+                      </span>
+                      : ‹funds_to_send›,
+                    </div>
+                    <div>));</div>
+                  </div>
+                </div>
+              </div>
+            </TwoRow>
           </div>
           {/* <StyledTitleImage
             alt="Docusaurus themed image"
@@ -389,7 +472,7 @@ export default function Home() {
                         style={{ width: "24px" }}
                       >
                         <defs></defs>
-                        <title>testlogo</title>
+                        <title>Logo</title>
                         <g id="Layer_2" data-name="Layer 2">
                           <g id="Layer_1-2" data-name="Layer 1">
                             <path

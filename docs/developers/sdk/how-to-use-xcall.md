@@ -1,10 +1,17 @@
 ---
-sidebar_position: 7 
+sidebar_position: 1
+id: how-to-use-xcall
 ---
 
-# Parameters for xcall
+# XCall Me Maybe
 
-This is a reference for builders to understand the different parameters of `xcall`.
+## The Entrypoint
+
+The main entrypoint for interacting with the Connext protocol is `xcall`. This method kicks off a crosschain interaction, and all the user has to do is wait for it to complete on the destination chain. There are *no required user interactions past this transaction*!
+
+Subgraphs are available to track the progress of all in-flight transactions.
+
+## Usage
 
 ```solidity
 function xcall(XCallArgs calldata _args)
@@ -24,7 +31,7 @@ struct XCallArgs {
 ```
 ### `transactingAsset`
 
-Refers to the contract address of the asset that is to be bridged. This could be the adopted, local, or canonical asset (see [this](./faq#what-does-it-mean-when-referring-to-canonical-representation-and-adopted-assets) for an explanation of the different kinds of assets).
+Refers to the contract address of the asset that is to be bridged. This could be the adopted, local, or canonical asset (see [this](../faq#what-does-it-mean-when-referring-to-canonical-representation-and-adopted-assets) for an explanation of the different kinds of assets).
 
 Usually a xApp will have a higher-level function wrapping `xcall` in which the asset will be passed as an argument. This allows users to specify which asset they want to work with.
 
