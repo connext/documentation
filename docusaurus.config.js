@@ -49,7 +49,7 @@ module.exports = {
       items: [
         {
           type: "doc",
-          docId: "core_concepts/background",
+          docId: "core-concepts/overview/background",
           label: "Core Concepts",
           position: "left",
         },

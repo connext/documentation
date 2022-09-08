@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+id: understanding-connext
 ---
 
 
@@ -35,7 +36,7 @@ A simple mental model is to think of Connext as the liquidity layer to an AMB me
 
 ## What does the Connext flow look like?
 
-![Connext Diagram](/img/core_concepts/Connext_quick_overview.png "Title")
+![Connext Diagram](/img/core-concepts/Connext_quick_overview.png "Title")
 
 In this diagram we can observe two domains, "origin" and "destination", and two paths, "fast" and "slow".
 

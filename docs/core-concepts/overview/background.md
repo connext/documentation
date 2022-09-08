@@ -4,7 +4,7 @@ id: "background"
 ---
 
 
-# Background on Bridges
+# Bridge Taxonomy
 
 ## What is a Bridge?
 
@@ -25,7 +25,7 @@ We can classify all bridges by their properties/tradeoffs:
 
 ### Externally Verified Bridges
 
-![Externally Verified](/img/core_concepts/external.png)
+![Externally Verified](/img/core-concepts/external.png)
 
 Externaly verified protocols rely on an external set of validators to relay data between chains. This is typically represented as an MPC system, oracle network, or threshold multisig.
 
@@ -33,7 +33,7 @@ These systems have low latency, support arbitrary data passing, and are easily p
 
 ### Natively Verified Bridges
 
-![Natively Verified](/img/core_concepts/native.png)
+![Natively Verified](/img/core-concepts/native.png)
 
 Natively verified protocols are ones where all of the underlying chains’ own verifiers are fully validating data passing between chains. Typically this is done by running a light client of one chain in the VM of another chain and vice versa.
 
@@ -41,7 +41,7 @@ These systems are the most trust-minimized systems as they rely directly on doma
 
 ### Locally Verified Bridges
 
-![Locally Verified](/img/core_concepts/local.png)
+![Locally Verified](/img/core-concepts/local.png)
 
 Locally verified protocols are ones where only the parties involved in a given cross-domain interaction verify the interaction. Locally verified protocols turn the complex n-party verification problem into a much simpler set of 2-party interactions where each party verifies only their counterparty. This model works so long as both parties are economically adversarial — i.e. there’s no way for both parties to collude to take funds from the broader chain.
 
@@ -49,7 +49,7 @@ These protocols are fast, extensibile, and trust-minimized but cannot support ar
 
 ### Optimistic Bridges
 
-![Optimistic Bridges](/img/core_concepts/optimistic.png)
+![Optimistic Bridges](/img/core-concepts/optimistic.png)
 
 Optimistic bridges, similar to optimistic rollups, use **fraud proofs** to ensure the validity of data relayed across chains. Every message that passes through an optimistic bridge remains in a “pending” state during the dispute window until it is considered valid. During this time, **watchers** can dispute the message if the data is incorrect.
 
