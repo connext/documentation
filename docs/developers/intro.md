@@ -15,9 +15,9 @@ and more!
 
 Start building cross-chain applications in no time with our Quickstart or see our Guides for more in-depth examples.
 
-[Quickstart](./quickstart/quickstart)
+[Quickstart](./quickstart)
 
-[Guides](./guides/introduction)
+[Guides](./guides/guides-introduction)
 
 ---
 ## Help
