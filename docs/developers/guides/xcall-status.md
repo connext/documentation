@@ -4,11 +4,11 @@ sidebar_position: 6
 
 # Tracking an xcall
 
-Note: We will be building additional utilities to make tracking the full flow of `xcall`s easier in the near future. 
+Every `xcall` is associated with a unique `transferId` that can be used to track its lifecycle through a cross-chain transaction.
 
 ## Querying Subgraphs
 
-For now, we recommend querying the hosted subgraphs on each chain to check on transaction status.
+You can query the hosted subgraphs on each chain to check the transaction status.
 
 | Chain | Subgraph |
 | --- | --- |
@@ -17,7 +17,7 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
 
 1.  Make note of the transaction hash that interacted with the Connext contract
 
-2.  Navigate to the hosted subgraph for the sending chain
+2.  Navigate to the hosted subgraph for the origin domain
     - Query by your transaction hash
         
         ```graphql
@@ -48,8 +48,8 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
         }
         ```
         
-3.  Navigate to the hosted subgraph for the receiving chain
-    - Query by the `transferId` obtained from the sending chain subgraph
+3.  Navigate to the hosted subgraph for the destination domain
+    - Query by the `transferId` obtained from the origin domain subgraph
         
         ```graphql
         {
@@ -100,3 +100,7 @@ For now, we recommend querying the hosted subgraphs on each chain to check on tr
           }
         }
         ```
+
+## Connextscan
+
+Another option is using [Connextscan](https://testnet.amarok.connextscan.io/) which can monitor the status of any `transferId`.
