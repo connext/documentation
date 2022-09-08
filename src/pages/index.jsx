@@ -287,9 +287,12 @@ export default function Home() {
                   fontWeight: 500,
                   textAlign: "left",
                   display: "flex",
-                  alignItems: "center",
+                  alignItems: "left",
+                  flexDirection: "column",
+                  align: "left",
                 }}
               >
+                <h2>What is connext?</h2>
                 Connext powers fast, trust-minimized communication between
                 blockchains.
                 <br />

@@ -185,6 +185,7 @@ Create a `config.json` file based on the `config.example.json` file. At minumum,
   }
 }
 ```
+
 - `web3SignerUrl` - Set to `"http://signer:9000"`.
 - `redis`
   - `host` - Set to the host name of your external Redis instance.

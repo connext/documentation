@@ -14,15 +14,9 @@ module.exports = {
   organizationName: "connext", // Usually your GitHub org/user name.
   projectName: "connext", // Usually your repo name.
   customFields: {
-    description: "Build your next xApp(cross-chain dapp) using Connext.",
+    description: "Build your next xApp (cross-chain dapp) using Connext.",
   },
   themeConfig: {
-    matomo: {
-      matomoUrl: "https://connextnetwork.matomo.cloud/",
-      siteId: "5",
-      phpLoader: "matomo.php",
-      jsLoader: "matomo.js",
-    },
     algolia: {
       // The application ID provided by Algolia
       appId: "Z3QNOPOJN1",
@@ -49,7 +43,7 @@ module.exports = {
     navbar: {
       title: "Connext Documentation",
       logo: {
-        alt: "My Site Logo",
+        alt: "Connext documentation",
         src: "img/logomark.png",
       },
       items: [
