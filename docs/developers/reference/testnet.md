@@ -2,7 +2,7 @@
 sidebar_position: 5 
 ---
 
-# Testnet Reference
+# Testnet
 
 The Connext testnet contains various pieces of infrastructure and smart contracts.
 
