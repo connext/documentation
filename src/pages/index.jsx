@@ -40,7 +40,7 @@ export const actions = [
     title: "Smart contract overview",
     href: "#",
     icon: BookOpenIcon,
-    to: "./developers/contracts",
+    to: "./developers/reference/contracts",
     text: `Learn about the architecture of the Connext Protocol smart contracts made up of the Core and Periphery libraries.`,
   },
 ];
