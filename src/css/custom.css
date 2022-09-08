@@ -435,10 +435,6 @@ html[data-theme='dark'] .DocSearch-Hit a {
   flex-wrap: unset;
 }
 
-.navbar__item {
-  display: none;
-}
-
 .navbar__item.dropdown {
   display: inline-block;
 }
