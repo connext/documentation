@@ -66,6 +66,12 @@ module.exports = {
           position: "left",
         },
         {
+          type: "doc",
+          docId: "resources/intro",
+          label: "Resources",
+          position: "left",
+        },
+        {
           type: "docsVersionDropdown",
           position: "right",
           dropdownActiveClassDisabled: true,
@@ -127,10 +133,7 @@ module.exports = {
       darkTheme: darkCodeTheme,
     },
   },
-  plugins: [
-    require.resolve("@easyops-cn/docusaurus-search-local"),
-    "docusaurus-plugin-matomo",
-  ],
+  plugins: [require.resolve("@easyops-cn/docusaurus-search-local")],
   presets: [
     [
       "@docusaurus/preset-classic",
