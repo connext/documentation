@@ -26,7 +26,7 @@ export const actions = [
     title: "What is Connext",
     href: "#",
     icon: InformationCircleIcon,
-    to: "./core-concepts/overview/background",
+    to: "./core-concepts/understanding-connext",
     text: `Learn about the core concepts of the Connext Protocol. Brige basics, trust assumptions, security and more.`,
   },
   {
@@ -40,7 +40,7 @@ export const actions = [
     title: "Smart contract overview",
     href: "#",
     icon: BookOpenIcon,
-    to: "./developers/reference/contracts-overview",
+    to: "./developers/reference/contracts/contracts-overview",
     text: `Learn about the architecture of the Connext Protocol smart contracts made up of the Core and Periphery libraries.`,
   },
 ];

@@ -49,7 +49,7 @@ module.exports = {
       items: [
         {
           type: "doc",
-          docId: "core-concepts/overview/background",
+          docId: "core-concepts/understanding-connext",
           label: "Core Concepts",
           position: "left",
         },
