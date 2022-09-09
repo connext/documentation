@@ -86,6 +86,39 @@ export const hacker = [
   },
 ];
 
+export const router = [
+  {
+    title: "How to set up your router",
+    to: "./",
+  },
+  {
+    title: "How to provide liquidity",
+    to: "./",
+  },
+];
+
+export const builder = [
+  {
+    title: "Join the builders track",
+    to: "./",
+  },
+  {
+    title: "Program Results",
+    to: "./",
+  },
+];
+
+export const grant = [
+  {
+    title: "Apply for a grant",
+    to: "./",
+  },
+  {
+    title: "Current grant recipients",
+    to: "./",
+  },
+];
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -600,7 +633,11 @@ export default function Home() {
                             </g>
                           </svg>
                           <h3
-                            style={{ marginBottom: "0rem", marginLeft: "16px" }}
+                            style={{
+                              marginBottom: "0rem",
+                              marginLeft: "16px",
+                              textAlign: "left",
+                            }}
                           >
                             {action.title}
                           </h3>
@@ -661,7 +698,7 @@ export default function Home() {
               </p>
               <div>
                 <p></p>
-                {hacker.map((action) => (
+                {router.map((action) => (
                   <Link style={{ textDecoration: "none" }} href={action.href}>
                     <Card key={action.title} style={{ marginBottom: "1rem" }}>
                       <LinkRow>
@@ -669,7 +706,11 @@ export default function Home() {
                           style={{ width: "24px", height: "24px" }}
                         />
                         <h3
-                          style={{ marginBottom: "0rem", marginLeft: "16px" }}
+                          style={{
+                            marginBottom: "0rem",
+                            marginLeft: "16px",
+                            textAlign: "left",
+                          }}
                         >
                           {action.title}
                         </h3>
@@ -727,7 +768,7 @@ export default function Home() {
               </p>
               <div>
                 <p></p>
-                {hacker.map((action) => (
+                {builder.map((action) => (
                   <Link style={{ textDecoration: "none" }} href={action.href}>
                     <Card key={action.title} style={{ marginBottom: "1rem" }}>
                       <LinkRow>
@@ -747,7 +788,11 @@ export default function Home() {
                             </g>
                           </svg>
                           <h3
-                            style={{ marginBottom: "0rem", marginLeft: "16px" }}
+                            style={{
+                              marginBottom: "0rem",
+                              marginLeft: "16px",
+                              textAlign: "left",
+                            }}
                           >
                             {action.title}
                           </h3>
@@ -806,7 +851,7 @@ export default function Home() {
               </p>
               <div>
                 <p></p>
-                {hacker.map((action) => (
+                {grant.map((action) => (
                   <Link style={{ textDecoration: "none" }} href={action.href}>
                     <Card key={action.title} style={{ marginBottom: "1rem" }}>
                       <LinkRow>
@@ -826,7 +871,11 @@ export default function Home() {
                             </g>
                           </svg>
                           <h3
-                            style={{ marginBottom: "0rem", marginLeft: "16px" }}
+                            style={{
+                              marginBottom: "0rem",
+                              marginLeft: "16px",
+                              textAlign: "left",
+                            }}
                           >
                             {action.title}
                           </h3>
