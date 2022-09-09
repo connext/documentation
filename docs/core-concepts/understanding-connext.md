@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 id: understanding-connext
 ---
 
@@ -64,9 +64,9 @@ It's important to note that if the user is bridging data, or if the call needs t
   - Routers observing the origin chain with funds on the destination chain will:
     - Simulate the transaction (if this fails, the assumption is that this is a more "expressive" crosschain message that requires authentication and so must go through the AMB: the slow path).
     - Prepare a signed transaction object using funds on the receiving chain.
-    - Post this object (a "bid") to the auctioneer.
+    - Post this object (a "bid") to the sequencer.
     - *Note: if the router does not have enough funds for the transfer, they may also provide only part of the transfer's value.*
-  - The auctioneer will be observing all of the underlying chains. Every X blocks, the auctioneer will collect bids for transactions. The auctioneer will be responsible for selecting the correct router (or routers!) for a given transaction (can be random). The auctioneer will post batches of these bids to a relayer network to submit them to chain.
+  - The sequencer will be observing all of the underlying chains. Every X blocks, the sequencer will collect bids for transactions. The sequencer will be responsible for selecting the correct router (or routers!) for a given transaction (can be random). The sequencer will post batches of these bids to a relayer network to submit them to chain.
   - When a given bid is submitted to chain, the contracts will do the following:
     - Check that there are enough funds available for the transaction.
     - Swap the router's AMB-flavored funds for the canonical asset of the chain if needed.

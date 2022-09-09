@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 id: "background"
 ---
 
@@ -56,7 +56,10 @@ Optimistic bridges, similar to optimistic rollups, use **fraud proofs** to ensur
 While slow, these protocols are extensible, generalizable, and trust-minimmized.
 
 💡 Learn more:
-- [The Interoperability Trilemma](https://blog.connext.network/the-interoperability-trilemma-657c2cf69f17)
-- [Optimistic Bridges](https://blog.connext.network/optimistic-bridges-fb800dc7b0e0)
-- [​​Validity Proofs Are Not Effective for Bridging Blockchains](https://blog.connext.network/validity-proofs-are-not-effective-for-bridging-blockchains-85b5e3b22a35)
+
+[The Interoperability Trilemma](https://blog.connext.network/the-interoperability-trilemma-657c2cf69f17)
+
+[Optimistic Bridges](https://blog.connext.network/optimistic-bridges-fb800dc7b0e0)
+
+[​​Validity Proofs Are Not Effective for Bridging Blockchains](https://blog.connext.network/validity-proofs-are-not-effective-for-bridging-blockchains-85b5e3b22a35)
 

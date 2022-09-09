@@ -5,37 +5,15 @@ id: testnet
 
 # Testnet
 
-The Connext testnet includes various smart contracts and offchain infrastructure elements.
-
 We maintain two testnet environments:
 - `production`: a "stable" testnet for integrators
 - `staging`: used primarily by the core team for testing; no expectations for stability
 
-## Domain IDs
-
-Domain IDs are unique to every bridge and differ from Chain IDs. Connext's `xcall` requires specifying which Domain ID should be the destination of a cross-chain transaction.
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Chain ID</th>
-    <th>Domain ID</th>
-  </tr>
-  <tr>
-    <td>Goerli</td>
-    <td>5</td>
-    <td>1735353714</td>
-  </tr>
-  <tr>
-    <td>Optimism-Goerli</td>
-    <td>420</td>
-    <td>1735356532</td>
-  </tr>
-</table>
-
 ## Contract Deployments
 
 A full list of deployed contracts can be found in the [deployments.json](https://github.com/connext/nxtp/blob/main/packages/deployments/contracts/deployments.json) file. This contains deployments for all environments and is difficult to parse through manually. You should only need to reference it for automation or as a source of truth. For convenience, we extracted the important contract addresses and listed them here.
+
+Note that the Test Token is a mintable ERC20. The open `mint` function has the signature `mint(address account, uint256 amount)` and can be freely called.
 
 <details>
 
@@ -312,24 +290,43 @@ A full list of deployed contracts can be found in the [deployments.json](https:/
 
 </details>
 
-## Test Token (TEST)
+## Offchain Agents
 
-The Test ERC20 Token has an open mint function with the signature `mint(address account, uint256 amount)`. These test ERC20 tokens can be freely minted by anyone and they are collateralized by routers on the test network to enable swaps between them on the different chains.
+### Routers
 
-Please ping the team to request for more testnet assets and swaps added!
+While there are multiple routers providing liquidity to the system, Connext runs our own as well.
 
-## Sequencer
+- Connext Router (staging): `0x71dD9fc6Fe5427F0c7cd7d42Bc89eFFe11C6d4B7`
+- Connext Router (production): `0xD2aD711861ab345977B7379c81165708C8717fF1`
+### Sequencer
 
-URL: `https://sequencer.testnet.connext.ninja`
+Example endpoints can be found [here](https://github.com/connext/nxtp/blob/c694958e51b9f81cc100260d0776788276303087/packages/agents/sequencer/example.http#L15). For instance, you can check for queued transactions:
 
-## Testnet Bridge
+[https://sequencer.testnet.connext.ninja/queued](https://sequencer.testnet.connext.ninja/queued)
 
-Note this new Bridge UI is still under development. Here you can mint TEST tokens via the faucet and also send tokens. 
+### Relayers
 
-URL: `https://amarok-testnet.coinhippo.io/`
+[https://relay.gelato.digital](https://relay.gelato.digital)
 
-## Testnet Connextscan
+### Cartographer
+
+The Cartographer is a Connext-hosted service that stores transfer data to a persistent datastore. The data schema is bespoke for Connext cross-chain transfers and a REST API is available for retrieving details like transfer status, transfer history by user, and more.
+
+Example endpoints can be found [here](https://github.com/connext/nxtp/blob/c694958e51b9f81cc100260d0776788276303087/packages/agents/cartographer/api/example.http). For instance, you can query for all transfers: 
+
+[https://postgrest.testnet.connext.ninja/transfers](https://postgrest.testnet.connext.ninja/transfers)
+
+
+## User Interfaces
+
+### Bridge UI
+
+A bridge UI where users can transfer assets across domains. Here you can also mint `TEST` tokens with the faucet.
+
+[https://amarok-testnet.coinhippo.io](https://amarok-testnet.coinhippo.io)
+
+### Connextscan
 
 This is the testnet scanner site where you can track the status of transfers by `transferId`. 
 
-URL: `https://testnet.amarok.connextscan.io/`
+[https://testnet.amarok.connextscan.io](https://testnet.amarok.connextscan.io)

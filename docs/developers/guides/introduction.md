@@ -5,4 +5,4 @@ id: guides-introduction
 
 # Introduction
 
-We have a variety of guides for different features enabled with Connext.
+These are guides for different features, use-cases, and perhipheral utilities that can be helpful when building on Connext.

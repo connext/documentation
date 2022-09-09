@@ -67,7 +67,7 @@ module.exports = {
         },
         {
           type: "doc",
-          docId: "resources/intro",
+          docId: "resources/testnet",
           label: "Resources",
           position: "left",
         },

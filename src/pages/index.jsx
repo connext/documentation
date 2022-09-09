@@ -425,7 +425,7 @@ export default function Home() {
           <div>
             <h2>Getting Started</h2>
             <p>
-              Explore these docs to get started integrating the Connext Protocol
+              Explore these docs to start integrating the Connext Protocol
               in your dApp, smart contract or project.
             </p>
             <div>

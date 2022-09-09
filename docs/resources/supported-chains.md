@@ -48,8 +48,3 @@ Domain IDs are unique to every bridge and differ from Chain IDs. Connext's `xcal
     <td>✅</td>
   </tr>
 </table>
-
-### How do I add my chain to Connext?
-
-Connext does not charge any fee to onboard new chains.
-You can learn about our process for onboarding new chains in our [Chain Onboarding Guide](https://www.notion.so/connext/How-can-Connext-Bridge-add-my-Chain-fa8b43cac720467a88b5c94f81804091).
