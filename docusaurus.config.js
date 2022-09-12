@@ -143,7 +143,6 @@ module.exports = {
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
           sidebarCollapsible: true,
-          remarkPlugins: [CardLink],
           editUrl: "https://github.com/connext/documentation",
           lastVersion: "current",
           versions: {
@@ -151,6 +150,10 @@ module.exports = {
               label: "0.2.x-amarok",
             },
           },
+          remarkPlugins: [
+            CardLink,
+            [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
+          ],
         },
         theme: {
           customCss: [require.resolve("./src/css/custom.css")],

@@ -16,18 +16,9 @@ Install [Node.js](https://nodejs.dev/en/learn/how-to-install-nodejs/) and use **
 
 Install the Connext contracts package.
 
-<Tabs>
-  <TabItem value="npm" label="npm">
-
-    npm install @connext/nxtp-contracts
-
-  </TabItem>
-  <TabItem value="yarn" label="yarn" default> 
-
-    yarn add @connext/nxtp-contracts
-
-  </TabItem>
-</Tabs>
+```bash npm2yarn
+npm install @connext/nxtp-contracts
+```
 
 ## Hello Chain
 
@@ -167,6 +158,6 @@ The full token flow moves from `User's wallet` -> `XTransfer` -> `ConnextHandler
 
 ## Next Steps
 
-[Track the status](../guides/xcall-status.md) of an `xcall`. 
-
-Build on these examples and deploy contracts yourself using your favorite toolkit! 
+- Try [tracking the status](../guides/xcall-status.md) of an `xcall` after you send it.
+- Read about [how to use callbacks](../guides/xcall-callback.md) to handle execution results back on the origin domain.
+- Fork the [xapp-starter](https://github.com/connext/xapp-starter) repository and build your own xapp on top of the examples.
