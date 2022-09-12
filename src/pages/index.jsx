@@ -64,13 +64,13 @@ export const github = [
 
 export const Guides = [
   {
-    title: "SDK Quick Start",
-    text: "Integrate with the Connext Protocol using JavaScript",
-    to: "./developers/sdk/sdk-quickstart",
+    title: "SDK Example",
+    text: "Integrate with the Connext Protocol using TypeScript",
+    to: "./developers/sdk/sdk-example",
   },
   {
     title: "Solidity Quick Start",
-    text: "Integrate with the Connext Protocol using Solidty",
+    text: "Integrate with the Connext Protocol using Solidity",
     to: "./developers/contracts/contracts-quickstart",
   },
 ];
