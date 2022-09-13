@@ -10,6 +10,8 @@ import TabItem from '@theme/TabItem';
 
 These are the simplest working contracts that demonstrate how to use `xcall`, a cross-chain primitive mimicking Solidity's low level `call` method.
 
+---
+
 ## Setup
 
 Install [Node.js](https://nodejs.dev/en/learn/how-to-install-nodejs/) and use **Node.js v16**. Follow the instructions to install `nvm`, a node version manager, which will make switching versions easier.
@@ -20,7 +22,7 @@ Install the Connext contracts package.
 npm install @connext/nxtp-contracts
 ```
 
-## Hello Chain
+## Example 1: Hello Chain
 
 In this example, there are two contracts. The `Target` contract on the destination domain will have a greeting that we want to update. The `Source` contract on the origin domain will use `xcall` to execute the update on `Target` by sending encoded calldata.
 
@@ -87,7 +89,7 @@ contract Source {
 }
 ```
 
-## Cross-chain Transfer
+## Example 2: Cross-Chain Transfer
 
 This `XTransfer` contract implements a cross-chain token transfer. There's no target contract on the destination side so only one contract is needed.
 
