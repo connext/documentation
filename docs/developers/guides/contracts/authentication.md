@@ -1,34 +1,27 @@
 ---
 sidebar_position: 1
-id: contracts-quickstart
+id: authentication
 ---
 
-# Contracts Quickstart
-
-This quickstart will go through how to write smart contracts in Solidity that interact with Connext's deployed contracts.
-
-These examples (and others) can be found in our xApp Starter Kit, under `src/contract-to-contract-interactions`.
-
-[xApp Starter Kit](https://github.com/connext/xapp-starter/)
-
----
+# Authentication
 
 ## Introduction
 
+Authentication is a critical concept to understand when building xApps. In the context of smart contracts, an authenticated call is one that passes permissioning constraints set by the protocol developer. In most cases this manifests as a modifier that allows a certain subset of addresses to call specific smart contract functions - in other words, we are talking about access control.
 
-
+A simple example of authentication is an `onlyOwner` modifier that allows only the owner of a smart contract to perform certain tasks. You can read more about this one at [OpenZeppelin's Ownable contracts](https://docs.openzeppelin.com/contracts/2.x/api/ownership).
 
 ---
 
 ## Unauthenticated
 
-While simple transfers are technically unauthenticated, we'll treat cross-domain calls that send `calldata` a bit differently because they involve a target contract on the destination side.
+Cross-domain calls can target destination-side smart contract functions by sending encoded `calldata` in the `xcall`. With unauthenticated functions, they are open and callable by anyone.
 
 ### Target Contract
 
-Suppose we have a target contract on the destination domain as follows.
+Suppose we have a target contract on the destination domain with an unauthenticated `updateValue` function.  
 
-```solidity title="Target.sol"
+```solidity
 contract Target {
   uint256 public value;
 
@@ -38,18 +31,11 @@ contract Target {
 }
 ```
 
-Our goal is to call the `updateValue` function, which is unauthenticated (i.e. callable by anyone), from a different domain.
-
 ### Source Contract
 
-The source contract initiates the cross-chain interaction with Connext. There isn't much difference between this contract and the one from the transfer example above. The only major differences are:
+The source contract initiates the cross-chain interaction with Connext via `xcall`.
 
-- we aren't sending funds with the `xcall` so the entire approval dance isn't necessary
-- we are sending `calldata` so we need to construct it
-
-We have the same imports and constructor.
-
-```solidity title="Source.sol"
+```solidity
 import {IConnextHandler} from "nxtp/core/connext/interfaces/IConnextHandler.sol";
 import {CallParams, XCallArgs} from "nxtp/core/connext/libraries/LibConnextStorage.sol";
 
@@ -59,29 +45,19 @@ contract Source {
   constructor(IConnextHandler _connext) {
     connext = _connext;
   }
-```
 
-Then we define this source-side contract's `xChainUpdate` function, which requires a set of arguments necessary for the `xcall` later.
-
-```solidity
+  // The entry function that will update the value on the target contract.
   function xChainUpdate(
     address to, // the address of the target contract
     uint32 originDomain, // e.g. from Goerli (1735353714)
     uint32 destinationDomain, // to Optimism-Goerli (1735356532)
     uint256 newValue // value to update to
   ) external payable {
-```
 
-We create the `calldata` by encoding the target contract's `updateValue` function with the correct arguments. Recall that the target function's signature is `updateValue(uint256 newValue)`.
-
-```solidity
+    // Encode the target function with its arguments
     bytes4 selector = bytes4(keccak256("updateValue(uint256)"));
     bytes memory callData = abi.encodeWithSelector(selector, newValue);
-```
 
-As before, we construct the `XCallArgs` and call `xcall` on the Connext contract.
-
-```solidity
     CallParams memory callParams = CallParams({
       to: to,
       callData: callData,
@@ -109,46 +85,78 @@ As before, we construct the `XCallArgs` and call `xcall` on the Connext contract
 }
 ```
 
-Once these contracts are deployed, anyone can call `xChainUpdate` on the source contract of the origin domain to change the value stored in the target contract of the destination domain.
+Once these contracts are deployed, anyone can call `xChainUpdate` on the source contract from the origin domain to change the value stored in the target contract of the destination domain!
 
 ---
 
 ## Authenticated
 
-The most interesting cross-chain use cases can only be accomplished through authenticated calls on the destination domain. With authentication requirements, a xapp developer must carefully implement authentication checks. We'll see how this is done in the following example.
-
-Let's say our target contract contains a function that **_only our source contract should be able to call_**.
+With authenticated functions, xApp developer must carefully implement permissioning checks. Let's see how this works by making the target function **_only callable by the source contract_**.
 
 ```solidity
-  function updateValue(uint256 newValue) external onlyExecutor {
+contract Target {
+  uint256 public value;
+
+  address public originContract; // the address of the source contract
+  uint32 public originDomain; // the origin Domain ID
+  address public executor; // the address of the Connext Executor contract
+
+  // A modifier for authenticated functions.
+  // Note: This is an important security consideration. If the target function
+  //       is authenticated, it must check that the originating call is from
+  //       the correct domain and contract. Also, the msg.sender must be the 
+  //       Connext Executor address.
+  modifier onlySource() {
+    require(
+      LibCrossDomainProperty.originSender(msg.data) == originContract &&
+        LibCrossDomainProperty.origin(msg.data) == originDomain &&
+        msg.sender == address(executor),
+      "Expected origin contract on origin domain called by Executor"
+    );
+    _;
+  }
+
+  constructor(
+    address _originContract, // address of the source contract
+    uint32 _originDomain, // domain of the source contract
+    IConnextHandler _connext // address of ConnextHandler
+  ) {
+    originContract = _originContract;
+    originDomain = _originDomain;
+
+    // Retrieve the address of the Connext Executor
+    executor = _connext.executor();
+  }
+
+  function updateValue(uint256 newValue) external onlySource {
     value = newValue;
   }
+}
 ```
 
-You'll notice we have a custom modifier `onlyExecutor` on this function. This signals some kind of authentication requirement - we'll dig into that in a bit. For the authenticated flow, it's actually easier to consider the source contract first.
+Notice the custom modifier `onlyExecutor` on the target function. It checks that the `originSender` and the `origin` (domain) sent from the originating call matches the origin values set in the constructor. It also must ensure that `msg.sender` is the Connext Executor contract - otherwise, any calling contract could just spoof the origin information that we're expecting. The `xcall`'s origin information can be obtained by passing the `msg.data` into Connext's `LibCrossDomainProperty` library methods.
 
 ### Source Contract
 
-This is the exact same contract as the source contract for the unauthenticated example above except that `forceSlow: true`. See the notes about this parameter [here](../xcall-params.md).
+The source contract is the exact same as the unauthenticated example above except that `forceSlow: true`. See the notes about this parameter [here](../xcall-params.md).
 
-To recap: inside the `xChainUpdate` function, we simply create `calldata` to match the target function signature, construct the `XCallArgs`, and call `xcall` with it.
-
-```solidity title="Source.sol"
+```solidity
 import {IConnextHandler} from "nxtp/core/connext/interfaces/IConnextHandler.sol";
 import {CallParams, XCallArgs} from "nxtp/core/connext/libraries/LibConnextStorage.sol";
 
 contract Source {
-  IConnextHandler public immutable connext;
+    IConnextHandler public immutable connext;
 
   constructor(IConnextHandler _connext) {
     connext = _connext;
   }
 
+  // The entry function that will update the value on the target contract.
   function xChainUpdate(
-    address to,
-    uint32 originDomain,
-    uint32 destinationDomain,
-    uint256 newValue
+    address to, // the address of the target contract
+    uint32 originDomain, // e.g. from Goerli (1735353714)
+    uint32 destinationDomain, // to Optimism-Goerli (1735356532)
+    uint256 newValue // value to update to
   ) external payable {
 
     bytes4 selector = bytes4(keccak256("updateValue(uint256)"));
@@ -182,186 +190,4 @@ contract Source {
 }
 ```
 
-### Target Contract
-
-The target contract now has to be written carefully given our authentication requirements. Remember that **_only our source contract should be able to call_** the target function.
-
-Import the `IConnextHandler` and `IExecutor` interfaces. We also need the `LibCrossDomainProperty` library which will allow us to check the origin domain and sender contract.
-
-```solidity title="Target.sol"
-import {IConnextHandler} from "nxtp/core/connext/interfaces/IConnextHandler.sol";
-import {IExecutor} from "nxtp/core/connext/interfaces/IExecutor.sol";
-import {LibCrossDomainProperty} from "nxtp/core/connext/libraries/LibCrossDomainProperty.sol";
-```
-
-In the constructor, we pass the address of the origin-side contract and the Domain ID of the origin domain. We also pass in the address of the Connext Executor contract which should be the only allowed caller of the target function. These are crucial pieces of information that we will check against to uphold our authentication requirement.
-
-```solidity
-contract Target {
-  uint256 public value; // the value we want to update from origin
-  address public originContract; // the address of Source.sol
-  uint32 public originDomain; // the origin Domain ID
-  address public executor; // the address of Executor.sol
-
-  constructor(
-    address _originContract,
-    uint32 _originDomain,
-    address payable _connext
-  ) {
-    originContract = _originContract;
-    originDomain = _originDomain;
-    executor = ConnextHandler(_connext).getExecutor();
-  }
-```
-
-Here's the `onlyExecutor` modifier we saw earlier. In it, we use the `LibCrossDomainProperty` library functions `originSender()` and `origin()` to check that the originating call came from the expected origin contract and domain. We also need to check that the `msg.sender` is the Connext Executor contract - otherwise, any calling contract could just spoof the origin contract and domain that we're expecting.
-
-```solidity
-  modifier onlyExecutor() {
-    require(
-      LibCrossDomainProperty.originSender(msg.data) == originContract &&
-        LibCrossDomainProperty.origin(msg.data) == originDomain &&
-        msg.sender == address(executor),
-      "Expected origin contract on origin domain called by Executor"
-    );
-    _;
-  }
-```
-
-With the `onlyExecutor` modifier in place, our authenticated function is secured.
-
-```solidity
-  function updateValue(uint256 newValue) external onlyExecutor {
-    value = newValue;
-  }
-}
-```
-
-Now the target contract can only be updated by a cross-chain call from the source contract!
-
----
-
-## Callbacks
-
-One awesome feature we've introduced is the ability to use JS-style callbacks to respond to results of calls from the destination domain on the origin domain. You can read the [detailed spec here](https://github.com/connext/nxtp/discussions/883).
-
-Let's see how this works by building on the Authenticated example.
-
-### Source Contract
-
-To enable callback handling, some contract on the origin domain must implement the `ICallback` interface. This could be a separate contract or the Source contract itself. 
-
-We'll have our Source contract handle the callback. To do so, Source should import the `ICallback` interface and change the `callback` param to the address of the contract implementing this interface. It will also need a reference to the Connext PromiseRouter contract so we add that to the constructor.
-
-```solidity title="Source.sol"
-import {IConnextHandler} from "nxtp/core/connext/interfaces/IConnextHandler.sol";
-import {CallParams, XCallArgs} from "nxtp/core/connext/libraries/LibConnextStorage.sol";
-//highlight-next-line
-import {ICallback} from "nxtp/core/promise/interfaces/ICallback.sol";
-
-contract Source {
-  IConnextHandler public immutable connext;
-  address public immutable promiseRouter;
-
-  constructor(
-    IConnextHandler _connext, 
-    //highlight-next-line
-    address _promiseRouter
-  ) {
-    connext = _connext;
-    //highlight-next-line
-    promiseRouter = _promiseRouter;
-  }
-
-  function xChainUpdate(
-    address to,
-    uint32 originDomain,
-    uint32 destinationDomain,
-    uint256 newValue
-  ) external payable {
-
-    bytes4 selector = bytes4(keccak256("updateValue(uint256)"));
-    bytes memory callData = abi.encodeWithSelector(selector, newValue);
-
-    CallParams memory callParams = CallParams({
-      to: to,
-      callData: callData,
-      originDomain: originDomain,
-      destinationDomain: destinationDomain,
-      agent: msg.sender, // address allowed to execute transaction on destination side in addition to relayers
-      recovery: msg.sender, // fallback address to send funds to if execution fails on destination side
-      forceSlow: true, // this must be true for authenticated calls
-      receiveLocal: false, // option to receive the local bridge-flavored asset instead of the adopted asset
-      //highlight-next-line
-      callback: address(this), // this contract implements the callback
-      callbackFee: 0, // fee paid to relayers for the callback; no fees on testnet
-      relayerFee: 0, // fee paid to relayers for the forward call; no fees on testnet
-      destinationMinOut: 0 // not sending funds so minimum can be 0
-    });
-
-    XCallArgs memory xcallArgs = XCallArgs({
-      params: callParams,
-      transactingAsset: address(0), // 0 address is the native gas token
-      transactingAmount: 0, // not sending funds with this calldata-only xcall
-      originMinOut: 0 // not sending funds so minimum can be 0
-    });
-
-    connext.xcall(xcallArgs);
-  }
-```
-
-The callback-handling contract needs a reference to the Connext PromiseRouter similarly to how the Target contract needs a reference to the Connext Executor. The contract implementing `callback` should have a modifier that only allows the Connext PromiseRouter to execute the callback.
-
-```solidity
-  modifier onlyPromiseRouter () {
-    require(
-      msg.sender == address(promiseRouter),
-      "Expected PromiseRouter"
-    );
-    _;
-  }
-```
-
-Now we'll implement the `callback` function. 
-
-The return data from the destination domain is sent with the callback so we can do whatever we want with it. In this case, we'll simply emit an event with the `newValue` we sent so that the callback can be used on the origin domain to verify a successful update on the destination domain.
-
-```solidity
-  event CallbackCalled(bytes32 transferId, bool success, uint256 newValue);
-
-  function callback(
-    bytes32 transferId,
-    bool success,
-    bytes memory data
-  ) external onlyPromiseRouter {
-    uint256 newValue = abi.decode(data, (uint256));
-    emit CallbackCalled(transferId, success, newValue);
-  }
-}
-```
-
-### Target Contract
-
-On the Target side, the function just needs to return some data.
-
-```solidity title="Target.sol"
-...
-  function updateValue(uint256 newValue)
-    external onlyExecutor
-    //highlight-next-line
-    returns (uint256)
-  {
-    value = newValue;
-    //highlight-next-line
-    return newValue;
-  }
-}
-```
-
-That's it! Connext will now send the callback execution back to the origin domain to be processed by relayers.
-
-**Note**: Origin-side relayers have not been set up to process callbacks yet. This will be added shortly!
-
-## Deploy and Experiment
-
-To deploy these contracts and try out the `xcalls` yourself, clone the [xApp Starter Kit](https://github.com/connext/xapp-starter/) and see the README for full instructions.
+Now the target contract can only be updated by a cross-chain call from the source contract's `xChainUpdate` function!
