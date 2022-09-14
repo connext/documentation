@@ -1,5 +1,7 @@
 ---
 sidebar_position: 1
-title: Contracts Overview
+title: Contracts
 id: contracts-overview
 ---
+
+Coming soon!
