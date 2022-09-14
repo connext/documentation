@@ -22,13 +22,15 @@ Install the Connext contracts package.
 npm install @connext/nxtp-contracts
 ```
 
+---
+
 ## Example 1: Hello Chain
 
 In this example, there are two contracts. The `Target` contract on the destination domain will have a greeting that we want to update. The `Source` contract on the origin domain will use `xcall` to execute the update on `Target` by sending encoded calldata.
 
 ### Target Contract
 
-```solidity title="Target.sol"
+```solidity
 pragma solidity ^0.8.14;
 
 contract Target {
@@ -46,7 +48,7 @@ The goal is to call `updateGreeting` from the origin domain.
 
 The source contract initiates the cross-chain operation with `xcall`.
 
-```solidity title="Source.sol"
+```solidity
 pragma solidity ^0.8.14;
 
 import {IConnextHandler} from "@connext/nxtp-contracts/contracts/core/connext/interfaces/IConnextHandler.sol";
@@ -89,13 +91,15 @@ contract Source {
 }
 ```
 
+---
+
 ## Example 2: Cross-Chain Transfer
 
 This `XTransfer` contract implements a cross-chain token transfer. There's no target contract on the destination side so only one contract is needed.
 
 ### XTransfer Contract
 
-```solidity title="XTransfer.sol" 
+```solidity
 pragma solidity ^0.8.14;
 
 import {IConnextHandler} from "@connext/nxtp-contracts/contracts/core/connext/interfaces/IConnextHandler.sol";
