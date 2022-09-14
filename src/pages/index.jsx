@@ -8,6 +8,8 @@ import styled from "@emotion/styled";
 
 import Discord from "/static/img/discord.svg";
 
+import ConnextLogo from "/static/img/connext_Logo.svg";
+
 import ThemedImage from "@theme/ThemedImage";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
@@ -629,7 +631,7 @@ export default function Home() {
             href={"https://bridge.connext.network/"}
           >
             <CenterCard>
-              <ChatIcon style={{ width: "48px", height: "48px" }} />
+              <ConnextLogo style={{ width: "48px", height: "48px" }} />
               <div>
                 <h3>Bridge</h3>
                 <p>The official Connext bridge UI.</p>
@@ -641,7 +643,7 @@ export default function Home() {
             href={"https://connextscan.io/"}
           >
             <CenterCard>
-              <ChatIcon style={{ width: "48px", height: "48px" }} />
+              <ConnextLogo style={{ width: "48px", height: "48px" }} />
               <div>
                 <h3>Connextscan</h3>
                 <p>Explore transactions and liquidity information.</p>
@@ -665,7 +667,7 @@ export default function Home() {
             href={"https://connext.network/"}
           >
             <CenterCard>
-              <ChatIcon style={{ width: "48px", height: "48px" }} />
+              <ConnextLogo style={{ width: "48px", height: "48px" }} />
               <div>
                 <h3>Connext Homepage</h3>
                 <p>Learn more about the Connext ecosystem.</p>
@@ -677,14 +679,13 @@ export default function Home() {
             href={"https://medium.com/connext/"}
           >
             <CenterCard>
-              <ChatIcon style={{ width: "48px", height: "48px" }} />
+              <ConnextLogo style={{ width: "48px", height: "48px" }} />
               <div>
                 <h3>Blog</h3>
                 <p>Read about events, updates, and news.</p>
               </div>
             </CenterCard>
           </Link>
-
         </Row>
       </Container>
     </Layout>
