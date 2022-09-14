@@ -3,19 +3,14 @@ sidebar_position: 1
 id: sdk-example
 ---
 
-# SDK Example
+# Cross-Chain Transfer
 
-The main entrypoint for interacting with the Connext protocol is `xcall`. This method kicks off a crosschain interaction, and all the user has to do is wait for it to complete on the destination chain. There are *no required user interactions past this transaction*!
+The main entrypoint for interacting with the Connext protocol is `xcall`. This method kicks off a crosschain interaction and all the user has to do is wait for it to complete on the destination chain. There are *no required user interactions past this transaction*!
 
-The Connext SDK allows developers to interact with the Connext protocol in standard Node.js or web environments. This example will go through how to use the TypeScript SDK to send `xcall`s.
-
-The full working code for this example can be found in our xApp Starter Kit, under `src/sdk-interactions`.
-
-[xApp Starter Kit](https://github.com/connext/xapp-starter/)
-
+The Connext SDK allows developers to interact with the Connext protocol in standard Node.js or web environments.
 --- 
 
-## Cross-Chain Transfer
+## Introduction
 
 In this example, we'll demonstrate how to execute an `xcall` to transfer funds from a wallet on Goerli to a destination address on Optimism-Goerli.
 
@@ -180,8 +175,8 @@ npm run xtransfer
 
 ### 5. Track the `xcall`
 
-We can use the transaction `hash` from the transaction receipt we logged above to track the status of this `xcall` by following instructions here.
+We can use the transaction `hash` from the transaction receipt we logged above to track the status of this `xcall` by following these instruction.
 
 [Tracking an xcall](../xcall-status)
 
-After the transfer shows up on the Optimism-Goerli side, the freshly transferred tokens should show up in the destination wallet.
+After the transfer shows up on the Optimism-Goerli side, the transferred tokens should show up in the destination wallet.
