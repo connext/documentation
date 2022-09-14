@@ -80,51 +80,6 @@ module.exports = {
     },
     footer: {
       style: "dark",
-      links: [
-        {
-          title: "Community",
-          items: [
-            {
-              href: "https://medium.com/connext",
-              label: "Blog",
-            },
-            {
-              href: "https://chat.connext.network",
-              label: "Chat",
-            },
-            {
-              href: "https://github.com/connext/nxtp",
-              label: "GitHub",
-            },
-          ],
-        },
-        {
-          title: "Project",
-          items: [
-            {
-              href: "https://www.connext.network/",
-              label: "Homepage",
-            },
-            {
-              href: "https://connextscan.io/",
-              label: "Explorer",
-            },
-            {
-              href: "https://bridge.connext.network/",
-              label: "Bridge",
-            },
-          ],
-        },
-        {
-          title: "More",
-          items: [
-            {
-              href: "https://connextscan.io/status",
-              label: "Status",
-            },
-          ],
-        },
-      ],
       copyright: `Published in ${new Date().getFullYear()} by Connext. Built with Docusaurus.`,
     },
     prism: {

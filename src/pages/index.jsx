@@ -570,31 +570,6 @@ export default function Home() {
         <Row>
           <Link
             style={{ textDecoration: "none" }}
-            href={"https://discord.gg/zZGTd9wT"}
-          >
-            <CenterCard>
-              <Discord style={{ width: "48px", height: "48px" }} />
-              <div>
-                <h3>Discord</h3>
-                <p>Join us in #dev-hub to get realtime help.</p>
-              </div>
-            </CenterCard>
-          </Link>
-          <Link
-            style={{ textDecoration: "none" }}
-            href={"https://connext.org/"}
-          >
-            <CenterCard>
-              <ChatIcon style={{ width: "48px", height: "48px" }} />
-              <div>
-                <h3>Academy</h3>
-                <p>Learn more from Connext Academy</p>
-              </div>
-            </CenterCard>
-          </Link>
-
-          <Link
-            style={{ textDecoration: "none" }}
             href={"https://github.com/Connext"}
           >
             <CenterCard>
@@ -649,6 +624,67 @@ export default function Home() {
               </div>
             </CenterCard>
           </Link>
+          <Link
+            style={{ textDecoration: "none" }}
+            href={"https://bridge.connext.network/"}
+          >
+            <CenterCard>
+              <ChatIcon style={{ width: "48px", height: "48px" }} />
+              <div>
+                <h3>Bridge</h3>
+                <p>The official Connext bridge UI.</p>
+              </div>
+            </CenterCard>
+          </Link>
+          <Link
+            style={{ textDecoration: "none" }}
+            href={"https://connextscan.io/"}
+          >
+            <CenterCard>
+              <ChatIcon style={{ width: "48px", height: "48px" }} />
+              <div>
+                <h3>Connextscan</h3>
+                <p>Explore transactions and liquidity information.</p>
+              </div>
+            </CenterCard>
+          </Link>
+          <Link
+            style={{ textDecoration: "none" }}
+            href={"https://discord.gg/zZGTd9wT"}
+          >
+            <CenterCard>
+              <Discord style={{ width: "48px", height: "48px" }} />
+              <div>
+                <h3>Discord</h3>
+                <p>Join us in #dev-hub to get realtime help.</p>
+              </div>
+            </CenterCard>
+          </Link>
+          <Link
+            style={{ textDecoration: "none" }}
+            href={"https://connext.network/"}
+          >
+            <CenterCard>
+              <ChatIcon style={{ width: "48px", height: "48px" }} />
+              <div>
+                <h3>Connext Homepage</h3>
+                <p>Learn more about the Connext ecosystem.</p>
+              </div>
+            </CenterCard>
+          </Link>
+          <Link
+            style={{ textDecoration: "none" }}
+            href={"https://medium.com/connext/"}
+          >
+            <CenterCard>
+              <ChatIcon style={{ width: "48px", height: "48px" }} />
+              <div>
+                <h3>Blog</h3>
+                <p>Read about events, updates, and news.</p>
+              </div>
+            </CenterCard>
+          </Link>
+
         </Row>
       </Container>
     </Layout>
