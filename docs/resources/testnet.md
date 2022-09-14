@@ -169,27 +169,27 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://louper.dev/diamond/0x8664bE4C5C12c718838b5dCd8748B66F3A0f6A18?network=goerli">
+          <a href="https://louper.dev/diamond/0x8F5Ce8D12A6d825F725e465ccAf239953db0d327?network=goerli">
             ConnextHandler
           </a>
         </td>
-        <td>0x8664bE4C5C12c718838b5dCd8748B66F3A0f6A18</td>
+        <td>0x8F5Ce8D12A6d825F725e465ccAf239953db0d327</td>
       </tr>
       <tr>
         <td>
-          <a href="https://goerli.etherscan.io/address/0x458a2AE80fbe7e043ec18b62515423e63Ee5cBed">
+          <a href="https://goerli.etherscan.io/address/0x4ae6f0097c503098CF6844B5760B0B81F7FDFDA0">
             TokenRegistry
           </a>
         </td>
-        <td>0x458a2AE80fbe7e043ec18b62515423e63Ee5cBed</td>
+        <td>0x4ae6f0097c503098CF6844B5760B0B81F7FDFDA0</td>
       </tr>
       <tr>
         <td>
-          <a href="https://goerli.etherscan.io/address/0x3E3d48C7636A446C59423C95A89F1dE40f3a1F22">
+          <a href="https://goerli.etherscan.io/address/0xf088f46Cbdd75581c7E26088C5EC9282060Bef80">
             PromiseRouter
           </a>
         </td>
-        <td>0x3E3d48C7636A446C59423C95A89F1dE40f3a1F22</td>
+        <td>0xf088f46Cbdd75581c7E26088C5EC9282060Bef80</td>
       </tr>
       <tr>
         <th>Asset Contract</th>
@@ -231,27 +231,27 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0xB7CF5324641bD9F82903504c56c9DE2193B4822F">
+          <a href="https://blockscout.com/optimism/goerli/address/0x699245C07801f4a4031b821A0f194e00d8c74eC4">
             ConnextHandler
           </a>
         </td>
-        <td>0xB7CF5324641bD9F82903504c56c9DE2193B4822F</td>
+        <td>0x699245C07801f4a4031b821A0f194e00d8c74eC4</td>
       </tr>
       <tr>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x35d3a7C14de030dC9a1375009620c99369827a5E">
+          <a href="https://blockscout.com/optimism/goerli/address/0x275bF203709dC3D81d4478e25F33fD9326699185">
             TokenRegistry
           </a>
         </td>
-        <td>0x35d3a7C14de030dC9a1375009620c99369827a5E</td>
+        <td>0x275bF203709dC3D81d4478e25F33fD9326699185</td>
       </tr>
       <tr>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0xdd247dc5C3f446825FB00eA5bA074B6BAE8E2cae">
+          <a href="https://blockscout.com/optimism/goerli/address/0x312199D4BBC2483cF7Cf6cBf5329518aeC630396">
             PromiseRouter
           </a>
         </td>
-        <td>0xdd247dc5C3f446825FB00eA5bA074B6BAE8E2cae</td>
+        <td>0x312199D4BBC2483cF7Cf6cBf5329518aeC630396</td>
       </tr>
       <tr>
         <th>Asset Contract</th>
