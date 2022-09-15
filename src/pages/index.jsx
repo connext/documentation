@@ -10,6 +10,8 @@ import Discord from "/static/img/discord.svg";
 
 import ConnextLogo from "/static/img/connext_Logo.svg";
 
+import XCallSnippet from "/static/img/xcall_snippet.png"
+
 import ThemedImage from "@theme/ThemedImage";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 
@@ -341,81 +343,11 @@ export default function Home() {
                 <br />
                 Get started with xcall in less than 10 lines of code!
               </p>
-              <div class={styles.hack_hero_code_editor}>
-                <div class={styles.hack_code_editor_top}>
-                  <div class={styles.hack_hero_dots_container}>
-                    <div class={styles.hack_hero_dot}></div>
-                    <div class={styles.hack_hero_dot}></div>
-                    <div class={styles.hack_hero_dot}></div>
-                  </div>
-                </div>
-                <div class={styles.hack_code_editor_bottom}>
-                  <div class={styles.hack_code_editor_dots}>
-                    <div>1</div>
-                    <div>2</div>
-                    <div>3</div>
-                    <div>4</div>
-                    <div>5</div>
-                    <div>6</div>
-                    <div>7</div>
-                    <div>8</div>
-                    <div>9</div>
-                    <div>10</div>
-                  </div>
-                  <div class={styles.hack_code_text_container}>
-                    <div>
-                      <span style={{ color: "#7ED321" }}>connext</span>
-                      <span style={{ color: "#BD10E0" }}>.</span>
-                      <span style={{ color: "#9013FE" }}>xcall</span>(
-                      <span style={{ color: "#4A90E2" }}>XCallArgs</span>(
-                    </div>
-                    <div>
-                      &nbsp;&nbsp;
-                      {<span style={{ color: "#4A90E2" }}>CallParams</span>}(
-                    </div>
 
-                    <div>
-                      &nbsp;&nbsp;&nbsp;&nbsp;
-                      <span style={{ color: "#417505" }}>to</span>:
-                      ‹recipient_or_contract›,
-                    </div>
-                    <div>
-                      &nbsp;&nbsp;&nbsp;&nbsp;
-                      <span style={{ color: "#417505" }}>callData</span>:
-                      ‹encoded_calldata›,
-                    </div>
-                    <div>
-                      &nbsp;&nbsp;&nbsp;&nbsp;
-                      <span style={{ color: "#417505" }}>callback</span>:
-                      ‹async_handler›,
-                    </div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;...</div>
-                    <div>&nbsp;&nbsp;),</div>
-                    <div>
-                      &nbsp;&nbsp;
-                      <span style={{ color: "#417505" }}>transactingAsset</span>
-                      : ‹ERC20›,
-                    </div>
-                    <div>
-                      &nbsp;&nbsp;
-                      <span style={{ color: "#417505" }}>
-                        transactingAmount
-                      </span>
-                      : ‹funds_to_send›,
-                    </div>
-                    <div>));</div>
-                  </div>
-                </div>
-              </div>
+              <img src={XCallSnippet} alt="xCall Snippet" style={{borderRadius: "20px"}}/>
+              
             </TwoRow>
           </div>
-          {/* <StyledTitleImage
-            alt="Docusaurus themed image"
-            sources={{
-              light: useBaseUrl("/img/grow.png"),
-              dark: useBaseUrl("/img/grow2.png"),
-            }}
-          /> */}
 
           <Row>
             {actions.map((action) => (
