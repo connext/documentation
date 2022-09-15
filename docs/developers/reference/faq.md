@@ -1,5 +1,6 @@
 ---
-sidebar_position: 1
+sidebar_position: 5
+id: faq
 ---
 
 # FAQ
@@ -8,13 +9,13 @@ This is a list of Frequently Asked Questions for the Amarok public testnet.
 
 ## What chains are supported?
 
-An updated list can be found at [Supported Chains](./basics/chains#supported-chains).
+An updated list can be found at [Supported Chains](./info/chains#supported-chains).
 
 ## What assets are supported?
 
 See the deployed addresses for assets at [Deployed Contract Addresses](./developers/testing-against-testnet#deployed-contract-addresses).
 
-## What do "canonical", "representation", "adopted", and "local" assets mean?
+## What's the difference between "canonical", "representation", "adopted", and "local" assets?
 
 <img src="/img/faq/assets.png" alt="drawing" width="1000"/>
 
@@ -75,4 +76,9 @@ There are a few steps to take, so please reach out to us for assistance:
 
 ## Are there size limits to calldata?
 
+(TODO)
 
+## How do I add my chain to Connext?
+
+Connext does not charge any fee to onboard new chains.
+You can learn about our process for onboarding new chains in our [Chain Onboarding Guide](https://www.notion.so/connext/How-can-Connext-Bridge-add-my-Chain-fa8b43cac720467a88b5c94f81804091).

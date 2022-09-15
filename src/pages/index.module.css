@@ -1,65 +1,90 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
+.hack_hero_code_editor {
   overflow: hidden;
-    /* ff 3.6+ */
-    background:-moz-linear-gradient(90deg, rgba(41, 193, 252, 1) 0%, rgba(171, 0, 255, 1) 25%, rgba(251, 176, 59, 1) 50%, rgba(88, 123, 253, 1) 75%, rgba(216, 98, 146, 1) 100%); 
-
-    /* safari 5.1+,chrome 10+ */
-    background:-webkit-linear-gradient(90deg, rgba(41, 193, 252, 1) 0%, rgba(171, 0, 255, 1) 25%, rgba(251, 176, 59, 1) 50%, rgba(88, 123, 253, 1) 75%, rgba(216, 98, 146, 1) 100%);
-
-    /* opera 11.10+ */
-    background:-o-linear-gradient(90deg, rgba(41, 193, 252, 1) 0%, rgba(171, 0, 255, 1) 25%, rgba(251, 176, 59, 1) 50%, rgba(88, 123, 253, 1) 75%, rgba(216, 98, 146, 1) 100%);
-
-    /* ie 6-9 */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#D86292', endColorstr='#29C1FC', GradientType=0 );
-
-    /* ie 10+ */
-    background:-ms-linear-gradient(90deg, rgba(41, 193, 252, 1) 0%, rgba(171, 0, 255, 1) 25%, rgba(251, 176, 59, 1) 50%, rgba(88, 123, 253, 1) 75%, rgba(216, 98, 146, 1) 100%);
-
-    /* global 94%+ browsers support */
-    background:linear-gradient(90deg, rgba(41, 193, 252, 1) 0%, rgba(171, 0, 255, 1) 25%, rgba(251, 176, 59, 1) 50%, rgba(88, 123, 253, 1) 75%, rgba(216, 98, 146, 1) 100%);
-
+  border-radius: 1rem;
+  background-color: #19232f;
 }
 
-.heroTitle {
-  color: white
+.hack_code_editor_top {
+  padding: 0.875rem 1.5625rem 0.875rem 1rem;
+  border-bottom: 1px solid hsla(0, 0%, 100%, .16);
 }
 
-.heroSubtitle {
-  color: white;
+.hack_hero_dots_container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
+.hack_hero_dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-right: 0.5rem;
+  border-radius: 100%;
+  background-color: #4a4b4d;
+}
+
+.hack_code_editor_bottom {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  padding-left: 1.25rem;
+}
+
+.hack_code_editor_dots {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 1rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  font-family: 'Roboto Mono', sans-serif;
+  color: hsla(0, 0%, 100%, .4);
+  font-size: 1rem;
+  line-height: 150%;
+}
+
+.hack_code_text_container {
+  padding-right: 4rem;
+  font-family: 'Roboto Mono', sans-serif;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 150%;
+  text-align: left
+}
+
+.hack_code+cover {
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+}
+
+
+@media screen and (min-width: 1440px) {
+  .hack_code_text_container {
+    padding-right: 4rem;
   }
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@media screen and (min-width: 1440px) {
+  .hack_hero_code_editor {
+    border-radius: 16px;
+  }
 }
 
-
-
-.logoSection {
-  margin: 20px 0;
-}
-
-.logoHolder {
-  margin: -20px -10px 0px;
-  display: flex;
-  flex-wrap: wrap;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: stretch;
-  align-items: stretch;
+@media screen and (max-width: 991px) {
+  .hack_hero_code_editor {
+    border-radius: 1rem;
+  }
 }

@@ -39,7 +39,7 @@ You can create it in Metamask extention or get it automatically during installat
 
 2. **Setup provider endpoints.** You have to add it to `config.json` file to use your own endpoints.
 For that we will use the nodes provided by the service [Infura](https://infura.io/). 
-> You can use also [blastapi.io](blastapi.io) as RPC privider to get endpoints for almost any network ([the guide how to get it](https://medium.com/@alexzhurba/adding-rpcs-for-connext-36094191ae4f)).
+> You can use also [blastapi.io](https://blastapi.io) as RPC privider to get endpoints for almost any network ([the guide how to get it](https://medium.com/@alexzhurba/adding-rpcs-for-connext-36094191ae4f)).
 
   2.1 Register at [infura.io](https://infura.io/) and create new project:
   
@@ -185,12 +185,13 @@ Create a `config.json` file based on the `config.example.json` file. At minumum,
   }
 }
 ```
+
 - `web3SignerUrl` - Set to `"http://signer:9000"`.
 - `redis`
   - `host` - Set to the host name of your external Redis instance.
   - `port` - Set to the port of your external Redis instance.
 
-See the [Configuration](./Refernce/configuration) section for more details.
+See the [Configuration](./Reference/configuration) section for more details.
   
 </details>
 

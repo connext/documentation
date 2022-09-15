@@ -14,15 +14,9 @@ module.exports = {
   organizationName: "connext", // Usually your GitHub org/user name.
   projectName: "connext", // Usually your repo name.
   customFields: {
-    description: "Build your next xApp(cross-chain dapp) using Connext.",
+    description: "Build your next xApp (cross-chain dapp) using Connext.",
   },
   themeConfig: {
-    matomo: {
-      matomoUrl: "https://connextnetwork.matomo.cloud/",
-      siteId: "5",
-      phpLoader: "matomo.php",
-      jsLoader: "matomo.js",
-    },
     algolia: {
       // The application ID provided by Algolia
       appId: "Z3QNOPOJN1",
@@ -49,14 +43,14 @@ module.exports = {
     navbar: {
       title: "Connext Documentation",
       logo: {
-        alt: "My Site Logo",
+        alt: "Connext documentation",
         src: "img/logomark.png",
       },
       items: [
         {
           type: "doc",
-          docId: "basics/intro",
-          label: "Basics",
+          docId: "core-concepts/understanding-connext",
+          label: "Core Concepts",
           position: "left",
         },
         {
@@ -73,8 +67,8 @@ module.exports = {
         },
         {
           type: "doc",
-          docId: "faq",
-          label: "FAQ ",
+          docId: "resources/testnet",
+          label: "Resources",
           position: "left",
         },
         {
@@ -86,51 +80,6 @@ module.exports = {
     },
     footer: {
       style: "dark",
-      links: [
-        {
-          title: "Community",
-          items: [
-            {
-              href: "https://medium.com/connext",
-              label: "Blog",
-            },
-            {
-              href: "https://chat.connext.network",
-              label: "Chat",
-            },
-            {
-              href: "https://github.com/connext/nxtp",
-              label: "GitHub",
-            },
-          ],
-        },
-        {
-          title: "Project",
-          items: [
-            {
-              href: "https://www.connext.network/",
-              label: "Homepage",
-            },
-            {
-              href: "https://connextscan.io/",
-              label: "Explorer",
-            },
-            {
-              href: "https://bridge.connext.network/",
-              label: "Bridge",
-            },
-          ],
-        },
-        {
-          title: "More",
-          items: [
-            {
-              href: "https://connextscan.io/status",
-              label: "Status",
-            },
-          ],
-        },
-      ],
       copyright: `Published in ${new Date().getFullYear()} by Connext. Built with Docusaurus.`,
     },
     prism: {
@@ -139,10 +88,7 @@ module.exports = {
       darkTheme: darkCodeTheme,
     },
   },
-  plugins: [
-    require.resolve("@easyops-cn/docusaurus-search-local"),
-    "docusaurus-plugin-matomo",
-  ],
+  plugins: [require.resolve("@easyops-cn/docusaurus-search-local")],
   presets: [
     [
       "@docusaurus/preset-classic",
@@ -151,9 +97,7 @@ module.exports = {
           path: "./docs",
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
-          sidebarCollapsible: false,
-          // Please change this to your repo.
-          remarkPlugins: [CardLink],
+          sidebarCollapsible: true,
           editUrl: "https://github.com/connext/documentation",
           lastVersion: "current",
           versions: {
@@ -161,9 +105,13 @@ module.exports = {
               label: "0.2.x-amarok",
             },
           },
+          remarkPlugins: [
+            CardLink,
+            [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
+          ],
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: [require.resolve("./src/css/custom.css")],
         },
       },
     ],
