@@ -128,6 +128,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  padding-bottom: 2rem;
 `;
 
 const Row = styled.div`
@@ -136,7 +137,7 @@ const Row = styled.div`
   grid-gap: 16px;
   justify-content: center;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: 3rem 0;
   max-width: 960px;
 
   @media (max-width: 960px) {
@@ -153,6 +154,7 @@ const Row = styled.div`
 const TwoRow = styled(Row)`
   grid-template-columns: 1fr 1fr;
   grid-gap: 48px;
+  padding: 1rem 0;
 
   @media (max-width: 960px) {
     grid-template-columns: 1fr;
@@ -174,10 +176,12 @@ const Card = styled.div`
   border-radius: 20px;
   border: 1px solid var(--ifm-color-emphasis-200);
   /* flex: 1 1 0px; */
+  border-color: rgba(140, 127, 148, 0.5);
 
   &:hover {
     border: 1px solid var(--ifm-color-emphasis-400);
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
+    border-color: #9c62f9;
   }
 
   @media (max-width: 960px) {
@@ -190,7 +194,6 @@ const CenterCard = styled(Card)`
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-
   display: grid;
   grid-template-columns: 48px 1fr;
   gap: 24px;
@@ -206,10 +209,8 @@ const CenterCard = styled(Card)`
 
 const ShadowCard = styled(Card)`
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
-  background-color: #ffffff10;
   backdrop-filter: blur(10px);
   min-height: 200px;
-  /* background-color: var(--ifm-color-emphasis-0); */
 `;
 
 const WideCard = styled(ShadowCard)`
@@ -341,7 +342,7 @@ export default function Home() {
                 many chains/rollups simultaneously.
                 <br />
                 <br />
-                Get started with xcall in less than 10 lines of code!
+                Get started using xcall, the cross-chain primitive!
               </p>
 
               <img src={XCallSnippet} alt="xCall Snippet" style={{borderRadius: "20px"}}/>
@@ -498,8 +499,6 @@ export default function Home() {
             ))}
           </div>
         </TwoRow>
-
-        <hr />
 
         <Row>
           <Link
