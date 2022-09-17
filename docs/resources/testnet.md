@@ -39,19 +39,19 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://goerli.etherscan.io/address/0xB8153030F0e998706301fBbE3f2840C64FB876A6">
+          <a href="https://goerli.etherscan.io/address/0xC6d9D20d179CeCe15E226CdCa9Ef18B47E72fF86">
             TokenRegistry
           </a>
         </td>
-        <td>0xB8153030F0e998706301fBbE3f2840C64FB876A6</td>
+        <td>0xC6d9D20d179CeCe15E226CdCa9Ef18B47E72fF86</td>
       </tr>
       <tr>
         <td>
-          <a href="https://goerli.etherscan.io/address/0x570faC55A96bDEA6DE85632e4b2c7Fde4efFAD55">
+          <a href="https://goerli.etherscan.io/address/0xBf0AC6dE22A82DfAc78CD54f5F649E778d26F78B">
             PromiseRouter
           </a>
         </td>
-        <td>0x570faC55A96bDEA6DE85632e4b2c7Fde4efFAD55</td>
+        <td>0xBf0AC6dE22A82DfAc78CD54f5F649E778d26F78B</td>
       </tr>
       <tr>
         <th>Asset Contract</th>
@@ -101,19 +101,19 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x69DdD0f3183805B44363b239708D89B92384a688">
+          <a href="https://blockscout.com/optimism/goerli/address/0xEEb6D6aA1bae7f62d08c8233149534788DEf4807">
             TokenRegistry
           </a>
         </td>
-        <td>0x69DdD0f3183805B44363b239708D89B92384a688</td>
+        <td>0xEEb6D6aA1bae7f62d08c8233149534788DEf4807</td>
       </tr>
       <tr>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0xF0Efb28f638A5262DdA8E8C4556eac4F0B749A22">
+          <a href="https://blockscout.com/optimism/goerli/address/0xba05fbdc1D6E70F5BA16559bc956F1074E723d9F">
             PromiseRouter
           </a>
         </td>
-        <td>0xF0Efb28f638A5262DdA8E8C4556eac4F0B749A22</td>
+        <td>0xba05fbdc1D6E70F5BA16559bc956F1074E723d9F</td>
       </tr>
       <tr>
         <th>Asset Contract</th>
@@ -150,6 +150,75 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  ### Mumbai
+
+  Domain ID: 9991
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Core Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://louper.dev/diamond/0xfdA9C9aE45866D12E5008912318bf3c34fc30912?network=mumbai">
+            ConnextHandler
+          </a>
+        </td>
+        <td>0xfdA9C9aE45866D12E5008912318bf3c34fc30912</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0xc7031D586320f707b591Cc83BA71219d0c9cf982">
+            TokenRegistry
+          </a>
+        </td>
+        <td>0xc7031D586320f707b591Cc83BA71219d0c9cf982</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0x8a38b3C20941c9b82AC7D77B650aac2Ad9Df5472">
+            PromiseRouter
+          </a>
+        </td>
+        <td>0x8a38b3C20941c9b82AC7D77B650aac2Ad9Df5472</td>
+      </tr>
+      <tr>
+        <th>Asset Contract</th>
+        <th>Address</th>
+        <th>Type</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0xeDb95D8037f769B72AAab41deeC92903A98C9E16">
+            TEST
+          </a>
+        </td>
+        <td>0xeDb95D8037f769B72AAab41deeC92903A98C9E16</td>
+        <td>Representation</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0x1E5341E4b7ed5D0680d9066aac0396F0b1bD1E69">
+            nextWETH
+          </a>
+        </td>
+        <td>0x1E5341E4b7ed5D0680d9066aac0396F0b1bD1E69</td>
+        <td>Representation</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0x4DfAe612aaCB5b448C12A591cD0879bFa2e51d62">
+            WETH
+          </a>
+        </td>
+        <td>0x4DfAe612aaCB5b448C12A591cD0879bFa2e51d62</td>
+        <td>Adopted</td>
+      </tr>
+    </tbody>
+  </table>
+
 </details>
 
 
@@ -177,19 +246,19 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://goerli.etherscan.io/address/0x4ae6f0097c503098CF6844B5760B0B81F7FDFDA0">
+          <a href="https://goerli.etherscan.io/address/0x458a2AE80fbe7e043ec18b62515423e63Ee5cBed">
             TokenRegistry
           </a>
         </td>
-        <td>0x4ae6f0097c503098CF6844B5760B0B81F7FDFDA0</td>
+        <td>0x458a2AE80fbe7e043ec18b62515423e63Ee5cBed</td>
       </tr>
       <tr>
         <td>
-          <a href="https://goerli.etherscan.io/address/0xf088f46Cbdd75581c7E26088C5EC9282060Bef80">
+          <a href="https://goerli.etherscan.io/address/0x53CffCA4C1aDfD21a9f7913A934C46469638e31F">
             PromiseRouter
           </a>
         </td>
-        <td>0xf088f46Cbdd75581c7E26088C5EC9282060Bef80</td>
+        <td>0x53CffCA4C1aDfD21a9f7913A934C46469638e31F</td>
       </tr>
       <tr>
         <th>Asset Contract</th>
@@ -239,19 +308,19 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x275bF203709dC3D81d4478e25F33fD9326699185">
+          <a href="https://blockscout.com/optimism/goerli/address/0x35d3a7C14de030dC9a1375009620c99369827a5E">
             TokenRegistry
           </a>
         </td>
-        <td>0x275bF203709dC3D81d4478e25F33fD9326699185</td>
+        <td>0x35d3a7C14de030dC9a1375009620c99369827a5E</td>
       </tr>
       <tr>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x312199D4BBC2483cF7Cf6cBf5329518aeC630396">
+          <a href="https://blockscout.com/optimism/goerli/address/0x45f20861DA38298C7AFFa284F7dEfc13CBb79B79">
             PromiseRouter
           </a>
         </td>
-        <td>0x312199D4BBC2483cF7Cf6cBf5329518aeC630396</td>
+        <td>0x45f20861DA38298C7AFFa284F7dEfc13CBb79B79</td>
       </tr>
       <tr>
         <th>Asset Contract</th>
@@ -283,6 +352,75 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
           </a>
         </td>
         <td>0x4E283927E35b7118eA546Ef58Ea60bfF59E857DB</td>
+        <td>Adopted</td>
+      </tr>
+    </tbody>
+  </table>
+
+  ### Mumbai
+
+  Domain ID: 9991
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Core Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://louper.dev/diamond/0xD186493Db6CbE0DD27dE04A15450C9dfe1F5A497?network=mumbai">
+            ConnextHandler
+          </a>
+        </td>
+        <td>0xD186493Db6CbE0DD27dE04A15450C9dfe1F5A497</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0xa464A01d1260DD2B2D29bFA75184CBf380A1d766">
+            TokenRegistry
+          </a>
+        </td>
+        <td>0xa464A01d1260DD2B2D29bFA75184CBf380A1d766</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0xb310D335df76fd3535941712c5f9D5c0b41e240c">
+            PromiseRouter
+          </a>
+        </td>
+        <td>0xb310D335df76fd3535941712c5f9D5c0b41e240c</td>
+      </tr>
+      <tr>
+        <th>Asset Contract</th>
+        <th>Address</th>
+        <th>Type</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0xeDb95D8037f769B72AAab41deeC92903A98C9E16">
+            TEST
+          </a>
+        </td>
+        <td>0xeDb95D8037f769B72AAab41deeC92903A98C9E16</td>
+        <td>Representation</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0x1E5341E4b7ed5D0680d9066aac0396F0b1bD1E69">
+            nextWETH
+          </a>
+        </td>
+        <td>0x1E5341E4b7ed5D0680d9066aac0396F0b1bD1E69</td>
+        <td>Representation</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0x4DfAe612aaCB5b448C12A591cD0879bFa2e51d62">
+            WETH
+          </a>
+        </td>
+        <td>0x4DfAe612aaCB5b448C12A591cD0879bFa2e51d62</td>
         <td>Adopted</td>
       </tr>
     </tbody>
