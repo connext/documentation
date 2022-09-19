@@ -25,27 +25,35 @@ import {
   CodeIcon,
   SwitchHorizontalIcon,
 } from "@heroicons/react/outline";
+
 export const actions = [
   {
-    title: "What is Connext",
+    title: "Core Concepts",
     href: "#",
     icon: InformationCircleIcon,
     to: "./core-concepts/understanding-connext",
     text: `Review core concepts of bridging and the Connext Protocol.`,
   },
   {
-    title: "Build with xcall",
+    title: "Developer Quickstart",
     href: "#",
     icon: LinkIcon,
     to: "./developers/quickstart",
-    text: `Learn how to use the cross-chain primitive to interact with Connext.`,
+    text: `Learn how to use xcall, the cross-chain primitive.`,
   },
   {
-    title: "Smart contract overview",
+    title: "Run a Router",
     href: "#",
     icon: BookOpenIcon,
-    to: "./developers/reference/contracts-overview",
-    text: `Deep dive into the Connext Protocol smart contracts.`,
+    to: "./routers/intro",
+    text: `Become a core participant in the decentralized system and earn fees.`,
+  },
+  {
+    title: "Contract Deployments",
+    href: "#",
+    icon: BookOpenIcon,
+    to: "./resources/testnet",
+    text: `Reference deployed contract addresses on mainnet and testnet.`,
   },
 ];
 
@@ -151,6 +159,26 @@ const Row = styled.div`
   }
 `;
 
+const LongRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 3rem 0;
+  max-width: 960px;
+
+  @media (max-width: 1250px) {
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem;
+    max-width: 100%;
+    margin: 0 1rem;
+  }
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
 const TwoRow = styled(Row)`
   grid-template-columns: 1fr 1fr;
   grid-gap: 48px;
@@ -167,7 +195,6 @@ const TwoRow = styled(Row)`
 const Card = styled.div`
   display: flex;
   max-height: 250px;
-  min-width: 350px;
   padding: 1rem;
   flex-direction: column;
   justify-content: center;
@@ -180,7 +207,6 @@ const Card = styled.div`
 
   &:hover {
     border: 1px solid var(--ifm-color-emphasis-400);
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
     border-color: #9c62f9;
   }
 
@@ -207,20 +233,11 @@ const CenterCard = styled(Card)`
   }
 `;
 
-const ShadowCard = styled(Card)`
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
+const FixedCard = styled(Card)`
   backdrop-filter: blur(10px);
   min-height: 200px;
-`;
-
-const WideCard = styled(ShadowCard)`
-  max-height: auto;
-
-  @media (max-width: 960px) {
-    margin: 0 2rem;
-    max-height: fit-content;
-    width: fit-content;
-  }
+  max-width: 300px;
+  min-width: 300px;
 `;
 
 const IconWrapper = styled.div`
@@ -350,14 +367,14 @@ export default function Home() {
             </TwoRow>
           </div>
 
-          <Row>
+          <LongRow>
             {actions.map((action) => (
               <Link
                 style={{ textDecoration: "none" }}
                 to={action.to}
                 key={action.to}
               >
-                <ShadowCard key={action.title}>
+                <FixedCard key={action.title}>
                   <TopSection>
                     <IconWrapper>
                       <action.icon
@@ -379,10 +396,10 @@ export default function Home() {
                     {action.title}
                   </h3>
                   <p style={{ marginBottom: "0.5rem" }}>{action.text}</p>
-                </ShadowCard>
+                </FixedCard>
               </Link>
             ))}
-          </Row>
+          </LongRow>
         </DocsHeader>
 
         <TwoRow
