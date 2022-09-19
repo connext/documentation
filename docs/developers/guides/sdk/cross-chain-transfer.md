@@ -120,8 +120,6 @@ const nxtpConfig: NxtpSdkConfig = {
 // Create the SDK instance.
 const {nxtpSdkBase} = await create(nxtpConfig);
 
-// Fetch the signer address and set the amount to send.
-const signerAddress = await signer.getAddress();
 const amount = 1000000000000000000; // (1 TEST)
 
 // Construct the arguments that will be passed into `xcall`.
