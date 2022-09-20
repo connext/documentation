@@ -47,4 +47,10 @@ Domain IDs are unique to every bridge and differ from Chain IDs. Connext's `xcal
     <td>1735356532</td>
     <td>✅</td>
   </tr>
+  <tr>
+    <td>Mumbai</td>
+    <td>9991</td>
+    <td>9991</td>
+    <td>SOON™</td>
+  </tr>
 </table>

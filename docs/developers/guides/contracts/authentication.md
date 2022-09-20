@@ -93,6 +93,8 @@ Once these contracts are deployed, anyone can call `xChainUpdate` on the source 
 
 With authenticated functions, xApp developer must carefully implement permissioning checks. Let's see how this works by making the target function **_only callable by the source contract_**.
 
+### Target Contract
+
 ```solidity
 contract Target {
   uint256 public value;
