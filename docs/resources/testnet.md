@@ -140,7 +140,7 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x4E283927E35b7118eA546Ef58Ea60bfF59E857DB">
+          <a href="https://blockscout.com/optimism/goerli/address/0x74c6FD7D2Bc6a8F0Ebd7D78321A95471b8C2B806">
             WETH
           </a>
         </td>
@@ -347,7 +347,7 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x4E283927E35b7118eA546Ef58Ea60bfF59E857DB">
+          <a href="https://blockscout.com/optimism/goerli/address/0x74c6FD7D2Bc6a8F0Ebd7D78321A95471b8C2B806">
             WETH
           </a>
         </td>
