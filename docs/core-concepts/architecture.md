@@ -11,7 +11,7 @@ The Connext protocol is composed of a set of smart contracts and offchain agents
 
 Connext's smart contracts are the interfaces between the protocol and the wide gamut of different users in the ecosystem. There are contracts for handling `xcall`, managing asset registration, and provisioning liquidity for routers and stableswap LPs. 
 
-More details are available in the [Smart Contract Overview](../developers/reference/contracts/contracts-overview.md).
+More details are available in the [Smart Contract Overview](../developers/reference/contracts.md).
 
 ## Offchain Agents
 
