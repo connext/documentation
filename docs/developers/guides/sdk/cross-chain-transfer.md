@@ -65,10 +65,10 @@ mkdir src && touch src/xtransfer.ts
 
 ### 2. Install dependencies
 
-Install the Connext SDK and ethers.
+Install the latest beta version of Connext SDK and ethers.
 
 ```bash npm2yarn
-npm install @connext/nxtp-sdk
+npm install @connext/nxtp-sdk@beta
 npm install ethers
 ```
 
