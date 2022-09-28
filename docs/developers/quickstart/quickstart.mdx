@@ -34,7 +34,7 @@ In this example, there are two contracts. The `Target` contract on the destinati
 pragma solidity ^0.8.14;
 
 contract Target {
-  uint256 public greeting;
+  string public greeting;
 
   function updateGreeting(string newGreeting) external {
     greeting = newGreeting;
