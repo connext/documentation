@@ -15,7 +15,7 @@ The user initiates the transaction through a front end which is linked to the Co
 1. The user initiates the transaction by calling the `xcall` function on the Connext contract, which will include: passing in funds, gas details, arbitrary data, and a target address  (including the chain info and this can be a contract). The Connext contract will, if needed, swap the user’s fund to match the AMB bridges token type and call the AMB contract to start the 60 minutes message latency across chains.
 2. Observing routers with funds on the user destination chain will simulate the transaction. If passed, they will use their funds to sign the transaction and send it to an auctioneer (Sequencer), a kind of bidding. Routers can bid for the full transaction if they can afford it. As well as in fractions, if they want to split. The auctioneer collects the router’s bids in every X block and selects the router(s) to fill in the user’s transaction. It will check if the router can complete within a single transfer; otherwise, it will split across multiple bids that are received from different routers. 
 3. Then, the auctioneer will group all bids and send them to a relayer network for on-chain submission. The contract then 1) checks whether the fund is enough for the transaction, 2) if needed, swaps the AMB bridge token type to match the canonical asset of the chain, and 3)  lastly, sends the fund to the correct target (including executing `calldata` against the target contract). At this point, the user will receive their fund on the destination chain.
-4. For routers, they will not received their fund yet. After 60 minutes and the AMB message had arrived, the heavily batched transaction hashes will be checked for their corresponding router addresses. If matched, AMB flavored assets are minted and paid back to the routers.
+4. For routers, they will not receive their fund yet. After 60 minutes and the AMB message had arrived, the heavily batched transaction hashes will be checked for their corresponding router addresses. If matched, AMB flavored assets are minted and paid back to the routers.
 
 ## Security Assumptions and Risks
 
@@ -30,7 +30,7 @@ In other words, the cost to attack an optimistic bridge with N verifiers equals 
 
 1. Brute force attack on the router's Admin Token. (The Admin Token is used by routers to authenticate requests made to the Router's REST API endpoint.)
 2. If the Docker Router image and VM has a direct connection to the Internet, the router's API endpoint is susceptible to being exposed externally.
-3. The sequencer collects bids from the routers and choose a router to fulfill the transaction request. The system will be down if sequencer downtime occurs.
+3. The sequencer collects bids from the routers and chooses a router to fulfill the transaction request. The system will be down if sequencer downtime occurs.
 4. With fraud-proof, funds can be delayed if any watcher can prove a fraudulent transaction within the 60 minutes window. So, the router will have to wait for the funds until the disputed watcher is resolved.
 5. Router's private key is leaked and liquidity withdrawn from router's wallet.
 
@@ -62,7 +62,7 @@ The reason for claiming the funds back from the AMB is because Connext Network u
 
 **What if AMB Assets are not the adopted assets on that chain?**
 
-Polygon chain, for example, the dominant representation of assets, comes from the Polygon official bridge. The representation of ETH on Polygon is PoSETH (they called it normal “ETH”). If we gave ambDAI to the users on Polygon, they would not be able to use them immediately as those assets are not the adopted assets. Therefore, we need to swap AMB assets to the adopted assets on that chain. This is where passive LPing come in. 
+Polygon chain, for example, the dominant representation of assets, comes from the Polygon official bridge. The representation of ETH on Polygon is PoSETH (they called it normal “ETH”). If we gave ambDAI to the users on Polygon, they would not be able to use them immediately as those assets are not the adopted assets. Therefore, we need to swap AMB assets to the adopted assets on that chain. This is where passive LPing comes in. 
 
 Stableswaps AMMs (Automated Market Maker for assets that value tends to be pegged to each other) or passive LPs will be deployed on each chain. The Connext Network will automatically go through the AMM if they need to swap the assets type. The AMM will be a Curve-fork, and the LP providers will receive some fee based on the transaction size. Depending on the route, the flow might include 2 AMMs to convert the adopted asset types on one chain into madAssets and then reconverted back on the destination chain afterwards (mostly happens when bridging between EVM chains).
 
