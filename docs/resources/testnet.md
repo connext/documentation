@@ -238,27 +238,19 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://louper.dev/diamond/0x8F5Ce8D12A6d825F725e465ccAf239953db0d327?network=goerli">
+          <a href="https://louper.dev/diamond/0x549CE89d40Cf1D28597CbC535F669d1FEEFfbC6f?network=goerli">
             ConnextHandler
           </a>
         </td>
-        <td>0x8F5Ce8D12A6d825F725e465ccAf239953db0d327</td>
+        <td>0x549CE89d40Cf1D28597CbC535F669d1FEEFfbC6f</td>
       </tr>
       <tr>
         <td>
-          <a href="https://goerli.etherscan.io/address/0x458a2AE80fbe7e043ec18b62515423e63Ee5cBed">
+          <a href="https://goerli.etherscan.io/address/0x0e88035e46eEd61fB1d9c653208Bc3CC28403BEb">
             TokenRegistry
           </a>
         </td>
-        <td>0x458a2AE80fbe7e043ec18b62515423e63Ee5cBed</td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://goerli.etherscan.io/address/0x53CffCA4C1aDfD21a9f7913A934C46469638e31F">
-            PromiseRouter
-          </a>
-        </td>
-        <td>0x53CffCA4C1aDfD21a9f7913A934C46469638e31F</td>
+        <td>0x0e88035e46eEd61fB1d9c653208Bc3CC28403BEb</td>
       </tr>
       <tr>
         <th>Asset Contract</th>
@@ -300,27 +292,19 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x699245C07801f4a4031b821A0f194e00d8c74eC4">
+          <a href="https://blockscout.com/optimism/goerli/address/0x2DB8F4D9D1dbE8787FF3131b64b0ae335e08Dc93">
             ConnextHandler
           </a>
         </td>
-        <td>0x699245C07801f4a4031b821A0f194e00d8c74eC4</td>
+        <td>0x2DB8F4D9D1dbE8787FF3131b64b0ae335e08Dc93</td>
       </tr>
       <tr>
         <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x35d3a7C14de030dC9a1375009620c99369827a5E">
+          <a href="https://blockscout.com/optimism/goerli/address/0xC7d21A777409A6D0A3A5b10cE401D0277e5F42A9">
             TokenRegistry
           </a>
         </td>
-        <td>0x35d3a7C14de030dC9a1375009620c99369827a5E</td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://blockscout.com/optimism/goerli/address/0x45f20861DA38298C7AFFa284F7dEfc13CBb79B79">
-            PromiseRouter
-          </a>
-        </td>
-        <td>0x45f20861DA38298C7AFFa284F7dEfc13CBb79B79</td>
+        <td>0xC7d21A777409A6D0A3A5b10cE401D0277e5F42A9</td>
       </tr>
       <tr>
         <th>Asset Contract</th>
@@ -369,27 +353,19 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://louper.dev/diamond/0xD186493Db6CbE0DD27dE04A15450C9dfe1F5A497?network=mumbai">
+          <a href="https://louper.dev/diamond/0x73175967D3B06eC39A9097Ad7dEbb5edf6896e2f?network=mumbai">
             ConnextHandler
           </a>
         </td>
-        <td>0xD186493Db6CbE0DD27dE04A15450C9dfe1F5A497</td>
+        <td>0x73175967D3B06eC39A9097Ad7dEbb5edf6896e2f</td>
       </tr>
       <tr>
         <td>
-          <a href="https://mumbai.polygonscan.com/address/0xa464A01d1260DD2B2D29bFA75184CBf380A1d766">
+          <a href="https://mumbai.polygonscan.com/address/0x9F5ED51BC45aEbb0A440C102910f8019035c5673">
             TokenRegistry
           </a>
         </td>
-        <td>0xa464A01d1260DD2B2D29bFA75184CBf380A1d766</td>
-      </tr>
-      <tr>
-        <td>
-          <a href="https://mumbai.polygonscan.com/address/0xb310D335df76fd3535941712c5f9D5c0b41e240c">
-            PromiseRouter
-          </a>
-        </td>
-        <td>0xb310D335df76fd3535941712c5f9D5c0b41e240c</td>
+        <td>0x9F5ED51BC45aEbb0A440C102910f8019035c5673</td>
       </tr>
       <tr>
         <th>Asset Contract</th>
