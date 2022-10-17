@@ -31,62 +31,85 @@ In this example, there are two contracts. The `Target` contract on the destinati
 ### Target Contract
 
 ```solidity
-pragma solidity ^0.8.14;
+pragma solidity ^0.8.15;
 
-contract Target {
+import {IXReceiver} from "@nxtp/core/connext/interfaces/IXReceiver.sol";
+
+contract HelloTarget is IXReceiver {
   string public greeting;
 
-  function updateGreeting(string newGreeting) external {
+  /** @notice The receiver function as required by the IXReceiver interface.
+    * @dev The Connext bridge contract will call this function.
+    */
+  function xReceive(
+    bytes32 _transferId,
+    uint256 _amount,
+    address _asset,
+    address _originSender,
+    uint32 _origin,
+    bytes memory _callData
+  ) external returns (bytes memory) {
+    _updateGreeting(_callData);
+  }
+
+  /** @notice Internal function to update the greeting.
+    * @param _callData Calldata containing the new greeting.
+    */
+  function _updateGreeting(bytes memory _callData) internal {
+    string memory newGreeting = abi.decode(_callData, (string));
     greeting = newGreeting;
   }
 }
 ```
 
-The goal is to call `updateGreeting` from the origin domain.
+The goal is to call `_updateGreeting` from the origin domain.
 
 ### Source Contract
 
 The source contract initiates the cross-chain operation with `xcall`.
 
 ```solidity
-pragma solidity ^0.8.14;
+pragma solidity ^0.8.15;
 
-import {IConnextHandler} from "@connext/nxtp-contracts/contracts/core/connext/interfaces/IConnextHandler.sol";
-import {CallParams, XCallArgs} from "@connext/nxtp-contracts/contracts/core/connext/libraries/LibConnextStorage.sol";
+import {IConnext} from "@connext/nxtp-contracts/contracts/core/connext/interfaces/IConnext.sol";
 
-contract Source {
-  // ConnextHandler contract on origin domain
-  IConnextHandler public connext = IConnextHandler(0xB4C1340434920d70aD774309C75f9a4B679d801e); 
 
-  // Function that the user will call
-  function updateGreeting (address target, string memory newGreeting) external {
-    // We're sending calldata, so encode the target function with its arguments
-    bytes4 selector = bytes4(keccak256("updateGreeting(string)"));
-    bytes memory callData = abi.encodeWithSelector(selector, newGreeting);
+/**
+ * @title HelloSource
+ * @notice Example of cross-domain messaging.
+ */
+contract HelloSource {
+  // The connext contract on the origin domain.
+  IConnext public immutable connext;
 
-    CallParams memory callParams = CallParams({
-      to: target, // address of the target contract
-      callData: callData, // encoded calldata to execute on destination
-      originDomain: 1735353714, // from Goerli
-      destinationDomain: 1735356532, // to Optimism-Goerli
-      agent: msg.sender, // address allowed to execute transaction on destination side in addition to relayers
-      recovery: msg.sender, // fallback address to send funds to if execution fails on destination side
-      forceSlow: false, // option to force slow path instead of paying 0.05% fee on fast liquidity transfers
-      receiveLocal: false, // option to receive the local bridge-flavored asset instead of the adopted asset
-      callback: address(0), // zero address because we're not using a callback
-      callbackFee: 0, // fee paid to relayers for the callback; no fees on testnet
-      relayerFee: 0, // fee paid to relayers for the forward call; no fees on testnet
-      destinationMinOut: 0 // not sending funds so minimum can be 0
-    });
+  constructor(IConnext _connext) {
+    connext = _connext;
+  }
 
-    XCallArgs memory xcallArgs = XCallArgs({
-      params: callParams,
-      transactingAsset: address(0), // 0 address is the native gas token
-      transactingAmount: 0, // not sending funds with this calldata-only xcall
-      originMinOut: 0 // not sending funds so minimum can be 0
-    });
+  /** @notice Updates a greeting variable on the Target contract.
+    * @param target Address of the HelloTarget contract.
+    * @param destinationDomain The destination domain ID.
+    * @param newGreeting New greeting to update to.
+    * @param relayerFee The fee offered to relayers. On testnet, this can be 0.
+    */
+  function updateGreeting (
+    address target, 
+    uint32 destinationDomain,
+    string memory newGreeting,
+    uint256 relayerFee
+  ) external payable {
+    // Encode the data needed for the target contract call.
+    bytes memory callData = abi.encode(newGreeting);
 
-    connext.xcall(xcallArgs);
+    connext.xcall{value: relayerFee}(
+      destinationDomain, // _destination: Domain ID of the destination chain
+      target,            // _to: address of the target contract
+      address(0),        // _asset: use address zero for 0-value transfers
+      msg.sender,        // _delegate: address that can revert or forceLocal on destination
+      0,                 // _amount: 0 because no funds are being transferred
+      0,                 // _slippage: 0 because no funds are being transferred
+      callData           // _callData: the encoded calldata to send
+    );
   }
 }
 ```
@@ -95,71 +118,75 @@ contract Source {
 
 ## Example 2: Cross-Chain Transfer
 
-This `XTransfer` contract implements a cross-chain token transfer. There's no target contract on the destination side so only one contract is needed.
+This `TransferToken` contract implements a cross-chain token transfer. There's no target contract on the destination side so only one contract is needed.
 
-### XTransfer Contract
+### TransferToken Contract
 
 ```solidity
-pragma solidity ^0.8.14;
+pragma solidity ^0.8.15;
 
-import {IConnextHandler} from "@connext/nxtp-contracts/contracts/core/connext/interfaces/IConnextHandler.sol";
-import {CallParams, XCallArgs} from "@connext/nxtp-contracts/contracts/core/connext/libraries/LibConnextStorage.sol";
+import {IConnext} from "@nxtp/core/connext/interfaces/IConnext.sol";
 import {ERC20} from "@solmate/tokens/ERC20.sol";
 
-contract XTransfer { 
-  // ConnextHandler contract on origin domain
-  IConnextHandler public connext = IConnextHandler(0xB4C1340434920d70aD774309C75f9a4B679d801e); 
+/**
+ * @title TransferToken
+ * @notice Example of a cross-domain token transfer.
+ */
+contract TransferToken {
+  // The connext contract on the origin domain.
+  IConnext public immutable connext;
 
-  // TEST ERC20 token on origin domain
-  ERC20 public token = ERC20(0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1); 
+  constructor(IConnext _connext) {
+    connext = _connext;
+  }
 
-  // Function that the user will call
-  function transfer(address recipient, uint256 amount) external {
+  /**
+   * @notice Transfers funds from one chain to another.
+   * @param recipient The destination address (e.g. a wallet).
+   * @param destinationDomain The destination domain ID.
+   * @param tokenAddress Address of the token to transfer.
+   * @param amount The amount to transfer.
+   * @param relayerFee The fee offered to relayers. On testnet, this can be 0.
+   */
+  function transfer(
+    address recipient,
+    uint32 destinationDomain,
+    address tokenAddress,
+    uint256 amount,
+    uint256 relayerFee
+  ) external payable {
+    ERC20 token = ERC20(tokenAddress);
     require(
       token.allowance(msg.sender, address(this)) >= amount,
-      "User must approve amount to this contract"
+      "User must approve amount"
     );
-    
-    // User's funds are transferred to this contract
+
+    // User sends funds to this contract
     token.transferFrom(msg.sender, address(this), amount);
 
-    // This contract approves spend to the Connext contract
+    // This contract approves transfer to Connext
     token.approve(address(connext), amount);
 
-    CallParams memory callParams = CallParams({
-      to: recipient, // wallet receiving the funds on the destination
-      callData: "", // empty here because we're only sending funds
-      originDomain: 1735353714, // from Goerli
-      destinationDomain: 1735356532, // to Optimism-Goerli
-      agent: msg.sender, // address allowed to execute transaction on destination side in addition to relayers
-      recovery: msg.sender, // fallback address to send funds to if execution fails on destination side
-      forceSlow: false, // option to force slow path instead of paying 0.05% fee on fast path transfers
-      receiveLocal: false, // option to receive the local bridge-flavored asset instead of the adopted asset
-      callback: address(0), // zero address because we're not using a callback
-      callbackFee: 0, // fee paid to relayers; relayers don't take any fees on testnet
-      relayerFee: 0, // fee paid to relayers; relayers don't take any fees on testnet
-      destinationMinOut: (amount / 100) * 99 // minimum amount acceptable due to slippage from the AMM (1% here)
-    });
-
-    XCallArgs memory xcallArgs = XCallArgs({
-      params: callParams,
-      transactingAsset: address(token), // the token being transferred to the target contract
-      transactingAmount: amount, // amount of ERC20 to transfer
-      originMinOut: (amount / 100) * 99 // minimum amount acceptable due to slippage from the AMM (1% here)
-    });
-
-    connext.xcall(xcallArgs);
+    connext.xcall{value: relayerFee}(
+      destinationDomain, // _destination: Domain ID of the destination chain
+      recipient,         // _to: address receiving the funds on the destination
+      tokenAddress,      // _asset: address of the token contract
+      msg.sender,        // _delegate: address that can revert or forceLocal on destination
+      amount,            // _amount: amount of tokens to transfer
+      3,                 // _slippage: the maximum amount of slippage the user will accept in BPS
+      ""                 // _callData: empty because we're only sending funds
+    );  
   }
 }
 ```
 
-Since funds are going to be routed through Connext's contracts, the user must first approve a spending allowance of the TEST ERC20 to `XTransfer`. The `require` clause checks for this allowance. 
+Since funds are going to be routed through Connext's contracts, the user must first approve a spending allowance of the ERC20 to the `TransferToken` contract. The `require` clause checks for this allowance. 
 
 You can use [Etherscan and write](https://goerli.etherscan.io/address/0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1#writeContract) to the TEST ERC20's `approve` function to do this: 
 
 <img src="/img/developers/TestERC20_Etherscan_Approve.png" alt="TestERC20 Etherscan Approve" width="400"/>
 
-The full token flow moves from `User's wallet` -> `XTransfer` -> `ConnextHandler` -> `recipient`.
+The tokens flow from `User's wallet` => `TokenTransfer` => `ConnextHandler` => `recipient`.
 
 ---
 
