@@ -1,8 +1,8 @@
 ---
-sidebar_position: 6
+sidebar_position: 1
 ---
 
-# Tracking an xcall
+# Tracking xcalls
 
 Every `xcall` is associated with a unique `transferId` that can be used to track its lifecycle through a cross-chain transaction.
 
