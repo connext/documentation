@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 id: authentication
 ---
 
@@ -7,28 +7,88 @@ id: authentication
 
 ## Introduction
 
-Authentication is a critical concept to understand when building xApps. In the context of smart contracts, an authenticated call is one that passes permissioning constraints set by the protocol developer. In most cases this manifests as a modifier that allows a certain subset of addresses to call specific smart contract functions - in other words, we are talking about access control.
+Authentication is a critical concept to understand when building xApps. In the context of smart contracts, an authenticated call is one that passes permissioning constraints set by the protocol developer. In most cases this manifests as a modifier that allows a certain set of addresses to call specific smart contract functions - in other words, we are talking about access control.
 
-A simple example of authentication is an `onlyOwner` modifier that allows only the owner of a smart contract to perform certain tasks. You can read more about this one at [OpenZeppelin's Ownable contracts](https://docs.openzeppelin.com/contracts/2.x/api/ownership).
+A simple example of authentication is an `onlyOwner` modifier that prevents everyone but the owner of a smart contract from performing certain operations. You can read more about this at [OpenZeppelin's Ownable contracts](https://docs.openzeppelin.com/contracts/2.x/api/ownership).
 
 ---
 
-## Unauthenticated
+## Authenticated xcalls
 
-Cross-domain calls can target destination-side smart contract functions by sending encoded `calldata` in the `xcall`. With unauthenticated functions, they are open and callable by anyone.
+Cross-chain calls can target smart contract functions by sending encoded `calldata` in the `xcall`.
 
 ### Target Contract
 
-Suppose we have a target contract on the destination domain with an unauthenticated `updateValue` function.  
+Suppose we have a target contract on the destination domain with `updateValue` function.
 
 ```solidity
-contract Target {
-  uint256 public value;
+pragma solidity ^0.8.15;
 
-  function updateValue(uint256 newValue) external {
-    value = newValue;
+import {IConnext} from "@connext/nxtp-contracts/contracts/core/connext/interfaces/IConnext.sol";
+import {IXReceiver} from "@connext/nxtp-contracts/contracts/core/connext/interfaces/IXReceiver.sol";
+
+contract HelloTargetAuthenticated is IXReceiver {
+  string public greeting;
+
+  /// The origin Domain ID
+  uint32 public originDomain;
+
+  /// The source contract
+  address public source;
+
+  /// The address of the Connext contract
+  IConnext public connext;
+
+  /** @notice A modifier for authenticated calls.
+   *          This is an important security consideration. If the target contract
+   *          function should be authenticated, it must check three things:
+   *            1) The originating call comes from the expected origin domain.
+   *            2) The originating call comes from the expected source contract.
+   *            3) The call to this contract comes from Connext.
+   */
+  modifier onlySource(address _originSender, uint32 _origin) {
+    require(
+      _origin == originDomain &&
+        _originSender == source &&
+        msg.sender == address(connext),
+      "Expected source contract on origin domain called by Connext"
+    );
+    _;
+  }
+
+  constructor(
+    uint32 _originDomain,
+    address _source,
+    IConnext _connext
+  ) {
+    originDomain = _originDomain;
+    source = _source;
+    connext = _connext;
+  }
+
+  /** @notice Authenticated receiver function.
+    * @param _callData Calldata containing the new greeting.
+    */
+  function xReceive(
+    bytes32 _transferId,
+    uint256 _amount,
+    address _asset,
+    address _originSender,
+    uint32 _origin,
+    bytes memory _callData
+  ) external onlySource(_originSender, _origin) returns (bytes memory) {
+    _updateGreeting(_callData);
+  }
+
+  /** @notice Internal function to update the greeting.
+    * @param _callData Calldata containing the new greeting.
+    */
+  function _updateGreeting(bytes memory _callData) internal {
+    string memory newGreeting = abi.decode(_callData, (string));
+    greeting = newGreeting;
   }
 }
+
 ```
 
 ### Source Contract
@@ -140,7 +200,7 @@ Notice the custom modifier `onlyExecutor` on the target function. It checks that
 
 ### Source Contract
 
-The source contract is the exact same as the unauthenticated example above except that `forceSlow: true`. See the notes about this parameter [here](../xcall-params.md).
+The source contract is the exact same as the unauthenticated example above except that `forceSlow: true`. See the notes about this parameter [here](../reference/xcall-params).
 
 ```solidity
 import {IConnextHandler} from "nxtp/core/connext/interfaces/IConnextHandler.sol";
