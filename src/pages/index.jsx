@@ -38,7 +38,7 @@ export const actions = [
     title: "Developer Quickstart",
     href: "#",
     icon: LinkIcon,
-    to: "./developers/quickstart",
+    to: "./developers/examples/quickstart",
     text: `Learn how to use xcall, the cross-chain primitive.`,
   },
   {
@@ -74,17 +74,17 @@ export const Guides = [
   {
     title: "Authentication",
     text: "Call authenticated functions cross-chain",
-    to: "./developers/guides/contracts/authentication",
+    to: "./developers/examples/contracts/authentication",
   },
   {
-    title: "Callbacks",
+    title: "Nested XCalls",
   text: "Cross-chain callback ",
-    to: "./developers/guides/contracts/callbacks",
+    to: "./developers/examples/contracts/callbacks",
   },
   {
     title: "SDK Example",
     text: "Integrate with the Connext Protocol using TypeScript",
-    to: "./developers/guides/sdk/sdk-example",
+    to: "./developers/examples/sdk/sdk-example",
   },
 ];
 
@@ -165,7 +165,7 @@ const LongRow = styled.div`
   grid-gap: 16px;
   justify-content: center;
   margin: 0 auto;
-  padding: 3rem 0;
+  padding: 1rem 0;
   max-width: 960px;
 
   @media (max-width: 1250px) {
@@ -349,20 +349,21 @@ export default function Home() {
                 }}
               >
                 <h2>What is connext?</h2>
+                <br />
                 Connext powers fast, trust-minimized communication between
-                blockchains.
+                blockchains with its “modular interoperability” protocol that 
+                delivers a best-in-class experience for users, developers, and 
+                liquidity providers without giving up security or decentralization.
                 <br />
                 <br />
-                Our goal is to create a world where users never need to know
-                what chain or rollup they're on (unless they want to!) and
-                developers can build applications that utilize resources from
-                many chains/rollups simultaneously.
+                Developers can seamlessly integrate cross-chain functionality into
+                their applications in just a few lines of code.
                 <br />
                 <br />
                 Get started using xcall, the cross-chain primitive!
               </p>
 
-              <img src={XCallSnippet} alt="xCall Snippet" style={{borderRadius: "20px"}}/>
+              <img src={XCallSnippet} alt="xCall Snippet" style={{borderRadius: "20px"}} height="400px"/>
               
             </TwoRow>
           </div>

@@ -7,7 +7,7 @@ id: nested-xcalls
 
 ## Introduction
 
-One awesome feature we've introduced is the ability to use callbacks to respond to results of calls from the destination domain on the origin domain. You can read the [detailed spec here](https://github.com/connext/nxtp/discussions/883). This example will build on top of the Authenticated example.
+One awesome feature we've introduced is the ability to _xcall within xcall_ to achieve further use cases like 
 
 ---
 

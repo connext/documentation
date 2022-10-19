@@ -96,7 +96,7 @@ Some example use cases:
 
 Developers can send an `xcall` and the protocol will then split actions between a Liquidity Layer (Connext) and a Messaging Layer.
 
-You can see this in action in the Developer [Quickstart](../developers/quickstart/quickstart.mdx).
+You can see this in action in the [Developer Quickstart](../developers/examples/quickstart).
 
 ## How do I interact with the Connext community?
 
