@@ -6,20 +6,7 @@ id: routers
 
 # Routers
 
-This contract is designed to manage router access, meaning it maintains the
-router recipients, owners, and the router whitelist itself.
-
-As a router, there are three important permissions:
-`router` - this is the address that will sign bids sent to the sequencer
-`routerRecipient` - this is the address that receives funds when liquidity is withdrawn
-`routerOwner` - this is the address permitted to update recipients and propose new owners
-
-In cases where the owner is not set, the caller should be the `router` itself. In cases where the
-`routerRecipient` is not set, the funds can be removed to anywhere.
-
-When setting a new `routerOwner`, the current owner (or router) must create a proposal, which
-can be accepted by the proposed owner after the delay period. If the proposed owner is the empty
-address, then it must be accepted by the current owner.
+This section contains a full API reference of all public functions & events related to routers and router liquidity management.
 
 ---
 

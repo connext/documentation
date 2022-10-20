@@ -6,6 +6,10 @@ id: calls
 
 # Calls
 
+This section contains a full API reference of all public functions & events related to making and tracking xchain calls.
+
+---
+
 ## Events
 
 ### XCalled

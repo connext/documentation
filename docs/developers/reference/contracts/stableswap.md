@@ -6,13 +6,7 @@ id: stableswap
 
 # Stableswap
 
-This contract is responsible for custody of closely pegged assets (eg. group of stablecoins)
-and automatic market making system. Users become an LP (Liquidity Provider) by depositing their tokens
-in desired ratios for an exchange of the pool token that represents their share of the pool.
-Users can burn pool tokens and withdraw their share of token(s).
-
-Each time a swap between the pooled tokens happens, a set fee incurs which effectively gets
-distributed to the LPs.
+This section contains a full API reference of all public functions & events related to Connext's stableswap contracts.
 
 ---
 
