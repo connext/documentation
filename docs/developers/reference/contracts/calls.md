@@ -1,11 +1,10 @@
 ---
-sidebar_position: 2
-title: Bridge Facet
-id: bridge-facet
+sidebar_position: 1
+title: Calls
+id: calls
 ---
 
-
-# Bridge Facet
+# Calls
 
 ## Events
 
@@ -99,70 +98,9 @@ Emitted when `forceUpdateSlippage` is called by an user on the destination domai
 | transferId | bytes32 | - The unique identifier of the crosschain transaction |
 | slippage | uint256 | - The updated slippage boundary |
 
-### AavePortalMintUnbacked
+---
 
-```solidity
-event AavePortalMintUnbacked(bytes32 transferId, address router, address asset, uint256 amount)
-```
-
-Emitted when a router used Aave Portal liquidity for fast transfer
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| transferId | bytes32 | - The unique identifier of the crosschain transaction |
-| router | address | - The authorized router that used Aave Portal liquidity |
-| asset | address | - The asset that was provided by Aave Portal |
-| amount | uint256 | - The amount of asset that was provided by Aave Portal |
-
-### RemoteAdded
-
-```solidity
-event RemoteAdded(uint32 domain, address remote, address caller)
-```
-
-Emitted when a new remote instance is added
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| domain | uint32 | - The domain the remote instance is on |
-| remote | address | - The address of the remote instance |
-| caller | address | - The account that called the function |
-
-### SequencerAdded
-
-```solidity
-event SequencerAdded(address sequencer, address caller)
-```
-
-Emitted when a sequencer is added or removed from whitelists
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| sequencer | address | - The sequencer address to be added or removed |
-| caller | address | - The account that called the function |
-
-### SequencerRemoved
-
-```solidity
-event SequencerRemoved(address sequencer, address caller)
-```
-
-Emitted when a sequencer is added or removed from whitelists
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| sequencer | address | - The sequencer address to be added or removed |
-| caller | address | - The account that called the function |
-
-## View Functions
+## Getters
 
 ### routedTransfers
 
@@ -170,17 +108,40 @@ Emitted when a sequencer is added or removed from whitelists
 function routedTransfers(bytes32 _transferId) public view returns (address[])
 ```
 
+Gets a list of routers that routed a transfer by `transferId`.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _transferId | bytes32 | Unique transfer ID of a given transaction |
+
+#### Return Values
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| [0] | address[] | Array containing addresses of routers |
+
 ### transferStatus
 
 ```solidity
 function transferStatus(bytes32 _transferId) public view returns (enum DestinationTransferStatus)
 ```
 
-### remote
+Gets a transfer's status by `transferId`. Note - this function MUST be called on the destination chain.
 
-```solidity
-function remote(uint32 _domain) public view returns (address)
-```
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _transferId | bytes32 | Unique transfer ID of a given transaction |
+
+#### Return Values
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| [0] | enum | Status of the transfer |
+
 
 ### domain
 
@@ -188,82 +149,20 @@ function remote(uint32 _domain) public view returns (address)
 function domain() public view returns (uint32)
 ```
 
-### nonce
-
-```solidity
-function nonce() public view returns (uint256)
-```
-
-### approvedSequencers
-
-```solidity
-function approvedSequencers(address _sequencer) external view returns (bool)
-```
-
-### xAppConnectionManager
-
-```solidity
-function xAppConnectionManager() public view returns (address)
-```
-
-## External Functions
-
-### addSequencer
-
-```solidity
-function addSequencer(address _sequencer) external
-```
-
-Used to add an approved sequencer to the whitelist.
+Gets the `domain` identifier of the chain.
 
 #### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| _sequencer | address | - The sequencer address to add. |
 
-### removeSequencer
-
-```solidity
-function removeSequencer(address _sequencer) external
-```
-
-Used to remove an approved sequencer from the whitelist.
-
-#### Parameters
+#### Return Values
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| _sequencer | address | - The sequencer address to remove. |
+| [0] | uint32 | Domain identifier of the chain |
 
-### setXAppConnectionManager
-
-```solidity
-function setXAppConnectionManager(address _xAppConnectionManager) external
-```
-
-Modify the contract the xApp uses to validate Replica contracts
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| _xAppConnectionManager | address | The address of the xAppConnectionManager contract |
-
-### enrollRemoteRouter
-
-```solidity
-function enrollRemoteRouter(uint32 _domain, bytes32 _router) external
-```
-
-Register the address of a Router contract for the same xApp on a remote chain
-
-#### Parameters
-
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| _domain | uint32 | The domain of the remote xApp Router |
-| _router | bytes32 | The address of the remote xApp Router |
+## Functions
 
 ### xcall
 
@@ -271,23 +170,26 @@ Register the address of a Router contract for the same xApp on a remote chain
 function xcall(uint32 _destination, address _to, address _asset, address _delegate, uint256 _amount, uint256 _slippage, bytes _callData) external payable returns (bytes32)
 ```
 
-Initiates a cross-chain transfer of funds, calldata, and/or various named properties using the nomad
-network.
+Initiates a cross-chain transfer of funds, calldata, and/or various named properties.
 
 For ERC20 transfers, this contract must have approval to transfer the input (transacting) assets. The adopted
-assets will be swapped for their local nomad asset counterparts (i.e. bridgeable tokens) via the configured AMM if
-necessary. In the event that the adopted assets *are* local nomad assets, no swap is needed. The local tokens will
+assets will be swapped for their local (connext-flavored) asset counterparts (i.e. bridgeable tokens) via the configured AMM if
+necessary. In the event that the adopted assets *are* local assets, no swap is needed. The local tokens will
 then be sent via the bridge router. If the local assets are representational for an asset on another chain, we will
 burn the tokens here. If the local assets are canonical (meaning that the adopted to local asset pairing is native
 to this chain), we will custody the tokens here.
 
 #### Parameters
 
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| _params | struct TransferInfo | - The TransferInfo arguments. |
-| _asset | address |  |
-| _amount | uint256 |  |
+| Name                | Type       | Description     |
+|---------------------|------------|-----------------|
+| `_destination`      | `uint32`   | The destination chain's Domain ID (*not* equivalent to “Chain ID”). See [Domains] for details TODO|
+| `_to`               | `address`  | The target address on the destination chain. xcall will send funds to whatever address is specified here regardless of whether it is a contract or EOA. If calldata is provided, xcall will additionally attempt to call `xReceive` on this contract. |
+| `_asset`            | `address`  | The contract address of the asset to be bridged. If the `xcall` is calldata-only (e.g. doesn't bridge any funds), any registered asset can be used here as long as `amount: 0`.|
+| `_delegate`         | `address`  | An address on destination domain that has rights to update slippage tolerance, retry transactions, or revert back to origin in the event that a transaction fails at the destination.|
+| `_amount`           | `uint256`  | The amount of tokens to bridge specified in wei units (i.e. to send 1 USDC, a token with 10^18 decimals, you must specify the amount as `1000000000000000000`).|
+| `_slippage`         | `uint256`  | The maximum slippage a user is willing to take, in BPS, due to the StableSwap Pool(s), if applicable. For example, to achieve 0.03% slippage tolerance this will be `3`.|
+| `_callData`         | `bytes`    | In the case of bridging funds only, this should be empty (""). If calldata is sent, then the encoded calldata must be passed here.|
 
 #### Return Values
 
@@ -300,6 +202,8 @@ to this chain), we will custody the tokens here.
 ```solidity
 function xcallIntoLocal(uint32 _destination, address _to, address _asset, address _delegate, uint256 _amount, uint256 _slippage, bytes _callData) external payable returns (bytes32)
 ```
+
+Helper function that xcalls as normal but forces the receipt of the local (Connext-flavored) asset at destination. This function is used typically to generate nextAssets that can be used to LP into the destination chain stableswap. Params and returned data function exactly the same way as `xcall`.
 
 ### execute
 
@@ -347,8 +251,8 @@ Anyone can call this function on the origin domain to increase the relayer fee f
 function forceUpdateSlippage(struct TransferInfo _params, uint256 _slippage) external
 ```
 
-Allows a user-specified account to update the slippage they are willing
-to take on destination transfers.
+Allows a user-specified account (`delegate` in `xcall`) to update the slippage they are willing
+to take on destination transfers. MUST be called on the destination chain.
 
 #### Parameters
 
@@ -356,3 +260,26 @@ to take on destination transfers.
 | ---- | ---- | ----------- |
 | _params | struct TransferInfo | TransferInfo associated with the transfer |
 | _slippage | uint256 | The updated slippage |
+
+---
+
+## Interfaces
+
+### xReceive
+
+```solidity
+function xReceive(bytes32 _transferId, uint256 _amount, address _asset, address _originSender, uint32 _origin, bytes _callData) external returns (bytes)
+```
+
+Interface that the Connext contracts call into on the `_to` address specified during `xcall`. Developers MUST implement this on the destination chain to receive incoming calldata.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _transferId | bytes32 | Unique id of the xchain transaction |
+| _amount | uint256 | Amount of token, if any, passed into the contract in Wei units |
+| _asset | address | Address of token, if any, passed into the contract |
+| _originSender | address | Address of the contract or EOA that called `xcall` on the origin chain. NOTE: this param will *only* be populated if the transaction went through the slow path rather than being executed immediately by a Connext router (see TODO for details)|
+| _origin | uint32 | Domain ID of the chain that the transaction is coming from |
+| _calldata | bytes | Data, in bytes, that is passed into `xcall` on the origin chain |

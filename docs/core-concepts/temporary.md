@@ -1,7 +1,8 @@
 ---
 sidebar_position: 1
-title: Architecture
-id: architecture
+title: Temp
+id: temp
+hidden: true
 ---
 
 # Introduction
