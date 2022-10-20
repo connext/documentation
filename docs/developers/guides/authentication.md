@@ -5,19 +5,13 @@ id: authentication
 
 # Authentication
 
-## Introduction
-
 Authentication is a critical concept to understand when building xApps. In the context of smart contracts, an authenticated call is one that passes permissioning constraints set by the protocol developer. In most cases this manifests as a modifier that allows a certain set of addresses to call specific smart contract functions - in other words, we are talking about access control.
 
 A simple example of authentication is an `onlyOwner` modifier that prevents everyone but the owner of a smart contract from performing certain operations. You can read more about this at [OpenZeppelin's Ownable contracts](https://docs.openzeppelin.com/contracts/2.x/api/ownership).
 
 ---
 
-## Authenticated xcalls
-
-If the target function should be authenticated then the contract must perform a series of checks to ensure the integrity of the caller and its originating domain.
-
-### Target Contract
+## Target Contract
 
 Suppose we have a target contract on the destination domain with an `_updateGreeting` function. We want to enforce that only the source contract on a specific origin domain can call it.
 
@@ -93,7 +87,7 @@ contract HelloTargetAuthenticated is IXReceiver {
 }
 ```
 
-### Source Contract
+## Source Contract
 
 Nothing special has to be accounted for on the source contract. This is the exact same contract as the (unauthenticated) Hello Chain example in the Quickstart.
 

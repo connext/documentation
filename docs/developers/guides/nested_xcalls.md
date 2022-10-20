@@ -3,7 +3,7 @@ sidebar_position: 3
 id: nested-xcalls
 ---
 
-# Nested xcalls
+# Nested xCalls
 
 ## Introduction
 
