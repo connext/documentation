@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
-title: Contracts
-id: contracts-overview
+title: Architecture
+id: architecture
 ---
 
 # Introduction
