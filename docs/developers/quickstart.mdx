@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 # Quickstart
 
-These are the simplest working contracts that demonstrate how to use `xcall`, a cross-chain primitive mimicking Solidity's low level `call` method.
+This quickstart demonstrates how to use `xcall`, a cross-chain primitive mimicking Solidity's low level `call` method.
 
 ---
 
@@ -26,13 +26,13 @@ npm install @connext/nxtp-contracts@beta
 
 ## Hello Chain
 
-In this quickstart, there are two contracts. The `HelloTarget` contract on the destination domain (Mumbai) stores a greeting that we want to update. The `HelloSource` contract on the origin domain (Goerli) will call `xcall` to execute the `_updateGreeting` function on `HelloTarget`.
+The `HelloTarget` contract on the destination domain (Mumbai) stores a greeting variable that we want to update. The `HelloSource` contract on the origin domain (Goerli) will use `xcall` to execute the updating function on `HelloTarget`.
+
+`HelloTarget` will require a payment of 1 TEST token to update the greeting. This way, we can see how `xcall` can send assets as well as calldata cross chains.
 
 ### Target Contract
 
-The target contract must implement Connext's `IXReceiver` interface. This interface ensures that Connext can call the contract and pass necessary data. 
-
-It will also require that the originating call includes a payment of at least 1 TEST to update the greeting.
+All target contracts must implement Connext's `IXReceiver` interface. This interface ensures that Connext can call the contract and pass necessary data. 
 
 ```solidity showLineNumbers
 pragma solidity ^0.8.15;
@@ -59,7 +59,7 @@ contract HelloTarget is IXReceiver {
     uint32 _origin,
     bytes memory _callData
   ) external returns (bytes memory) {
-    // Enforce the cost to update the greeting
+    // Enforce a cost to update the greeting
     require(
       _asset == address(token) && _amount >= cost,
       "Must pay at least 1 TEST"
