@@ -14,6 +14,7 @@ You can query the hosted subgraphs on each chain to check the transaction status
 | --- | --- |
 | Goerli | [v0-Goerli](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-goerli) |
 | Optimism-Goerli | [v0-Opt-Goerli](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-opt-goerli) |
+| Mumbai | [v0-Mumbai](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-mumbai) |
 
 1.  Make note of the transaction hash that interacted with the Connext contract
 
@@ -24,7 +25,7 @@ You can query the hosted subgraphs on each chain to check the transaction status
         {
           originTransfers(
             where: {
-              transactionHash: "<xcall_transaction_hash>"
+              transactionHash: "<transaction_hash> "
             }
           ) {
             # Meta Data
@@ -35,15 +36,17 @@ You can query the hosted subgraphs on each chain to check the transaction status
             callData
             originDomain
             destinationDomain
-            forceSlow
-            receiveLocal
-            recovery
-            callback
-            callbackFee
             # Asset Data
-            transactingAsset
-            transactingAmount
+            asset {
+              id
+              adoptedAsset
+              canonicalId
+              canonicalDomain
+            }
+            bridgedAmt
             status
+            transactionHash
+            timestamp
           }
         }
         ```
@@ -66,17 +69,12 @@ You can query the hosted subgraphs on each chain to check the transaction status
             callData
             originDomain
             destinationDomain
-            forceSlow
-            receiveLocal
-            recovery
-            callback
-            callbackFee
+            delegate
             # Asset Data
-            localAsset
-            localAmount
-            transactingAsset
-            transactingAmount
-            sponsorVaultRelayerFee
+            asset {
+              id
+            }
+            bridgedAmt
             # Executed event Data
             status
             routers {
