@@ -46,7 +46,7 @@ export const actions = [
     href: "#",
     icon: BookOpenIcon,
     to: "./routers/intro",
-    text: `Become a core participant in the decentralized system and earn fees.`,
+    text: `Become a core participant in the network and earn fees.`,
   },
   {
     title: "Contract Deployments",
@@ -326,9 +326,6 @@ export default function Home() {
             }}
           >
             <h1 style={{ fontWeight: "600" }}> Welcome to the Connext Docs</h1>
-            <HideMedium>
-              <SearchBar />{" "}
-            </HideMedium>
 
             <TwoRow
               style={{
