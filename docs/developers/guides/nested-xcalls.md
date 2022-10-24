@@ -31,3 +31,5 @@ contract Target is IXReceiver {
 There are many ways to use nested `xcall`s to extend cross-chain functionality. With this technique, it's possible to:
 - Emulate the behavior of a "callback" between chains to verify state changes and/or followup asynchronously 
 - Disperse data to multiple different chains at once
+
+See this in action in the [Ping Pong](../examples/ping-pong) example.
