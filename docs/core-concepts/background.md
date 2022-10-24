@@ -3,7 +3,6 @@ sidebar_position: 1
 id: "background"
 ---
 
-
 # Bridge Taxonomy
 
 ## What is a Bridge?

@@ -3,7 +3,6 @@ sidebar_position: 2
 id: "bridge-security"
 ---
 
-
 # Bridge Security
 
 ## Types of Security

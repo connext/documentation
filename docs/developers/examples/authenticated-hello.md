@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 id: authenticated-hello
 ---
 
@@ -132,4 +132,4 @@ contract HelloSource {
 
 Note that `HelloSource` should be deployed before `HelloTargetAuthenticated` because the latter needs the address of the former in its constructor.
 
-Now we've enforced that the greeting in `HelloTargetAuthenticated` can only be updated by an xcall from `HelloSource`!
+Now we've enforced that the greeting in `HelloTargetAuthenticated` can only be updated through `HelloSource`!

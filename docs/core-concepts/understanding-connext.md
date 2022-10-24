@@ -3,7 +3,6 @@ sidebar_position: 3
 id: understanding-connext
 ---
 
-
 # What is Connext?
 
 Connext powers fast, trust-minimized communication between blockchains.

@@ -3,6 +3,6 @@ sidebar_position: 2
 id: mainnet
 ---
 
-# Mainnet
+# Mainnet Deployments
 
 This page will be updated once mainnet is launched!

@@ -3,7 +3,7 @@ sidebar_position: 3
 id: testnet
 ---
 
-# Testnet
+# Testnet Deployments
 
 We maintain two testnet environments:
 - `production`: a "stable" testnet for integrators
@@ -322,7 +322,7 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
     </tbody>
   </table>
-  
+
   <table>
     <tbody>
       <tr>
