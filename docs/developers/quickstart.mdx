@@ -8,7 +8,15 @@ import TabItem from '@theme/TabItem';
 
 # Quickstart
 
-This quickstart demonstrates how to use `xcall`, a cross-chain primitive mimicking Solidity's low level `call` method.
+:::info
+
+This quickstart will teach you how to use `xcall`, the cross-chain communication primitive, to send funds and data across chains.
+
+:::
+
+In this guide, we will build a cross-chain Greeter. The `HelloTarget` contract on the destination domain (Mumbai) stores a greeting variable that we want to update. The `HelloSource` contract on the origin domain (Goerli) will use `xcall` to execute the updating function on `HelloTarget`.
+
+`HelloTarget` will require a payment of 1 TEST token to update the greeting.
 
 ---
 
@@ -24,13 +32,7 @@ npm install @connext/nxtp-contracts@beta
 
 ---
 
-## Hello Chain
-
-The `HelloTarget` contract on the destination domain (Mumbai) stores a greeting variable that we want to update. The `HelloSource` contract on the origin domain (Goerli) will use `xcall` to execute the updating function on `HelloTarget`.
-
-`HelloTarget` will require a payment of 1 TEST token to update the greeting. This way, we can see how `xcall` can send assets as well as calldata cross chains.
-
-### Target Contract
+## Target Contract
 
 All target contracts must implement Connext's `IXReceiver` interface. This interface ensures that Connext can call the contract and pass necessary data. 
 
@@ -65,22 +67,24 @@ contract HelloTarget is IXReceiver {
       "Must pay at least 1 TEST"
     );
 
-    _updateGreeting(_callData);
+    // Unpack the _callData
+    string memory newGreeting = abi.decode(_callData, (string));
+
+    _updateGreeting(newGreeting);
   }
 
   /** @notice Internal function to update the greeting.
     * @param _callData Calldata containing the new greeting.
     */
-  function _updateGreeting(bytes memory _callData) internal {
-    string memory newGreeting = abi.decode(_callData, (string));
-    greeting = newGreeting;
+  function _updateGreeting(string _newGreeting) internal {
+    greeting = _newGreeting;
   }
 }
 ```
 
 The goal is to call `_updateGreeting` from the origin domain.
 
-### Source Contract
+## Source Contract
 
 The source contract initiates the cross-chain operation with `xcall` and passes the encoded greeting into the call. All `xcall` params are detailed [here](./reference/contracts/calls#xcall).
 
@@ -143,18 +147,22 @@ contract HelloSource {
       address(token),    // _asset: address of the token contract
       msg.sender,        // _delegate: address that can revert or forceLocal on destination
       cost,              // _amount: amount of tokens to transfer
-      30,                // _slippage: the maximum amount of slippage the user will accept in BPS, in this case 0.3%
+      30,                // _slippage: the max slippage the user will accept in BPS (0.3%)
       callData           // _callData: the encoded calldata to send
     );
   }
 }
 ```
 
+## Executing the Transaction
+
 Since funds are going to be routed through Connext's contracts, the user must first approve a spending allowance of the TEST ERC20 to the `HelloSource` contract. The `require` clause starting on line 37 checks for this allowance. 
 
 You can use [Etherscan and write](https://goerli.etherscan.io/address/0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1#writeContract) to the token's `approve` function to do this approval: 
 
 <img src="/img/developers/TestERC20_Etherscan_Approve.png" alt="TestERC20 Etherscan Approve" width="400"/>
+
+TODO add explanation of how to call `updateGreeting` on source and what to pass in for domain, relayer fee, etc.
 
 The tokens will move from `User's wallet` => `HelloSource` => `Connext` => `HelloTarget`.
 

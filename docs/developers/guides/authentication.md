@@ -7,7 +7,9 @@ id: authentication
 
 Authentication is a critical concept to understand when building xApps. In the context of smart contracts, an authenticated call is one that passes permissioning constraints set by the protocol developer. In most cases this manifests as a modifier that allows a certain set of addresses to call specific smart contract functions - in other words, we are talking about access control.
 
-A simple example of authentication is an `onlyOwner` modifier that prevents everyone but the owner of a smart contract from performing certain operations. You can read more about this at [OpenZeppelin's Ownable contracts](https://docs.openzeppelin.com/contracts/2.x/api/ownership).
+For example:
+- Uniswap's `swap` [function](https://docs.uniswap.org/protocol/reference/core/UniswapV3Pool#swap) is **unauthenticated** because it is a public function that can be called by anyone.
+- Uniswap's `setFeeProtocol` [function](https://docs.uniswap.org/protocol/reference/core/UniswapV3Pool#setfeeprotocol) is **authenticated** because it uses the `onlyFactoryOwner` modifier that prevents anyone but the owner of the contract factory from calling it. You can read more about this at [OpenZeppelin's Ownable contracts](https://docs.openzeppelin.com/contracts/2.x/api/ownership).
 
 ## Checking Origin Data
 

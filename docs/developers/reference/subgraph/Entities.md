@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Subgraph Entities
+title: Entities
 ---
 
 ## Entities
