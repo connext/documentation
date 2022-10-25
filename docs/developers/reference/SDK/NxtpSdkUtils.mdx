@@ -1,0 +1,194 @@
+---
+sidebar_position: 3
+title: Utils
+id: sdk-utils
+---
+
+# NxtpSdkUtils
+
+Contains general helper functions.
+
+## Constructors
+
+### constructor
+
+• **new NxtpSdkUtils**(`config`, `logger`, `chainData`)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `config` | `Object` |
+| `config.cartographerUrl` | `undefined` \| `string` |
+| `config.chains` | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
+| `config.environment` | `undefined` \| ``"staging"`` \| ``"production"`` |
+| `config.logLevel` | `undefined` \| ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` |
+| `config.maxSlippage` | `undefined` \| `number` |
+| `config.network` | `undefined` \| ``"testnet"`` \| ``"mainnet"`` \| ``"local"`` |
+| `config.signerAddress` | `undefined` \| `string` |
+| `logger` | `Logger` |
+| `chainData` | `Map`<`string`, `ChainData`\> |
+
+---
+
+## Methods
+
+### changeSignerAddress
+
+▸ **changeSignerAddress**(`signerAddress`): `Promise`<`void`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `signerAddress` | `string` |
+
+#### Returns
+
+`Promise`<`void`\>
+
+### getRoutersData
+
+▸ **getRoutersData**(): `Promise`<`any`\>
+
+#### Returns
+
+`Promise`<`any`\>
+
+### getTransferById
+
+▸ **getTransferById**(`transferId`): `Promise`<`any`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `transferId` | `string` |
+
+#### Returns
+
+`Promise`<`any`\>
+
+### getTransferByTransactionHash
+
+▸ **getTransferByTransactionHash**(`transactionHash`): `Promise`<`any`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `transactionHash` | `string` |
+
+#### Returns
+
+`Promise`<`any`\>
+
+### getTransfers
+
+▸ **getTransfers**(`params`): `Promise`<`any`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `Object` |
+| `params.range?` | `Object` |
+| `params.range.limit?` | `number` |
+| `params.range.offset?` | `number` |
+
+#### Returns
+
+`Promise`<`any`\>
+
+### getTransfersByRouter
+
+▸ **getTransfersByRouter**(`params`): `Promise`<`any`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `Object` |
+| `params.range?` | `Object` |
+| `params.range.limit?` | `number` |
+| `params.range.offset?` | `number` |
+| `params.routerAddress` | `string` |
+| `params.status?` | `XTransferStatus` |
+
+#### Returns
+
+`Promise`<`any`\>
+
+### getTransfersByStatus
+
+▸ **getTransfersByStatus**(`params`): `Promise`<`any`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `Object` |
+| `params.range?` | `Object` |
+| `params.range.limit?` | `number` |
+| `params.range.offset?` | `number` |
+| `params.status` | `XTransferStatus` |
+
+#### Returns
+
+`Promise`<`any`\>
+
+### getTransfersByUser
+
+▸ **getTransfersByUser**(`params`): `Promise`<`any`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `Object` |
+| `params.range?` | `Object` |
+| `params.range.limit?` | `number` |
+| `params.range.offset?` | `number` |
+| `params.status?` | `XTransferStatus` |
+| `params.userAddress` | `string` |
+
+#### Returns
+
+`Promise`<`any`\>
+
+### parseConnextTransactionReceipt
+
+▸ **parseConnextTransactionReceipt**(`transactionReceipt`): `any`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `transactionReceipt` | `TransactionReceipt` |
+
+#### Returns
+
+`any`
+
+### create
+
+▸ `Static` **create**(`_config`, `_logger?`, `_chainData?`): `Promise`<[`NxtpSdkUtils`](NxtpSdkUtils.md)\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `_config` | `Object` |
+| `_config.cartographerUrl` | `undefined` \| `string` |
+| `_config.chains` | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
+| `_config.environment` | `undefined` \| ``"staging"`` \| ``"production"`` |
+| `_config.logLevel` | `undefined` \| ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` |
+| `_config.maxSlippage` | `undefined` \| `number` |
+| `_config.network` | `undefined` \| ``"testnet"`` \| ``"mainnet"`` \| ``"local"`` |
+| `_config.signerAddress` | `undefined` \| `string` |
+| `_logger?` | `Logger` |
+| `_chainData?` | `Map`<`string`, `ChainData`\> |
+
+#### Returns
+
+`Promise`<[`NxtpSdkUtils`](NxtpSdkUtils.md)\>

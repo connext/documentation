@@ -1,0 +1,89 @@
+---
+sidebar_position: 3
+title: Router
+id: sdk-router
+---
+
+# NxtpSdkRouter
+
+Contains helper functions for router operations.
+
+## Constructors
+
+### constructor
+
+• **new NxtpSdkRouter**(`config`, `logger`, `chainData`)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `config` | `Object` |
+| `config.cartographerUrl` | `undefined` \| `string` |
+| `config.chains` | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
+| `config.environment` | `undefined` \| ``"staging"`` \| ``"production"`` |
+| `config.logLevel` | `undefined` \| ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` |
+| `config.maxSlippage` | `undefined` \| `number` |
+| `config.network` | `undefined` \| ``"testnet"`` \| ``"mainnet"`` \| ``"local"`` |
+| `config.signerAddress` | `undefined` \| `string` |
+| `logger` | `Logger` |
+| `chainData` | `Map`<`string`, `ChainData`\> |
+
+---
+
+## Methods
+
+### addLiquidityForRouter
+
+▸ **addLiquidityForRouter**(`params`): `Promise`<`TransactionRequest`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `Object` |
+| `params.amount` | `string` |
+| `params.assetId` | `string` |
+| `params.domain` | `string` |
+| `params.router` | `string` |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+### changeSignerAddress
+
+▸ **changeSignerAddress**(`signerAddress`): `Promise`<`void`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `signerAddress` | `string` |
+
+#### Returns
+
+`Promise`<`void`\>
+
+### create
+
+▸ `Static` **create**(`_config`, `_logger?`, `_chainData?`): `Promise`<[`NxtpSdkRouter`](NxtpSdkRouter.md)\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `_config` | `Object` |
+| `_config.cartographerUrl` | `undefined` \| `string` |
+| `_config.chains` | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
+| `_config.environment` | `undefined` \| ``"staging"`` \| ``"production"`` |
+| `_config.logLevel` | `undefined` \| ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` |
+| `_config.maxSlippage` | `undefined` \| `number` |
+| `_config.network` | `undefined` \| ``"testnet"`` \| ``"mainnet"`` \| ``"local"`` |
+| `_config.signerAddress` | `undefined` \| `string` |
+| `_logger?` | `Logger` |
+| `_chainData?` | `Map`<`string`, `ChainData`\> |
+
+#### Returns
+
+`Promise`<[`NxtpSdkRouter`](NxtpSdkRouter.md)\>

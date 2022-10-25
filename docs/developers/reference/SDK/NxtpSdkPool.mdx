@@ -1,0 +1,369 @@
+---
+sidebar_position: 2
+title: Pool
+id: sdk-pool
+---
+
+# NxtpSdkPool
+
+This class will either interact with internal StableSwapFacet pools or external StableSwap pools depending on which type of pool is being used for each asset.
+
+Note: SDK currently only supports internal StableSwapFacet pools.
+
+## Constructors
+
+### constructor
+
+• **new NxtpSdkPool**(`config`, `logger`, `chainData`, `chainReader`)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `config` | `Object` |
+| `config.cartographerUrl` | `undefined` \| `string` |
+| `config.chains` | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
+| `config.environment` | `undefined` \| ``"staging"`` \| ``"production"`` |
+| `config.logLevel` | `undefined` \| ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` |
+| `config.maxSlippage` | `undefined` \| `number` |
+| `config.network` | `undefined` \| ``"testnet"`` \| ``"mainnet"`` \| ``"local"`` |
+| `config.signerAddress` | `undefined` \| `string` |
+| `logger` | `Logger` |
+| `chainData` | `Map`<`string`, `ChainData`\> |
+| `chainReader` | `ChainReader` |
+
+---
+
+## Methods
+
+### addLiquidity
+
+▸ **addLiquidity**(`domainId`, `tokenAddress`, `amounts`, `minToMint?`, `deadline?`): `Promise`<`TransactionRequest`\>
+
+Returns the transaction request for adding liquidity to a pool.
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` | The domain id of the pool. |
+| `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
+| `amounts` | `string`[] | `undefined` | The amounts of the tokens to swap. |
+| `minToMint` | `string` | `"0"` | The minimum acceptable amount of LP tokens to mint. |
+| `deadline?` | `number` | `undefined` | The deadline for the swap. |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+### calculateRemoveSwapLiquidity
+
+▸ **calculateRemoveSwapLiquidity**(`domainId`, `tokenAddress`, `amount`): `Promise`<`BigNumber`[]\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+| `amount` | `string` |
+
+#### Returns
+
+`Promise`<`BigNumber`[]\>
+
+### calculateSwap
+
+▸ **calculateSwap**(`domainId`, `tokenAddress`, `tokenIndexFrom`, `tokenIndexTo`, `amount`): `Promise`<`number`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+| `tokenIndexFrom` | `number` |
+| `tokenIndexTo` | `number` |
+| `amount` | `string` |
+
+#### Returns
+
+`Promise`<`number`\>
+
+### calculateTokenAmount
+
+▸ **calculateTokenAmount**(`domainId`, `tokenAddress`, `amounts`, `isDeposit?`): `Promise`<`BigNumber`\>
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` |
+| `tokenAddress` | `string` | `undefined` |
+| `amounts` | `string`[] | `undefined` |
+| `isDeposit` | `boolean` | `true` |
+
+#### Returns
+
+`Promise`<`BigNumber`\>
+
+### getCanonicalKey
+
+▸ **getCanonicalKey**(`domainId`, `tokenId`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenId` | `string` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+### getCanonicalToken
+
+▸ **getCanonicalToken**(`domainId`, `tokenAddress`): `Promise`<[`string`, `string`]\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<[`string`, `string`]\>
+
+### getLPTokenAddress
+
+▸ **getLPTokenAddress**(`domainId`, `tokenAddress`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+### getLPTokenUserBalance
+
+▸ **getLPTokenUserBalance**(`domainId`, `lpTokenAddress`, `userAddress`): `Promise`<`BigNumber`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `lpTokenAddress` | `string` |
+| `userAddress` | `string` |
+
+#### Returns
+
+`Promise`<`BigNumber`\>
+
+### getPool
+
+▸ **getPool**(`domainId`, `tokenAddress`): `Promise`<`undefined` \| `Pool`\>
+
+Returns the StableSwap Pool for a given local asset.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain id of the pool. |
+| `tokenAddress` | `string` | The address of local or adopted token. |
+
+#### Returns
+
+`Promise`<`undefined` \| `Pool`\>
+
+### getPoolStats
+
+▸ **getPoolStats**(`domainId`, `tokenAddress`): `Promise`<`IPoolStats`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`IPoolStats`\>
+
+### getPoolTokenAddress
+
+▸ **getPoolTokenAddress**(`domainId`, `tokenAddress`, `index`): `Promise`<`any`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+| `index` | `number` |
+
+#### Returns
+
+`Promise`<`any`\>
+
+### getPoolTokenBalance
+
+▸ **getPoolTokenBalance**(`domainId`, `tokenAddress`, `poolTokenAddress`): `Promise`<`BigNumber`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+| `poolTokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`BigNumber`\>
+
+### getPoolTokenIndex
+
+▸ **getPoolTokenIndex**(`domainId`, `tokenAddress`, `poolTokenAddress`): `Promise`<`number`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+| `poolTokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`number`\>
+
+### getPoolTokenUserBalance
+
+▸ **getPoolTokenUserBalance**(`domainId`, `poolTokenAddress`, `userAddress`): `Promise`<`BigNumber`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `poolTokenAddress` | `string` |
+| `userAddress` | `string` |
+
+#### Returns
+
+`Promise`<`BigNumber`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:216](https://github.com/connext/nxtp/blob/b4ba5008d/packages/agents/sdk/src/sdkPool.ts#L216)
+
+___
+
+### getUserPools
+
+▸ **getUserPools**(`domainId`, `userAddress`): `Promise`<{ `info`: `Pool` ; `lpTokenBalance`: `BigNumber` ; `poolTokenBalances`: `BigNumber`[]  }[]\>
+
+Returns the Pools that a user has LP tokens for.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain id of the pool. |
+| `userAddress` | `string` | The address of the user to get the pools for. |
+
+#### Returns
+
+`Promise`<{ `info`: `Pool` ; `lpTokenBalance`: `BigNumber` ; `poolTokenBalances`: `BigNumber`[]  }[]\>
+
+### getVirtualPrice
+
+▸ **getVirtualPrice**(`domainId`, `tokenAddress`): `Promise`<`BigNumber`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`BigNumber`\>
+
+### removeLiquidity
+
+▸ **removeLiquidity**(`domainId`, `tokenAddress`, `amount`, `minAmounts?`, `deadline?`): `Promise`<`TransactionRequest`\>
+
+Returns the transaction request for removing liquidity from a pool.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain id of the pool. |
+| `tokenAddress` | `string` | The address of local or adopted token. |
+| `amount` | `string` | The amount of the token to swap. |
+| `minAmounts` | `string`[] | The minimum acceptable amounts of each token to burn. |
+| `deadline?` | `number` | The deadline for the swap. |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+### swap
+
+▸ **swap**(`domainId`, `tokenAddress`, `from`, `to`, `amount`, `minDy?`, `deadline?`): `Promise`<`TransactionRequest`\>
+
+Returns the transaction request for performing a swap in a pool.
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` | The domain id of the pool. |
+| `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
+| `from` | `string` | `undefined` | The address of the token to sell. |
+| `to` | `string` | `undefined` | The address of the token to buy. |
+| `amount` | `string` | `undefined` | The amount of the selling token to swap. |
+| `minDy` | `number` | `0` | The minimum amount of the buying token to receive. |
+| `deadline?` | `number` | `undefined` | The deadline for the swap. |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+### create
+
+▸ `Static` **create**(`_config`, `_logger?`, `_chainData?`, `_chainReader?`): `Promise`<[`NxtpSdkPool`](NxtpSdkPool.md)\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `_config` | `Object` |
+| `_config.cartographerUrl` | `undefined` \| `string` |
+| `_config.chains` | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
+| `_config.environment` | `undefined` \| ``"staging"`` \| ``"production"`` |
+| `_config.logLevel` | `undefined` \| ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` |
+| `_config.maxSlippage` | `undefined` \| `number` |
+| `_config.network` | `undefined` \| ``"testnet"`` \| ``"mainnet"`` \| ``"local"`` |
+| `_config.signerAddress` | `undefined` \| `string` |
+| `_logger?` | `Logger` |
+| `_chainData?` | `Map`<`string`, `ChainData`\> |
+| `_chainReader?` | `ChainReader` |
+
+#### Returns
+
+`Promise`<[`NxtpSdkPool`](NxtpSdkPool.md)\>
