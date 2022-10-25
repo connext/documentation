@@ -14,8 +14,10 @@ When tokens are bridged through Connext, slippage can impact the `xcall` during 
 - Wait it out until slippage conditions improve (relayers will continuously re-attempt the transfer)
 - Increase slippage tolerance by calling [`forceUpdateSlippage`](../reference/contracts/calls#forceupdateslippage)
 
-## Reverts on Target Contract
+## Reverts on Receiver Contract
 
-If the call on the target contract reverts, the Connext bridge contract may unwillingly have custody of funds involved. The developer should be aware that in these cases, those funds may be considered forfeit.
+If the call on the receiver contract (also referred to as "target" contract) reverts, the Connext bridge contract may unwillingly end up with custody of funds involved in the operation. The xApp developer should be aware that in these cases, those funds may be considered forfeit. To avoid these kinds of situations, developers should build any contract implementing `IXReceive` defensively. 
 
-TODO
+One way to guard against unexpected reverts is to use `try/catch` statements which allow contracts to handle errors on external function calls.
+
+Ultimately, the goal should be to handle any revert-susceptible code and ensure that the logical owner of funds *always* maintains agency over them.
