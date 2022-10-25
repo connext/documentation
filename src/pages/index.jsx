@@ -53,7 +53,7 @@ export const actions = [
     title: "Contract Deployments",
     href: "#",
     icon: BookOpenIcon,
-    to: "./resources/testnet",
+    to: "./resources/deployments",
     text: `Deployed contract addresses on mainnet and testnet.`,
   },
 ];
