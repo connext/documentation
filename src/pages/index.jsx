@@ -10,7 +10,8 @@ import Discord from "/static/img/discord.svg";
 
 import ConnextLogo from "/static/img/connext_Logo.svg";
 
-import XCallSnippet from "/static/img/xcall_snippet.png"
+import XCallCalldataSnippet from "/static/img/xcall_calldata_snippet.png"
+import XCallTransferSnippet from "/static/img/xcall_transfer_snippet.png"
 
 import ThemedImage from "@theme/ThemedImage";
 import useBaseUrl from "@docusaurus/useBaseUrl";
@@ -35,10 +36,10 @@ export const actions = [
     text: `Review core concepts of bridging and the Connext Protocol.`,
   },
   {
-    title: "Developer Quickstart",
+    title: "Developer Guides",
     href: "#",
     icon: LinkIcon,
-    to: "./developers/examples/quickstart",
+    to: "./developers/guides/xcall-status",
     text: `Learn how to use xcall, the cross-chain primitive.`,
   },
   {
@@ -53,7 +54,7 @@ export const actions = [
     href: "#",
     icon: BookOpenIcon,
     to: "./resources/testnet",
-    text: `Reference deployed contract addresses on mainnet and testnet.`,
+    text: `Deployed contract addresses on mainnet and testnet.`,
   },
 ];
 
@@ -74,61 +75,17 @@ export const Guides = [
   {
     title: "Authentication",
     text: "Call authenticated functions cross-chain",
-    to: "./developers/examples/contracts/authentication",
+    to: "./developers/examples/authentication",
   },
   {
     title: "Nested XCalls",
   text: "Cross-chain callback ",
-    to: "./developers/examples/contracts/callbacks",
+    to: "./developers/guides/nested-xcalls",
   },
   {
-    title: "SDK Example",
+    title: "SDK Guide",
     text: "Integrate with the Connext Protocol using TypeScript",
-    to: "./developers/examples/sdk/sdk-example",
-  },
-];
-
-export const hacker = [
-  {
-    title: "Hacker Starter Kit",
-    to: "./",
-  },
-  {
-    title: "Our Current Hackathons",
-    to: "./",
-  },
-];
-
-export const router = [
-  {
-    title: "How to set up your router",
-    to: "./",
-  },
-  {
-    title: "How to provide liquidity",
-    to: "./",
-  },
-];
-
-export const builder = [
-  {
-    title: "Join the builders track",
-    to: "./",
-  },
-  {
-    title: "Program Results",
-    to: "./",
-  },
-];
-
-export const grant = [
-  {
-    title: "Apply for a grant",
-    to: "./",
-  },
-  {
-    title: "Current grant recipients",
-    to: "./",
+    to: "./developers/guides/sdk-guides",
   },
 ];
 
@@ -203,6 +160,32 @@ const Card = styled.div`
   border-radius: 20px;
   border: 1px solid var(--ifm-color-emphasis-200);
   /* flex: 1 1 0px; */
+  border-color: rgba(140, 127, 148, 0.5);
+
+  &:hover {
+    border: 1px solid var(--ifm-color-emphasis-400);
+    border-color: #9c62f9;
+  }
+
+  @media (max-width: 960px) {
+    width: 100%;
+  }
+`;
+
+const CTACard = styled.div`
+  display: flex;
+  width: 200px;
+  margin-bottom: 1rem;
+  color: #9c62f9;
+  max-height: 250px;
+  padding: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-width: 3px;
+  border-radius: 20px;
+  border: 1px solid var(--ifm-color-emphasis-200);
   border-color: rgba(140, 127, 148, 0.5);
 
   &:hover {
@@ -327,16 +310,10 @@ export default function Home() {
           >
             <h1 style={{ fontWeight: "600" }}> Welcome to the Connext Docs</h1>
 
-            <TwoRow
-              style={{
-                gap: "56px",
-                marginTop: "4rem",
-              }}
-            >
               <p
                 style={{
-                  maxWidth: "640px",
-                  margin: "1rem ",
+                  maxWidth: "800px",
+                  margin: "2rem",
                   fontWeight: 500,
                   textAlign: "left",
                   display: "flex",
@@ -345,24 +322,26 @@ export default function Home() {
                   align: "left",
                 }}
               >
-                <h2>What is connext?</h2>
-                <br />
-                Connext powers fast, trust-minimized communication between
-                blockchains with its “modular interoperability” protocol that 
-                delivers a best-in-class experience for users, developers, and 
-                liquidity providers without giving up security or decentralization.
-                <br />
-                <br />
-                Developers can seamlessly integrate cross-chain functionality into
-                their applications in just a few lines of code.
-                <br />
-                <br />
-                Get started using xcall, the cross-chain primitive!
+                Seamlessly integrate cross-chain functionality into your application in just a few lines of code. 
               </p>
 
-              <img src={XCallSnippet} alt="xCall Snippet" style={{borderRadius: "20px"}} height="400px"/>
-              
-            </TwoRow>
+              <Link
+                style={{ textDecoration: "none" }}
+                to="./developers/quickstart"
+              >
+                <CTACard>
+                  Get Started!
+                </CTACard>
+              </Link>
+
+              <TwoRow>
+                <div>
+                  <img src={XCallCalldataSnippet} alt="xCall Snippet" style={{borderRadius: "20px", width: "350px"}}  />
+                </div>
+                <div>
+                  <img src={XCallTransferSnippet} alt="xCall Snippet" style={{borderRadius: "20px", width: "350px"}} />
+                </div>
+              </TwoRow>
           </div>
 
           <LongRow>
