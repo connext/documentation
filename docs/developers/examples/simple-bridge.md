@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-id: authentication
+id: simple-bridge
 ---
 
 # Simple Bridge
