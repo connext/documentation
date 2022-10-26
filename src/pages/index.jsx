@@ -148,17 +148,17 @@ const CTACard = styled.div`
   max-height: 250px;
   padding: 1rem;
   margin-top: 2rem;
+  font-size: 20px;
+  font-weight: 600;
   flex-direction: column;
   justify-content: center;
   cursor: pointer;
-  border: 1px solid transparent;
-  border-width: 3px;
   border-radius: 20px;
-  border: 1px solid var(--ifm-color-emphasis-200);
+  border: 3px solid var(--ifm-color-emphasis-200);
   border-color: rgba(140, 127, 148, 0.5);
 
   &:hover {
-    border: 1px solid var(--ifm-color-emphasis-400);
+    border: 3px solid var(--ifm-color-emphasis-400);
     border-color: #9c62f9;
   }
 
