@@ -12,7 +12,7 @@ import GithubLogo from "/static/img/github_logo.svg";
 
 import ConnextLogo from "/static/img/connext_Logo.svg";
 
-import XCallSnippet from "/static/img/xcall_snippet_v2.png"
+import XCallSnippet from "/static/img/xcall_snippet.png"
 
 import ThemedImage from "@theme/ThemedImage";
 import useBaseUrl from "@docusaurus/useBaseUrl";
