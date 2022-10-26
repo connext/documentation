@@ -50,3 +50,7 @@ contract Target is IXReceiver {
 ```
 
 You can find a full example of this at [Authenticated Hello Chain](../examples/authenticated-hello).
+
+## Caveats
+
+Authenticated calls are a crucial feature for xApps but in order to validate data transferred between chains, Connext must allow *some* time to elapse before accepting messages as authenticated on destination chains. This latency is both a drawback and a security mechanism of [optimistic bridges](../../core-concepts/background#optimistic-bridges). 
