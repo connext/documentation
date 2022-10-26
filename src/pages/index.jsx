@@ -291,10 +291,13 @@ export default function Home() {
               </p>
 
               <div>
-                <img src={XCallSnippet} alt="xCall Snippet" style={{borderRadius: "20px", width: "350px"}}  />
+                <img src={XCallSnippet} alt="xCall Snippet" style={{borderRadius: "20px", width: "400px"}}  />
               </div>
 
-              <Link to="./developers/quickstart">
+              <Link 
+                style={{ textDecoration: "none" }}
+                to="./developers/quickstart"
+              >
                 <CTACard>
                    Get Started!
                 </CTACard>
@@ -304,6 +307,7 @@ export default function Home() {
           <LongRow>
             {Actions.map((action) => (
               <Link
+                style={{ textDecoration: "none" }}
                 to={action.to}
                 key={action.to}
               >
@@ -348,6 +352,7 @@ export default function Home() {
             </p>
             <div>
               <Link
+                style={{ textDecoration: "none" }}
                 href={"https://discord.gg/zZGTd9wT"}
               >
                 <CenterCard>
@@ -359,6 +364,7 @@ export default function Home() {
                 </CenterCard>
               </Link>
               <Link
+                style={{ textDecoration: "none" }}
                 href={"https://connext.network/"}
               >
                 <CenterCard>
@@ -370,6 +376,7 @@ export default function Home() {
                 </CenterCard>
               </Link>
               <Link
+                style={{ textDecoration: "none" }}
                 href={"https://discord.gg/zZGTd9wT"}
               >
                 <CenterCard>
@@ -381,6 +388,7 @@ export default function Home() {
                 </CenterCard>
               </Link>
               <Link
+                style={{ textDecoration: "none" }}
                 href={"https://medium.com/connext/"}
               >
                 <CenterCard>
@@ -401,6 +409,7 @@ export default function Home() {
               Resources for developers and users of the protocol.
             </p>
               <Link
+                style={{ textDecoration: "none" }}
                 href={"https://bridge.connext.network/"}
               >
                 <CenterCard>
@@ -412,6 +421,7 @@ export default function Home() {
                 </CenterCard>
               </Link>
               <Link
+                style={{ textDecoration: "none" }}
                 href={"https://connextscan.io/"}
               >
                 <CenterCard>
@@ -422,7 +432,10 @@ export default function Home() {
                   </div>
                 </CenterCard>
               </Link>
-              <Link href={"https://github.com/nxtp"}>
+              <Link 
+                style={{ textDecoration: "none" }}
+                href={"https://github.com/nxtp"}
+              >
                 <CenterCard>
                   <GithubLogo />
                   <div>
@@ -431,7 +444,10 @@ export default function Home() {
                   </div>
                 </CenterCard>
               </Link>
-              <Link href={"https://github.com/xapp-starter"}>
+              <Link 
+                style={{ textDecoration: "none" }}
+                href={"https://github.com/xapp-starter"}
+              >
                 <CenterCard>
                   <GithubLogo />
                   <div>
