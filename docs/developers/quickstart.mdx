@@ -45,7 +45,8 @@ contract HelloTarget is IXReceiver {
   string public greeting;
 
   // Hardcoded cost to update the greeting, in wei units
-  uint256 public cost = 1e18;
+  // Exactly 0.05% above 1 TEST to account for router fees
+  uint256 public cost = 1.0005003e18;
 
   // The TEST Token on Mumbai
   IERC20 public token = IERC20(0xeDb95D8037f769B72AAab41deeC92903A98C9E16);
@@ -156,15 +157,73 @@ contract HelloSource {
 
 ## Executing the Transaction
 
-Since funds are going to be routed through Connext's contracts, the user must first approve a spending allowance of the TEST ERC20 to the `HelloSource` contract. The `require` clause starting on line 37 checks for this allowance. 
+If you don't already have gas funds on Goerli, try these faucets to get some:
+- https://goerli-faucet.mudit.blog/ (Requires Twitter account)
+- https://goerlifaucet.com/ (Requires signing up with Alchemy)
 
-You can use [Etherscan and write](https://goerli.etherscan.io/address/0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1#writeContract) to the token's `approve` function to do this approval: 
+You should try deploying (and verifying) your own contracts, but you can use contracts we already deployed for this example:
+- [`HelloSource.sol`](https://goerli.etherscan.io/address/0x9ce3799f033d89d316f373f1db161c84a401a26c) 
+- [`HelloTarget.sol`](https://mumbai.polygonscan.com/address/0x9094da44ec4335632c28749437f616a8a6cadcb6) 
 
-<img src="/img/developers/TestERC20_Etherscan_Approve.png" alt="TestERC20 Etherscan Approve" width="400"/>
+### TEST Token Spending Approval
 
-TODO add explanation of how to call `updateGreeting` on source and what to pass in for domain, relayer fee, etc.
+Tokens will move from `User's wallet` => `HelloSource` => `Connext` => `HelloTarget`.
 
-The tokens will move from `User's wallet` => `HelloSource` => `Connext` => `HelloTarget`.
+The user must first approve a spending allowance of the TEST ERC20 to the `HelloSource` contract. The `require` clause starting on line 37 checks for this allowance. 
+
+You can use Etherscan to call functions on (verified) contracts. Go to the [TEST Token on Etherscan](https://goerli.etherscan.io/address/0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1#writeContract) and click on the "Write Contract" button.
+
+<img src="/img/quickstart/write_contract_etherscan.png" alt="write_contract"/>
+
+A new tab will show up with all write functions of the contract. Connect your wallet, switch to the right network, and enter the parameters:
+- `spender`: 0x9ce3799f033d89d316f373f1db161c84a401a26c
+  - This is the address of `HelloSource`.
+- `amount`: 10000000000000000000 (10 TEST)
+  - Recall that `HelloTarget` requires a payment of at least 1 TEST (1e18 wei units). In `HelloSource`, this is hardcoded as 1000500300000000000 to account for a 0.05% fee that routers will take on the bridged asset. But you can approve as much as you want. This way, you can call `updateGreeting` without having to do an approval every time.
+  - If earning fees as a router sounds interesting, check out the [Routers](../routers/routers-intro) documentation.
+
+<img src="/img/quickstart/TEST_Etherscan_approve.png" alt="TestERC20 Etherscan Approve"/>
+
+Then "Write" to the `approve` function.
+
+### Execute `updateGreeting`
+
+Similarly to the approval function for TEST, navigate to the `HelloSource` contract on Etherscan. Fill out the `updateGreeting` function parameters and "Write" to the contract.
+
+<img src="/img/quickstart/updateGreeting.png" alt="TestERC20 Etherscan Approve"/>
+
+Let's talk about the different parameters.
+- `target`: 0x9094da44ec4335632c28749437f616a8a6cadcb6
+  - The address of `HelloTarget`.
+- `destinationDomain`: 9991
+  - The Domain ID of the destination chain. You can find a mapping of [Domain IDs here](../resources/supported-chains). Remember, `HelloTarget` is deployed to Mumbai.
+- `newGreeting`: hello chain!
+  - Whatever string you want to update the greeting to.
+- `relayerFee`: 0
+  - **IMPORTANT!** This is a fee paid to relayers, which are off-chain agents that help execute the final leg of the cross-chain transfer on the destination. Relayers get paid in the origin chain's native asset. This is why `HelloSource` passes the fee like so:
+
+    ```solidity
+    connext.xcall{value: relayerFee}(...)
+    ```
+
+    However, we're paying 0 fees here! Only because on testnet, our relayers are not taking fees.
+
+    :::note
+    As a xApp developer, you have some tools available to estimate what this `relayerFee` should be. Check out the guide on [Estimating Fees](./guides/estimating-fees).
+    :::
+
+### Check `HelloTarget`
+
+After executing `updateGreeting`, `HelloTarget` should be updated in just a few minutes. 
+- Would this sometimes take longer? See our guide on [Authentication](./guides/authentication) to learn when an `xcall` could be fast or slow.
+
+Head over to the `HelloTarget` contract on Etherscan. This time, we'll go to the `Read Contract` tab and look at the value of `greeting`. It has updated!
+
+<img src="/img/quickstart/read_greeting.png" alt="TestERC20 Etherscan Approve"/>
+
+Send a couple more updates from `HelloSource` but make it a different string. At some point, your TEST allowance to `HelloSource` will run out and you'll need to do the approval dance again.
+
+Congrats! You've gone cross-chain!
 
 ---
 
@@ -173,6 +232,6 @@ The tokens will move from `User's wallet` => `HelloSource` => `Connext` => `Hell
 - Try [tracking the status](./guides/xcall-status) of an `xcall` after you send it.
 - Learn about [authentication](./guides/authentication) and important security considerations.
 - See how [nested xcalls](./guides/nested-xcalls) can open up infinite cross-chain possibilities.
-- Fork the xApp Starter Kit below and build your own xApp.
+- Fork the xApp Starter Kit below (includes code for this example) and build your own xApp.
 
 [xApp Starter Kit](https://github.com/connext/xapp-starter/)
