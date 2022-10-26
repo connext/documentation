@@ -104,4 +104,12 @@ You can query the hosted subgraphs on each chain to check the transaction status
 
 ## Connextscan
 
-Another option is using [Connextscan](https://testnet.amarok.connextscan.io/) which can monitor the status of any `transferId`.
+Another option is using [Connextscan](https://testnet.amarok.connextscan.io/) to track the status of any `transferId`.
+
+In the top right search box, enter the `transferId` of interest.
+
+<img src="/img/guides/connextscan_search.png" alt="Connextscan Search" width="400px"/>
+
+Connextscan will pull up current status of the associated `xcall`. This is what it looks like when a transfer is complete.
+
+<img src="/img/guides/connextscan_complete.png" alt="Connextscan Search"/>
