@@ -59,25 +59,6 @@ export const Actions = [
   },
 ];
 
-
-export const Guides = [
-  {
-    title: "Authentication",
-    text: "Call authenticated functions cross-chain",
-    to: "./developers/examples/authentication",
-  },
-  {
-    title: "Nested XCalls",
-  text: "Cross-chain callback ",
-    to: "./developers/guides/nested-xcalls",
-  },
-  {
-    title: "SDK Guide",
-    text: "Integrate with the Connext Protocol using TypeScript",
-    to: "./developers/guides/sdk-guides",
-  },
-];
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -361,33 +342,11 @@ export default function Home() {
           }}
         >
           <div>
-            <h2>Ecosystem Links</h2>
+            <h2>Ecosystem</h2>
             <p>
               Explore the Connext ecosystem.
             </p>
             <div>
-              <Link
-                href={"https://bridge.connext.network/"}
-              >
-                <CenterCard>
-                  <ConnextLogo style={{ width: "48px", height: "48px" }} />
-                  <div>
-                    <h3>Bridge</h3>
-                    <p>The official Connext bridge UI.</p>
-                  </div>
-                </CenterCard>
-              </Link>
-              <Link
-                href={"https://connextscan.io/"}
-              >
-                <CenterCard>
-                  <ConnextLogo style={{ width: "48px", height: "48px" }} />
-                  <div>
-                    <h3>Connextscan</h3>
-                    <p>Explore transactions and liquidity information.</p>
-                  </div>
-                </CenterCard>
-              </Link>
               <Link
                 href={"https://discord.gg/zZGTd9wT"}
               >
@@ -406,7 +365,18 @@ export default function Home() {
                   <ConnextLogo style={{ width: "48px", height: "48px" }} />
                   <div>
                     <h3>Connext Homepage</h3>
-                    <p>Learn more about the Connext ecosystem.</p>
+                    <p>Learn more about Connext.</p>
+                  </div>
+                </CenterCard>
+              </Link>
+              <Link
+                href={"https://discord.gg/zZGTd9wT"}
+              >
+                <CenterCard>
+                  <ConnextLogo style={{ width: "48px", height: "48px" }} />
+                  <div>
+                    <h3>Connext Academy</h3>
+                    <p>Community-run knowledge base.</p>
                   </div>
                 </CenterCard>
               </Link>
@@ -426,19 +396,47 @@ export default function Home() {
           </div>
 
           <div>
-            <h2>Developer Links</h2>
+            <h2>Developers and Users</h2>
             <p>
-              The Connext codebase is comprised of an ecosystem of open source
-              components.
+              Resources for developers and users of the protocol.
             </p>
               <Link
-                href={"https://github.com/Connext"}
+                href={"https://bridge.connext.network/"}
               >
+                <CenterCard>
+                  <ConnextLogo style={{ width: "48px", height: "48px" }} />
+                  <div>
+                    <h3>Bridge</h3>
+                    <p>The official Connext bridge UI.</p>
+                  </div>
+                </CenterCard>
+              </Link>
+              <Link
+                href={"https://connextscan.io/"}
+              >
+                <CenterCard>
+                  <ConnextLogo style={{ width: "48px", height: "48px" }} />
+                  <div>
+                    <h3>Connextscan</h3>
+                    <p>Explore transactions and liquidity data.</p>
+                  </div>
+                </CenterCard>
+              </Link>
+              <Link href={"https://github.com/nxtp"}>
                 <CenterCard>
                   <GithubLogo />
                   <div>
-                    <h3>GitHub</h3>
-                    <p>View all Connext repositories.</p>
+                    <h3>nxtp</h3>
+                    <p>Monorepo with contracts and offchain agents.</p>
+                  </div>
+                </CenterCard>
+              </Link>
+              <Link href={"https://github.com/xapp-starter"}>
+                <CenterCard>
+                  <GithubLogo />
+                  <div>
+                    <h3>xapp-starter</h3>
+                    <p>Starter kit for xApps.</p>
                   </div>
                 </CenterCard>
               </Link>
@@ -448,16 +446,3 @@ export default function Home() {
     </Layout>
   );
 }
-
-export const github = [
-  {
-    title: "xapp-starter",
-    href: "https://github.com/connext/xapp-starter",
-    icon: CodeIcon,
-  },
-  {
-    title: "nxtp",
-    href: "https://github.com/connext/nxtp",
-    icon: CodeIcon,
-  },
-];
