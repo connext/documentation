@@ -9,12 +9,8 @@ id: understanding-connext
 The Core Concepts section is still under construction! 
 :::
 
-Connext powers fast, trust-minimized communication between blockchains.
+Connext is public infrastructure powering fast, trust-minimized communication between blockchains. Built as a modular interoperability stack, Connext solves the [interoperability trilemma](https://blog.connext.network/the-interoperability-trilemma-657c2cf69f17), introduces the [quadrilemma](./background#the-bridging-landscape), and sits in the ideal position within the trade-off space for cross-chain bridges. 
 
-Our goal is to create a world where:
-
-1. Users never need to know what chain or rollup they're on (unless they want to!)
-2. Developers can build applications that utilize resources from many chains/rollups simultaneously
 
 ## What can you build with Connext?
 
@@ -33,8 +29,8 @@ Some example use cases:
 
 Developers can send an `xcall` and the protocol will then split actions between a Liquidity Layer (Connext) and a Messaging Layer.
 
-You can see this in action in the [Developer Quickstart](../developers/examples/quickstart).
+You can see this in action in the [Developer Quickstart](../developers/quickstart).
 
 ## How do I interact with the Connext community?
 
-Find our discord at https://discord.gg/pef9AyEhNz and join the `dev-hub` channel
+Join our [Discord](https://discord.gg/pef9AyEhNz) server and chat with us the `#dev-hub` channel.
