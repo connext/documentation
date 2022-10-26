@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Estimating Fees
 
-For now, we need to rely on offchain tools to estimate fees, which can be done using the Connext SDK. 
+For now, we need to rely on offchain tools to estimate fees, which can be done using the [Connext SDK](./sdk-guides.md). 
 
 ## Estimate Using SDK
 

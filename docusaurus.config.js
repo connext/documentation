@@ -67,7 +67,7 @@ module.exports = {
         },
         {
           type: "doc",
-          docId: "resources/testnet",
+          docId: "resources/deployments",
           label: "Resources",
           position: "left",
         },
@@ -80,7 +80,7 @@ module.exports = {
     },
     footer: {
       style: "dark",
-      copyright: `Published in ${new Date().getFullYear()} by Connext. Built with Docusaurus.`,
+      copyright: `Published in ${new Date().getFullYear()} by Connext.`,
     },
     prism: {
       additionalLanguages: ["solidity"],
