@@ -61,7 +61,7 @@ module.exports = {
         },
         {
           type: "doc",
-          docId: "routers/intro",
+          docId: "routers/routers-intro",
           label: "Routers",
           position: "left",
         },

@@ -47,7 +47,7 @@ export const Actions = [
     title: "Run a Router",
     href: "#",
     icon: BookOpenIcon,
-    to: "./routers/intro",
+    to: "./routers/routers-intro",
     text: `Become a core participant in the network and earn fees.`,
   },
   {
