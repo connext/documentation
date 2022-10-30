@@ -2,26 +2,19 @@
 sidebar_position: 1
 ---
 
-# Developer Intro
+# Introduction
 
-An `xcall` can be initiated from a smart contract to send funds and/or conduct arbitrary execution _across domains_. This allows Connext to be used as a base cross-chain layer that can be integrated into dApps, turning them into **xApps**.
+Connext provides the simplest possible experience for building xchain applications (**xApps**).
 
-You can use Connext to build xApps like:
+Building a xApp requires only two straightforward steps:
+1. Implement `xReceive` on the destination chain. This is the function that receives the payload you pass across chains.
+2. Call `xcall` on the origin chain, passing in your payload and [fees for to pay for your transaction]TODO.
 
-- Bridges to transfer ERC-20 tokens between blockchains
-- Crosschain DeFi protocols
-- Crosschain NFTs
-and more!
-
-Start building cross-chain applications in no time with our Quickstart or see our Guides for more in-depth examples.
-
-[Quickstart](./quickstart)
-
-[Guides](./guides/guides-introduction)
+To get started, check out our [Quickstart](./quickstart).
 
 ---
 ## Help
 
 Have questions or need support? Our core team and vibrant community members are highly active in our Discord server!
 
-[Chat with us!](https://chat.connext.network)
+[Chat with us!](https://discord.gg/connext)

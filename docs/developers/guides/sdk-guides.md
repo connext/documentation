@@ -1,18 +1,16 @@
 ---
-sidebar_position: 1
-id: sdk-example
+sidebar_position: 6
+id: sdk-guides
 ---
 
-# Cross-Chain Transfer
-
-The main entrypoint for interacting with the Connext protocol is `xcall`. This method kicks off a crosschain interaction and all the user has to do is wait for it to complete on the destination chain. There are *no required user interactions past this transaction*!
+# SDK
 
 The Connext SDK allows developers to interact with the Connext protocol in standard Node.js or web environments.
 --- 
 
-## Introduction
+## Cross-Chain Transfer
 
-In this example, we'll demonstrate how to execute an `xcall` to transfer funds from a wallet on Goerli to a destination address on Optimism-Goerli.
+This example demonstrates how to execute an `xcall` to transfer funds from a wallet on Goerli to a destination address on Polygon-Mumbai.
 
 ### 1. Setup
 
@@ -104,13 +102,13 @@ const nxtpConfig: NxtpSdkConfig = {
         },
       ],
     },
-    "1735356532": {
-      providers: ["<OPTIMISM_GOERLI_RPC_URL>"],
+    "9991": {
+      providers: ["<MUMBAI_RPC_URL>"],
       assets: [
         {
           name: "TEST",
           symbol: "TEST",
-          address: "0x68Db1c8d85C09d546097C65ec7DCBFF4D6497CbF",
+          address: "0xeDb95D8037f769B72AAab41deeC92903A98C9E16",
         },
       ],
     },
@@ -118,44 +116,38 @@ const nxtpConfig: NxtpSdkConfig = {
 };
 
 // Create the SDK instance.
-const {nxtpSdkBase} = await create(nxtpConfig);
+cconst {nxtpSdkBase} = await create(nxtpConfig);
 
-const amount = 1000000000000000000; // (1 TEST)
+// Address of the TEST token
+const asset = "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1" 
 
-// Construct the arguments that will be passed into `xcall`.
-const callParams = {
-  to: signerAddress, // the address that should receive the funds
-  callData: "0x", // empty calldata for a simple transfer
-  originDomain: "1735353714", // send from Goerli
-  destinationDomain: "1735356532", // to Optimism-Goerli
-  agent: signerAddress, // address allowed to execute transaction on destination side in addition to relayers
-  recovery: signerAddress, // fallback address to send funds to if execution fails on destination side
-  forceSlow: false, // option to force slow path instead of paying 0.05% fee on fast liquidity transfers
-  receiveLocal: false, // option to receive the local bridge-flavored asset instead of the adopted asset
-  callback: ethers.constants.AddressZero, // zero address because we don't expect a callback
-  callbackFee: "0", // fee paid to relayers; relayers don't take any fees on testnet
-  relayerFee: "0", // fee paid to relayers; relayers don't take any fees on testnet
-  destinationMinOut: (amount * 0.97).toString(), // the minimum amount that the user will accept due to slippage from the StableSwap pool (3% here)
-};
+// Send 1 TEST
+const amount = "1000000000000000000"; 
 
-const xCallArgs = {
-  params: callParams,
-  transactingAsset: "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1", // the Goerli Test Token
-  transactingAmount: amount.toString(), 
-  originMinOut: (amount * 0.97).toString() // the minimum amount that the user will accept due to slippage from the StableSwap pool (3% here)
+// Prepare the xcall params
+const xcallParams = {
+  origin: "1735353714",    // send from Goerli
+  destination: "9991",     // to Mumbai
+  to: signerAddress,       // the address that should receive the funds on destination
+  asset: asset,            // address of the token contract
+  delegate: signerAddress, // address allowed to execute transaction on destination side in addition to relayers
+  amount: amount,          // amount of tokens to transfer
+  slippage: "30",          // the maximum amount of slippage the user will accept in BPS, 0.3% in this case
+  callData: "0x",          // empty calldata for a simple transfer
+  relayerFee: "0",         // fee paid to relayers; relayers don't take any fees on testnet
 };
 
 // Approve the asset transfer. This is necessary because funds will first be sent to the Connext contract before being bridged.
 const approveTxReq = await nxtpSdkBase.approveIfNeeded(
-  xCallArgs.params.originDomain,
-  xCallArgs.transactingAsset,
-  xCallArgs.transactingAmount
+  xcallParams.origin,
+  xcallParams.asset,
+  xcallParams.amount
 )
 const approveTxReceipt = await signer.sendTransaction(approveTxReq);
 await approveTxReceipt.wait();
 
 // Send the xcall
-const xcallTxReq = await nxtpSdkBase.xcall(xCallArgs);
+const xcallTxReq = await nxtpSdkBase.xcall(xcallParams);
 xcallTxReq.gasLimit = ethers.BigNumber.from("20000000"); 
 const xcallTxReceipt = await signer.sendTransaction(xcallTxReq);
 console.log(xcallTxReceipt);
@@ -173,8 +165,8 @@ npm run xtransfer
 
 ### 5. Track the `xcall`
 
-We can use the transaction `hash` from the transaction receipt we logged above to track the status of this `xcall` by following these instruction.
+We can now use the transaction `hash` from the logged transaction receipt to track the status of this `xcall`.
 
 [Tracking an xcall](../xcall-status)
 
-After the transfer shows up on the Optimism-Goerli side, the transferred tokens should show up in the destination wallet.
+After the transfer is `status: Executed` on the Mumbai side, the transferred tokens should show up in the destination wallet.

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 7
 id: faq
 ---
 
@@ -9,13 +9,13 @@ This is a list of Frequently Asked Questions for the Amarok public testnet.
 
 ## What chains are supported?
 
-An updated list can be found at [Supported Chains](./info/chains#supported-chains).
+An updated list can be found at [Supported Chains](../resources/supported-chains).
 
 ## What assets are supported?
 
-See the deployed addresses for assets at [Deployed Contract Addresses](./developers/testing-against-testnet#deployed-contract-addresses).
+See the deployed addresses for assets at [Deployed Contract Addresses](../resources/deployments).
 
-## What's the difference between "canonical", "representation", "adopted", and "local" assets?
+## What are token "flavors"?
 
 <img src="/img/faq/assets.png" alt="drawing" width="1000"/>
 
@@ -24,30 +24,24 @@ See the deployed addresses for assets at [Deployed Contract Addresses](./develop
 The canonical domainId and tokenId of a token can be found by calling the [`getTokenId`](https://github.com/connext/nxtp/blob/3d0af2251b2d8d244d2617be6fb738c09a571022/packages/deployments/contracts/contracts/core/connext/helpers/TokenRegistry.sol#L176) function of `TokenRegistry`.
 
 Example:
-- The token of interest is TestERC20 (`0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9`) on Rinkeby. We want to figure out its canonical domainId and tokenId.
-- Find the TokenRegistry contract address on Rinkeby from [here](./developers/testing-against-testnet#deployed-contract-addresses).
-- Call `getTokenId` (this example uses Foundry's `cast` to read from the contract)  
+- The token of interest is TestERC20 (`0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1`) on Goerli. We want to figure out its canonical domainId and tokenId.
+- Find the Connext contract address on Goerli from [here](../resources/deployments), click its link to open up the Diamond Inspector on Louper.
+- Find the `TokenFacet` and click the "Read" button.
+- Select the `getTokenId` method and input the TestERC20 address to obtain its canonical details.
+
+  <img src="/img/faq/read_tokenId.png" alt="drawing" width="700"/>
+
+- Alternatively, you can call `getTokenId` using a tool like Foundry's `cast` to read from the contract.
 
   ```bash
-  cast call --chain rinkeby 0x1A3BA482D98CCB858AEacB3B839f952390099cE6 "getTokenId(address)(uint32,bytes32)" "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9" --rpc-url <rinkeby_rpc_url>
+  cast call --chain goerli 0x99A784d082476E551E5fc918ce3d849f2b8e89B6 "getTokenId(address)(uint32,bytes32)" "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1" --rpc-url <goerli_rpc_url>
   ```
 
   Returns:
 
   ```bash
-  3331 # the canonical domainId is Goerli
-  0x00000000000000000000000026fe8a8f86511d678d031a022e48fff41c6a3e3b # the canonical bytes32 tokenId
-  ```
-- To get the address of the canonical token on Goerli, call the `getLocalAddress` function of Goerli's `TokenRegistry`
- 
-  ```bash
-  cast call --chain goerli 0x51192fD98635FD32C2bfc0A2F4e362D864A4B8b1 "getLocalAddress(uint32,bytes32)(address)" "3331" "0x00000000000000000000000026fe8a8f86511d678d031a022e48fff41c6a3e3b" --rpc-url <goerli-rpc-url>
-  ```
-
-  Returns:
-
-  ```bash
-  0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1 # the contract address of the canonical TestERC20
+  1735353714 # the canonical domainId is Goerli
+  0x0000000000000000000000007ea6ea49b0b0ae9c5db7907d139d9cd3439862a1 # the canonical bytes32 tokenId
   ```
 
 ## What if I just want to test the destination-side target function?
@@ -60,11 +54,11 @@ No, you do not need to deploy or even interact with AMB contracts directly.
 
 ## How do I find the different domainIds?
 
-See [Domain IDs](./developers/testing-against-testnet#domain-ids).
+See [Domain IDs](../resources/supported-chains).
 
 ## Where are the Connext contracts?
 
-See [Deployed Contract Addresses](./developers/testing-against-testnet#deployed-contract-addresses).
+See [Deployed Contract Addresses](../resources/deployments).
 
 ## How do I take my token crosschain?
 
@@ -76,7 +70,7 @@ There are a few steps to take, so please reach out to us for assistance:
 
 ## Are there size limits to calldata?
 
-(TODO)
+Yes and the details will be posted soon.
 
 ## How do I add my chain to Connext?
 

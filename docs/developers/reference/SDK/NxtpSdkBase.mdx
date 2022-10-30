@@ -1,0 +1,144 @@
+---
+sidebar_position: 1
+title: Base
+id: sdk-base
+---
+
+# NxtpSdkBase
+
+Lightweight class to facilitate interaction with the Connext contract on configured chains.
+
+## Constructors
+
+### constructor
+
+• **new NxtpSdkBase**(`config`, `logger`, `chainData`)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `config` | `Object` |
+| `config.cartographerUrl` | `undefined` \| `string` |
+| `config.chains` | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
+| `config.environment` | `undefined` \| ``"staging"`` \| ``"production"`` |
+| `config.logLevel` | `undefined` \| ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` |
+| `config.maxSlippage` | `undefined` \| `number` |
+| `config.network` | `undefined` \| ``"testnet"`` \| ``"mainnet"`` \| ``"local"`` |
+| `config.signerAddress` | `undefined` \| `string` |
+| `logger` | `Logger` |
+| `chainData` | `Map`<`string`, `ChainData`\> |
+
+---
+
+## Methods
+
+### approveIfNeeded
+
+▸ **approveIfNeeded**(`domain`, `assetId`, `amount`, `infiniteApprove?`): `Promise`<`undefined` \| `TransactionRequest`\>
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `domain` | `string` | `undefined` |
+| `assetId` | `string` | `undefined` |
+| `amount` | `string` | `undefined` |
+| `infiniteApprove` | `boolean` | `true` |
+
+#### Returns
+
+`Promise`<`undefined` \| `TransactionRequest`\>
+
+### bumpTransfer
+
+▸ **bumpTransfer**(`params`): `Promise`<`TransactionRequest`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `Object` |
+| `params.domain` | `string` |
+| `params.relayerFee` | `string` |
+| `params.transferId` | `string` |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+### changeSignerAddress
+
+▸ **changeSignerAddress**(`signerAddress`): `Promise`<`void`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `signerAddress` | `string` |
+
+#### Returns
+
+`Promise`<`void`\>
+
+### estimateRelayerFee
+
+▸ **estimateRelayerFee**(`params`): `Promise`<`BigNumber`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `Object` |
+| `params.callDataGasAmount?` | `number` |
+| `params.destinationDomain` | `string` |
+| `params.destinationNativeToken?` | `string` |
+| `params.isHighPriority?` | `boolean` |
+| `params.originDomain` | `string` |
+| `params.originNativeToken?` | `string` |
+
+#### Returns
+
+`Promise`<`BigNumber`\>
+
+### xcall
+
+▸ **xcall**(`args`): `Promise`<`TransactionRequest`\>
+
+Check, sanitize, and format the XCall and encode calldata. Returns an ethers TransactionRequest object, ready
+to be sent to an RPC provider.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `args` | `Omit`<{ `amount`: `string` ; `asset`: `string` ; `callData`: `string` ; `delegate`: `string` ; `destination`: `string` ; `slippage`: `string` ; `to`: `string`  }, ``"delegate"`` \| ``"callData"``\> & `Partial`<{ `amount`: `string` ; `asset`: `string` ; `callData`: `string` ; `delegate`: `string` ; `destination`: `string` ; `slippage`: `string` ; `to`: `string`  }\> & { `origin`: `string` ; `relayerFee?`: `string`  } | XCall arguments. Some fields in args.params are optional and have default values provided. |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+providers.TransactionRequest object.
+
+### create
+
+▸ `Static` **create**(`_config`, `_logger?`, `_chainData?`): `Promise`<`NxtpSdkBase`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `_config` | `Object` |
+| `_config.cartographerUrl` | `undefined` \| `string` |
+| `_config.chains` | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
+| `_config.environment` | `undefined` \| ``"staging"`` \| ``"production"`` |
+| `_config.logLevel` | `undefined` \| ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` |
+| `_config.maxSlippage` | `undefined` \| `number` |
+| `_config.network` | `undefined` \| ``"testnet"`` \| ``"mainnet"`` \| ``"local"`` |
+| `_config.signerAddress` | `undefined` \| `string` |
+| `_logger?` | `Logger` |
+| `_chainData?` | `Map`<`string`, `ChainData`\> |
+
+#### Returns
+
+`Promise`<`NxtpSdkBase`\>

@@ -1,0 +1,158 @@
+{
+  "environments": {
+    "staging": {
+      "domains": {
+        "1735353714": {
+          "name": "Goerli",
+          "contracts": {
+            "Connext": "0x9590e2bB6a93e2a531b0269eE7396cECc3E5d6eA"
+          },
+          "assets": [
+            {
+              "name": "Test Token",
+              "symbol": "TEST",
+              "address": "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1",
+              "flavor": "Canonical"
+            },
+            {
+              "name": "Wrapped Ether",
+              "symbol": "WETH",
+              "address": "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1",
+              "flavor": "Canonical"
+            }
+          ]
+        },
+        "1735356532": {
+          "name": "Optimism-Goerli",
+          "contracts": {
+            "Connext": "0x9D399235dC47e17ADF7c70e308AA9A6485cA6321"
+          },
+          "assets": [
+            {
+              "name": "TEST",
+              "symbol": "TEST",
+              "address": "0x68Db1c8d85C09d546097C65ec7DCBFF4D6497CbF",
+              "flavor": "Local/Adopted"
+            },
+            {
+              "name": "Connext Wrapped Ether",
+              "symbol": "nextWETH",
+              "address": "0x39B061B7e41DE8B721f9aEcEB6b3f17ECB7ba63E",
+              "flavor": "Local"
+            },
+            {
+              "name": "Wrapped Ether",
+              "symbol": "WETH",
+              "address": "0x74c6FD7D2Bc6a8F0Ebd7D78321A95471b8C2B806",
+              "flavor": "Adopted"
+            }
+          ],
+          "providers": ["https://goerli.optimism.io/"]
+        },
+        "9991": {
+          "name": "Polygon-Mumbai",
+          "contracts": {
+            "Connext": "0x54D9cE093622Ac2685D11D9FCF8f1ec02585e128"
+          },
+          "assets": [
+            {
+              "name": "TEST",
+              "symbol": "TEST",
+              "address": "0xeDb95D8037f769B72AAab41deeC92903A98C9E16",
+              "flavor": "Local/Adopted"
+            },
+            {
+              "name": "Connext Wrapped Ether",
+              "symbol": "nextWETH",
+              "address": "0x1E5341E4b7ed5D0680d9066aac0396F0b1bD1E69",
+              "flavor": "Local"
+            },
+            {
+              "name": "Wrapped Ether",
+              "symbol": "WETH",
+              "address": "0xFD2AB41e083c75085807c4A65C0A14FDD93d55A9",
+              "flavor": "Adopted"
+            }
+          ]
+        }
+      }
+    },
+    "production": {
+      "domains": {
+        "1735353714": {
+          "name": "Goerli",
+          "contracts": {
+            "Connext": "0x76A4C43783d39539e6e4bC768AfA4651877633d5"
+          },
+          "assets": [
+            {
+              "name": "Test Token",
+              "symbol": "TEST",
+              "address": "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1",
+              "flavor": "Canonical"
+            },
+            {
+              "name": "Wrapped Ether",
+              "symbol": "WETH",
+              "address": "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
+              "flavor": "Canonical"
+            }
+          ]
+        },
+        "1735356532": {
+          "name": "Optimism-Goerli",
+          "contracts": {
+            "Connext": "0xDa3731880eF51584bBE48E9a5a574D9c15e58E0E"
+          },
+          "assets": [
+            {
+              "name": "Test Token",
+              "symbol": "TEST",
+              "address": "0x68Db1c8d85C09d546097C65ec7DCBFF4D6497CbF",
+              "flavor": "Local/Adopted"
+            },
+            {
+              "name": "Connext Wrapped Ether",
+              "symbol": "nextWETH",
+              "address": "0x39B061B7e41DE8B721f9aEcEB6b3f17ECB7ba63E",
+              "flavor": "Local"
+            },
+            {
+              "name": "Wrapped Ether",
+              "symbol": "WETH",
+              "address": "0x74c6FD7D2Bc6a8F0Ebd7D78321A95471b8C2B806",
+              "flavor": "Adopted"
+            }
+          ],
+          "providers": ["https://goerli.optimism.io/"]
+        },
+        "9991": {
+          "name": "Polygon-Mumbai",
+          "contracts": {
+            "Connext": "0x49D842be67bd3810EA65e31023407ec7d347660E"
+          },
+          "assets": [
+            {
+              "name": "Test Token",
+              "symbol": "TEST",
+              "address": "0xeDb95D8037f769B72AAab41deeC92903A98C9E16",
+              "flavor": "Local/Adopted"
+            },
+            {
+              "name": "Connext Wrapped Ether",
+              "symbol": "nextWETH",
+              "address": "0x1E5341E4b7ed5D0680d9066aac0396F0b1bD1E69",
+              "flavor": "Local"
+            },
+            {
+              "name": "Wrapped Ether",
+              "symbol": "WETH",
+              "address": "0xFD2AB41e083c75085807c4A65C0A14FDD93d55A9",
+              "flavor": "Adopted"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

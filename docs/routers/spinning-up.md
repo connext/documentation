@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+id: spinning-up
 ---
 # Spinning up NXTP Router guide
 
@@ -246,7 +247,8 @@ Now you can check data of your provider at infura.io
 <img width="1000" alt="screenshot_infura" src="https://user-images.githubusercontent.com/88688304/170814579-3c421ab0-3ff4-4b7a-8715-b131f2ea7c2e.png"/>
 
 
-## Usefull commands
+## Useful commands
+
 #### Open Router menu:
 ```
 router_menu
@@ -322,7 +324,7 @@ docker logs --follow --tail 100 router
 ```
 ---
 
-# Liquidity and testnet
+## Liquidity and testnet
 Now we have to add liquidity on 3 test chains to our Router and make some transactions.
 
 1. Go to https://amarok-testnet.coinhippo.io/ and connect wallet you have linked to your Router.
@@ -335,5 +337,5 @@ Now we have to add liquidity on 3 test chains to our Router and make some transa
 6. The transactions takes usually 2-3 minutes. Sometimes it can takes much more time. Please give your feedback on discord channel [#testnet-feedback](https://discord.com/channels/454734546869551114/991374224293908562)
 
 ---
-# Usefull links
+## Useful links
 - How to deploy your router using helm — [Guide](https://github.com/connext/nxtp-router-helm/tree/amarok)<br/>
