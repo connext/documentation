@@ -34,7 +34,11 @@ You can query the hosted subgraphs on each chain to check the transaction status
       transferId
       nonce
       to
+      delegate
+      receiveLocal
       callData
+      slippage
+      originSender
       originDomain
       destinationDomain
       # Asset Data
@@ -45,6 +49,7 @@ You can query the hosted subgraphs on each chain to check the transaction status
         canonicalDomain
       }
       bridgedAmt
+      normalizedIn
       status
       transactionHash
       timestamp
@@ -66,10 +71,13 @@ You can query the hosted subgraphs on each chain to check the transaction status
       transferId
       nonce
       to
+      delegate
+      receiveLocal
       callData
+      slippage
+      originSender
       originDomain
       destinationDomain
-      delegate
       # Asset Data
       asset {
         id
@@ -80,7 +88,6 @@ You can query the hosted subgraphs on each chain to check the transaction status
       routers {
         id
       }
-      originSender
       # Executed Transaction
       executedCaller
       //highlight-next-line
