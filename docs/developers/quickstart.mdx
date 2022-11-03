@@ -165,17 +165,26 @@ You should try deploying (and verifying) your own contracts, but you can use con
 - [`HelloSource.sol`](https://goerli.etherscan.io/address/0x9ce3799f033d89d316f373f1db161c84a401a26c) 
 - [`HelloTarget.sol`](https://mumbai.polygonscan.com/address/0x9094da44ec4335632c28749437f616a8a6cadcb6) 
 
+### TEST Token Minting
+
+Mint some TEST tokens that will be used for this example. 
+
+You can use Etherscan to call functions on (verified) contracts. Go to the [TEST Token on Etherscan](https://goerli.etherscan.io/address/0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1#writeContract) and click on the "Write Contract" button.
+
+<img src="/img/quickstart/write_contract_etherscan.png" alt="write_contract"/>
+
+A new tab will show up with all write functions of the contract. Connect your wallet, switch to the right network, and enter the parameters for the `mint` function:
+
+- `account`: <YOUR_WALLET_ADDRESS>
+- `amount`: 10000000000000000000 (10 TEST)
+
 ### TEST Token Spending Approval
 
 Tokens will move from `User's wallet` => `HelloSource` => `Connext` => `HelloTarget`.
 
 The user must first approve a spending allowance of the TEST ERC20 to the `HelloSource` contract. The `require` clause starting on line 37 checks for this allowance. 
 
-You can use Etherscan to call functions on (verified) contracts. Go to the [TEST Token on Etherscan](https://goerli.etherscan.io/address/0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1#writeContract) and click on the "Write Contract" button.
-
-<img src="/img/quickstart/write_contract_etherscan.png" alt="write_contract"/>
-
-A new tab will show up with all write functions of the contract. Connect your wallet, switch to the right network, and enter the parameters:
+Again, on the Etherscan page, enter the parameters for the `approve` function:
 - `spender`: 0x9ce3799f033d89d316f373f1db161c84a401a26c
   - This is the address of `HelloSource`.
 - `amount`: 10000000000000000000 (10 TEST)
