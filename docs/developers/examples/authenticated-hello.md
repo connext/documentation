@@ -66,16 +66,16 @@ contract HelloTargetAuthenticated is IXReceiver {
     uint32 _origin,
     bytes memory _callData
   ) external onlySource(_originSender, _origin) returns (bytes memory) {
-    // _callData contains encoded data that will be sent from the source contract
-    _updateGreeting(_callData);
+    // Unpack the _callData
+    string memory newGreeting = abi.decode(_callData, (string));
+
+    _updateGreeting(newGreeting);
   }
 
   /** @notice Internal function to update the greeting.
     * @param _callData Calldata containing the new greeting.
     */
-  function _updateGreeting(bytes memory _callData) internal {
-    // The _callData is decoded to unpack the new greeting 
-    string memory newGreeting = abi.decode(_callData, (string));
+  function _updateGreeting(string memory newGreeting) internal {
     greeting = newGreeting;
   }
 }
