@@ -116,7 +116,7 @@ const nxtpConfig: NxtpSdkConfig = {
 };
 
 // Create the SDK instance.
-cconst {nxtpSdkBase} = await create(nxtpConfig);
+const {nxtpSdkBase} = await create(nxtpConfig);
 
 // Address of the TEST token
 const asset = "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1" 
