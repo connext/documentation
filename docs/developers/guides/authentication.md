@@ -49,7 +49,7 @@ contract Target is IXReceiver {
 }
 ```
 
-You can find a full example of this at [Authenticated Hello Chain](../examples/authenticated-hello).
+You can find a full example of this at [Authenticated Hello](../examples/authenticated-hello).
 
 ## Caveats
 

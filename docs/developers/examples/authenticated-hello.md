@@ -3,7 +3,7 @@ sidebar_position: 2
 id: authenticated-hello
 ---
 
-# Authenticated Hello Chain
+# Authenticated Hello
 
 ## Target Contract
 
@@ -83,7 +83,7 @@ contract HelloTargetAuthenticated is IXReceiver {
 
 ## Source Contract
 
-Nothing special has to be accounted for on the source contract. This is the exact same contract as the (unauthenticated) Hello Chain example in the Quickstart.
+Nothing special has to be accounted for on the source contract. This is the exact same contract as the (unauthenticated) Hello example in the Quickstart.
 
 ```solidity showLineNumbers
 pragma solidity ^0.8.15;
