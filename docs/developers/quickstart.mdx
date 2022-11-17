@@ -40,13 +40,13 @@ All target contracts must implement Connext's `IXReceiver` interface. This inter
 pragma solidity ^0.8.15;
 
 import {IXReceiver} from "@connext/nxtp-contracts/contracts/core/connext/interfaces/IXReceiver.sol";
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract HelloTarget is IXReceiver {
   string public greeting;
 
   // Hardcoded cost to update the greeting, in wei units
-  // Exactly 0.05% above 1 TEST to account for router fees
-  uint256 public cost = 1.0005003e18;
+  uint256 public cost = 1e18;
 
   // The TEST Token on Mumbai
   IERC20 public token = IERC20(0xeDb95D8037f769B72AAab41deeC92903A98C9E16);
@@ -62,7 +62,7 @@ contract HelloTarget is IXReceiver {
     uint32 _origin,
     bytes memory _callData
   ) external returns (bytes memory) {
-    // Enforce a cost to update the greeting
+    // Enforce the cost to update the greeting
     require(
       _asset == address(token) && _amount >= cost,
       "Must pay at least 1 TEST"
@@ -75,10 +75,10 @@ contract HelloTarget is IXReceiver {
   }
 
   /** @notice Internal function to update the greeting.
-    * @param _callData Calldata containing the new greeting.
+    * @param newGreeting The new greeting.
     */
-  function _updateGreeting(string _newGreeting) internal {
-    greeting = _newGreeting;
+  function _updateGreeting(string memory newGreeting) internal {
+    greeting = newGreeting;
   }
 }
 ```
@@ -107,7 +107,8 @@ contract HelloSource {
   IConnext public immutable connext;
 
   // Hardcoded cost to update the greeting, in wei units
-  uint256 public cost = 1e18;
+  // Exactly 0.05% above 1 TEST to account for router fees
+  uint256 public cost = 1.0005003e18;
 
   // The canonical TEST Token on Goerli
   IERC20 public token = IERC20(0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1);
@@ -127,7 +128,7 @@ contract HelloSource {
     uint32 destinationDomain,
     string memory newGreeting,
     uint256 relayerFee
-  ) external payable {
+  ) external {
     require(
       token.allowance(msg.sender, address(this)) >= cost,
       "User must approve amount"
