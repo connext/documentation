@@ -446,7 +446,7 @@ export default function Home() {
               </Link>
               <Link 
                 style={{ textDecoration: "none" }}
-                href={"https://github.com/xapp-starter"}
+                href={"https://github.com/connext/xapp-starter"}
               >
                 <CenterCard>
                   <GithubLogo />
