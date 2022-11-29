@@ -2,7 +2,7 @@
 sidebar_position: 3
 id: spinning-up
 ---
-# Spinning up NXTP Router guide
+# Guides for Spinning Up a Connext Router
 
 ![image](https://user-images.githubusercontent.com/88688304/178145701-0447ede1-b90a-4d9a-ae0f-dd588a6b34e5.png)
 
