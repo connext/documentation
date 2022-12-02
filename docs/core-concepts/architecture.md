@@ -90,4 +90,4 @@ The sequencer collects bids from all chains and randomly selects router(s) to fu
 
 Relayers are a decentralized network of infrastructure operators that can execute smart contract transactions on behalf of a user in exchange for a small fee. Because the last leg of a cross-chain transaction requires execution on the destination domain, relayers play an important role in completing the full flow.
 
-We are currently using [Gelato](gelato.network) as our relayer service.
+We are currently using [Gelato](https://www.gelato.network/) as our relayer service.

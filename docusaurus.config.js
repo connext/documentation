@@ -17,6 +17,11 @@ module.exports = {
     description: "Build your next xApp (cross-chain dapp) using Connext.",
   },
   themeConfig: {
+    colorMode: {
+      defaultMode: 'dark',
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
     algolia: {
       // The application ID provided by Algolia
       appId: "Z3QNOPOJN1",

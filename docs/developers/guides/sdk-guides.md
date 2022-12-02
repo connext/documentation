@@ -167,6 +167,6 @@ npm run xtransfer
 
 We can now use the transaction `hash` from the logged transaction receipt to track the status of this `xcall`.
 
-[Tracking an xcall](../xcall-status)
+[Tracking an xcall](./xcall-status)
 
 After the transfer is `status: Executed` on the Mumbai side, the transferred tokens should show up in the destination wallet.
