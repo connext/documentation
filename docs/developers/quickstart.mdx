@@ -58,12 +58,12 @@ Open your project in a code editor and rename your contract file under `src` to 
 Install the latest `beta` version of Connext contracts package in your project:
 
 ```bash npm2yarn
-$ npm install @connext/nxtp-contracts
+npm install @connext/nxtp-contracts
 ```
 Next, install the OpenZepplin contract package:
 
 ```bash npm2yarn
-$ npm install @openzeppelin/contracts
+npm install @openzeppelin/contracts
 ```
 
 You'll need to manually install the library `@openzeppelin/contracts-upgradeable`
@@ -92,6 +92,8 @@ The source contract initiates the cross-chain operation with `xcall` and passes 
 Notice the token that is passed in is the TEST token on Goerli. You can read more about token flavors and why they matter [here](../core-concepts/faq/#what-are-token-flavors).
 
 Note that in this contract, we're defining a constructor that takes in the address of the deployed Connext diamond contract on the same chain that this contract will be deployed to. Find the list of all Connext diamond contracts [here](https://docs.connext.network/resources/deployments).
+
+In the `/contracts` directory, create a new contract called `SourceGreeting.sol`:
 
 ```solidity showLineNumbers
 // SPDX-License-Identifier: UNLICENSED
@@ -167,11 +169,11 @@ npx hardhat compile
 ```
 
 >Note: Hardhat may require you to manually install dependencies for @nomicfoundation/hardhat-toolbox. If you get an error about missing dependencies for that plugin, run the follwing command: 
-```bash
+```bash npm2yarn
 npm install --save-dev "@nomicfoundation/hardhat-network-helpers@^1.0.0" "@nomicfoundation/hardhat-chai-matchers@^1.0.0" "@nomiclabs/hardhat-ethers@^2.0.0" "@nomiclabs/hardhat-etherscan@^3.0.0" "@types/chai@^4.2.0" "@types/mocha@^9.1.0" "@typechain/ethers-v5@^10.1.0" "@typechain/hardhat@^6.1.2" "solidity-coverage@^0.8.1" "ts-node@>=8.0.0" "typescript@>=4.5.0"
 ```
 
-To deploy your contract, update your `hardhat.config` file:
+To deploy your contract, update the `hardhat.config.js` file:
 ```js
 require("@nomicfoundation/hardhat-toolbox");
 require('@openzeppelin/hardhat-upgrades');
@@ -193,7 +195,7 @@ module.exports = {
 
 ### Deploy Contract
 
-Update your `deploy.js` file, found under scripts, with the following: 
+Update the `scripts/deploy.js` file with the following: 
 ```js
 const main = async () => {
   const SourceGreeting = await hre.ethers.getContractFactory('SourceGreeting');
@@ -218,11 +220,11 @@ runMain();
 
 Then call the deploy script: 
 ```bash
-$ npx hardhat run scripts/deploy.js --network goerli
-Contract deployed to: 0x8CC1DB2a76ea4bc40089f0Db2B25f8B13032F72d
+npx hardhat run scripts/deploy.js --network goerli
 ```
+Output: `Contract deployed to: 0x8CC1DB2a76ea4bc40089f0Db2B25f8B13032F72d`
 
-Note the contract address because you'll want to verify your contracts later.
+Keep track of this contract address because you'll want to verify your contracts later.
 
 ## Target Contract
 
