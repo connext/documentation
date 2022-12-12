@@ -27,11 +27,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://louper.dev/diamond/0xb35937ce4fFB5f72E90eAD83c10D33097a4F18D2?network=goerli">
+          <a href="https://louper.dev/diamond/0x8fD2682288f1D07ECcacd5cD5eD43197c79C30c6?network=goerli">
             Connext
           </a>
         </td>
-        <td>0xb35937ce4fFB5f72E90eAD83c10D33097a4F18D2</td>
+        <td>0x8fD2682288f1D07ECcacd5cD5eD43197c79C30c6</td>
       </tr>
     </tbody>
   </table>
@@ -78,11 +78,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://goerli-optimism.etherscan.io/address/0x0C70d6E9760DEE639aC761f3564a190220DF5E44">
+          <a href="https://goerli-optimism.etherscan.io/address/0xD96e87e035350e9672fc274cD4f1F9dE7e246644">
             Connext
           </a>
         </td>
-        <td>0x0C70d6E9760DEE639aC761f3564a190220DF5E44</td>
+        <td>0xD96e87e035350e9672fc274cD4f1F9dE7e246644</td>
       </tr>
     </tbody>
   </table>
@@ -136,11 +136,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://louper.dev/diamond/0xa2F2ed226d4569C8eC09c175DDEeF4d41Bab4627?network=mumbai">
+          <a href="https://louper.dev/diamond/0x6FffB5F8d7Dd026C775F17EA33c6A53f81694e30?network=mumbai">
             Connext
           </a>
         </td>
-        <td>0xa2F2ed226d4569C8eC09c175DDEeF4d41Bab4627</td>
+        <td>0x6FffB5F8d7Dd026C775F17EA33c6A53f81694e30</td>
       </tr>
     </tbody>
   </table>
