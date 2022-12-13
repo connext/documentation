@@ -18,23 +18,51 @@ Note: SDK currently only supports internal StableSwapFacet pools.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `config` | `Object` |
-| `config.cartographerUrl` | `undefined` \| `string` |
-| `config.chains` | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
-| `config.environment` | `undefined` \| ``"staging"`` \| ``"production"`` |
-| `config.logLevel` | `undefined` \| ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` |
-| `config.maxSlippage` | `undefined` \| `number` |
-| `config.network` | `undefined` \| ``"testnet"`` \| ``"mainnet"`` \| ``"local"`` |
-| `config.signerAddress` | `undefined` \| `string` |
-| `logger` | `Logger` |
-| `chainData` | `Map`<`string`, `ChainData`\> |
-| `chainReader` | `ChainReader` |
+| Name                     | Type                                                                                                                                                                                                                                                          |
+| :----------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `config`                 | `Object`                                                                                                                                                                                                                                                      |
+| `config.cartographerUrl` | `undefined` \| `string`                                                                                                                                                                                                                                       |
+| `config.chains`          | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
+| `config.environment`     | `undefined` \| `"staging"` \| `"production"`                                                                                                                                                                                                                  |
+| `config.logLevel`        | `undefined` \| `"fatal"` \| `"error"` \| `"warn"` \| `"info"` \| `"debug"` \| `"trace"` \| `"silent"`                                                                                                                                                         |
+| `config.maxSlippage`     | `undefined` \| `number`                                                                                                                                                                                                                                       |
+| `config.network`         | `undefined` \| `"testnet"` \| `"mainnet"` \| `"local"`                                                                                                                                                                                                        |
+| `config.signerAddress`   | `undefined` \| `string`                                                                                                                                                                                                                                       |
+| `logger`                 | `Logger`                                                                                                                                                                                                                                                      |
+| `chainData`              | `Map`<`string`, `ChainData`\>                                                                                                                                                                                                                                 |
+| `chainReader`            | `ChainReader`                                                                                                                                                                                                                                                 |
 
 ---
 
 ## Methods
+
+### calculateAmountReceived
+
+▸ **calculateAmountReceived**(`originDomain`, `destinationDomain`, `originTokenAddress`, `destinationTokenAddress`, `amount`, `isNextAsset?`): `Promise`<`{amountReceived: BigNumberish; originSlippage: BigNumberish; routerFee: BigNumberish; destinationSlippage: BigNumberish;}`\>
+
+Returns the estimate amount received.
+
+#### Parameters
+
+| Name                      | Type           | Default value | Description                                                 |
+| :------------------------ | :------------- | :------------ | :---------------------------------------------------------- |
+| `originDomain`            | `string`       | `undefined`   | The domain id of the Origin network.                        |
+| `destinationDomain`       | `string`       | `undefined`   | The domain id of the destination network.                   |
+| `originTokenAddress`      | `string`       | `undefined`   | The address of local or adopted token at origin domain      |
+| `destinationTokenAddress` | `string`       | `undefined`   | The address of local or adopted token at destination domain |
+| `amount`                  | `BigNumberish` | `undefined`   | The amounts of the tokens to swap.                          |
+| `isNextAsset?`            | `boolean`      | `false`       | The flag if it's nextAsset at originDomain                  |
+
+#### Returns
+
+`Promise`<`{amountReceived: BigNumberish; originSlippage: BigNumberish; routerFee: BigNumberish; destinationSlippage: BigNumberish;}`\>
+
+| Name                  | Type           | Description                                    |
+| :-------------------- | :------------- | :--------------------------------------------- |
+| `amountReceived`      | `BigNumberish` | The estimated amount received after the XCall. |
+| `originSlippage`      | `BigNumberish` | The possible slippage at origin AMM.           |
+| `routerFee`           | `BigNumberish` | The router fee charged for the XCall           |
+| `destinationSlippage` | `BigNumberish` | The possible slippage at destination AMM       |
 
 ### addLiquidity
 
@@ -44,13 +72,13 @@ Returns the transaction request for adding liquidity to a pool.
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `domainId` | `string` | `undefined` | The domain id of the pool. |
-| `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
-| `amounts` | `string`[] | `undefined` | The amounts of the tokens to swap. |
-| `minToMint` | `string` | `"0"` | The minimum acceptable amount of LP tokens to mint. |
-| `deadline?` | `number` | `undefined` | The deadline for the swap. |
+| Name           | Type       | Default value | Description                                         |
+| :------------- | :--------- | :------------ | :-------------------------------------------------- |
+| `domainId`     | `string`   | `undefined`   | The domain id of the pool.                          |
+| `tokenAddress` | `string`   | `undefined`   | The address of local or adopted token.              |
+| `amounts`      | `string`[] | `undefined`   | The amounts of the tokens to swap.                  |
+| `minToMint`    | `string`   | `"0"`         | The minimum acceptable amount of LP tokens to mint. |
+| `deadline?`    | `number`   | `undefined`   | The deadline for the swap.                          |
 
 #### Returns
 
@@ -62,11 +90,11 @@ Returns the transaction request for adding liquidity to a pool.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
+| Name           | Type     |
+| :------------- | :------- |
+| `domainId`     | `string` |
 | `tokenAddress` | `string` |
-| `amount` | `string` |
+| `amount`       | `string` |
 
 #### Returns
 
@@ -78,13 +106,13 @@ Returns the transaction request for adding liquidity to a pool.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
+| Name             | Type     |
+| :--------------- | :------- |
+| `domainId`       | `string` |
+| `tokenAddress`   | `string` |
 | `tokenIndexFrom` | `number` |
-| `tokenIndexTo` | `number` |
-| `amount` | `string` |
+| `tokenIndexTo`   | `number` |
+| `amount`         | `string` |
 
 #### Returns
 
@@ -96,12 +124,12 @@ Returns the transaction request for adding liquidity to a pool.
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `domainId` | `string` | `undefined` |
-| `tokenAddress` | `string` | `undefined` |
-| `amounts` | `string`[] | `undefined` |
-| `isDeposit` | `boolean` | `true` |
+| Name           | Type       | Default value |
+| :------------- | :--------- | :------------ |
+| `domainId`     | `string`   | `undefined`   |
+| `tokenAddress` | `string`   | `undefined`   |
+| `amounts`      | `string`[] | `undefined`   |
+| `isDeposit`    | `boolean`  | `true`        |
 
 #### Returns
 
@@ -113,10 +141,10 @@ Returns the transaction request for adding liquidity to a pool.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name       | Type     |
+| :--------- | :------- |
 | `domainId` | `string` |
-| `tokenId` | `string` |
+| `tokenId`  | `string` |
 
 #### Returns
 
@@ -128,9 +156,9 @@ Returns the transaction request for adding liquidity to a pool.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
+| Name           | Type     |
+| :------------- | :------- |
+| `domainId`     | `string` |
 | `tokenAddress` | `string` |
 
 #### Returns
@@ -143,9 +171,9 @@ Returns the transaction request for adding liquidity to a pool.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
+| Name           | Type     |
+| :------------- | :------- |
+| `domainId`     | `string` |
 | `tokenAddress` | `string` |
 
 #### Returns
@@ -158,11 +186,11 @@ Returns the transaction request for adding liquidity to a pool.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
+| Name             | Type     |
+| :--------------- | :------- |
+| `domainId`       | `string` |
 | `lpTokenAddress` | `string` |
-| `userAddress` | `string` |
+| `userAddress`    | `string` |
 
 #### Returns
 
@@ -176,9 +204,9 @@ Returns the StableSwap Pool for a given local asset.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `domainId` | `string` | The domain id of the pool. |
+| Name           | Type     | Description                            |
+| :------------- | :------- | :------------------------------------- |
+| `domainId`     | `string` | The domain id of the pool.             |
 | `tokenAddress` | `string` | The address of local or adopted token. |
 
 #### Returns
@@ -191,9 +219,9 @@ Returns the StableSwap Pool for a given local asset.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
+| Name           | Type     |
+| :------------- | :------- |
+| `domainId`     | `string` |
 | `tokenAddress` | `string` |
 
 #### Returns
@@ -206,11 +234,11 @@ Returns the StableSwap Pool for a given local asset.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
+| Name           | Type     |
+| :------------- | :------- |
+| `domainId`     | `string` |
 | `tokenAddress` | `string` |
-| `index` | `number` |
+| `index`        | `number` |
 
 #### Returns
 
@@ -222,10 +250,10 @@ Returns the StableSwap Pool for a given local asset.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
+| Name               | Type     |
+| :----------------- | :------- |
+| `domainId`         | `string` |
+| `tokenAddress`     | `string` |
 | `poolTokenAddress` | `string` |
 
 #### Returns
@@ -238,10 +266,10 @@ Returns the StableSwap Pool for a given local asset.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
+| Name               | Type     |
+| :----------------- | :------- |
+| `domainId`         | `string` |
+| `tokenAddress`     | `string` |
 | `poolTokenAddress` | `string` |
 
 #### Returns
@@ -254,11 +282,11 @@ Returns the StableSwap Pool for a given local asset.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
+| Name               | Type     |
+| :----------------- | :------- |
+| `domainId`         | `string` |
 | `poolTokenAddress` | `string` |
-| `userAddress` | `string` |
+| `userAddress`      | `string` |
 
 #### Returns
 
@@ -268,24 +296,24 @@ Returns the StableSwap Pool for a given local asset.
 
 [packages/agents/sdk/src/sdkPool.ts:216](https://github.com/connext/nxtp/blob/b4ba5008d/packages/agents/sdk/src/sdkPool.ts#L216)
 
-___
+---
 
 ### getUserPools
 
-▸ **getUserPools**(`domainId`, `userAddress`): `Promise`<{ `info`: `Pool` ; `lpTokenBalance`: `BigNumber` ; `poolTokenBalances`: `BigNumber`[]  }[]\>
+▸ **getUserPools**(`domainId`, `userAddress`): `Promise`<{ `info`: `Pool` ; `lpTokenBalance`: `BigNumber` ; `poolTokenBalances`: `BigNumber`[] }[]\>
 
 Returns the Pools that a user has LP tokens for.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `domainId` | `string` | The domain id of the pool. |
+| Name          | Type     | Description                                   |
+| :------------ | :------- | :-------------------------------------------- |
+| `domainId`    | `string` | The domain id of the pool.                    |
 | `userAddress` | `string` | The address of the user to get the pools for. |
 
 #### Returns
 
-`Promise`<{ `info`: `Pool` ; `lpTokenBalance`: `BigNumber` ; `poolTokenBalances`: `BigNumber`[]  }[]\>
+`Promise`<{ `info`: `Pool` ; `lpTokenBalance`: `BigNumber` ; `poolTokenBalances`: `BigNumber`[] }[]\>
 
 ### getVirtualPrice
 
@@ -293,9 +321,9 @@ Returns the Pools that a user has LP tokens for.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
+| Name           | Type     |
+| :------------- | :------- |
+| `domainId`     | `string` |
 | `tokenAddress` | `string` |
 
 #### Returns
@@ -310,13 +338,13 @@ Returns the transaction request for removing liquidity from a pool.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `domainId` | `string` | The domain id of the pool. |
-| `tokenAddress` | `string` | The address of local or adopted token. |
-| `amount` | `string` | The amount of the token to swap. |
-| `minAmounts` | `string`[] | The minimum acceptable amounts of each token to burn. |
-| `deadline?` | `number` | The deadline for the swap. |
+| Name           | Type       | Description                                           |
+| :------------- | :--------- | :---------------------------------------------------- |
+| `domainId`     | `string`   | The domain id of the pool.                            |
+| `tokenAddress` | `string`   | The address of local or adopted token.                |
+| `amount`       | `string`   | The amount of the token to swap.                      |
+| `minAmounts`   | `string`[] | The minimum acceptable amounts of each token to burn. |
+| `deadline?`    | `number`   | The deadline for the swap.                            |
 
 #### Returns
 
@@ -330,15 +358,15 @@ Returns the transaction request for performing a swap in a pool.
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `domainId` | `string` | `undefined` | The domain id of the pool. |
-| `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
-| `from` | `string` | `undefined` | The address of the token to sell. |
-| `to` | `string` | `undefined` | The address of the token to buy. |
-| `amount` | `string` | `undefined` | The amount of the selling token to swap. |
-| `minDy` | `number` | `0` | The minimum amount of the buying token to receive. |
-| `deadline?` | `number` | `undefined` | The deadline for the swap. |
+| Name           | Type     | Default value | Description                                        |
+| :------------- | :------- | :------------ | :------------------------------------------------- |
+| `domainId`     | `string` | `undefined`   | The domain id of the pool.                         |
+| `tokenAddress` | `string` | `undefined`   | The address of local or adopted token.             |
+| `from`         | `string` | `undefined`   | The address of the token to sell.                  |
+| `to`           | `string` | `undefined`   | The address of the token to buy.                   |
+| `amount`       | `string` | `undefined`   | The amount of the selling token to swap.           |
+| `minDy`        | `number` | `0`           | The minimum amount of the buying token to receive. |
+| `deadline?`    | `number` | `undefined`   | The deadline for the swap.                         |
 
 #### Returns
 
@@ -350,19 +378,19 @@ Returns the transaction request for performing a swap in a pool.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `_config` | `Object` |
-| `_config.cartographerUrl` | `undefined` \| `string` |
-| `_config.chains` | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
-| `_config.environment` | `undefined` \| ``"staging"`` \| ``"production"`` |
-| `_config.logLevel` | `undefined` \| ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` |
-| `_config.maxSlippage` | `undefined` \| `number` |
-| `_config.network` | `undefined` \| ``"testnet"`` \| ``"mainnet"`` \| ``"local"`` |
-| `_config.signerAddress` | `undefined` \| `string` |
-| `_logger?` | `Logger` |
-| `_chainData?` | `Map`<`string`, `ChainData`\> |
-| `_chainReader?` | `ChainReader` |
+| Name                      | Type                                                                                                                                                                                                                                                          |
+| :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `_config`                 | `Object`                                                                                                                                                                                                                                                      |
+| `_config.cartographerUrl` | `undefined` \| `string`                                                                                                                                                                                                                                       |
+| `_config.chains`          | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
+| `_config.environment`     | `undefined` \| `"staging"` \| `"production"`                                                                                                                                                                                                                  |
+| `_config.logLevel`        | `undefined` \| `"fatal"` \| `"error"` \| `"warn"` \| `"info"` \| `"debug"` \| `"trace"` \| `"silent"`                                                                                                                                                         |
+| `_config.maxSlippage`     | `undefined` \| `number`                                                                                                                                                                                                                                       |
+| `_config.network`         | `undefined` \| `"testnet"` \| `"mainnet"` \| `"local"`                                                                                                                                                                                                        |
+| `_config.signerAddress`   | `undefined` \| `string`                                                                                                                                                                                                                                       |
+| `_logger?`                | `Logger`                                                                                                                                                                                                                                                      |
+| `_chainData?`             | `Map`<`string`, `ChainData`\>                                                                                                                                                                                                                                 |
+| `_chainReader?`           | `ChainReader`                                                                                                                                                                                                                                                 |
 
 #### Returns
 
