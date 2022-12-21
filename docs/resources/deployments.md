@@ -27,11 +27,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://louper.dev/diamond/0x8fD2682288f1D07ECcacd5cD5eD43197c79C30c6?network=goerli">
+          <a href="https://louper.dev/diamond/0xFCa08024A6D4bCc87275b1E4A1E22B71fAD7f649?network=goerli">
             Connext
           </a>
         </td>
-        <td>0x8fD2682288f1D07ECcacd5cD5eD43197c79C30c6</td>
+        <td>0xFCa08024A6D4bCc87275b1E4A1E22B71fAD7f649</td>
       </tr>
     </tbody>
   </table>
@@ -78,11 +78,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://goerli-optimism.etherscan.io/address/0xD96e87e035350e9672fc274cD4f1F9dE7e246644">
+          <a href="https://goerli-optimism.etherscan.io/address/0x5Ea1bb242326044699C3d81341c5f535d5Af1504">
             Connext
           </a>
         </td>
-        <td>0xD96e87e035350e9672fc274cD4f1F9dE7e246644</td>
+        <td>0x5Ea1bb242326044699C3d81341c5f535d5Af1504</td>
       </tr>
     </tbody>
   </table>
@@ -136,11 +136,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://louper.dev/diamond/0x6FffB5F8d7Dd026C775F17EA33c6A53f81694e30?network=mumbai">
+          <a href="https://louper.dev/diamond/0x2334937846Ab2A3FCE747b32587e1A1A2f6EEC5a?network=mumbai">
             Connext
           </a>
         </td>
-        <td>0x6FffB5F8d7Dd026C775F17EA33c6A53f81694e30</td>
+        <td>0x2334937846Ab2A3FCE747b32587e1A1A2f6EEC5a</td>
       </tr>
     </tbody>
   </table>
@@ -178,6 +178,54 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
         </td>
         <td>0xFD2AB41e083c75085807c4A65C0A14FDD93d55A9</td>
         <td>Adopted</td>
+      </tr>
+    </tbody>
+  </table>
+
+  ### Arbitrum-Goerli
+
+  Domain ID: 421613
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Core Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://louper.dev/diamond/0x2075c9E31f973bb53CAE5BAC36a8eeB4B082ADC2?network=arbitrum_goerli">
+            Connext
+          </a>
+        </td>
+        <td>0x2075c9E31f973bb53CAE5BAC36a8eeB4B082ADC2</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Asset Contract</th>
+        <th>Address</th>
+        <th>Flavor</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://goerli.arbiscan.io/address/0xDC805eAaaBd6F68904cA706C221c72F8a8a68F9f">
+            TEST
+          </a>
+        </td>
+        <td>0xDC805eAaaBd6F68904cA706C221c72F8a8a68F9f</td>
+        <td>Local/Adopted</td>
+      </tr>
+        <td>
+          <a href="https://goerli.arbiscan.io/address/0x1346786E6A5e07b90184a1Ba58E55444b99DC4A2">
+            WETH
+          </a>
+        </td>
+        <td>0x1346786E6A5e07b90184a1Ba58E55444b99DC4A2</td>
+        <td>Local/Adopted</td>
       </tr>
     </tbody>
   </table>
