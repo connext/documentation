@@ -13,6 +13,398 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
 
 <details>
 
+  <summary>Mainnet Contracts</summary>
+
+  ### Ethereum 
+  
+  Domain ID: 6648936
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Core Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://louper.dev/diamond/0x8898B472C54c31894e3B9bb83cEA802a5d0e63C6?network=mainnet">
+            Connext
+          </a>
+        </td>
+        <td>0x8898B472C54c31894e3B9bb83cEA802a5d0e63C6</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Asset Contract</th>
+        <th>Address</th>
+        <th>Flavor</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://etherscan.io/address/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48">
+            USDC
+          </a>
+        </td>
+        <td>0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48</td>
+        <td>Canonical</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://etherscan.io/address/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2">
+            WETH
+          </a>
+        </td>
+        <td>0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2</td>
+        <td>Canonical</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
+  ### Optimism
+
+  Domain ID: 1869640809
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Core Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://optimistic.etherscan.io/address/0x8f7492DE823025b4CfaAB1D34c58963F2af5DEDA">
+            Connext
+          </a>
+        </td>
+        <td>0x8f7492DE823025b4CfaAB1D34c58963F2af5DEDA</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Asset Contract</th>
+        <th>Address</th>
+        <th>Flavor</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://optimistic.etherscan.io/address/0x67E51f46e8e14D4E4cab9dF48c59ad8F512486DD">
+            nextUSDC
+          </a>
+        </td>
+        <td>0x67E51f46e8e14D4E4cab9dF48c59ad8F512486DD</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://optimistic.etherscan.io/address/0x7F5c764cBc14f9669B88837ca1490cCa17c31607">
+            USDC
+          </a>
+        </td>
+        <td>0x7F5c764cBc14f9669B88837ca1490cCa17c31607</td>
+        <td>Adopted</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://optimistic.etherscan.io/address/0xbAD5B3c68F855EaEcE68203312Fd88AD3D365e50">
+            nextWETH
+          </a>
+        </td>
+        <td>0xbAD5B3c68F855EaEcE68203312Fd88AD3D365e50</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://optimistic.etherscan.io/address/0x4200000000000000000000000000000000000006">
+            WETH
+          </a>
+        </td>
+        <td>0x4200000000000000000000000000000000000006</td>
+        <td>Adopted</td>
+      </tr>
+    </tbody>
+  </table>
+
+  ### Polygon
+
+  Domain ID: 1886350457
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Core Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://louper.dev/diamond/0x11984dc4465481512eb5b777E44061C158CF2259?network=polygon">
+            Connext
+          </a>
+        </td>
+        <td>0x11984dc4465481512eb5b777E44061C158CF2259</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Asset Contract</th>
+        <th>Address</th>
+        <th>Flavor</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://polygonscan.com/address/0xF96C6d2537e1af1a9503852eB2A4AF264272a5B6">
+            nextUSDC
+          </a>
+        </td>
+        <td>0xF96C6d2537e1af1a9503852eB2A4AF264272a5B6</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://polygonscan.com/address/0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174">
+            USDC
+          </a>
+        </td>
+        <td>0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174</td>
+        <td>Adopted</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://polygonscan.com/address/0x4b8BaC8Dd1CAA52E32C07755c17eFadeD6A0bbD0">
+            nextWETH
+          </a>
+        </td>
+        <td>0x4b8BaC8Dd1CAA52E32C07755c17eFadeD6A0bbD0</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://polygonscan.com/address/0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619">
+            WETH
+          </a>
+        </td>
+        <td>0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619</td>
+        <td>Adopted</td>
+      </tr>
+    </tbody>
+  </table>
+
+  ### Arbitrum-One
+
+  Domain ID: 1634886255
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Core Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://louper.dev/diamond/0xEE9deC2712cCE65174B561151701Bf54b99C24C8?network=arbitrum">
+            Connext
+          </a>
+        </td>
+        <td>0xEE9deC2712cCE65174B561151701Bf54b99C24C8</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Asset Contract</th>
+        <th>Address</th>
+        <th>Flavor</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://arbiscan.io/address/0x8c556cF37faa0eeDAC7aE665f1Bb0FbD4b2eae36">
+            nextUSDC
+          </a>
+        </td>
+        <td>0x8c556cF37faa0eeDAC7aE665f1Bb0FbD4b2eae36</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://arbiscan.io/address/0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8">
+            USDC
+          </a>
+        </td>
+        <td>0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8</td>
+        <td>Adopted</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://arbiscan.io/address/0x2983bf5c334743Aa6657AD70A55041d720d225dB">
+            nextWETH
+          </a>
+        </td>
+        <td>0x2983bf5c334743Aa6657AD70A55041d720d225dB</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://arbiscan.io/address/0x82aF49447D8a07e3bd95BD0d56f35241523fBab1">
+            WETH
+          </a>
+        </td>
+        <td>0x82aF49447D8a07e3bd95BD0d56f35241523fBab1</td>
+        <td>Adopted</td>
+      </tr>
+    </tbody>
+  </table>
+
+  ### Binance Smart Chain
+
+  Domain ID: 6450786
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Core Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://louper.dev/diamond/0xCd401c10afa37d641d2F594852DA94C700e4F2CE?network=binance">
+            Connext
+          </a>
+        </td>
+        <td>0xCd401c10afa37d641d2F594852DA94C700e4F2CE</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Asset Contract</th>
+        <th>Address</th>
+        <th>Flavor</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://bscscan.com/address/0x5e7D83dA751F4C9694b13aF351B30aC108f32C38">
+            nextUSDC
+          </a>
+        </td>
+        <td>0x5e7D83dA751F4C9694b13aF351B30aC108f32C38</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://bscscan.com/address/0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d">
+            USDC
+          </a>
+        </td>
+        <td>0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d</td>
+        <td>Adopted</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://bscscan.com/address/0xA9CB51C666D2AF451d87442Be50747B31BB7d805">
+            nextWETH
+          </a>
+        </td>
+        <td>0xA9CB51C666D2AF451d87442Be50747B31BB7d805</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://bscscan.com/address/0x2170Ed0880ac9A755fd29B2688956BD959F933F8">
+            WETH
+          </a>
+        </td>
+        <td>0x2170Ed0880ac9A755fd29B2688956BD959F933F8</td>
+        <td>Adopted</td>
+      </tr>
+    </tbody>
+  </table>
+
+  ### Gnosis
+
+  Domain ID: 6778479
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Core Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://louper.dev/diamond/0x5bB83e95f63217CDa6aE3D181BA580Ef377D2109?network=xdai">
+            Connext
+          </a>
+        </td>
+        <td>0x5bB83e95f63217CDa6aE3D181BA580Ef377D2109</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Asset Contract</th>
+        <th>Address</th>
+        <th>Flavor</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://gnosisscan.io/address/0x44CF74238d840a5fEBB0eAa089D05b763B73faB8">
+            nextUSDC
+          </a>
+        </td>
+        <td>0x44CF74238d840a5fEBB0eAa089D05b763B73faB8</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://gnosisscan.io/address/0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83">
+            USDC
+          </a>
+        </td>
+        <td>0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83</td>
+        <td>Adopted</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://gnosisscan.io/address/0x538E2dDbfDf476D24cCb1477A518A82C9EA81326">
+            nextWETH
+          </a>
+        </td>
+        <td>0x538E2dDbfDf476D24cCb1477A518A82C9EA81326</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://gnosisscan.io/address/0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1">
+            WETH
+          </a>
+        </td>
+        <td>0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1</td>
+        <td>Adopted</td>
+      </tr>
+    </tbody>
+  </table>
+
+</details>
+
+<details>
+
   <summary>Production Testnet Contracts</summary>
 
   ### Goerli 
@@ -124,6 +516,8 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <br />
+
   ### Mumbai
 
   Domain ID: 9991
@@ -182,6 +576,8 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <br />
+
   ### Arbitrum-Goerli
 
   Domain ID: 421613
@@ -219,6 +615,7 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
         <td>0xDC805eAaaBd6F68904cA706C221c72F8a8a68F9f</td>
         <td>Local/Adopted</td>
       </tr>
+      <tr>
         <td>
           <a href="https://goerli.arbiscan.io/address/0x1346786E6A5e07b90184a1Ba58E55444b99DC4A2">
             WETH
