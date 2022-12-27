@@ -119,7 +119,7 @@ module.exports = {
           customCss: [require.resolve("./src/css/custom.css")],
         },
         gtag: {
-          trackingID: 'G-R6TPW9Y8PW',
+          trackingID: 'G-MPYZEDRVQ0',
           anonymizeIP: true,
         },
       },
