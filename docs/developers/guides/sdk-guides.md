@@ -87,30 +87,16 @@ const provider = new ethers.providers.JsonRpcProvider("<GOERLI_RPC_URL>");
 signer = signer.connect(provider);
 const signerAddress = await signer.getAddress();
 
-// Construct the `NxtpSdkConfig`. Values like Domain IDs and token addresses are already filled in for you. You can reference these in the "Resources" tab of the docs. 
+// Construct the `NxtpSdkConfig`. You can reference chain IDs in the "Resources" tab of the docs.
 const nxtpConfig: NxtpSdkConfig = {
-  logLevel: "info",
   signerAddress: signerAddress,
+  network: "mainnet", // can be "mainnet" or "testnet", will default to "mainnet" if omitted
   chains: {
     "1735353714": {
       providers: ["<GOERLI_RPC_URL>"],
-      assets: [
-        {
-          name: "TEST",
-          symbol: "TEST",
-          address: "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1",
-        },
-      ],
     },
     "9991": {
       providers: ["<MUMBAI_RPC_URL>"],
-      assets: [
-        {
-          name: "TEST",
-          symbol: "TEST",
-          address: "0xeDb95D8037f769B72AAab41deeC92903A98C9E16",
-        },
-      ],
     },
   },
 };

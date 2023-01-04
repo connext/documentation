@@ -3,66 +3,68 @@ sidebar_position: 2
 title: Pool
 id: sdk-pool
 ---
+# Class: NxtpSdkPool
 
-# NxtpSdkPool
+**`Classdesc`**
 
-This class will either interact with internal StableSwapFacet pools or external StableSwap pools depending on which type of pool is being used for each asset.
+SDK class encapsulating stableswap pool functions.
 
-Note: SDK currently only supports internal StableSwapFacet pools.
+**`Dev`**
 
-## Constructors
+This class will either interact with internal StableSwapFacet pools or external StableSwap pools
+     depending on which type of pool is being used for each asset.
+     Note: SDK currently only supports internal StableSwapFacet pools.
 
-### constructor
+## Hierarchy
 
-• **new NxtpSdkPool**(`config`, `logger`, `chainData`, `chainReader`)
+- [`NxtpSdkShared`](NxtpSdkShared.md)
 
-#### Parameters
-
-| Name                     | Type                                                                                                                                                                                                                                                          |
-| :----------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `config`                 | `Object`                                                                                                                                                                                                                                                      |
-| `config.cartographerUrl` | `undefined` \| `string`                                                                                                                                                                                                                                       |
-| `config.chains`          | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
-| `config.environment`     | `undefined` \| `"staging"` \| `"production"`                                                                                                                                                                                                                  |
-| `config.logLevel`        | `undefined` \| `"fatal"` \| `"error"` \| `"warn"` \| `"info"` \| `"debug"` \| `"trace"` \| `"silent"`                                                                                                                                                         |
-| `config.maxSlippage`     | `undefined` \| `number`                                                                                                                                                                                                                                       |
-| `config.network`         | `undefined` \| `"testnet"` \| `"mainnet"` \| `"local"`                                                                                                                                                                                                        |
-| `config.signerAddress`   | `undefined` \| `string`                                                                                                                                                                                                                                       |
-| `logger`                 | `Logger`                                                                                                                                                                                                                                                      |
-| `chainData`              | `Map`<`string`, `ChainData`\>                                                                                                                                                                                                                                 |
-| `chainReader`            | `ChainReader`                                                                                                                                                                                                                                                 |
-
----
+  ↳ **`NxtpSdkPool`**
 
 ## Methods
 
-### calculateAmountReceived
+### create
 
-▸ **calculateAmountReceived**(`originDomain`, `destinationDomain`, `originTokenAddress`, `destinationTokenAddress`, `amount`, `isNextAsset?`): `Promise`<`{amountReceived: BigNumberish; originSlippage: BigNumberish; routerFee: BigNumberish; destinationSlippage: BigNumberish;}`\>
-
-Returns the estimate amount received.
+▸ `Static` **create**(`_config`, `_logger?`, `_chainData?`): `Promise`<[`NxtpSdkBase`](NxtpSdkBase.md)\>
 
 #### Parameters
 
-| Name                      | Type           | Default value | Description                                                 |
-| :------------------------ | :------------- | :------------ | :---------------------------------------------------------- |
-| `originDomain`            | `string`       | `undefined`   | The domain id of the Origin network.                        |
-| `destinationDomain`       | `string`       | `undefined`   | The domain id of the destination network.                   |
-| `originTokenAddress`      | `string`       | `undefined`   | The address of local or adopted token at origin domain      |
-| `destinationTokenAddress` | `string`       | `undefined`   | The address of local or adopted token at destination domain |
-| `amount`                  | `BigNumberish` | `undefined`   | The amounts of the tokens to swap.                          |
-| `isNextAsset?`            | `boolean`      | `false`       | The flag if it's nextAsset at originDomain                  |
+| Name | Type | Description |
+| :------ | :------ | :----- |
+| `_config` | `Object` | Main config object. 
+| `_config.network` | ``"testnet"`` \| ``"mainnet"`` | Whether to connect to mainnet or testnet deployments. 
+| `_config.signerAddress` | `string` | The signer address used for write operations.
+| `_config.chains` | `Object` | Contains mappings of domain ID to providers. See example below.
+
+
+Example `_config`:
+```typescript
+{
+  "network": "mainnet",
+  "signerAddress": "<signer-address>",
+  "chains": {
+    "6648936": { // Ethereum
+      "providers": ["https://rpc.ankr.com/eth"]
+    },
+    "1869640809": { // Optimism
+      "providers": ["https://rpc.ankr.com/optimism"]
+    },
+    "1886350457": { // Polygon
+      "providers": ["https://polygon-rpc.com"]
+    }
+  },
+}
+```
 
 #### Returns
 
-`Promise`<`{amountReceived: BigNumberish; originSlippage: BigNumberish; routerFee: BigNumberish; destinationSlippage: BigNumberish;}`\>
+`Promise`<[`NxtpSdkPool`](NxtpSdkPool.md)\>
 
-| Name                  | Type           | Description                                    |
-| :-------------------- | :------------- | :--------------------------------------------- |
-| `amountReceived`      | `BigNumberish` | The estimated amount received after the XCall. |
-| `originSlippage`      | `BigNumberish` | The possible slippage at origin AMM.           |
-| `routerFee`           | `BigNumberish` | The router fee charged for the XCall           |
-| `destinationSlippage` | `BigNumberish` | The possible slippage at destination AMM       |
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:91](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L91)
+
+___
 
 ### addLiquidity
 
@@ -72,221 +74,217 @@ Returns the transaction request for adding liquidity to a pool.
 
 #### Parameters
 
-| Name           | Type       | Default value | Description                                         |
-| :------------- | :--------- | :------------ | :-------------------------------------------------- |
-| `domainId`     | `string`   | `undefined`   | The domain id of the pool.                          |
-| `tokenAddress` | `string`   | `undefined`   | The address of local or adopted token.              |
-| `amounts`      | `string`[] | `undefined`   | The amounts of the tokens to swap.                  |
-| `minToMint`    | `string`   | `"0"`         | The minimum acceptable amount of LP tokens to mint. |
-| `deadline?`    | `number`   | `undefined`   | The deadline for the swap.                          |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` | The domain id of the pool. |
+| `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
+| `amounts` | `string`[] | `undefined` | The amounts of the tokens to swap. |
+| `minToMint` | `string` | `"0"` | The minimum acceptable amount of LP tokens to mint. |
+| `deadline` | `number` | `undefined` | The deadline for the swap. |
 
 #### Returns
 
 `Promise`<`TransactionRequest`\>
 
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:515](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L515)
+
+___
+
+### approveIfNeeded
+
+▸ **approveIfNeeded**(`domainId`, `assetId`, `amount`, `infiniteApprove?`): `Promise`<`undefined` \| `TransactionRequest`\>
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` |
+| `assetId` | `string` | `undefined` |
+| `amount` | `string` | `undefined` |
+| `infiniteApprove` | `boolean` | `true` |
+
+#### Returns
+
+`Promise`<`undefined` \| `TransactionRequest`\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[approveIfNeeded](NxtpSdkShared.md#approveifneeded)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:53](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L53)
+
+___
+
+### calculateAddLiquidityPriceImpact
+
+▸ **calculateAddLiquidityPriceImpact**(`domainId`, `tokenAddress`, `amountX`, `amountY`): `Promise`<`undefined` \| `BigNumber`\>
+
+Returns the price impact of adding liquidity to a pool.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain id of the pool. |
+| `tokenAddress` | `string` | The address of local or adopted token. |
+| `amountX` | `string` | The amount of asset X. |
+| `amountY` | `string` | The amount of asset Y. |
+
+#### Returns
+
+`Promise`<`undefined` \| `BigNumber`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:248](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L248)
+
+___
+
+### calculateAmountReceived
+
+▸ **calculateAmountReceived**(`originDomain`, `destinationDomain`, `originTokenAddress`, `destinationTokenAddress`, `amount`, `isNextAsset?`): `Promise`<{ `amountReceived`: `BigNumberish` ; `destinationSlippage`: `BigNumberish` ; `originSlippage`: `BigNumberish` ; `routerFee`: `BigNumberish`  }\>
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `originDomain` | `string` | `undefined` |
+| `destinationDomain` | `string` | `undefined` |
+| `originTokenAddress` | `string` | `undefined` |
+| `destinationTokenAddress` | `string` | `undefined` |
+| `amount` | `BigNumberish` | `undefined` |
+| `isNextAsset` | `boolean` | `false` |
+
+#### Returns
+
+`Promise`<{ `amountReceived`: `BigNumberish` ; `destinationSlippage`: `BigNumberish` ; `originSlippage`: `BigNumberish` ; `routerFee`: `BigNumberish`  }\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:334](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L334)
+
+___
+
+### calculateCanonicalKey
+
+▸ **calculateCanonicalKey**(`domainId`, `tokenId`): `string`
+
+Returns the hash of the canonical id + domain.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The canonical domain id of the token. |
+| `tokenId` | `string` | - |
+
+#### Returns
+
+`string`
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[calculateCanonicalKey](NxtpSdkShared.md#calculatecanonicalkey)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:122](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L122)
+
+___
+
+### calculatePriceImpact
+
+▸ **calculatePriceImpact**(`tokenInputAmount`, `tokenOutputAmount`, `virtualPrice?`, `isDeposit?`): `BigNumber`
+
+Returns the price impact depending on whether liquidity is being deposited or withdrawn.
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `tokenInputAmount` | `BigNumber` | `undefined` | The amount of inbound tokens (LP tokens for withdrawals, total tokens for deposits, dx for swaps). |
+| `tokenOutputAmount` | `BigNumber` | `undefined` | The amount of outbound tokens (total tokens for withdrawals, LP tokens for deposits, dy for swaps). |
+| `virtualPrice` | `BigNumber` | `undefined` | The current virtual price of the pool. |
+| `isDeposit` | `boolean` | `true` | Whether this is a deposit or withdrawal. |
+
+#### Returns
+
+`BigNumber`
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:221](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L221)
+
+___
+
+### calculateRemoveLiquidityPriceImpact
+
+▸ **calculateRemoveLiquidityPriceImpact**(`domainId`, `tokenAddress`, `amountX`, `amountY`): `Promise`<`undefined` \| `BigNumber`\>
+
+Returns the price impact of removing liquidity from a pool.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain id of the pool. |
+| `tokenAddress` | `string` | The address of local or adopted token. |
+| `amountX` | `string` | The amount of asset X. |
+| `amountY` | `string` | The amount of asset Y. |
+
+#### Returns
+
+`Promise`<`undefined` \| `BigNumber`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:279](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L279)
+
+___
+
 ### calculateRemoveSwapLiquidity
 
 ▸ **calculateRemoveSwapLiquidity**(`domainId`, `tokenAddress`, `amount`): `Promise`<`BigNumber`[]\>
 
+Returns the minimum LP token amount from deposits or withdrawals.
+
 #### Parameters
 
-| Name           | Type     |
-| :------------- | :------- |
-| `domainId`     | `string` |
-| `tokenAddress` | `string` |
-| `amount`       | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain id of the pool. |
+| `tokenAddress` | `string` | The address of local or adopted token. |
+| `amount` | `string` | The amount of the LP token to burn on withdrawal. |
 
 #### Returns
 
 `Promise`<`BigNumber`[]\>
 
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:203](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L203)
+
+___
+
 ### calculateSwap
 
-▸ **calculateSwap**(`domainId`, `tokenAddress`, `tokenIndexFrom`, `tokenIndexTo`, `amount`): `Promise`<`number`\>
+▸ **calculateSwap**(`domainId`, `tokenAddress`, `tokenIndexFrom`, `tokenIndexTo`, `amount`): `Promise`<`BigNumber`\>
+
+Returns the amount of tokens received on a swap.
 
 #### Parameters
 
-| Name             | Type     |
-| :--------------- | :------- |
-| `domainId`       | `string` |
-| `tokenAddress`   | `string` |
-| `tokenIndexFrom` | `number` |
-| `tokenIndexTo`   | `number` |
-| `amount`         | `string` |
-
-#### Returns
-
-`Promise`<`number`\>
-
-### calculateTokenAmount
-
-▸ **calculateTokenAmount**(`domainId`, `tokenAddress`, `amounts`, `isDeposit?`): `Promise`<`BigNumber`\>
-
-#### Parameters
-
-| Name           | Type       | Default value |
-| :------------- | :--------- | :------------ |
-| `domainId`     | `string`   | `undefined`   |
-| `tokenAddress` | `string`   | `undefined`   |
-| `amounts`      | `string`[] | `undefined`   |
-| `isDeposit`    | `boolean`  | `true`        |
-
-#### Returns
-
-`Promise`<`BigNumber`\>
-
-### getCanonicalKey
-
-▸ **getCanonicalKey**(`domainId`, `tokenId`): `Promise`<`string`\>
-
-#### Parameters
-
-| Name       | Type     |
-| :--------- | :------- |
-| `domainId` | `string` |
-| `tokenId`  | `string` |
-
-#### Returns
-
-`Promise`<`string`\>
-
-### getCanonicalToken
-
-▸ **getCanonicalToken**(`domainId`, `tokenAddress`): `Promise`<[`string`, `string`]\>
-
-#### Parameters
-
-| Name           | Type     |
-| :------------- | :------- |
-| `domainId`     | `string` |
-| `tokenAddress` | `string` |
-
-#### Returns
-
-`Promise`<[`string`, `string`]\>
-
-### getLPTokenAddress
-
-▸ **getLPTokenAddress**(`domainId`, `tokenAddress`): `Promise`<`string`\>
-
-#### Parameters
-
-| Name           | Type     |
-| :------------- | :------- |
-| `domainId`     | `string` |
-| `tokenAddress` | `string` |
-
-#### Returns
-
-`Promise`<`string`\>
-
-### getLPTokenUserBalance
-
-▸ **getLPTokenUserBalance**(`domainId`, `lpTokenAddress`, `userAddress`): `Promise`<`BigNumber`\>
-
-#### Parameters
-
-| Name             | Type     |
-| :--------------- | :------- |
-| `domainId`       | `string` |
-| `lpTokenAddress` | `string` |
-| `userAddress`    | `string` |
-
-#### Returns
-
-`Promise`<`BigNumber`\>
-
-### getPool
-
-▸ **getPool**(`domainId`, `tokenAddress`): `Promise`<`undefined` \| `Pool`\>
-
-Returns the StableSwap Pool for a given local asset.
-
-#### Parameters
-
-| Name           | Type     | Description                            |
-| :------------- | :------- | :------------------------------------- |
-| `domainId`     | `string` | The domain id of the pool.             |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain id of the pool. |
 | `tokenAddress` | `string` | The address of local or adopted token. |
-
-#### Returns
-
-`Promise`<`undefined` \| `Pool`\>
-
-### getPoolStats
-
-▸ **getPoolStats**(`domainId`, `tokenAddress`): `Promise`<`IPoolStats`\>
-
-#### Parameters
-
-| Name           | Type     |
-| :------------- | :------- |
-| `domainId`     | `string` |
-| `tokenAddress` | `string` |
-
-#### Returns
-
-`Promise`<`IPoolStats`\>
-
-### getPoolTokenAddress
-
-▸ **getPoolTokenAddress**(`domainId`, `tokenAddress`, `index`): `Promise`<`any`\>
-
-#### Parameters
-
-| Name           | Type     |
-| :------------- | :------- |
-| `domainId`     | `string` |
-| `tokenAddress` | `string` |
-| `index`        | `number` |
-
-#### Returns
-
-`Promise`<`any`\>
-
-### getPoolTokenBalance
-
-▸ **getPoolTokenBalance**(`domainId`, `tokenAddress`, `poolTokenAddress`): `Promise`<`BigNumber`\>
-
-#### Parameters
-
-| Name               | Type     |
-| :----------------- | :------- |
-| `domainId`         | `string` |
-| `tokenAddress`     | `string` |
-| `poolTokenAddress` | `string` |
-
-#### Returns
-
-`Promise`<`BigNumber`\>
-
-### getPoolTokenIndex
-
-▸ **getPoolTokenIndex**(`domainId`, `tokenAddress`, `poolTokenAddress`): `Promise`<`number`\>
-
-#### Parameters
-
-| Name               | Type     |
-| :----------------- | :------- |
-| `domainId`         | `string` |
-| `tokenAddress`     | `string` |
-| `poolTokenAddress` | `string` |
-
-#### Returns
-
-`Promise`<`number`\>
-
-### getPoolTokenUserBalance
-
-▸ **getPoolTokenUserBalance**(`domainId`, `poolTokenAddress`, `userAddress`): `Promise`<`BigNumber`\>
-
-#### Parameters
-
-| Name               | Type     |
-| :----------------- | :------- |
-| `domainId`         | `string` |
-| `poolTokenAddress` | `string` |
-| `userAddress`      | `string` |
+| `tokenIndexFrom` | `number` | The index of the token to sell. |
+| `tokenIndexTo` | `number` | The index of the token to buy. |
+| `amount` | `BigNumberish` | The number of tokens to sell. |
 
 #### Returns
 
@@ -294,26 +292,430 @@ Returns the StableSwap Pool for a given local asset.
 
 #### Defined in
 
-[packages/agents/sdk/src/sdkPool.ts:216](https://github.com/connext/nxtp/blob/b4ba5008d/packages/agents/sdk/src/sdkPool.ts#L216)
+[packages/agents/sdk/src/sdkPool.ts:157](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L157)
 
----
+___
+
+### calculateSwapPriceImpact
+
+▸ **calculateSwapPriceImpact**(`domainId`, `amountX`, `tokenX`, `tokenY`): `Promise`<`BigNumber`\>
+
+Returns the price impact of a swap.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain id of the pool. |
+| `amountX` | `string` | The amount of tokens to swap. |
+| `tokenX` | `string` | The address of the token to swap from. |
+| `tokenY` | `string` | The address of the token to swap to. |
+
+#### Returns
+
+`Promise`<`BigNumber`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:310](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L310)
+
+___
+
+### calculateTokenAmount
+
+▸ **calculateTokenAmount**(`domainId`, `tokenAddress`, `amounts`, `isDeposit?`): `Promise`<`BigNumber`\>
+
+Returns the minimum LP token amount from deposits or withdrawals.
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` | The domain id of the pool. |
+| `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
+| `amounts` | `string`[] | `undefined` | The amounts of the tokens to deposit/withdraw. |
+| `isDeposit` | `boolean` | `true` | Whether this is a deposit or withdrawal. |
+
+#### Returns
+
+`Promise`<`BigNumber`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:181](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L181)
+
+___
+
+### calculateYield
+
+▸ **calculateYield**(`feesEarned`, `principal`, `days`): `Object`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `feesEarned` | `number` |
+| `principal` | `number` |
+| `days` | `number` |
+
+#### Returns
+
+`Object`
+
+| Name | Type |
+| :------ | :------ |
+| `apr` | `number` |
+| `apy` | `number` |
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:833](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L833)
+
+___
+
+### changeSignerAddress
+
+▸ **changeSignerAddress**(`signerAddress`): `Promise`<`void`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `signerAddress` | `string` |
+
+#### Returns
+
+`Promise`<`void`\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[changeSignerAddress](NxtpSdkShared.md#changesigneraddress)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:104](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L104)
+
+___
+
+### getAdopted
+
+▸ **getAdopted**(`domainId`, `tokenAddress`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:494](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L494)
+
+___
+
+### getAssetsData
+
+▸ **getAssetsData**(): `Promise`<`AssetData`[]\>
+
+#### Returns
+
+`Promise`<`AssetData`[]\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[getAssetsData](NxtpSdkShared.md#getassetsdata)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:96](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L96)
+
+___
+
+### getBlockNumberFromUnixTimestamp
+
+▸ **getBlockNumberFromUnixTimestamp**(`domainId`, `unixTimestamp`): `Promise`<`number`\>
+
+Finds the block closest to the desired timestamp.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain to search for the block. |
+| `unixTimestamp` | `number` | The unix time, in seconds. |
+
+#### Returns
+
+`Promise`<`number`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:117](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L117)
+
+___
+
+### getCanonicalTokenId
+
+▸ **getCanonicalTokenId**(`domainId`, `tokenAddress`): `Promise`<[`string`, `string`]\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<[`string`, `string`]\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[getCanonicalTokenId](NxtpSdkShared.md#getcanonicaltokenid)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:126](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L126)
+
+___
+
+### getDefaultDeadline
+
+▸ **getDefaultDeadline**(): `number`
+
+Returns the default deadline. Set to 1 hour from current time.
+
+#### Returns
+
+`number`
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:144](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L144)
+
+___
+
+### getLPTokenAddress
+
+▸ **getLPTokenAddress**(`domainId`, `tokenAddress`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:413](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L413)
+
+___
+
+### getLPTokenSupply
+
+▸ **getLPTokenSupply**(`domainId`, `lpTokenAddress`): `Promise`<`BigNumber`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `lpTokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`BigNumber`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:424](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L424)
+
+___
+
+### getPoolStats
+
+▸ **getPoolStats**(`domainId`, `tokenAddress`): `Promise`<`undefined` \| `IPoolStats`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`undefined` \| `IPoolStats`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:746](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L746)
+
+___
+
+### getPoolTokenAddress
+
+▸ **getPoolTokenAddress**(`domainId`, `tokenAddress`, `index`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+| `index` | `number` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:461](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L461)
+
+___
+
+### getPoolTokenBalance
+
+▸ **getPoolTokenBalance**(`domainId`, `tokenAddress`, `poolTokenAddress`): `Promise`<`BigNumber`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+| `poolTokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`BigNumber`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:449](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L449)
+
+___
+
+### getPoolTokenIndex
+
+▸ **getPoolTokenIndex**(`domainId`, `tokenAddress`, `poolTokenAddress`): `Promise`<`number`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+| `poolTokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`number`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:438](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L438)
+
+___
+
+### getRepresentation
+
+▸ **getRepresentation**(`domainId`, `tokenAddress`): `Promise`<`string`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:483](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L483)
+
+___
+
+### getTokenPrice
+
+▸ **getTokenPrice**(`tokenSymbol`): `Promise`<`any`\>
+
+Fetches the current price of a token.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `tokenSymbol` | `string` | The symbol for the token. |
+
+#### Returns
+
+`Promise`<`any`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:405](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L405)
+
+___
+
+### getTokenUserBalance
+
+▸ **getTokenUserBalance**(`domainId`, `tokenAddress`, `userAddress`): `Promise`<`BigNumber`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+| `userAddress` | `string` |
+
+#### Returns
+
+`Promise`<`BigNumber`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:431](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L431)
+
+___
 
 ### getUserPools
 
-▸ **getUserPools**(`domainId`, `userAddress`): `Promise`<{ `info`: `Pool` ; `lpTokenBalance`: `BigNumber` ; `poolTokenBalances`: `BigNumber`[] }[]\>
+▸ **getUserPools**(`domainId`, `userAddress`): `Promise`<{ `info`: `Pool` ; `lpTokenBalance`: `BigNumber` ; `poolTokenBalances`: `BigNumber`[]  }[]\>
 
 Returns the Pools that a user has LP tokens for.
 
 #### Parameters
 
-| Name          | Type     | Description                                   |
-| :------------ | :------- | :-------------------------------------------- |
-| `domainId`    | `string` | The domain id of the pool.                    |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain id of the pool. |
 | `userAddress` | `string` | The address of the user to get the pools for. |
 
 #### Returns
 
-`Promise`<{ `info`: `Pool` ; `lpTokenBalance`: `BigNumber` ; `poolTokenBalances`: `BigNumber`[] }[]\>
+`Promise`<{ `info`: `Pool` ; `lpTokenBalance`: `BigNumber` ; `poolTokenBalances`: `BigNumber`[]  }[]\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:714](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L714)
+
+___
 
 ### getVirtualPrice
 
@@ -321,14 +723,66 @@ Returns the Pools that a user has LP tokens for.
 
 #### Parameters
 
-| Name           | Type     |
-| :------------- | :------- |
-| `domainId`     | `string` |
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
 | `tokenAddress` | `string` |
 
 #### Returns
 
 `Promise`<`BigNumber`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:472](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L472)
+
+___
+
+### getYieldStatsForDay
+
+▸ **getYieldStatsForDay**(`domainId`, `tokenAddress`, `unixTimestamp`): `Promise`<`undefined` \| { `totalFeesFormatted`: `number` ; `totalLiquidityFormatted`: `number` ; `totalVolume`: `BigNumber` ; `totalVolumeFormatted`: `number`  }\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+| `unixTimestamp` | `number` |
+
+#### Returns
+
+`Promise`<`undefined` \| { `totalFeesFormatted`: `number` ; `totalLiquidityFormatted`: `number` ; `totalVolume`: `BigNumber` ; `totalVolumeFormatted`: `number`  }\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:762](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L762)
+
+___
+
+### parseConnextTransactionReceipt
+
+▸ **parseConnextTransactionReceipt**(`transactionReceipt`): `any`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `transactionReceipt` | `TransactionReceipt` |
+
+#### Returns
+
+`any`
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[parseConnextTransactionReceipt](NxtpSdkShared.md#parseconnexttransactionreceipt)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:108](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L108)
+
+___
 
 ### removeLiquidity
 
@@ -338,17 +792,23 @@ Returns the transaction request for removing liquidity from a pool.
 
 #### Parameters
 
-| Name           | Type       | Description                                           |
-| :------------- | :--------- | :---------------------------------------------------- |
-| `domainId`     | `string`   | The domain id of the pool.                            |
-| `tokenAddress` | `string`   | The address of local or adopted token.                |
-| `amount`       | `string`   | The amount of the token to swap.                      |
-| `minAmounts`   | `string`[] | The minimum acceptable amounts of each token to burn. |
-| `deadline?`    | `number`   | The deadline for the swap.                            |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain id of the pool. |
+| `tokenAddress` | `string` | The address of local or adopted token. |
+| `amount` | `string` | The amount of the token to swap. |
+| `minAmounts` | `string`[] | The minimum acceptable amounts of each token to burn. |
+| `deadline` | `number` | The deadline for the swap. |
 
 #### Returns
 
 `Promise`<`TransactionRequest`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkPool.ts:550](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L550)
+
+___
 
 ### swap
 
@@ -358,40 +818,20 @@ Returns the transaction request for performing a swap in a pool.
 
 #### Parameters
 
-| Name           | Type     | Default value | Description                                        |
-| :------------- | :------- | :------------ | :------------------------------------------------- |
-| `domainId`     | `string` | `undefined`   | The domain id of the pool.                         |
-| `tokenAddress` | `string` | `undefined`   | The address of local or adopted token.             |
-| `from`         | `string` | `undefined`   | The address of the token to sell.                  |
-| `to`           | `string` | `undefined`   | The address of the token to buy.                   |
-| `amount`       | `string` | `undefined`   | The amount of the selling token to swap.           |
-| `minDy`        | `number` | `0`           | The minimum amount of the buying token to receive. |
-| `deadline?`    | `number` | `undefined`   | The deadline for the swap.                         |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` | The domain id of the pool. |
+| `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
+| `from` | `string` | `undefined` | The address of the token to sell. |
+| `to` | `string` | `undefined` | The address of the token to buy. |
+| `amount` | `string` | `undefined` | The amount of the selling token to swap. |
+| `minDy` | `number` | `0` | The minimum amount of the buying token to receive. |
+| `deadline` | `number` | `undefined` | The deadline for the swap. |
 
 #### Returns
 
 `Promise`<`TransactionRequest`\>
 
-### create
+#### Defined in
 
-▸ `Static` **create**(`_config`, `_logger?`, `_chainData?`, `_chainReader?`): `Promise`<`NxtpSdkPool`\>
-
-#### Parameters
-
-| Name                      | Type                                                                                                                                                                                                                                                          |
-| :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `_config`                 | `Object`                                                                                                                                                                                                                                                      |
-| `_config.cartographerUrl` | `undefined` \| `string`                                                                                                                                                                                                                                       |
-| `_config.chains`          | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
-| `_config.environment`     | `undefined` \| `"staging"` \| `"production"`                                                                                                                                                                                                                  |
-| `_config.logLevel`        | `undefined` \| `"fatal"` \| `"error"` \| `"warn"` \| `"info"` \| `"debug"` \| `"trace"` \| `"silent"`                                                                                                                                                         |
-| `_config.maxSlippage`     | `undefined` \| `number`                                                                                                                                                                                                                                       |
-| `_config.network`         | `undefined` \| `"testnet"` \| `"mainnet"` \| `"local"`                                                                                                                                                                                                        |
-| `_config.signerAddress`   | `undefined` \| `string`                                                                                                                                                                                                                                       |
-| `_logger?`                | `Logger`                                                                                                                                                                                                                                                      |
-| `_chainData?`             | `Map`<`string`, `ChainData`\>                                                                                                                                                                                                                                 |
-| `_chainReader?`           | `ChainReader`                                                                                                                                                                                                                                                 |
-
-#### Returns
-
-`Promise`<`NxtpSdkPool`\>
+[packages/agents/sdk/src/sdkPool.ts:587](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkPool.ts#L587)

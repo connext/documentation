@@ -3,45 +3,126 @@ sidebar_position: 1
 title: Base
 id: sdk-base
 ---
+# Class: NxtpSdkBase
 
-# NxtpSdkBase
+**`Classdesc`**
 
-Lightweight class to facilitate interaction with the Connext contract on configured chains.
+SDK class encapsulating bridge functions.
 
-## Constructors
+## Hierarchy
 
-### constructor
+- [`NxtpSdkShared`](NxtpSdkShared.md)
 
-• **new NxtpSdkBase**(`config`, `logger`, `chainData`)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `config` | `Object` |
-| `config.cartographerUrl` | `undefined` \| `string` |
-| `config.chains` | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
-| `config.environment` | `undefined` \| ``"staging"`` \| ``"production"`` |
-| `config.logLevel` | `undefined` \| ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` |
-| `config.maxSlippage` | `undefined` \| `number` |
-| `config.network` | `undefined` \| ``"testnet"`` \| ``"mainnet"`` \| ``"local"`` |
-| `config.signerAddress` | `undefined` \| `string` |
-| `logger` | `Logger` |
-| `chainData` | `Map`<`string`, `ChainData`\> |
-
----
+  ↳ **`NxtpSdkBase`**
 
 ## Methods
 
+### create
+
+▸ `Static` **create**(`_config`, `_logger?`, `_chainData?`): `Promise`<[`NxtpSdkBase`](NxtpSdkBase.md)\>
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :----- |
+| `_config` | `Object` | Main config object. 
+| `_config.network` | ``"testnet"`` \| ``"mainnet"`` | Whether to connect to mainnet or testnet deployments. 
+| `_config.signerAddress` | `string` | The signer address used for write operations.
+| `_config.chains` | `Object` | Contains mappings of domain ID to providers. See example below.
+
+
+Example `_config`:
+```typescript
+{
+  "network": "mainnet",
+  "signerAddress": "<signer-address>",
+  "chains": {
+    "6648936": { // Ethereum
+      "providers": ["https://rpc.ankr.com/eth"]
+    },
+    "1869640809": { // Optimism
+      "providers": ["https://rpc.ankr.com/optimism"]
+    },
+    "1886350457": { // Polygon
+      "providers": ["https://polygon-rpc.com"]
+    }
+  },
+}
+```
+
+#### Returns
+
+`Promise`<[`NxtpSdkBase`](NxtpSdkBase.md)\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkBase.ts:42](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkBase.ts#L42)
+
+___
+
+### xcall
+
+▸ **xcall**(`args`): `Promise`<`TransactionRequest`\>
+
+Check, sanitize, and format the XCall and encode calldata. Returns an ethers TransactionRequest object, ready
+to be sent to an RPC provider.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `args` | `NxtpSdkXCallArgs` | XCall arguments object. Some fields are optional and have default values provided. |
+| `args.origin` | `string`   | The origin domain ID.
+| `args.destination` | `string`   | The destination domain ID.
+| `args.to` | `string`   | Address receiving funds or target contract.
+| `args.asset` | `string`   | Address of the token contract.
+| `args.delegate` | `string`   | Address allowed to execute transaction on destination in addition to relayers.
+| `args.amount` | `string`   | Amount of tokens to transfer.
+| `args.slippage` | `string`   | Maximum acceptable slippage in BPS.
+| `args.callData` | `string`   | Calldata to execute (can be empty: "0x").
+| `args.relayerFee` | `string`   |  Fee paid to relayers (optional for testnet).
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+providers.TransactionRequest object.
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkBase.ts:67](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkBase.ts#L67)
+
+___
+
+### wrapEthAndXCall
+
+▸ **wrapEthAndXCall**(`args`): `Promise`<`TransactionRequest`\>
+
+#### Parameters
+
+[Same as xcall](#parameters-1)
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+providers.TransactionRequest object.
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkBase.ts:302](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkBase.ts#L302)
+
+___
+
 ### approveIfNeeded
 
-▸ **approveIfNeeded**(`domain`, `assetId`, `amount`, `infiniteApprove?`): `Promise`<`undefined` \| `TransactionRequest`\>
+▸ **approveIfNeeded**(`domainId`, `assetId`, `amount`, `infiniteApprove?`): `Promise`<`undefined` \| `TransactionRequest`\>
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `domain` | `string` | `undefined` |
+| `domainId` | `string` | `undefined` |
 | `assetId` | `string` | `undefined` |
 | `amount` | `string` | `undefined` |
 | `infiniteApprove` | `boolean` | `true` |
@@ -49,6 +130,16 @@ Lightweight class to facilitate interaction with the Connext contract on configu
 #### Returns
 
 `Promise`<`undefined` \| `TransactionRequest`\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[approveIfNeeded](NxtpSdkShared.md#approveifneeded)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:53](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L53)
+
+___
 
 ### bumpTransfer
 
@@ -59,13 +150,46 @@ Lightweight class to facilitate interaction with the Connext contract on configu
 | Name | Type |
 | :------ | :------ |
 | `params` | `Object` |
-| `params.domain` | `string` |
+| `params.domainId` | `string` |
 | `params.relayerFee` | `string` |
 | `params.transferId` | `string` |
 
 #### Returns
 
 `Promise`<`TransactionRequest`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkBase.ts:156](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkBase.ts#L156)
+
+___
+
+### calculateCanonicalKey
+
+▸ **calculateCanonicalKey**(`domainId`, `tokenId`): `string`
+
+Returns the hash of the canonical id + domain.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The canonical domain id of the token. |
+| `tokenId` | `string` | - |
+
+#### Returns
+
+`string`
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[calculateCanonicalKey](NxtpSdkShared.md#calculatecanonicalkey)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:122](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L122)
+
+___
 
 ### changeSignerAddress
 
@@ -80,6 +204,16 @@ Lightweight class to facilitate interaction with the Connext contract on configu
 #### Returns
 
 `Promise`<`void`\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[changeSignerAddress](NxtpSdkShared.md#changesigneraddress)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:104](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L104)
+
+___
 
 ### estimateRelayerFee
 
@@ -101,44 +235,73 @@ Lightweight class to facilitate interaction with the Connext contract on configu
 
 `Promise`<`BigNumber`\>
 
-### xcall
+#### Defined in
 
-▸ **xcall**(`args`): `Promise`<`TransactionRequest`\>
+[packages/agents/sdk/src/sdkBase.ts:195](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkBase.ts#L195)
 
-Check, sanitize, and format the XCall and encode calldata. Returns an ethers TransactionRequest object, ready
-to be sent to an RPC provider.
+___
 
-#### Parameters
+### getAssetsData
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `args` | `Omit`<{ `amount`: `string` ; `asset`: `string` ; `callData`: `string` ; `delegate`: `string` ; `destination`: `string` ; `slippage`: `string` ; `to`: `string`  }, ``"delegate"`` \| ``"callData"``\> & `Partial`<{ `amount`: `string` ; `asset`: `string` ; `callData`: `string` ; `delegate`: `string` ; `destination`: `string` ; `slippage`: `string` ; `to`: `string`  }\> & { `origin`: `string` ; `relayerFee?`: `string`  } | XCall arguments. Some fields in args.params are optional and have default values provided. |
+▸ **getAssetsData**(): `Promise`<`AssetData`[]\>
 
 #### Returns
 
-`Promise`<`TransactionRequest`\>
+`Promise`<`AssetData`[]\>
 
-providers.TransactionRequest object.
+#### Inherited from
 
-### create
+[NxtpSdkShared](NxtpSdkShared.md).[getAssetsData](NxtpSdkShared.md#getassetsdata)
 
-▸ `Static` **create**(`_config`, `_logger?`, `_chainData?`): `Promise`<`NxtpSdkBase`\>
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:96](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L96)
+
+___
+
+### getCanonicalTokenId
+
+▸ **getCanonicalTokenId**(`domainId`, `tokenAddress`): `Promise`<[`string`, `string`]\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `_config` | `Object` |
-| `_config.cartographerUrl` | `undefined` \| `string` |
-| `_config.chains` | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
-| `_config.environment` | `undefined` \| ``"staging"`` \| ``"production"`` |
-| `_config.logLevel` | `undefined` \| ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` |
-| `_config.maxSlippage` | `undefined` \| `number` |
-| `_config.network` | `undefined` \| ``"testnet"`` \| ``"mainnet"`` \| ``"local"`` |
-| `_config.signerAddress` | `undefined` \| `string` |
-| `_logger?` | `Logger` |
-| `_chainData?` | `Map`<`string`, `ChainData`\> |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
 
 #### Returns
 
-`Promise`<`NxtpSdkBase`\>
+`Promise`<[`string`, `string`]\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[getCanonicalTokenId](NxtpSdkShared.md#getcanonicaltokenid)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:126](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L126)
+
+___
+
+### parseConnextTransactionReceipt
+
+▸ **parseConnextTransactionReceipt**(`transactionReceipt`): `any`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `transactionReceipt` | `TransactionReceipt` |
+
+#### Returns
+
+`any`
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[parseConnextTransactionReceipt](NxtpSdkShared.md#parseconnexttransactionreceipt)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:108](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L108)

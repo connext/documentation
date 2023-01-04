@@ -1,37 +1,119 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
 title: Utils
 id: sdk-utils
 ---
 
-# NxtpSdkUtils
+# Class: NxtpSdkUtils
 
-Contains general helper functions.
+**`Classdesc`**
 
-## Constructors
+SDK class encapsulating utility functions.
 
-### constructor
+## Hierarchy
 
-• **new NxtpSdkUtils**(`config`, `logger`, `chainData`)
+- [`NxtpSdkShared`](NxtpSdkShared.md)
+
+  ↳ **`NxtpSdkUtils`**
+
+## Methods
+
+### create
+
+▸ `Static` **create**(`_config`, `_logger?`, `_chainData?`): `Promise`<[`NxtpSdkBase`](NxtpSdkBase.md)\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `config` | `Object` |
-| `config.cartographerUrl` | `undefined` \| `string` |
-| `config.chains` | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
-| `config.environment` | `undefined` \| ``"staging"`` \| ``"production"`` |
-| `config.logLevel` | `undefined` \| ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` |
-| `config.maxSlippage` | `undefined` \| `number` |
-| `config.network` | `undefined` \| ``"testnet"`` \| ``"mainnet"`` \| ``"local"`` |
-| `config.signerAddress` | `undefined` \| `string` |
-| `logger` | `Logger` |
-| `chainData` | `Map`<`string`, `ChainData`\> |
+| Name | Type | Description |
+| :------ | :------ | :----- |
+| `_config` | `Object` | Main config object. 
+| `_config.network` | ``"testnet"`` \| ``"mainnet"`` | Whether to connect to mainnet or testnet deployments. 
+| `_config.signerAddress` | `string` | The signer address used for write operations.
+| `_config.chains` | `Object` | Contains mappings of domain ID to providers. See example below.
 
----
 
-## Methods
+Example `_config`:
+```typescript
+{
+  "network": "mainnet",
+  "signerAddress": "<signer-address>",
+  "chains": {
+    "6648936": { // Ethereum
+      "providers": ["https://rpc.ankr.com/eth"]
+    },
+    "1869640809": { // Optimism
+      "providers": ["https://rpc.ankr.com/optimism"]
+    },
+    "1886350457": { // Polygon
+      "providers": ["https://polygon-rpc.com"]
+    }
+  },
+}
+```
+
+#### Returns
+
+`Promise`<[`NxtpSdkUtils`](NxtpSdkUtils.md)\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkUtils.ts:20](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkUtils.ts#L20)
+
+___
+
+### approveIfNeeded
+
+▸ **approveIfNeeded**(`domainId`, `assetId`, `amount`, `infiniteApprove?`): `Promise`<`undefined` \| `TransactionRequest`\>
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` |
+| `assetId` | `string` | `undefined` |
+| `amount` | `string` | `undefined` |
+| `infiniteApprove` | `boolean` | `true` |
+
+#### Returns
+
+`Promise`<`undefined` \| `TransactionRequest`\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[approveIfNeeded](NxtpSdkShared.md#approveifneeded)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:53](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L53)
+
+___
+
+### calculateCanonicalKey
+
+▸ **calculateCanonicalKey**(`domainId`, `tokenId`): `string`
+
+Returns the hash of the canonical id + domain.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The canonical domain id of the token. |
+| `tokenId` | `string` | - |
+
+#### Returns
+
+`string`
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[calculateCanonicalKey](NxtpSdkShared.md#calculatecanonicalkey)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:122](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L122)
+
+___
 
 ### changeSignerAddress
 
@@ -47,6 +129,59 @@ Contains general helper functions.
 
 `Promise`<`void`\>
 
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[changeSignerAddress](NxtpSdkShared.md#changesigneraddress)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:104](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L104)
+
+___
+
+### getAssetsData
+
+▸ **getAssetsData**(): `Promise`<`AssetData`[]\>
+
+#### Returns
+
+`Promise`<`AssetData`[]\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[getAssetsData](NxtpSdkShared.md#getassetsdata)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:96](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L96)
+
+___
+
+### getCanonicalTokenId
+
+▸ **getCanonicalTokenId**(`domainId`, `tokenAddress`): `Promise`<[`string`, `string`]\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<[`string`, `string`]\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[getCanonicalTokenId](NxtpSdkShared.md#getcanonicaltokenid)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:126](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L126)
+
+___
+
 ### getRoutersData
 
 ▸ **getRoutersData**(): `Promise`<`any`\>
@@ -54,6 +189,12 @@ Contains general helper functions.
 #### Returns
 
 `Promise`<`any`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkUtils.ts:38](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkUtils.ts#L38)
+
+___
 
 ### getTransferById
 
@@ -69,6 +210,12 @@ Contains general helper functions.
 
 `Promise`<`any`\>
 
+#### Defined in
+
+[packages/agents/sdk/src/sdkUtils.ts:153](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkUtils.ts#L153)
+
+___
+
 ### getTransferByTransactionHash
 
 ▸ **getTransferByTransactionHash**(`transactionHash`): `Promise`<`any`\>
@@ -82,6 +229,12 @@ Contains general helper functions.
 #### Returns
 
 `Promise`<`any`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkUtils.ts:165](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkUtils.ts#L165)
+
+___
 
 ### getTransfers
 
@@ -99,6 +252,12 @@ Contains general helper functions.
 #### Returns
 
 `Promise`<`any`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkUtils.ts:76](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkUtils.ts#L76)
+
+___
 
 ### getTransfersByRouter
 
@@ -119,6 +278,12 @@ Contains general helper functions.
 
 `Promise`<`any`\>
 
+#### Defined in
+
+[packages/agents/sdk/src/sdkUtils.ts:123](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkUtils.ts#L123)
+
+___
+
 ### getTransfersByStatus
 
 ▸ **getTransfersByStatus**(`params`): `Promise`<`any`\>
@@ -136,6 +301,12 @@ Contains general helper functions.
 #### Returns
 
 `Promise`<`any`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkUtils.ts:97](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkUtils.ts#L97)
+
+___
 
 ### getTransfersByUser
 
@@ -156,6 +327,12 @@ Contains general helper functions.
 
 `Promise`<`any`\>
 
+#### Defined in
+
+[packages/agents/sdk/src/sdkUtils.ts:46](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkUtils.ts#L46)
+
+___
+
 ### parseConnextTransactionReceipt
 
 ▸ **parseConnextTransactionReceipt**(`transactionReceipt`): `any`
@@ -170,25 +347,10 @@ Contains general helper functions.
 
 `any`
 
-### create
+#### Inherited from
 
-▸ `Static` **create**(`_config`, `_logger?`, `_chainData?`): `Promise`<`NxtpSdkUtils`\>
+[NxtpSdkShared](NxtpSdkShared.md).[parseConnextTransactionReceipt](NxtpSdkShared.md#parseconnexttransactionreceipt)
 
-#### Parameters
+#### Defined in
 
-| Name | Type |
-| :------ | :------ |
-| `_config` | `Object` |
-| `_config.cartographerUrl` | `undefined` \| `string` |
-| `_config.chains` | `Record`<`string`, { gasStations?: string[] \| undefined; confirmations?: number \| undefined; chainId?: number \| undefined; deployments?: { stableSwap?: string \| undefined; connext: string; } \| undefined; assets: { ...; }[]; providers: string[]; }\> |
-| `_config.environment` | `undefined` \| ``"staging"`` \| ``"production"`` |
-| `_config.logLevel` | `undefined` \| ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` |
-| `_config.maxSlippage` | `undefined` \| `number` |
-| `_config.network` | `undefined` \| ``"testnet"`` \| ``"mainnet"`` \| ``"local"`` |
-| `_config.signerAddress` | `undefined` \| `string` |
-| `_logger?` | `Logger` |
-| `_chainData?` | `Map`<`string`, `ChainData`\> |
-
-#### Returns
-
-`Promise`<`NxtpSdkUtils`\>
+[packages/agents/sdk/src/sdkShared.ts:108](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L108)

@@ -1,0 +1,144 @@
+---
+sidebar_position: 6
+title: Shared
+id: sdk-shared
+---
+
+# Class: NxtpSdkShared
+
+**`Classdesc`**
+
+Base class to facilitate on-chain interactions with Connext.
+
+## Hierarchy
+
+- **`NxtpSdkShared`**
+
+  ↳ [`NxtpSdkBase`](NxtpSdkBase.md)
+
+  ↳ [`NxtpSdkRouter`](NxtpSdkRouter.md)
+
+  ↳ [`NxtpSdkPool`](NxtpSdkPool.md)
+
+  ↳ [`NxtpSdkUtils`](NxtpSdkUtils.md)
+
+## Methods
+
+### approveIfNeeded
+
+▸ **approveIfNeeded**(`domainId`, `assetId`, `amount`, `infiniteApprove?`): `Promise`<`undefined` \| `TransactionRequest`\>
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` |
+| `assetId` | `string` | `undefined` |
+| `amount` | `string` | `undefined` |
+| `infiniteApprove` | `boolean` | `true` |
+
+#### Returns
+
+`Promise`<`undefined` \| `TransactionRequest`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:53](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L53)
+
+___
+
+### calculateCanonicalKey
+
+▸ **calculateCanonicalKey**(`domainId`, `tokenId`): `string`
+
+Returns the hash of the canonical id + domain.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The canonical domain id of the token. |
+| `tokenId` | `string` | - |
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:122](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L122)
+
+___
+
+### changeSignerAddress
+
+▸ **changeSignerAddress**(`signerAddress`): `Promise`<`void`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `signerAddress` | `string` |
+
+#### Returns
+
+`Promise`<`void`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:104](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L104)
+
+___
+
+### getAssetsData
+
+▸ **getAssetsData**(): `Promise`<`AssetData`[]\>
+
+#### Returns
+
+`Promise`<`AssetData`[]\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:96](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L96)
+
+___
+
+### getCanonicalTokenId
+
+▸ **getCanonicalTokenId**(`domainId`, `tokenAddress`): `Promise`<[`string`, `string`]\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<[`string`, `string`]\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:126](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L126)
+
+___
+
+### parseConnextTransactionReceipt
+
+▸ **parseConnextTransactionReceipt**(`transactionReceipt`): `any`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `transactionReceipt` | `TransactionReceipt` |
+
+#### Returns
+
+`any`
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:108](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L108)
