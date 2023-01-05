@@ -405,7 +405,7 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
 
 <details>
 
-  <summary>Production Testnet Contracts</summary>
+  <summary> Testnet Contracts</summary>
 
   ### Goerli 
   
