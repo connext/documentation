@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 id: spinning-up
 ---
 # Spinning Up
@@ -237,19 +237,19 @@ wget -O config.json https://raw.githubusercontent.com/martynovalek/NXTP-Router-s
 read -p "Insert your Project ID from Infura: " PROJECT_ID
 ```
 ```
-sed -i 's/project_ID/'${PROJECT_ID}'/g' $HOME/connext/nxtp-router-docker-compose/config.json
+sed -i 's/project_ID/'${PROJECT_ID}'/g' $HOME/connext/router-docker-compose/config.json
 ```
 
 **7. Run your Router**<br/>
 ```
-cd $HOME/connext/nxtp-router-docker-compose
+cd $HOME/connext/router-docker-compose
 docker-compose down
 docker-compose up -d
 ```
 
 **Check logs:**
 ```
-cd $HOME/connext/nxtp-router-docker-compose
+cd $HOME/connext/router-docker-compose
 docker logs --follow --tail 100 router
 ```
 
@@ -292,7 +292,7 @@ sudo systemctl status docker
 
 #### Delete Router and everything relating to it:
 ```
-cd ~/connext/nxtp-router-docker-compose
+cd ~/connext/router-docker-compose
 docker-compose down
 docker system prune -a
 cd && rm -rf $HOME/connext
@@ -304,7 +304,7 @@ You can check the latest version here: https://github.com/connext/nxtp/releases
 **Check current version of Router:**<br/>
 The output will show you which current version
 ```
-CURRENT=$(cat $HOME/connext/nxtp-router-docker-compose/.env | grep ROUTER_VERSION | awk -F '=' '{print$2}') && echo $CURRENT
+CURRENT=$(cat $HOME/connext/router-docker-compose/.env | grep ROUTER_VERSION | awk -F '=' '{print$2}') && echo $CURRENT
 ```
 
 **Check new version of Router:**<br/>
@@ -316,17 +316,17 @@ NEW="$(curl -fsSLI -o /dev/null -w %{url_effective} https://github.com/connext/n
 **If you need to update run the commands below:**<br/>
 Modify the `.env` file:
 ```
-sed -i.bak -e "s/$CURRENT/$NEW/" $HOME/connext/nxtp-router-docker-compose/.env
+sed -i.bak -e "s/$CURRENT/$NEW/" $HOME/connext/router-docker-compose/.env
 ```
 
 **Ensure `.env` file has a new version:**
 ```
-cat $HOME/connext/nxtp-router-docker-compose/.env | grep ROUTER_VERSION | awk -F '=' '{print$2}'
+cat $HOME/connext/router-docker-compose/.env | grep ROUTER_VERSION | awk -F '=' '{print$2}'
 ```
 
 **Now update the stack and check logs:**
 ```
-cd $HOME/connext/nxtp-router-docker-compose
+cd $HOME/connext/router-docker-compose
 docker-compose down
 docker-compose pull
 docker-compose up -d
