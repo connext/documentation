@@ -50,6 +50,8 @@ For that we will use the nodes provided by the service [Infura](https://infura.
 ---
 # Manual Setup
 
+Refer to [https://github.com/connext/router-docker-compose](https://github.com/connext/router-docker-compose) for source code and more info!
+
 **1. Update and install packages**
 ```
 sudo apt update && sudo apt upgrade -y
