@@ -1,4 +1,7 @@
-# Guides
+---
+sidebar_position: 3
+---
+# Community Guides
 
 ## Articles
 

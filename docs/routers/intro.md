@@ -3,11 +3,7 @@ sidebar_position: 1
 id: routers-intro
 ---
 
-# Introduction
-
-## What are Routers?
-
-Routers are one of the two liquidity providers used in the Connext Network. The router’s role is essential; to provide instant liquidity for the user in the destination chain. Routers are given a fee based on the transaction size in return. Routers then claim the spent fund plus the fee from the AMB bridge after the latency period ends.
+# Basics
 
 ## How do they work?
 
@@ -84,5 +80,3 @@ Stableswaps AMMs (Automated Market Maker for assets that value tends to be pegge
 5. [A summary of how the Connext Network work. (Twitter Thread)](https://mobile.twitter.com/ConnextNetwork/status/1530611831785541632) 
 6. [Modular Interoperability - Layne Haber (Youtube)](https://www.youtube.com/watch?v=pnw6x_v0iiY) 
 7. [Trustless Two-Way Bridges With Side Chains By Halting (ETHResearch)](https://ethresear.ch/t/trustless-two-way-bridges-with-side-chains-by-halting/5728) 
-
----
