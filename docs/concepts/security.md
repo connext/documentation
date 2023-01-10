@@ -1,9 +1,10 @@
 ---
 sidebar_position: 5
-id: "bridge-security"
+id: "security"
+show: false
 ---
 
-# Bridge Security
+# Security
 
 ## Types of Security
 
