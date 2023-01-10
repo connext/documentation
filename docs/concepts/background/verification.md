@@ -1,13 +1,10 @@
 ---
-sidebar_position: 4
-id: "background"
+sidebar_position: 2
+id: "verification-mechanisms"
 ---
 
-# Bridge Taxonomy
+# Message Verification
 
-## What is a Bridge?
-
-A bridge (or interoperability network) is a system that relays assets and/or data between blockchains.
 
 ## The Bridging Landscape
 
