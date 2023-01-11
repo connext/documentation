@@ -19,10 +19,40 @@ Domain IDs are unique to every bridge and differ from Chain IDs. Connext's `xcal
     <th>Status</th>
   </tr>
   <tr>
-    <td>SOON™</td>
-    <td>SOON™</td>
-    <td>SOON™</td>
-    <td>SOON™</td>
+    <td>Ethereum Mainnet</td>
+    <td>1</td>
+    <td>6648936</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <td>Polygon</td>
+    <td>137</td>
+    <td>1886350457</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <td>Optimism</td>
+    <td>10</td>
+    <td>1869640809</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <td>Arbitrum One</td>
+    <td>42161</td>
+    <td>1634886255</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <td>Gnosis Chain</td>
+    <td>100</td>
+    <td>6778479</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <td>BNB Chain</td>
+    <td>56</td>
+    <td>6450786</td>
+    <td>✅</td>
   </tr>
 </table>
 
@@ -57,6 +87,6 @@ Domain IDs are unique to every bridge and differ from Chain IDs. Connext's `xcal
     <td>Arbitrum-Goerli</td>
     <td>421613</td>
     <td>1734439522</td>
-    <td>SOON™</td>
+    <td>✅</td>
   </tr>
 </table>
