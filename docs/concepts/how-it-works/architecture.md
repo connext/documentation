@@ -3,7 +3,7 @@ sidebar_position: 2
 id: "architecture"
 ---
 
-# Connext Architecture
+# Architecture
 
 The Connext protocol is composed of a set of smart contracts and offchain agents.
 
@@ -12,6 +12,7 @@ The Connext protocol is composed of a set of smart contracts and offchain agents
 Connext's smart contracts are the interfaces between the protocol and the wide gamut of different users in the ecosystem. There are contracts for handling `xcall`, managing asset registration, and provisioning liquidity for routers and stableswap LPs. 
 
 The full contract stack consists of the following components.
+
 ### Connext
 
 Dispatches and handles messages related to sending funds across chains. Custodies funds for canonical assets, fast liquidity, and stable swaps. 
