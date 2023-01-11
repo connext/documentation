@@ -89,7 +89,7 @@ PRIVATE_KEY=YOUR-PRIVATE-KEY-HERE
 
 The source contract initiates the cross-chain operation with `xcall` and passes the encoded greeting into the call. All `xcall` params are detailed [here](./reference/contracts/calls#xcall).
 
-Notice the token that is passed in is the TEST token on Goerli. You can read more about token flavors and why they matter [here](../core-concepts/faq/#what-are-token-flavors).
+Notice the token that is passed in is the TEST token on Goerli. You can read more about token flavors and why they matter [here](../concepts/faq/#what-are-token-flavors).
 
 Note that in this contract, we're defining a constructor that takes in the address of the deployed Connext diamond contract on the same chain that this contract will be deployed to. Find the list of all Connext diamond contracts [here](https://docs.connext.network/resources/deployments).
 
@@ -347,7 +347,7 @@ Let's talk about the different parameters.
 
     However, we're paying 0 fees here! Only because on testnet, our relayers are not taking fees.
 
-    :::note
+    :::tip
     As a xApp developer, you have some tools available to estimate what this `relayerFee` should be. Check out the guide on [Estimating Fees](./guides/estimating-fees).
     :::
 

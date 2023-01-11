@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 id: authentication
 ---
 
@@ -53,4 +53,4 @@ You can find a full example of this at [Authenticated Hello](../examples/authent
 
 ## Caveats
 
-Authenticated calls are a crucial feature for xApps but in order to validate data transferred between chains, Connext must allow *some* time to elapse before accepting messages as authenticated on destination chains. This latency is both a drawback and a security mechanism of [optimistic bridges](../../core-concepts/background#optimistic-bridges). 
+Authenticated calls are a crucial feature for xApps but in order to validate data transferred between chains, Connext must allow *some* time to elapse before accepting messages as authenticated on destination chains. This latency is both a drawback and a security mechanism of [optimistic bridges](../../concepts/background/verification.md#optimistic). 
