@@ -30,10 +30,10 @@ import {
 
 export const Actions = [
   {
-    title: "Core Concepts",
+    title: "Concepts",
     href: "#",
     icon: InformationCircleIcon,
-    to: "./core-concepts/understanding-connext",
+    to: "./concepts/what-is-connext",
     text: `Review core concepts of bridging and the Connext Protocol.`,
   },
   {
