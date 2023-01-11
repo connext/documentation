@@ -1,30 +1,19 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 id: spinning-up
 ---
-# Guides for Spinning Up a Connext Router
+# Spinning Up
 
 ![image](https://user-images.githubusercontent.com/88688304/178145701-0447ede1-b90a-4d9a-ae0f-dd588a6b34e5.png)
 
-## Automatic script, manual installing commands, liquidity providing.
+## Checklist for Running a Router
 
-#### What is in:
-+ Using the automatic script you can spin up a router from scratch or upgrade to the latest or another one version you like to. 
-<img width="700" alt="image" src="https://user-images.githubusercontent.com/88688304/178146039-058cacdc-13cb-4bc1-83b8-9ab65dbb4b2a.png"/>
-
-| №           | Menu | Detail | 
-| ------------ | :--------: | :--------: | 
-| 1            | Install + Auto PKey | Automatic setup router and generate private key| 
-| 2            | Install + Your PKey | Automatic setup router with your private key | 
-| 3            | Auto Upgrade | Auto upgrade router to the latest released version | 
-| 4            | Manual Upgrade | Manual upgrade router version |  
-| 5            | Backup PKey | Backup and show your private key | 
-| 6            | Delete | Delete Router and everything relating to it |  
-| 7            | Check Version | Checking latest released Router version, latest docker image and your current version | 
-| 8            | Quit | Quit on menu | 
-
-+ Using manual installing commands you can understand exactly how the installation process step by step works.
-+ Add liquidity to your router and take part in the testnet.
+- [Spin up the router](./spinning-up) and [configure](./Reference/configuration) for testnets.
+- [Provide liquidity](./liquidity) and gas fees on testnets.
+- Test the router on testnets.
+- Change configuration to mainnets (use a different private key!), or spin up a new mainnet router.
+- Provide liquidity on mainnets.
+- [Monitor router logs](./spinning-up#view-logs).
 
 ----
 ## :warning: Requirements
@@ -40,7 +29,7 @@ You can create it in Metamask extention or get it automatically during installat
 
 2. **Setup provider endpoints.** You have to add it to `config.json` file to use your own endpoints.
 For that we will use the nodes provided by the service [Infura](https://infura.io/). 
-> You can use also [blastapi.io](https://blastapi.io) as RPC privider to get endpoints for almost any network ([the guide how to get it](https://medium.com/@alexzhurba/adding-rpcs-for-connext-36094191ae4f)).
+> You can use also [blastapi.io](https://blastapi.io) as RPC privider to get endpoints for almost any network ([the guide how to get it](https://medium.com/@alexzhurba/adding-rpcs-for-connext-36094191ae4f)). Many other RPC provider services exist as well.
 
   2.1 Register at [infura.io](https://infura.io/) and create new project:
   
@@ -58,20 +47,10 @@ For that we will use the nodes provided by the service [Infura](https://infura.
 
 **Keep this data handy, you will need it for further installation**
 
-# Quick router setup
-Copy and paste this code to run script in your terminal.<br/>
-> Select install menu to setup Router and follow instructions.
-> During the installation you will need to insert the private key from Metamask (not your public address), and the project ID from Infura.
-
-```
-wget -q -O nxtp-router.sh https://raw.githubusercontent.com/martynovalek/NXTP-Router-setup/main/Full%20version/nxtp-setup.sh && chmod +x nxtp-router.sh && . <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/miscellaneous/insert_variable.sh) -n router_menu -v "cd $HOME; sudo /bin/bash nxtp-router.sh" -a && router_menu
-```
-The script will add a command to the system to view the logs as a variable.<br/>
-- To **view logs** use `router_log`
-- To **open menu** use `router_menu`
-
 ---
-# Manual install
+# Manual Setup
+
+Refer to [https://github.com/connext/router-docker-compose](https://github.com/connext/router-docker-compose) for source code and more info!
 
 **1. Update and install packages**
 ```
@@ -98,18 +77,12 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 ```
 cd $HOME
 mkdir -p connext && cd connext
-git clone https://github.com/connext/nxtp-router-docker-compose.git
-cd $HOME/connext/nxtp-router-docker-compose
-git checkout amarok
+git clone https://github.com/connext/router-docker-compose.git
+cd $HOME/connext/router-docker-compose
 ```
 
 **Get and pull the latest released Router version**
-> You can check the latest version here: https://github.com/connext/nxtp/releases
-
-```
-LATEST="$(curl -fsSLI -o /dev/null -w %{url_effective} https://github.com/connext/nxtp/releases/latest | awk 'BEGIN{FS="v"} {print $2}')" && echo $LATEST
-docker pull ghcr.io/connext/router:$LATEST
-```
+> The latest router version will be posted in the Connext `routers` Discord channel. Please contact a team member if you are not part of this channel.
 
 ***
 ## :warning: Basic configuration
@@ -129,7 +102,7 @@ Create a `.env` file in the root directory of the repository based on the `env.e
 
 Modify the following environment variables:
 
-* `ROUTER_VERSION` - The version of the router to use (e.g. `0.2.0-alpha.16`). See the [releases page](https://github.com/connext/nxtp/releases) for the latest released version.
+* `ROUTER_VERSION` - The version of the router to use (e.g. `sha-a1b8465`). See the `routers` private channel in the Connext Discord for the latest release. DO NOT USE `latest` tag as this is experimental code!
 * `ROUTER_EXTERNAL_PORT` - Exposed port of the router. Remember to not expose this port to the public.
 * `GRAFANA_EXTERNAL_PORT` - Exposed port of the Grafana dashboard.
 * `LOGDNA_KEY` - This key is used by logna container. You can get this key by sign up [here](https://app.logdna.com/)
@@ -144,53 +117,118 @@ Set up [Web3Signer](https://docs.web3signer.consensys.net/en/latest/) config fil
 
 ### Router Config
 
-Create a `config.json` file based on the `config.example.json` file. At minumum, change the following values:
+Create a `config.json` file based on the `config.example.json` file. At minumum, change or confirm the following values:
 
-- `sequencerUrl` - The URL of the Sequencer node.
-- `redis` - The Redis instance to use.
-- `server` - Internal HTTP server config (`adminToken`).
-- `chains` - Add your desired chains, assets, and provider URLs. Use [Domain IDs](./developers/testing-against-testnet#domain-ids). instead of `chainIds`. For more domain ids of chains, please check https://raw.githubusercontent.com/connext/chaindata/main/crossChain.json . Make sure you use multiple providers for each chain! Example with the current testnet assets:
+- `server`
+  - `adminToken` - Secret token to make sensitive HTTP requests.
+- `web3SignerUrl` - Set to `"http://signer:9000"`.
+- `redis`
+  - `host` - Set to `redis`.
+  - `port` - Set to 6379.
+- `messageQueue`
+  - `uri` - Set to "amqp://guest:guest@rabbitmq:5672"
+- `logLevel` - One of `debug`, `info`, `warn`, `error` for log verbosity.
+- `network` - Set to `mainnet` or `testnet`.
+- `environment` - Not required for mainnet, set to `production` for testnet.
+- `chains` - Add your desired chains, assets, and provider URLs. Use [Domain IDs](./developers/testing-against-testnet#domain-ids). instead of `chainIds`. For more domain ids of chains, please check https://raw.githubusercontent.com/connext/chaindata/main/crossChain.json . Make sure you use multiple providers for each chain! The assets addresses should match the Connext bridge minted assets, which are NOT the normal addresses you would use. Example with the current mainnet assets:
 ```json
 {
   ...
   "chains": {
-    "1111": {
+    "1634886255": {
       "assets": [
         {
-          "address": "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
-          "name": "TEST"
-        }
-      ],
-      "providers": ["https://rinkeby.infura.io/v3/...", "https://rpc.ankr.com/eth_rinkeby"]
-    },
-    "2221": {
-      "assets": [
+          "address": "0x85fb8e2903ad92a2ab0c6a725806636666ee2ab4",
+          "name": "USDC"
+        },
         {
-          "address": "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
-          "name": "TEST"
+          "address": "0xfd5c16a50b717338cbcb44e34e10d735709e9cb9",
+          "name": "WETH"
         }
       ],
-      "providers": ["https://kovan.infura.io/v3/..."]
-    },
-    "3331": {
       "providers": [
-        "https://goerli.infura.io/v3/..."
-      ],
+        "https://arb-mainnet.g.alchemy.com/v2/...",
+        "https://rpc.ankr.com/arbitrum"
+      ]
+    },
+    "1869640809": {
       "assets": [
         {
-          "address": "0x3FFc03F05D1869f493c7dbf913E636C6280e0ff9",
-          "name": "TEST"
+          "address": "0x85FB8e2903Ad92A2ab0C6a725806636666ee2Ab4",
+          "name": "USDC"
+        },
+        {
+          "address": "0xfD5C16a50b717338Cbcb44e34e10d735709E9Cb9",
+          "name": "WETH"
         }
+      ],
+      "providers": [
+        "https://opt-mainnet.g.alchemy.com/v2/...",
+        "https://rpc.ankr.com/optimism"
       ]
+    },
+    "1886350457": {
+      "assets": [
+        {
+          "address": "0x2ABe2d4F09ea3124DE56AD91ae0950A3B71eCD11",
+          "name": "USDC"
+        },
+        {
+          "address": "0x2BD5B3cfB2b16F2B10e7BA41dc1cb93d61B36bB8",
+          "name": "WETH"
+        }
+      ],
+      "providers": [
+        "https://polygon-mainnet.g.alchemy.com/v2/...",
+        "https://rpc.ankr.com/polygon"
+      ]
+    },
+    "6450786": {
+      "assets": [
+        {
+          "address": "0xe4f1ce2dc807084a874e957d5d2ac6502820bc15",
+          "name": "USDC"
+        },
+        {
+          "address": "0x6b205aeaae9de574d76d4e45af92998aefca205b",
+          "name": "WETH"
+        }
+      ],
+      "providers": [
+        "https://bsc-dataseed1.binance.org",
+        "https://bsc-dataseed2.binance.org",
+        "https://rpc.ankr.com/bsc"
+      ]
+    },
+    "6648936": {
+      "assets": [
+        {
+          "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          "name": "USDC"
+        },
+        {
+          "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          "name": "WETH"
+        }
+      ],
+      "providers": ["https://eth-mainnet.alchemyapi.io/v2/...", "https://rpc.ankr.com/eth"]
+    },
+    "6778479": {
+      "assets": [
+        {
+          "address": "0x67e79CC8d6b7C164Da28864875242b9210BFeb15",
+          "name": "USDC"
+        },
+        {
+          "address": "0x735c7e2035ff902EC8F7115355191Cabb05D86fd",
+          "name": "WETH"
+        }
+      ],
+      "providers": ["https://rpc.gnosischain.com", "https://rpc.ankr.com/gnosis"]
     }
   }
 }
 ```
-
-- `web3SignerUrl` - Set to `"http://signer:9000"`.
-- `redis`
-  - `host` - Set to the host name of your external Redis instance.
-  - `port` - Set to the port of your external Redis instance.
 
 See the [Configuration](./Reference/configuration) section for more details.
   
@@ -202,8 +240,8 @@ See the [Configuration](./Reference/configuration) section for more details.
 **4. Setup `.env` file**
 ```
 cp .env.example .env
-sed -i 's/latest/'$LATEST'/g' .env
 ```
+Change or confirm the `ROUTER_VERSION` at minimum.
 
 **5. Setup `key.yaml` file**
 ```
@@ -218,28 +256,26 @@ sed -i 's/dkadkjasjdlkasdladadasda/'${yourpk}'/g' key.yaml
 ```
 
 **6. Setup `config.json` file.**
-```
-wget -O config.json https://raw.githubusercontent.com/martynovalek/NXTP-Router-setup/main/Full%20version/config.json
-```
+See above.
 
 **Run this command and paste your Project ID from Infura**
 ```
 read -p "Insert your Project ID from Infura: " PROJECT_ID
 ```
 ```
-sed -i 's/project_ID/'${PROJECT_ID}'/g' $HOME/connext/nxtp-router-docker-compose/config.json
+sed -i 's/project_ID/'${PROJECT_ID}'/g' $HOME/connext/router-docker-compose/config.json
 ```
 
 **7. Run your Router**<br/>
 ```
-cd $HOME/connext/nxtp-router-docker-compose
+cd $HOME/connext/router-docker-compose
 docker-compose down
 docker-compose up -d
 ```
 
 **Check logs:**
 ```
-cd $HOME/connext/nxtp-router-docker-compose
+cd $HOME/connext/router-docker-compose
 docker logs --follow --tail 100 router
 ```
 
@@ -282,41 +318,33 @@ sudo systemctl status docker
 
 #### Delete Router and everything relating to it:
 ```
-cd ~/connext/nxtp-router-docker-compose
+cd ~/connext/router-docker-compose
 docker-compose down
 docker system prune -a
 cd && rm -rf $HOME/connext
 ```
 ---
 ## Update Router Version:<br/>
-You can check the latest version here: https://github.com/connext/nxtp/releases
-
 **Check current version of Router:**<br/>
 The output will show you which current version
 ```
-CURRENT=$(cat $HOME/connext/nxtp-router-docker-compose/.env | grep ROUTER_VERSION | awk -F '=' '{print$2}') && echo $CURRENT
-```
-
-**Check new version of Router:**<br/>
-The output will show you which new version
-```
-NEW="$(curl -fsSLI -o /dev/null -w %{url_effective} https://github.com/connext/nxtp/releases/latest | awk 'BEGIN{FS="v"} {print $2}')" && echo $NEW
+CURRENT=$(cat $HOME/connext/router-docker-compose/.env | grep ROUTER_VERSION | awk -F '=' '{print$2}') && echo $CURRENT
 ```
 
 **If you need to update run the commands below:**<br/>
 Modify the `.env` file:
 ```
-sed -i.bak -e "s/$CURRENT/$NEW/" $HOME/connext/nxtp-router-docker-compose/.env
+sed -i.bak -e "s/$CURRENT/$NEW/" $HOME/connext/router-docker-compose/.env
 ```
 
 **Ensure `.env` file has a new version:**
 ```
-cat $HOME/connext/nxtp-router-docker-compose/.env | grep ROUTER_VERSION | awk -F '=' '{print$2}'
+cat $HOME/connext/router-docker-compose/.env | grep ROUTER_VERSION | awk -F '=' '{print$2}'
 ```
 
 **Now update the stack and check logs:**
 ```
-cd $HOME/connext/nxtp-router-docker-compose
+cd $HOME/connext/router-docker-compose
 docker-compose down
 docker-compose pull
 docker-compose up -d
@@ -324,17 +352,10 @@ docker logs --follow --tail 100 router
 ```
 ---
 
-## Liquidity and testnet
-Now we have to add liquidity on 3 test chains to our Router and make some transactions.
-
-1. Go to https://amarok-testnet.coinhippo.io/ and connect wallet you have linked to your Router.
-2. Under the form you'll see the Faucet. Get 1000 $TEST on each chain.
-<img width="550" alt="faucet" src="https://user-images.githubusercontent.com/88688304/178159703-d72e7269-c13c-464b-ac5b-5946a826ec6f.png"/><br/>
-3. Go to https://testnet.amarok.connextscan.io/router/ROUTER_ADDR (paste your router address at the end of the link)<br/>
-4. Select `manage router` and add some tokens to liquidity. Keep some tokens on your wallet balance to send a few transactions<br/>
-   <img height="350" alt="image" src="https://user-images.githubusercontent.com/88688304/178160096-125d8b0c-fb20-4597-adce-627ddfe07c2b.png"/> <img height="350" alt="image" src="https://user-images.githubusercontent.com/88688304/178160123-76b140c6-2a46-466a-b0b1-bfe21a2c00f3.png"/>
-5. Go to https://amarok-testnet.coinhippo.io/ again and make some transactions.
-6. The transactions takes usually 2-3 minutes. Sometimes it can takes much more time. Please give your feedback on discord channel [#testnet-feedback](https://discord.com/channels/454734546869551114/991374224293908562)
+## Next Steps
+* See the [management guide](./Guides/management.md) for details on router administration.
+* See the [liquidity guide](./Guides/liquidity) for details on how to add liquidity to your router.
+* See the [security guide](./Reference/configuration) reference for details on the security for the router.
 
 ---
 ## Useful links

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 2
 ---
 # Security
 Being mindful of security is an essential part of operating any Web3 infrastructure, and running a Connext Router is no exception. Here are some things to be aware of:  
@@ -7,7 +7,7 @@ Being mindful of security is an essential part of operating any Web3 infrastruct
 ## Miscellaneous
 #### Setting Recipient and Owner Addresses
 
-![ALT text](schema/wallet.png)
+![ALT text](../images/wallet.png)
 
 In addition to its own signing address, each Router has a **Recipient** and **Owner** address set in the respective `Connext Handler` contracts of each chain.
 
@@ -185,7 +185,7 @@ Many cloud providers have built-in support for features like private networks an
 *GCP docs:* [Private VPC](https://cloud.google.com/data-fusion/docs/how-to/create-private-ip), [Cloud NAT](https://cloud.google.com/nat/docs/overview)
 
 #### Private network deep dive:
-![ALT text](schema/nat.png)
+![ALT text](../images/nat.png)
 
 As you can see in the diagram above, your Router doesn't expose an external IP address and can't be accessed directly. SSH access to the Router (or any other VMs in the private subnet) can only be done by connecting through the bastion. The Router accesses the Internet through NAT, using it as gateway.
 

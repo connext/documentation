@@ -54,8 +54,8 @@ module.exports = {
       items: [
         {
           type: "doc",
-          docId: "core-concepts/understanding-connext",
-          label: "Core Concepts",
+          docId: "concepts/what-is-connext",
+          label: "Concepts",
           position: "left",
         },
         {
