@@ -24,15 +24,15 @@ Routers have three distinct roles for management:
     </aside>
     
 
-# Initialize a Router
+## Initialize a Router
 
 Use this section if the router has never been initialized.
 
-## Using the UI
+### Using the UI
 
 Coming soon!
 
-## Using the Smart Contract Directly
+### Using the Smart Contract Directly
 
 1. Use the Connext repo to find the deployments for the chain you want to set up the router on: 
 
@@ -49,26 +49,34 @@ Coming soon!
 
 </aside>
 
-# Modify Router Roles
+## Modify Router Roles
 
 Use these instructions to modify a router that has already been initialized.
 
-## Using the UI
+### Using the UI
 
 Coming soon!
 
-## Using the Smart Contract Directly
+### Using the Smart Contract Directly
 
 1. Use the [above instructions](https://www.notion.so/Router-Management-b7deba54c150424c978aa6abd4fec7f6) to connect the *Router Owner* wallet to the Connext contract.
 2. Use the functions `setRouterRecipient`, `proposeRouterOwner`, and `acceptProposedRouterOwner` on the `RoutersFacet` to modify the params as necessary.
 
-# Remove Liquidity
+## Remove Liquidity
 
-## Using the UI
+### Using the UI
 
-Coming soon!
+1. Navigate to the ‘Router’ tab on Connextscan 2.0 and click your router ID
+    
+    ![Untitled](../images/routerAddresses.png)
 
-## Using the Smart Contract Directly
+2. Click ‘Manage Router, and remove funds using our ’Remove Liquidity’ UI feature
+
+![Untitled](../images/manageRouter.png)
+
+![Untitled](../images/addRouterLiquidity.png)
+
+### Using the Smart Contract Directly
 
 1. Use the [above instructions](https://www.notion.so/Router-Management-b7deba54c150424c978aa6abd4fec7f6) to connect the *Router Owner* wallet to the Connext contract.
 2. Find the canonical `TokenId` by calling the `adoptedToCanonical` function on the `TokenFacet` and filling in the `_adopted` with the address of the token contract of the “adopted asset” (i.e. USDC).

@@ -34,11 +34,11 @@ Using UDSC as an example, to provide active liquidity on Amarok you will need to
     
     ![Untitled](../images/routerAddresses.png)
     
-4. Click ‘Manage Router, and add funds using our new ‘Add liquidity’ UI feature
+4. Click ‘Manage Router, and add funds using our new ‘Add Liquidity’ UI feature
 
 ![Untitled](../images/manageRouter.png)
 
-![Untitled](../images/addRouterLiquidity.png)
+![Untitled](../images/removeRouterLiquidity.png)
 
 ### (Coming soon) How to increase yield with dual passive/active liquidity
 
