@@ -3,7 +3,6 @@ sidebar_position: 6
 title: Shared
 id: sdk-shared
 ---
-
 # Class: NxtpSdkShared
 
 **`Classdesc`**
@@ -21,6 +20,8 @@ Base class to facilitate on-chain interactions with Connext.
   ↳ [`NxtpSdkPool`](NxtpSdkPool.md)
 
   ↳ [`NxtpSdkUtils`](NxtpSdkUtils.md)
+
+
 
 ## Methods
 
@@ -43,13 +44,13 @@ Base class to facilitate on-chain interactions with Connext.
 
 #### Defined in
 
-[packages/agents/sdk/src/sdkShared.ts:53](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L53)
+[packages/agents/sdk/src/sdkShared.ts:65](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L65)
 
 ___
 
 ### calculateCanonicalKey
 
-▸ **calculateCanonicalKey**(`domainId`, `tokenId`): `string`
+▸ **calculateCanonicalKey**(`domainId`, `canonicalId`): `string`
 
 Returns the hash of the canonical id + domain.
 
@@ -58,7 +59,7 @@ Returns the hash of the canonical id + domain.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `domainId` | `string` | The canonical domain id of the token. |
-| `tokenId` | `string` | - |
+| `canonicalId` | `string` | The canonical id of the token. |
 
 #### Returns
 
@@ -66,7 +67,7 @@ Returns the hash of the canonical id + domain.
 
 #### Defined in
 
-[packages/agents/sdk/src/sdkShared.ts:122](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L122)
+[packages/agents/sdk/src/sdkShared.ts:160](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L160)
 
 ___
 
@@ -86,21 +87,42 @@ ___
 
 #### Defined in
 
-[packages/agents/sdk/src/sdkShared.ts:104](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L104)
+[packages/agents/sdk/src/sdkShared.ts:142](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L142)
 
 ___
 
 ### getAssetsData
 
-▸ **getAssetsData**(): `Promise`<`AssetData`[]\>
+▸ **getAssetsData**(): `Promise`<[`AssetData`](#assetdata)[]\>
 
 #### Returns
 
-`Promise`<`AssetData`[]\>
+`Promise`<[`AssetData`](#assetdata)[]\>
 
 #### Defined in
 
-[packages/agents/sdk/src/sdkShared.ts:96](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L96)
+[packages/agents/sdk/src/sdkShared.ts:108](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L108)
+
+___
+
+### getAssetsDataByDomainAndKey
+
+▸ **getAssetsDataByDomainAndKey**(`domainId`, `key`): `Promise`<`undefined` \| [`AssetData`](#assetdata)\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `key` | `string` |
+
+#### Returns
+
+`Promise`<`undefined` \| [`AssetData`](#assetdata)\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:116](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L116)
 
 ___
 
@@ -121,7 +143,27 @@ ___
 
 #### Defined in
 
-[packages/agents/sdk/src/sdkShared.ts:126](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L126)
+[packages/agents/sdk/src/sdkShared.ts:164](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L164)
+
+___
+
+### isNextAsset
+
+▸ **isNextAsset**(`tokenAddress`): `Promise`<`undefined` \| `boolean`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`undefined` \| `boolean`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:129](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L129)
 
 ___
 
@@ -141,4 +183,67 @@ ___
 
 #### Defined in
 
-[packages/agents/sdk/src/sdkShared.ts:108](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L108)
+[packages/agents/sdk/src/sdkShared.ts:146](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L146)
+
+___
+
+### domainToChainName
+
+▸ `Static` **domainToChainName**(`domainId`): `string`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:53](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L53)
+
+___
+
+### getBlockNumberFromUnixTimestamp
+
+▸ `Static` **getBlockNumberFromUnixTimestamp**(`domainId`, `unixTimestamp`): `Promise`<`number`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `unixTimestamp` | `number` |
+
+#### Returns
+
+`Promise`<`number`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:57](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L57)
+
+## Type Aliases
+
+### AssetData
+
+Ƭ **AssetData**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `adopted` | `string` |
+| `canonical_domain` | `string` |
+| `canonical_id` | `string` |
+| `domain` | `string` |
+| `id` | `string` |
+| `key` | `string` |
+| `local` | `string` |
+
+#### Defined in
+
+[packages/agents/sdk/src/interfaces/index.ts:23](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/interfaces/index.ts#L23)

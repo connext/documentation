@@ -18,9 +18,251 @@ SDK class encapsulating router functions.
 
 ## Methods
 
+### addLiquidityForRouter
+
+▸ **addLiquidityForRouter**(`params`): `Promise`<`TransactionRequest`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `Object` |
+| `params.amount` | `string` |
+| `params.domainId` | `string` |
+| `params.router` | `string` |
+| `params.tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkRouter.ts:39](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkRouter.ts#L39)
+
+___
+
+### approveIfNeeded
+
+▸ **approveIfNeeded**(`domainId`, `assetId`, `amount`, `infiniteApprove?`): `Promise`<`undefined` \| `TransactionRequest`\>
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` |
+| `assetId` | `string` | `undefined` |
+| `amount` | `string` | `undefined` |
+| `infiniteApprove` | `boolean` | `true` |
+
+#### Returns
+
+`Promise`<`undefined` \| `TransactionRequest`\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[approveIfNeeded](NxtpSdkShared.md#approveifneeded)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:65](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L65)
+
+___
+
+### calculateCanonicalKey
+
+▸ **calculateCanonicalKey**(`domainId`, `canonicalId`): `string`
+
+Returns the hash of the canonical id + domain.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The canonical domain id of the token. |
+| `canonicalId` | `string` | The canonical id of the token. |
+
+#### Returns
+
+`string`
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[calculateCanonicalKey](NxtpSdkShared.md#calculatecanonicalkey)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:160](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L160)
+
+___
+
+### changeSignerAddress
+
+▸ **changeSignerAddress**(`signerAddress`): `Promise`<`void`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `signerAddress` | `string` |
+
+#### Returns
+
+`Promise`<`void`\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[changeSignerAddress](NxtpSdkShared.md#changesigneraddress)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:142](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L142)
+
+___
+
+### getAssetsData
+
+▸ **getAssetsData**(): `Promise`<[`AssetData`](#assetdata)[]\>
+
+#### Returns
+
+`Promise`<[`AssetData`](#assetdata)[]\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[getAssetsData](NxtpSdkShared.md#getassetsdata)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:108](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L108)
+
+___
+
+### getAssetsDataByDomainAndKey
+
+▸ **getAssetsDataByDomainAndKey**(`domainId`, `key`): `Promise`<`undefined` \| [`AssetData`](#assetdata)\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `key` | `string` |
+
+#### Returns
+
+`Promise`<`undefined` \| [`AssetData`](#assetdata)\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[getAssetsDataByDomainAndKey](NxtpSdkShared.md#getassetsdatabydomainandkey)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:116](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L116)
+
+___
+
+### getCanonicalTokenId
+
+▸ **getCanonicalTokenId**(`domainId`, `tokenAddress`): `Promise`<[`string`, `string`]\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<[`string`, `string`]\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[getCanonicalTokenId](NxtpSdkShared.md#getcanonicaltokenid)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:164](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L164)
+
+___
+
+### isNextAsset
+
+▸ **isNextAsset**(`tokenAddress`): `Promise`<`undefined` \| `boolean`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`undefined` \| `boolean`\>
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[isNextAsset](NxtpSdkShared.md#isnextasset)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:129](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L129)
+
+___
+
+### parseConnextTransactionReceipt
+
+▸ **parseConnextTransactionReceipt**(`transactionReceipt`): `any`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `transactionReceipt` | `TransactionReceipt` |
+
+#### Returns
+
+`any`
+
+#### Inherited from
+
+[NxtpSdkShared](NxtpSdkShared.md).[parseConnextTransactionReceipt](NxtpSdkShared.md#parseconnexttransactionreceipt)
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkShared.ts:146](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L146)
+
+___
+
+### removeRouterLiquidity
+
+▸ **removeRouterLiquidity**(`params`): `Promise`<`TransactionRequest`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `Object` |
+| `params.amount` | `string` |
+| `params.domainId` | `string` |
+| `params.recipient` | `string` |
+| `params.tokenAddress` | `string` |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+#### Defined in
+
+[packages/agents/sdk/src/sdkRouter.ts:67](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkRouter.ts#L67)
+
+___
+
 ### create
 
-▸ `Static` **create**(`_config`): `Promise`<[`NxtpSdkBase`](NxtpSdkBase.md)\>
+▸ `Static` **create**(`_config`, `_logger?`, `_chainData?`): `Promise`<[`NxtpSdkRouter`](NxtpSdkRouter.md)\>
 
 #### Parameters
 
@@ -57,73 +299,19 @@ Example `_config`:
 
 #### Defined in
 
-[packages/agents/sdk/src/sdkRouter.ts:21](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkRouter.ts#L21)
+[packages/agents/sdk/src/sdkRouter.ts:21](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkRouter.ts#L21)
 
 ___
 
-### addLiquidityForRouter
+### domainToChainName
 
-▸ **addLiquidityForRouter**(`params`): `Promise`<`TransactionRequest`\>
+▸ `Static` **domainToChainName**(`domainId`): `string`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `params` | `Object` |
-| `params.amount` | `string` |
-| `params.domainId` | `string` |
-| `params.router` | `string` |
-| `params.tokenAddress` | `string` |
-
-#### Returns
-
-`Promise`<`TransactionRequest`\>
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkRouter.ts:39](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkRouter.ts#L39)
-
-___
-
-### approveIfNeeded
-
-▸ **approveIfNeeded**(`domainId`, `assetId`, `amount`, `infiniteApprove?`): `Promise`<`undefined` \| `TransactionRequest`\>
-
-#### Parameters
-
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `domainId` | `string` | `undefined` |
-| `assetId` | `string` | `undefined` |
-| `amount` | `string` | `undefined` |
-| `infiniteApprove` | `boolean` | `true` |
-
-#### Returns
-
-`Promise`<`undefined` \| `TransactionRequest`\>
-
-#### Inherited from
-
-[NxtpSdkShared](NxtpSdkShared.md).[approveIfNeeded](NxtpSdkShared.md#approveifneeded)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:53](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L53)
-
-___
-
-### calculateCanonicalKey
-
-▸ **calculateCanonicalKey**(`domainId`, `tokenId`): `string`
-
-Returns the hash of the canonical id + domain.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `domainId` | `string` | The canonical domain id of the token. |
-| `tokenId` | `string` | - |
+| `domainId` | `string` |
 
 #### Returns
 
@@ -131,123 +319,55 @@ Returns the hash of the canonical id + domain.
 
 #### Inherited from
 
-[NxtpSdkShared](NxtpSdkShared.md).[calculateCanonicalKey](NxtpSdkShared.md#calculatecanonicalkey)
+[NxtpSdkShared](NxtpSdkShared.md).[domainToChainName](NxtpSdkShared.md#domaintochainname)
 
 #### Defined in
 
-[packages/agents/sdk/src/sdkShared.ts:122](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L122)
+[packages/agents/sdk/src/sdkShared.ts:53](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L53)
 
 ___
 
-### changeSignerAddress
+### getBlockNumberFromUnixTimestamp
 
-▸ **changeSignerAddress**(`signerAddress`): `Promise`<`void`\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `signerAddress` | `string` |
-
-#### Returns
-
-`Promise`<`void`\>
-
-#### Inherited from
-
-[NxtpSdkShared](NxtpSdkShared.md).[changeSignerAddress](NxtpSdkShared.md#changesigneraddress)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:104](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L104)
-
-___
-
-### getAssetsData
-
-▸ **getAssetsData**(): `Promise`<`AssetData`[]\>
-
-#### Returns
-
-`Promise`<`AssetData`[]\>
-
-#### Inherited from
-
-[NxtpSdkShared](NxtpSdkShared.md).[getAssetsData](NxtpSdkShared.md#getassetsdata)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:96](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L96)
-
-___
-
-### getCanonicalTokenId
-
-▸ **getCanonicalTokenId**(`domainId`, `tokenAddress`): `Promise`<[`string`, `string`]\>
+▸ `Static` **getBlockNumberFromUnixTimestamp**(`domainId`, `unixTimestamp`): `Promise`<`number`\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `domainId` | `string` |
-| `tokenAddress` | `string` |
+| `unixTimestamp` | `number` |
 
 #### Returns
 
-`Promise`<[`string`, `string`]\>
+`Promise`<`number`\>
 
 #### Inherited from
 
-[NxtpSdkShared](NxtpSdkShared.md).[getCanonicalTokenId](NxtpSdkShared.md#getcanonicaltokenid)
+[NxtpSdkShared](NxtpSdkShared.md).[getBlockNumberFromUnixTimestamp](NxtpSdkShared.md#getblocknumberfromunixtimestamp)
 
 #### Defined in
 
-[packages/agents/sdk/src/sdkShared.ts:126](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L126)
+[packages/agents/sdk/src/sdkShared.ts:57](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L57)
 
-___
+## Type Aliases
 
-### parseConnextTransactionReceipt
+### AssetData
 
-▸ **parseConnextTransactionReceipt**(`transactionReceipt`): `any`
+Ƭ **AssetData**: `Object`
 
-#### Parameters
+#### Type declaration
 
 | Name | Type |
 | :------ | :------ |
-| `transactionReceipt` | `TransactionReceipt` |
-
-#### Returns
-
-`any`
-
-#### Inherited from
-
-[NxtpSdkShared](NxtpSdkShared.md).[parseConnextTransactionReceipt](NxtpSdkShared.md#parseconnexttransactionreceipt)
+| `adopted` | `string` |
+| `canonical_domain` | `string` |
+| `canonical_id` | `string` |
+| `domain` | `string` |
+| `id` | `string` |
+| `key` | `string` |
+| `local` | `string` |
 
 #### Defined in
 
-[packages/agents/sdk/src/sdkShared.ts:108](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L108)
-
-___
-
-### removeRouterLiquidity
-
-▸ **removeRouterLiquidity**(`params`): `Promise`<`TransactionRequest`\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `params` | `Object` |
-| `params.amount` | `string` |
-| `params.domainId` | `string` |
-| `params.recipient` | `string` |
-| `params.tokenAddress` | `string` |
-
-#### Returns
-
-`Promise`<`TransactionRequest`\>
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkRouter.ts:67](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkRouter.ts#L67)
+[packages/agents/sdk/src/interfaces/index.ts:23](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/interfaces/index.ts#L23)
