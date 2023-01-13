@@ -769,9 +769,9 @@ ___
 
 ### create
 
-▸ `Static` **create**(`_config`): `Promise`<[`NxtpSdkBase`](NxtpSdkBase.md)\>
+▸ `Static` **create**(`_config`): `Promise`<[`NxtpSdkPool`](NxtpSdkPool.md)\>
 
-Create a singleton instance of the NxtpSdkBase class.
+Create a singleton instance of the NxtpSdkPool class.
 
 #### Parameters
 
@@ -785,13 +785,13 @@ Create a singleton instance of the NxtpSdkBase class.
 
 #### Returns
 
-`Promise`<[`NxtpSdkBase`](NxtpSdkBase.md)\>
+`Promise`<[`NxtpSdkPool`](NxtpSdkPool.md)\>
 
 providers.TransactionRequest object.
 
 @example:
 ```ts
-import { NxtpSdkBase } from "@connext/nxtp-sdk";
+import { NxtpSdkPool } from "@connext/nxtp-sdk";
 
 const config = {
   "chains": {
@@ -808,7 +808,7 @@ const config = {
   "signerAddress": "<wallet_address>",
 }
 
-const nxtpSdkBase = await NxtpSdkBase.create(config);
+const nxtpSdkPool = await NxtpSdkPool.create(config);
 ```
 
 :::note
