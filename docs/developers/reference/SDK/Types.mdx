@@ -1,0 +1,71 @@
+---
+sidebar_position: 6
+title: Types
+id: sdk-types
+---
+
+# Type Aliases
+
+### AssetData
+
+Ƭ **AssetData**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `adopted` | `string` |
+| `canonical_domain` | `string` |
+| `canonical_id` | `string` |
+| `domain` | `string` |
+| `id` | `string` |
+| `key` | `string` |
+| `local` | `string` |
+
+#### Defined in
+
+[packages/agents/sdk/src/interfaces/index.ts:25](https://github.com/connext/monorepo/blob/ed8421599/packages/agents/sdk/src/interfaces/index.ts#L25)
+
+___
+
+### Pool
+
+Ƭ **Pool**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `address?` | `string` |
+| `adopted` | [`PoolAsset`](modules.md#poolasset) |
+| `canonicalHash` | `string` |
+| `domainId` | `string` |
+| `local` | [`PoolAsset`](modules.md#poolasset) |
+| `lpTokenAddress` | `string` |
+| `name` | `string` |
+| `symbol` | `string` |
+
+#### Defined in
+
+[packages/agents/sdk/src/interfaces/index.ts:5](https://github.com/connext/monorepo/blob/ed8421599/packages/agents/sdk/src/interfaces/index.ts#L5)
+
+___
+
+### PoolAsset
+
+Ƭ **PoolAsset**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `address` | `string` |
+| `balance` | `BigNumber` |
+| `decimals` | `number` |
+| `index` | `number` |
+| `name` | `string` |
+| `symbol` | `string` |
+
+#### Defined in
+
+[packages/agents/sdk/src/interfaces/index.ts:16](https://github.com/connext/monorepo/blob/ed8421599/packages/agents/sdk/src/interfaces/index.ts#L16)
