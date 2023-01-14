@@ -11,133 +11,36 @@ SDK class encapsulating bridge functions.
 
 ## Hierarchy
 
-- [`NxtpSdkShared`](NxtpSdkShared.md)
+- [`NxtpSdkShared`](./sdk-shared)
 
   ↳ **`NxtpSdkBase`**
 
 ## Methods
 
-### create
-
-▸ `Static` **create**(`_config`): `Promise`<[`NxtpSdkBase`](NxtpSdkBase.md)\>
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :----- |
-| `_config` | `Object` | Main config object. 
-| `_config.network` | ``"testnet"`` \| ``"mainnet"`` | Whether to connect to mainnet or testnet deployments. 
-| `_config.signerAddress` | `string` | The signer address used for write operations.
-| `_config.chains` | `Object` | Contains mappings of domain ID to providers. See example below.
-
-
-Example `_config`:
-```typescript
-{
-  "network": "mainnet",
-  "signerAddress": "<signer-address>",
-  "chains": {
-    "6648936": { // Ethereum
-      "providers": ["https://rpc.ankr.com/eth"]
-    },
-    "1869640809": { // Optimism
-      "providers": ["https://rpc.ankr.com/optimism"]
-    },
-    "1886350457": { // Polygon
-      "providers": ["https://polygon-rpc.com"]
-    }
-  },
-}
-```
-
-#### Returns
-
-`Promise`<[`NxtpSdkBase`](NxtpSdkBase.md)\>
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkBase.ts:42](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkBase.ts#L42)
-
-___
-
-### xcall
-
-▸ **xcall**(`args`): `Promise`<`TransactionRequest`\>
-
-Check, sanitize, and format the XCall and encode calldata. Returns an ethers TransactionRequest object, ready
-to be sent to an RPC provider.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `args` | `NxtpSdkXCallArgs` | XCall arguments object. Some fields are optional and have default values provided. |
-| `args.origin` | `string`   | The origin domain ID.
-| `args.destination` | `string`   | The destination domain ID.
-| `args.to` | `string`   | Address receiving funds or target contract.
-| `args.asset` | `string`   | Address of the token contract.
-| `args.delegate` | `string`   | Address allowed to execute transaction on destination in addition to relayers.
-| `args.amount` | `string`   | Amount of tokens to transfer.
-| `args.slippage` | `string`   | Maximum acceptable slippage in BPS. For example, a value of 30 means 0.3% slippage.
-| `args.callData` | `string`   | Calldata to execute (can be empty: "0x").
-| `args.relayerFee` | `string`   |  Fee paid to relayers (optional for testnet).
-
-#### Returns
-
-`Promise`<`TransactionRequest`\>
-
-providers.TransactionRequest object.
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkBase.ts:67](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkBase.ts#L67)
-
-___
-
-### wrapEthAndXCall
-
-▸ **wrapEthAndXCall**(`args`): `Promise`<`TransactionRequest`\>
-
-#### Parameters
-
-[Same as xcall](#parameters-1)
-
-#### Returns
-
-`Promise`<`TransactionRequest`\>
-
-providers.TransactionRequest object.
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkBase.ts:302](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkBase.ts#L302)
-
-___
-
 ### approveIfNeeded
 
 ▸ **approveIfNeeded**(`domainId`, `assetId`, `amount`, `infiniteApprove?`): `Promise`<`undefined` \| `TransactionRequest`\>
 
+Returns the transaction request for an allowance approval.
+
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `domainId` | `string` | `undefined` |
-| `assetId` | `string` | `undefined` |
-| `amount` | `string` | `undefined` |
-| `infiniteApprove` | `boolean` | `true` |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` | The domain ID. |
+| `assetId` | `string` | `undefined` | The address of the token. |
+| `amount` | `string` | `undefined` | The amount of the token. |
+| `infiniteApprove` | `boolean` | `true` | (optional) Whether to approve an infinite amount. |
 
 #### Returns
 
 `Promise`<`undefined` \| `TransactionRequest`\>
 
+providers.TransactionRequest object.
+
 #### Inherited from
 
-[NxtpSdkShared](NxtpSdkShared.md).[approveIfNeeded](NxtpSdkShared.md#approveifneeded)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:53](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L53)
+[NxtpSdkShared](./sdk-shared).[approveIfNeeded](./sdk-shared#approveifneeded)
 
 ___
 
@@ -145,37 +48,56 @@ ___
 
 ▸ **bumpTransfer**(`params`): `Promise`<`TransactionRequest`\>
 
-#### Parameters
+Increases the relayer fee for a specific transfer on origin; anyone is allowed to bump for any transfer.
 
-| Name | Type |
-| :------ | :------ |
-| `params` | `Object` |
-| `params.domainId` | `string` |
-| `params.relayerFee` | `string` |
-| `params.transferId` | `string` |
+**`Example`**
 
-#### Returns
+```ts
+// call NxtpSdkBase.create(), instantiate a signer
 
-`Promise`<`TransactionRequest`\>
+const params = {
+  domainId: "6648936",
+  transferId: "0xdd252f58a45dc78fee1ac12a628782bda6a98315b286aadf76e4d7322bf135ca",
+  relayerFee: "10000",
+};
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkBase.ts:156](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkBase.ts#L156)
-
-___
-
-### calculateCanonicalKey
-
-▸ **calculateCanonicalKey**(`domainId`, `tokenId`): `string`
-
-Returns the hash of the canonical id + domain.
+const txRequest = nxtpSdkBase.bumpTransfer(params);
+signer.sendTransaction(txRequest);
+```
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `domainId` | `string` | The canonical domain id of the token. |
-| `tokenId` | `string` | The canonical id of the token. |
+| `params` | `Object` | SdkBumpTransferParams object. |
+| `params.domainId` | `string` | The origin domain ID of the transfer. |
+| `params.relayerFee` | `string` | The additional relayer fee to increase the transfer by, in native gas token. |
+| `params.transferId` | `string` | The transfer ID. |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+providers.TransactionRequest object.
+
+___
+
+### calculateCanonicalKey
+
+▸ **calculateCanonicalKey**(`domainId`, `canonicalId`): `string`
+
+Returns the hash of the canonical ID + canonical domain.
+
+**`Remarks`**
+
+This key is used as the unique identifier for a canonical token, across all domains.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The canonical domain ID of the token. |
+| `canonicalId` | `string` | The canonical ID of the token. |
 
 #### Returns
 
@@ -183,11 +105,7 @@ Returns the hash of the canonical id + domain.
 
 #### Inherited from
 
-[NxtpSdkShared](NxtpSdkShared.md).[calculateCanonicalKey](NxtpSdkShared.md#calculatecanonicalkey)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:122](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L122)
+[NxtpSdkShared](./sdk-shared).[calculateCanonicalKey](./sdk-shared#calculatecanonicalkey)
 
 ___
 
@@ -195,11 +113,13 @@ ___
 
 ▸ **changeSignerAddress**(`signerAddress`): `Promise`<`void`\>
 
+Switches the signer address in the SDK config.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `signerAddress` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `signerAddress` | `string` | The new signer address. |
 
 #### Returns
 
@@ -207,11 +127,7 @@ ___
 
 #### Inherited from
 
-[NxtpSdkShared](NxtpSdkShared.md).[changeSignerAddress](NxtpSdkShared.md#changesigneraddress)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:104](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L104)
+[NxtpSdkShared](./sdk-shared).[changeSignerAddress](./sdk-shared#changesigneraddress)
 
 ___
 
@@ -219,43 +135,93 @@ ___
 
 ▸ **estimateRelayerFee**(`params`): `Promise`<`BigNumber`\>
 
+Calculates an estimated relayer fee in the native asset of the origin domain to be used in xcall.
+
+**`Example`**
+
+```ts
+// call NxtpSdkBase.create(), instantiate a signer
+
+const params = {
+  originDomain: "6648936",
+  destinationDomain: "1869640809",
+};
+
+const txRequest = nxtpSdkBase.estimateRelayerFee(params);
+signer.sendTransaction(txRequest);
+```
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | `Object` |
-| `params.callDataGasAmount?` | `number` |
-| `params.destinationDomain` | `string` |
-| `params.destinationNativeToken?` | `string` |
-| `params.isHighPriority?` | `boolean` |
-| `params.originDomain` | `string` |
-| `params.originNativeToken?` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `params` | `Object` | SdkEstimateRelayerFeeParams object. |
+| `params.callDataGasAmount` | `undefined` \| `number` | - |
+| `params.destinationDomain` | `string` | The destination domain ID of the transfer. |
+| `params.destinationNativeToken` | `undefined` \| `string` | - |
+| `params.isHighPriority` | `undefined` \| `boolean` | - |
+| `params.originDomain` | `string` | The origin domain ID of the transfer. |
+| `params.originNativeToken` | `undefined` \| `string` | - |
 
 #### Returns
 
 `Promise`<`BigNumber`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkBase.ts:195](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkBase.ts#L195)
+The relayer fee in native asset of the origin domain.
 
 ___
 
 ### getAssetsData
 
-▸ **getAssetsData**(): `Promise`<`AssetData`[]\>
+▸ **getAssetsData**(): `Promise`<[`AssetData`](./sdk-types/#assetdata)[]\>
 
-#### Returns
+Fetches the list of registered assets.
 
-`Promise`<`AssetData`[]\>
+#### Retur/s
+
+`Promise`<[`AssetData`](./sdk-types/#assetdata)[]\>
+
+Array of objects containing assets registered to the network, in the form of:
+```ts
+{
+  "local": "0x2983bf5c334743aa6657ad70a55041d720d225db",
+  "adopted": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+  "canonical_id": "0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+  "canonical_domain": "6648936",
+  "domain": "1634886255",
+  "key": "0x12acadfa38ab02479ae587196a9043ee4d8bf52fcb96b7f8d2ba240f03bcd08a",
+  "id": "0x2983bf5c334743aa6657ad70a55041d720d225db"
+},
+```
 
 #### Inherited from
 
-[NxtpSdkShared](NxtpSdkShared.md).[getAssetsData](NxtpSdkShared.md#getassetsdata)
+[NxtpSdkShared](./sdk-shared).[getAssetsData](./sdk-shared#getassetsdata)
 
-#### Defined in
+___
 
-[packages/agents/sdk/src/sdkShared.ts:96](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L96)
+### getAssetsDataByDomainAndKey
+
+▸ **getAssetsDataByDomainAndKey**(`domainId`, `key`): `Promise`<`undefined` \| [`AssetData`](./sdk-types/#assetdata)\>
+
+Retrieve the asset data for a specific domain and key.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID. |
+| `key` | `string` | The canonical hash of the canonical token. |
+
+#### Returns
+
+`Promise`<`undefined` \| [`AssetData`](./sdk-types/#assetdata)\>
+
+The object containing asset data.
+
+#### Inherited from
+
+[NxtpSdkShared](./sdk-shared).[getAssetsDataByDomainAndKey](./sdk-shared#getassetsdatabydomainandkey)
 
 ___
 
@@ -276,11 +242,31 @@ ___
 
 #### Inherited from
 
-[NxtpSdkShared](NxtpSdkShared.md).[getCanonicalTokenId](NxtpSdkShared.md#getcanonicaltokenid)
+[NxtpSdkShared](./sdk-shared).[getCanonicalTokenId](./sdk-shared#getcanonicaltokenid)
 
-#### Defined in
+___
 
-[packages/agents/sdk/src/sdkShared.ts:126](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L126)
+### isNextAsset
+
+▸ **isNextAsset**(`tokenAddress`): `Promise`<`undefined` \| `boolean`\>
+
+Returns whether the specified token is a Connext-issued (local) token.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `tokenAddress` | `string` | The address of the token. |
+
+#### Returns
+
+`Promise`<`undefined` \| `boolean`\>
+
+Boolean or undefined if the specified token is not registered.
+
+#### Inherited from
+
+[NxtpSdkShared](./sdk-shared).[isNextAsset](./sdk-shared#isnextasset)
 
 ___
 
@@ -288,20 +274,171 @@ ___
 
 ▸ **parseConnextTransactionReceipt**(`transactionReceipt`): `any`
 
+Parses a providers.TransactionReceipt for the logs.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `transactionReceipt` | `TransactionReceipt` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `transactionReceipt` | `TransactionReceipt` | providers.TransactionReceipt object. |
 
 #### Returns
 
 `any`
 
+Array of providers.Log objects.
+
 #### Inherited from
 
-[NxtpSdkShared](NxtpSdkShared.md).[parseConnextTransactionReceipt](NxtpSdkShared.md#parseconnexttransactionreceipt)
+[NxtpSdkShared](./sdk-shared).[parseConnextTransactionReceipt](./sdk-shared#parseconnexttransactionreceipt)
 
-#### Defined in
+___
 
-[packages/agents/sdk/src/sdkShared.ts:108](https://github.com/connext/nxtp/blob/9cd71e834/packages/agents/sdk/src/sdkShared.ts#L108)
+### xcall
+
+▸ **xcall**(`params`): `Promise`<`TransactionRequest`\>
+
+Prepares xcall inputs and encodes the calldata. Returns an ethers TransactionRequest object, ready
+to be sent to an RPC provider.
+
+**`Example`**
+
+```ts
+// call NxtpSdkBase.create(), instantiate a signer
+
+const params = {
+  origin: "6648936"
+  destination: "1869640809"
+  to: "0x3cEe6c5c0fB713925BdA590829EA574b7b4f96b6"
+  asset: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+  delegate: "0x3cEe6c5c0fB713925BdA590829EA574b7b4f96b6"
+  amount: "1000000"
+  slippage: "300"
+  callData: "0x",
+  relayerFee: "10000000000000"
+};
+
+const txRequest = nxtpSdkBase.xcall(params);
+signer.sendTransaction(txRequest);
+```
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `params` | `Object` | SdkXCallParams object. |
+| `params.amount` | `undefined` \| `string` | (optional) The amount of tokens (in specified asset) to send with the xcall. If `wrapNativeOnOrigin` is true, this will be used as the amount of native token to deposit into the wrapper contract and withdraw as wrapped native token for sending (e.g. deposit ETH to the WETH contract in exchange for the WETH ERC20). |
+| `params.asset` | `undefined` \| `string` | - |
+| `params.callData` | `undefined` \| `string` | (optional) Calldata to execute (can be empty: "0x"). |
+| `params.delegate` | `undefined` \| `string` | (optional) Address allowed to cancel an xcall on destination. |
+| `params.destination` | `string` | The destination domain ID. |
+| `params.origin` | `string` | The origin domain ID. |
+| `params.receiveLocal` | `undefined` \| `boolean` | (optional) Whether to receive the local asset ("nextAsset"). |
+| `params.relayerFee` | `undefined` \| `string` | (optional) Fee paid to relayers, in native asset on origin. Use `calculateRelayerFee` to estimate. |
+| `params.slippage` | `undefined` \| `string` | (optional) Maximum acceptable slippage in BPS. For example, a value of 30 means 0.3% slippage. |
+| `params.to` | `string` | Address receiving funds or the target contract. |
+| `params.unwrapNativeOnDestination` | `undefined` \| `boolean` | (optional) Whether we should unwrap the wrapped native token when the transfer reaches its destination. By default, if sending a wrapped native token, the wrapped token is what gets delivered at the destination. Setting this to `true` means we should overwrite `callData` to target the Unwrapper utility contract, which will unwrap the wrapped native token and deliver it to the target recipient (the `to` address). |
+| `params.wrapNativeOnOrigin` | `undefined` \| `boolean` | (optional) Whether we should wrap the native token before sending the xcall. This will use the Multisend utility contract to deposit ETH, approve Connext as a spender, and call xcall. |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+providers.TransactionRequest object.
+
+___
+
+### create
+
+▸ `Static` **create**(`_config`): `Promise`<[`NxtpSdkBase`](NxtpSdkBase.md)\>
+
+Create a singleton instance of the NxtpSdkBase class.
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `_config` | `Object` | undefined | NxtpSdkConfig object. |
+| `_config.chains` | `Record`<`string`, { providers: string[] }\> | undefined | Chain config, at minimum with providers for each chain. |
+| `_config.signerAddress` | `string` | undefined| Signer address for transactions. |
+| `_config.logLevel` | ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` | "info" | (optional) Logging severity level. |
+| `_config.network` | ``"testnet"`` \| ``"mainnet"`` | "mainnet" | (optional) Blockchain environment to interact with. |
+
+#### Returns
+
+`Promise`<[`NxtpSdkBase`](NxtpSdkBase.md)\>
+
+providers.TransactionRequest object.
+
+@example:
+```ts
+import { NxtpSdkBase } from "@connext/nxtp-sdk";
+
+const config = {
+  "chains": {
+    "6648936": { // the domain ID for Ethereum Mainnet
+      "providers": ["https://rpc.ankr.com/eth"]
+    },
+    "1869640809": { // the domain ID for Optimism
+      "providers": ["https://mainnet.optimism.io"]
+    },
+    "1886350457": { // the domain ID for Polygon
+      "providers": ["https://polygon-rpc.com"]
+    },
+  },
+  "signerAddress": "<wallet_address>",
+}
+
+const nxtpSdkBase = await NxtpSdkBase.create(config);
+```
+
+:::note
+
+See the [Supported Chains](../../../resources/supported-chains) page for all domain IDs.
+
+:::
+
+___
+
+### domainToChainName
+
+▸ `Static` **domainToChainName**(`domainId`): `string`
+
+Returns the chain name for a specified domain.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID. |
+
+#### Returns
+
+`string`
+
+The chain name.
+
+#### Inherited from
+
+[NxtpSdkShared](./sdk-shared).[domainToChainName](./sdk-shared#domaintochainname)
+
+___
+
+### getBlockNumberFromUnixTimestamp
+
+▸ `Static` **getBlockNumberFromUnixTimestamp**(`domainId`, `unixTimestamp`): `Promise`<`number`\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `domainId` | `string` |
+| `unixTimestamp` | `number` |
+
+#### Returns
+
+`Promise`<`number`\>
+
+#### Inherited from
+
+[NxtpSdkShared](./sdk-shared).[getBlockNumberFromUnixTimestamp](./sdk-shared#getblocknumberfromunixtimestamp)

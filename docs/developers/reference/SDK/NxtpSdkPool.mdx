@@ -9,7 +9,7 @@ id: sdk-pool
 
 SDK class encapsulating stableswap pool functions.
 
-**`Dev`**
+**`Remarks`**
 
 This class will either interact with internal StableSwapFacet pools or external StableSwap pools
      depending on which type of pool is being used for each asset.
@@ -17,7 +17,7 @@ This class will either interact with internal StableSwapFacet pools or external 
 
 ## Hierarchy
 
-- [`NxtpSdkShared`](sdk-shared)
+- [`NxtpSdkShared`](./sdk-shared)
 
   ↳ **`NxtpSdkPool`**
 
@@ -27,25 +27,23 @@ This class will either interact with internal StableSwapFacet pools or external 
 
 ▸ **addLiquidity**(`domainId`, `tokenAddress`, `amounts`, `minToMint?`, `deadline?`): `Promise`<`TransactionRequest`\>
 
-Returns the transaction request for adding liquidity to a pool.
+Prepares the transaction request for adding liquidity to a pool.
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `domainId` | `string` | `undefined` | The domain id of the pool. |
+| `domainId` | `string` | `undefined` | The domain ID of the pool. |
 | `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
 | `amounts` | `string`[] | `undefined` | The amounts of the tokens to swap. |
-| `minToMint` | `string` | `"0"` | The minimum acceptable amount of LP tokens to mint. |
-| `deadline` | `number` | `undefined` | The deadline for the swap. |
+| `minToMint` | `string` | `"0"` | (optional) The minimum acceptable amount of LP tokens to mint. |
+| `deadline` | `number` | `undefined` | (optional) The deadline for the swap. |
 
 #### Returns
 
 `Promise`<`TransactionRequest`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:463](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L463)
+providers.TransactionRequest object.
 
 ___
 
@@ -53,26 +51,26 @@ ___
 
 ▸ **approveIfNeeded**(`domainId`, `assetId`, `amount`, `infiniteApprove?`): `Promise`<`undefined` \| `TransactionRequest`\>
 
+Returns the transaction request for an allowance approval.
+
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `domainId` | `string` | `undefined` |
-| `assetId` | `string` | `undefined` |
-| `amount` | `string` | `undefined` |
-| `infiniteApprove` | `boolean` | `true` |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` | The domain ID. |
+| `assetId` | `string` | `undefined` | The address of the token. |
+| `amount` | `string` | `undefined` | The amount of the token. |
+| `infiniteApprove` | `boolean` | `true` | (optional) Whether to approve an infinite amount. |
 
 #### Returns
 
 `Promise`<`undefined` \| `TransactionRequest`\>
 
+providers.TransactionRequest object.
+
 #### Inherited from
 
-[NxtpSdkShared](sdk-shared).[approveIfNeeded](sdk-shared#approveifneeded)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:65](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L65)
+[NxtpSdkShared](./sdk-shared).[approveIfNeeded](sdk-shared#approveifneeded)
 
 ___
 
@@ -80,24 +78,22 @@ ___
 
 ▸ **calculateAddLiquidityPriceImpact**(`domainId`, `tokenAddress`, `amountX`, `amountY`): `Promise`<`undefined` \| `BigNumber`\>
 
-Returns the price impact of adding liquidity to a pool.
+Calculates the price impact of adding liquidity to a pool.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `domainId` | `string` | The domain id of the pool. |
+| `domainId` | `string` | The domain ID of the pool. |
 | `tokenAddress` | `string` | The address of local or adopted token. |
-| `amountX` | `string` | The amount of asset X. |
-| `amountY` | `string` | The amount of asset Y. |
+| `amountX` | `string` | The amount of token X (index 0 of the pool). |
+| `amountY` | `string` | The amount of token Y (index 1 of the pool). |
 
 #### Returns
 
 `Promise`<`undefined` \| `BigNumber`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:158](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L158)
+Price impact for adding liquidity.
 
 ___
 
@@ -111,11 +107,11 @@ Calculates the estimated amount received on the destination domain for a bridge 
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `originDomain` | `string` | `undefined` | The domain id of the origin chain. |
-| `destinationDomain` | `string` | `undefined` | The domain id of the destination chain. |
+| `originDomain` | `string` | `undefined` | The domain ID of the origin chain. |
+| `destinationDomain` | `string` | `undefined` | The domain ID of the destination chain. |
 | `originTokenAddress` | `string` | `undefined` | The address of the token to be bridged from origin. |
-| `amount` | `BigNumberish` | `undefined` | The amount of the origin token to bridge, in the origin token's native precision. |
-| `receiveLocal` | `boolean` | `false` | Whether the desired destination token is the local asset ("nextAsset"). |
+| `amount` | `BigNumberish` | `undefined` | The amount of the origin token to bridge, in the origin token's native decimal precision. |
+| `receiveLocal` | `boolean` | `false` | (optional) Whether the desired destination token is the local asset ("nextAsset"). |
 
 #### Returns
 
@@ -123,24 +119,24 @@ Calculates the estimated amount received on the destination domain for a bridge 
 
 Estimated amount received for local/adopted assets, if applicable, in their native decimal precisions.
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:267](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L267)
-
 ___
 
 ### calculateCanonicalKey
 
 ▸ **calculateCanonicalKey**(`domainId`, `canonicalId`): `string`
 
-Returns the hash of the canonical id + domain.
+Returns the hash of the canonical ID + canonical domain.
+
+**`Remarks`**
+
+This key is used as the unique identifier for a canonical token, across all domains.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `domainId` | `string` | The canonical domain id of the token. |
-| `canonicalId` | `string` | The canonical id of the token. |
+| `domainId` | `string` | The canonical domain ID of the token. |
+| `canonicalId` | `string` | The canonical ID of the token. |
 
 #### Returns
 
@@ -148,11 +144,7 @@ Returns the hash of the canonical id + domain.
 
 #### Inherited from
 
-[NxtpSdkShared](sdk-shared).[calculateCanonicalKey](sdk-shared#calculatecanonicalkey)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:160](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L160)
+[NxtpSdkShared](./sdk-shared).[calculateCanonicalKey](sdk-shared#calculatecanonicalkey)
 
 ___
 
@@ -160,7 +152,7 @@ ___
 
 ▸ **calculatePriceImpact**(`tokenInputAmount`, `tokenOutputAmount`, `virtualPrice?`, `isDeposit?`): `BigNumber`
 
-Returns the price impact depending on whether liquidity is being deposited or withdrawn.
+Calculates the price impact depending on whether liquidity is being deposited or withdrawn.
 
 #### Parameters
 
@@ -168,16 +160,14 @@ Returns the price impact depending on whether liquidity is being deposited or wi
 | :------ | :------ | :------ | :------ |
 | `tokenInputAmount` | `BigNumber` | `undefined` | The amount of inbound tokens (LP tokens for withdrawals, total tokens for deposits, dx for swaps). |
 | `tokenOutputAmount` | `BigNumber` | `undefined` | The amount of outbound tokens (total tokens for withdrawals, LP tokens for deposits, dy for swaps). |
-| `virtualPrice` | `BigNumber` | `undefined` | The current virtual price of the pool. |
-| `isDeposit?` | `boolean` | `true` | Whether this is a deposit or withdrawal. |
+| `virtualPrice` | `BigNumber` | `undefined` | (optional) The current virtual price of the pool. |
+| `isDeposit` | `boolean` | `true` | (optional) Whether this is a deposit or withdrawal. |
 
 #### Returns
 
 `BigNumber`
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:131](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L131)
+The price impact.
 
 ___
 
@@ -191,18 +181,16 @@ Returns the price impact of removing liquidity from a pool.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `domainId` | `string` | The domain id of the pool. |
+| `domainId` | `string` | The domain ID of the pool. |
 | `tokenAddress` | `string` | The address of local or adopted token. |
-| `amountX` | `string` | The amount of asset X. |
-| `amountY` | `string` | The amount of asset Y. |
+| `amountX` | `string` | The amount of token X (index 0 of the pool). |
+| `amountY` | `string` | The amount of token Y (index 1 of the pool). |
 
 #### Returns
 
 `Promise`<`undefined` \| `BigNumber`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:191](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L191)
+The price impact for removing liquidity.
 
 ___
 
@@ -210,13 +198,13 @@ ___
 
 ▸ **calculateRemoveSwapLiquidity**(`domainId`, `tokenAddress`, `amount`): `Promise`<`BigNumber`[]\>
 
-Returns the minimum LP token amount from deposits or withdrawals.
+Calculates the amounts of underlying tokens returned.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `domainId` | `string` | The domain id of the pool. |
+| `domainId` | `string` | The domain ID of the pool. |
 | `tokenAddress` | `string` | The address of local or adopted token. |
 | `amount` | `string` | The amount of the LP token to burn on withdrawal. |
 
@@ -224,9 +212,7 @@ Returns the minimum LP token amount from deposits or withdrawals.
 
 `Promise`<`BigNumber`[]\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:113](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L113)
+Array containing amount of each underlying token returned, in correct index order.
 
 ___
 
@@ -234,27 +220,23 @@ ___
 
 ▸ **calculateSwap**(`domainId`, `tokenAddress`, `tokenIndexFrom`, `tokenIndexTo`, `amount`): `Promise`<`BigNumber`\>
 
-Returns the amount of tokens received on a swap.
+Calculates the amount of tokens received on a swap.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `domainId` | `string` | The domain id of the pool. |
+| `domainId` | `string` | The domain ID of the pool. |
 | `tokenAddress` | `string` | The address of local or adopted token. |
 | `tokenIndexFrom` | `number` | The index of the token to sell. |
 | `tokenIndexTo` | `number` | The index of the token to buy. |
-| `amount` | `BigNumberish` | The number of tokens to sell, in the "From" token's native precision. |
+| `amount` | `BigNumberish` | The number of tokens to sell, in the "From" token's native decimal precision. |
 
 #### Returns
 
 `Promise`<`BigNumber`\>
 
-Minimum amount received, in the "To" token's native precision.
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:67](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L67)
+Minimum amount received, in the "To" token's native decimal precision.
 
 ___
 
@@ -262,13 +244,13 @@ ___
 
 ▸ **calculateSwapPriceImpact**(`domainId`, `amountX`, `tokenX`, `tokenY`): `Promise`<`BigNumber`\>
 
-Returns the price impact of a swap.
+Calculates the price impact of a swap.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `domainId` | `string` | The domain id of the pool. |
+| `domainId` | `string` | The domain ID of the pool. |
 | `amountX` | `string` | The amount of tokens to swap. |
 | `tokenX` | `string` | The address of the token to swap from. |
 | `tokenY` | `string` | The address of the token to swap to. |
@@ -277,9 +259,7 @@ Returns the price impact of a swap.
 
 `Promise`<`BigNumber`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:224](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L224)
+The price impact for swapping.
 
 ___
 
@@ -287,24 +267,22 @@ ___
 
 ▸ **calculateTokenAmount**(`domainId`, `tokenAddress`, `amounts`, `isDeposit?`): `Promise`<`BigNumber`\>
 
-Returns the minimum LP token amount from deposits or withdrawals.
+Calculates the minimum LP token amount from deposits or withdrawals.
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `domainId` | `string` | `undefined` | The domain id of the pool. |
+| `domainId` | `string` | `undefined` | The domain ID of the pool. |
 | `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
-| `amounts` | `string`[] | `undefined` | The amounts of the tokens to deposit/withdraw. |
-| `isDeposit?` | `boolean` | `true` | Whether this is a deposit or withdrawal. |
+| `amounts` | `string`[] | `undefined` | The amounts of the tokens to deposit/withdraw, in the correct index order. |
+| `isDeposit` | `boolean` | `true` | (optional) Whether this is a deposit or withdrawal. |
 
 #### Returns
 
 `Promise`<`BigNumber`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:91](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L91)
+Minimum LP tokens received.
 
 ___
 
@@ -312,26 +290,26 @@ ___
 
 ▸ **calculateYield**(`feesEarned`, `principal`, `days`): `Object`
 
+Calculates apr and apy.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `feesEarned` | `number` |
-| `principal` | `number` |
-| `days` | `number` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `feesEarned` | `number` | The total fees earned in the period. |
+| `principal` | `number` | The principal amount at the start of the period. |
+| `days` | `number` | The number of days to look back. |
 
 #### Returns
 
 `Object`
 
+Object containing apr and apy.
+
 | Name | Type |
 | :------ | :------ |
 | `apr` | `number` |
 | `apy` | `number` |
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:791](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L791)
 
 ___
 
@@ -339,11 +317,13 @@ ___
 
 ▸ **changeSignerAddress**(`signerAddress`): `Promise`<`void`\>
 
+Switches the signer address in the SDK config.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `signerAddress` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `signerAddress` | `string` | The new signer address. |
 
 #### Returns
 
@@ -351,11 +331,7 @@ ___
 
 #### Inherited from
 
-[NxtpSdkShared](sdk-shared).[changeSignerAddress](sdk-shared#changesigneraddress)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:142](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L142)
+[NxtpSdkShared](./sdk-shared).[changeSignerAddress](sdk-shared#changesigneraddress)
 
 ___
 
@@ -363,63 +339,63 @@ ___
 
 ▸ **getAdopted**(`domainId`, `tokenAddress`): `Promise`<`string`\>
 
+Reads the adopted token.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID of the pool. |
+| `tokenAddress` | `string` | The address of local or adopted token. |
 
 #### Returns
 
 `Promise`<`string`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:442](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L442)
+The adopted token.
 
 ___
 
 ### getAssetsData
 
-▸ **getAssetsData**(): `Promise`<[`AssetData`](#assetdata)[]\>
+▸ **getAssetsData**(): `Promise`<[`AssetData`](./sdk-types/#assetdata)[]\>
+
+Fetches the list of registered assets.
 
 #### Returns
 
-`Promise`<[`AssetData`](#assetdata)[]\>
+`Promise`<[`AssetData`](./sdk-types/#assetdata)[]\>
+
+Array of objects containing assets registered to the network.
 
 #### Inherited from
 
-[NxtpSdkShared](sdk-shared).[getAssetsData](sdk-shared#getassetsdata)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:108](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L108)
+[NxtpSdkShared](./sdk-shared).[getAssetsData](sdk-shared#getassetsdata)
 
 ___
 
 ### getAssetsDataByDomainAndKey
 
-▸ **getAssetsDataByDomainAndKey**(`domainId`, `key`): `Promise`<`undefined` \| [`AssetData`](#assetdata)\>
+▸ **getAssetsDataByDomainAndKey**(`domainId`, `key`): `Promise`<`undefined` \| [`AssetData`](./sdk-types/#assetdata)\>
+
+Retrieve the asset data for a specific domain and key.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `key` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID. |
+| `key` | `string` | The canonical hash of the canonical token. |
 
 #### Returns
 
-`Promise`<`undefined` \| [`AssetData`](#assetdata)\>
+`Promise`<`undefined` \| [`AssetData`](./sdk-types/#assetdata)\>
+
+The object containing asset data.
 
 #### Inherited from
 
-[NxtpSdkShared](sdk-shared).[getAssetsDataByDomainAndKey](sdk-shared#getassetsdatabydomainandkey)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:116](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L116)
+[NxtpSdkShared](./sdk-shared).[getAssetsDataByDomainAndKey](sdk-shared#getassetsdatabydomainandkey)
 
 ___
 
@@ -440,11 +416,7 @@ ___
 
 #### Inherited from
 
-[NxtpSdkShared](sdk-shared).[getCanonicalTokenId](sdk-shared#getcanonicaltokenid)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:164](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L164)
+[NxtpSdkShared](./sdk-shared).[getCanonicalTokenId](sdk-shared#getcanonicaltokenid)
 
 ___
 
@@ -452,25 +424,13 @@ ___
 
 ▸ **getDefaultDeadline**(): `number`
 
-Returns the default deadline. Set to 1 hour from current time.
+Set to 1 hour from current time.
 
 #### Returns
 
 `number`
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:53](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L53)
-
-___
-
-### getLiquidityMiningAprPerPool
-
-• **getLiquidityMiningAprPerPool**: (`totalTokens`: `number`, `totalBlocks`: `number`, `numPools`: `number`, `tokenSymbol`: `string`, `poolTVL`: `number`) => `Promise`<`number`\> & `Memoized`<(`totalTokens`: `number`, `totalBlocks`: `number`, `numPools`: `number`, `tokenSymbol`: `string`, `poolTVL`: `number`) => `Promise`<`number`\>\>
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:849](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L849)
+The default deadline, in unix time.
 
 ___
 
@@ -478,20 +438,20 @@ ___
 
 ▸ **getLPTokenAddress**(`domainId`, `tokenAddress`): `Promise`<`string`\>
 
+Reads the LP token address of a pool.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID of the pool. |
+| `tokenAddress` | `string` | The address of local or adopted token. |
 
 #### Returns
 
 `Promise`<`string`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:356](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L356)
+The LP token address.
 
 ___
 
@@ -499,63 +459,42 @@ ___
 
 ▸ **getLPTokenSupply**(`domainId`, `lpTokenAddress`): `Promise`<`BigNumber`\>
 
+Reads the LP token supply of a pool.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `lpTokenAddress` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID of the pool. |
+| `lpTokenAddress` | `string` | The address of the LP token. |
 
 #### Returns
 
 `Promise`<`BigNumber`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:367](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L367)
+The LP token supply.
 
 ___
-
-### getPool
-
-• **getPool**: (`domainId`: `string`, `tokenAddress`: `string`) => `Promise`<`undefined` \| [`Pool`](#pool)\> & `Memoized`<(`domainId`: `string`, `tokenAddress`: `string`) => `Promise`<`undefined` \| [`Pool`](#pool)\>\>
-
-Returns the StableSwap Pool details for a given asset.
-
-**`Param`**
-
-The domain id of the pool.
-
-**`Param`**
-
-The address of local or adopted token.
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:588](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L588)
-
-___
-
 
 ### getPoolTokenAddress
 
 ▸ **getPoolTokenAddress**(`domainId`, `tokenAddress`, `index`): `Promise`<`string`\>
 
+Reads the address of a pool token.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
-| `index` | `number` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID of the pool. |
+| `tokenAddress` | `string` | The address of local or adopted token. |
+| `index` | `number` | The index of the pool token. |
 
 #### Returns
 
 `Promise`<`string`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:409](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L409)
+The address of the token.
 
 ___
 
@@ -563,23 +502,21 @@ ___
 
 ▸ **getPoolTokenBalance**(`domainId`, `tokenAddress`, `poolTokenAddress`): `Promise`<`BigNumber`\>
 
-Returns the balances of the tokens in a pool.
+Reads the balance of a pool token.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `domainId` | `string` | The domain id of the pool. |
+| `domainId` | `string` | The domain ID of the pool. |
 | `tokenAddress` | `string` | The address of local or adopted token. |
-| `poolTokenAddress` | `string` | - |
+| `poolTokenAddress` | `string` | The address of the pool token. |
 
 #### Returns
 
 `Promise`<`BigNumber`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:397](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L397)
+The balance of the pool token.
 
 ___
 
@@ -587,21 +524,21 @@ ___
 
 ▸ **getPoolTokenIndex**(`domainId`, `tokenAddress`, `poolTokenAddress`): `Promise`<`number`\>
 
+Reads the index of a pool token.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
-| `poolTokenAddress` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID of the pool. |
+| `tokenAddress` | `string` | The address of the token. |
+| `poolTokenAddress` | `string` | The address of the pool token. |
 
 #### Returns
 
 `Promise`<`number`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:381](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L381)
+The index of the pool token.
 
 ___
 
@@ -609,20 +546,20 @@ ___
 
 ▸ **getRepresentation**(`domainId`, `tokenAddress`): `Promise`<`string`\>
 
+Reads the representation (local or adopted) token.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID of the pool. |
+| `tokenAddress` | `string` | The address of local or adopted token. |
 
 #### Returns
 
 `Promise`<`string`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:431](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L431)
+The representation (local or adopted) token.
 
 ___
 
@@ -642,9 +579,7 @@ Fetches the current price of a token.
 
 `Promise`<`any`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:348](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L348)
+The price of the token.
 
 ___
 
@@ -652,44 +587,42 @@ ___
 
 ▸ **getTokenUserBalance**(`domainId`, `tokenAddress`, `userAddress`): `Promise`<`BigNumber`\>
 
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
-| `userAddress` | `string` |
-
-#### Returns
-
-`Promise`<`BigNumber`\>
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:374](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L374)
-
-___
-
-### getUserPools
-
-▸ **getUserPools**(`domainId`, `userAddress`): `Promise`<{ `info`: [`Pool`](#pool) ; `lpTokenBalance`: `BigNumber` ; `poolTokenBalances`: `BigNumber`[]  }[]\>
-
-Returns the Pools that a user has LP tokens for.
+Reads the token balance of an address.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `domainId` | `string` | The domain id of the pool. |
+| `domainId` | `string` | The domain ID where the token exists. |
+| `tokenAddress` | `string` | The address of the token. |
+| `userAddress` | `string` | The address to get the balance of. |
+
+#### Returns
+
+`Promise`<`BigNumber`\>
+
+The user's balance of the token.
+
+___
+
+### getUserPools
+
+▸ **getUserPools**(`domainId`, `userAddress`): `Promise`<{ `info`: [`Pool`](./sdk-types/#pool) ; `lpTokenBalance`: `BigNumber` ; `poolTokenBalances`: `BigNumber`[]  }[]\>
+
+Retrieves the Pools that a user has LP tokens for.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID of the pool. |
 | `userAddress` | `string` | The address of the user to get the pools for. |
 
 #### Returns
 
-`Promise`<{ `info`: [`Pool`](#pool) ; `lpTokenBalance`: `BigNumber` ; `poolTokenBalances`: `BigNumber`[]  }[]\>
+`Promise`<{ `info`: [`Pool`](./sdk-types/#pool) ; `lpTokenBalance`: `BigNumber` ; `poolTokenBalances`: `BigNumber`[]  }[]\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:683](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L683)
+Array of Pool objects.
 
 ___
 
@@ -697,30 +630,20 @@ ___
 
 ▸ **getVirtualPrice**(`domainId`, `tokenAddress`): `Promise`<`BigNumber`\>
 
+Reads the virtual price of a pool.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID of the pool. |
+| `tokenAddress` | `string` | The address of local or adopted token. |
 
 #### Returns
 
 `Promise`<`BigNumber`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:420](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L420)
-
-___
-
-### getYieldData
-
-• **getYieldData**: (`domainId`: `string`, `tokenAddress`: `string`, `days`: `number`) => `Promise`<`undefined` \| { `apr`: `number` ; `apy`: `number` ; `volume`: `BigNumber` ; `volumeFormatted`: `number`  }\> & `Memoized`<(`domainId`: `string`, `tokenAddress`: `string`, `days`: `number`) => `Promise`<`undefined` \| { `apr`: `number` ; `apy`: `number` ; `volume`: `BigNumber` ; `volumeFormatted`: `number`  }\>\>
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:806](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L806)
+The virtual price.
 
 ___
 
@@ -728,21 +651,21 @@ ___
 
 ▸ **getYieldStatsForDay**(`domainId`, `tokenAddress`, `unixTimestamp`): `Promise`<`undefined` \| { `totalFeesFormatted`: `number` ; `totalLiquidityFormatted`: `number` ; `totalVolume`: `BigNumber` ; `totalVolumeFormatted`: `number`  }\>
 
+Calculates the fees, liquidity, and volume of a pool for the 24 hours prior to the specified unix time.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
-| `unixTimestamp` | `number` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID of the pool. |
+| `tokenAddress` | `string` | The address of the user to get the pools for. |
+| `unixTimestamp` | `number` | The unix time to look back 24 hours from. |
 
 #### Returns
 
 `Promise`<`undefined` \| { `totalFeesFormatted`: `number` ; `totalLiquidityFormatted`: `number` ; `totalVolume`: `BigNumber` ; `totalVolumeFormatted`: `number`  }\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:717](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L717)
+Object containing fees, liquidity, and volume, formatted in the pool token's native decimal precision.
 
 ___
 
@@ -750,23 +673,23 @@ ___
 
 ▸ **isNextAsset**(`tokenAddress`): `Promise`<`undefined` \| `boolean`\>
 
+Returns whether the specified token is a Connext-issued (local) token.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `tokenAddress` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `tokenAddress` | `string` | The address of the token. |
 
 #### Returns
 
 `Promise`<`undefined` \| `boolean`\>
 
+Boolean or undefined if the specified token is not registered.
+
 #### Inherited from
 
-[NxtpSdkShared](sdk-shared).[isNextAsset](sdk-shared#isnextasset)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:129](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L129)
+[NxtpSdkShared](./sdk-shared).[isNextAsset](sdk-shared#isnextasset)
 
 ___
 
@@ -774,23 +697,23 @@ ___
 
 ▸ **parseConnextTransactionReceipt**(`transactionReceipt`): `any`
 
+Parses a providers.TransactionReceipt for the logs.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `transactionReceipt` | `TransactionReceipt` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `transactionReceipt` | `TransactionReceipt` | providers.TransactionReceipt object. |
 
 #### Returns
 
 `any`
 
+Array of providers.Log objects.
+
 #### Inherited from
 
-[NxtpSdkShared](sdk-shared).[parseConnextTransactionReceipt](sdk-shared#parseconnexttransactionreceipt)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:146](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L146)
+[NxtpSdkShared](./sdk-shared).[parseConnextTransactionReceipt](sdk-shared#parseconnexttransactionreceipt)
 
 ___
 
@@ -804,19 +727,17 @@ Returns the transaction request for removing liquidity from a pool.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `domainId` | `string` | The domain id of the pool. |
+| `domainId` | `string` | The domain ID of the pool. |
 | `tokenAddress` | `string` | The address of local or adopted token. |
 | `amount` | `string` | The amount of the token to swap. |
-| `minAmounts?` | `string`[] | The minimum acceptable amounts of each token to burn. |
-| `deadline?` | `number` | The deadline for the swap. |
+| `minAmounts` | `string`[] | (optional) The minimum acceptable amounts of each token to burn. |
+| `deadline` | `number` | (optional) The deadline for the swap. |
 
 #### Returns
 
 `Promise`<`TransactionRequest`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:498](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L498)
+providers.TransactionRequest object.
 
 ___
 
@@ -830,64 +751,71 @@ Returns the transaction request for performing a swap in a pool.
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `domainId` | `string` | `undefined` | The domain id of the pool. |
+| `domainId` | `string` | `undefined` | The domain ID of the pool. |
 | `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
 | `from` | `string` | `undefined` | The address of the token to sell. |
 | `to` | `string` | `undefined` | The address of the token to buy. |
 | `amount` | `string` | `undefined` | The amount of the selling token to swap. |
-| `minDy` | `number` | `0` | The minimum amount of the buying token to receive. |
-| `deadline` | `number` | `undefined` | The deadline for the swap. |
+| `minDy` | `number` | `0` | (optional) The minimum amount of the buying token to receive. |
+| `deadline` | `number` | `undefined` | (optional) The deadline for the swap. |
 
 #### Returns
 
 `Promise`<`TransactionRequest`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkPool.ts:535](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L535)
+providers.TransactionRequest object.
 
 ___
 
 ### create
 
-▸ `Static` **create**(`_config`, `_logger?`, `_chainData?`): `Promise`<[`NxtpSdkPool`](NxtpSdkPool.md)\>
+▸ `Static` **create**(`_config`): `Promise`<[`NxtpSdkPool`](NxtpSdkPool.md)\>
+
+Create a singleton instance of the NxtpSdkPool class.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :----- |
-| `_config` | `Object` | Main config object. 
-| `_config.network` | ``"testnet"`` \| ``"mainnet"`` | Whether to connect to mainnet or testnet deployments. 
-| `_config.signerAddress` | `string` | The signer address used for write operations.
-| `_config.chains` | `Object` | Contains mappings of domain ID to providers. See example below.
-
-
-Example `_config`:
-```typescript
-{
-  "network": "mainnet",
-  "signerAddress": "<signer-address>",
-  "chains": {
-    "6648936": { // Ethereum
-      "providers": ["https://rpc.ankr.com/eth"]
-    },
-    "1869640809": { // Optimism
-      "providers": ["https://rpc.ankr.com/optimism"]
-    },
-    "1886350457": { // Polygon
-      "providers": ["https://polygon-rpc.com"]
-    }
-  },
-}
-```
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `_config` | `Object` | undefined | NxtpSdkConfig object. |
+| `_config.chains` | `Record`<`string`, { providers: string[] }\> | undefined | Chain config, at minimum with providers for each chain. |
+| `_config.signerAddress` | `string` | undefined| Signer address for transactions. |
+| `_config.logLevel` | ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` | "info" | (optional) Logging severity level. |
+| `_config.network` | ``"testnet"`` \| ``"mainnet"`` | "mainnet" | (optional) Blockchain environment to interact with. |
 
 #### Returns
 
 `Promise`<[`NxtpSdkPool`](NxtpSdkPool.md)\>
 
-#### Defined in
+providers.TransactionRequest object.
 
-[packages/agents/sdk/src/sdkPool.ts:29](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkPool.ts#L29)
+@example:
+```ts
+import { NxtpSdkPool } from "@connext/nxtp-sdk";
+
+const config = {
+  "chains": {
+    "6648936": { // the domain ID for Ethereum Mainnet
+      "providers": ["https://rpc.ankr.com/eth"]
+    },
+    "1869640809": { // the domain ID for Optimism
+      "providers": ["https://mainnet.optimism.io"]
+    },
+    "1886350457": { // the domain ID for Polygon
+      "providers": ["https://polygon-rpc.com"]
+    },
+  },
+  "signerAddress": "<wallet_address>",
+}
+
+const nxtpSdkPool = await NxtpSdkPool.create(config);
+```
+
+:::note
+
+See the [Supported Chains](../../../resources/supported-chains) page for all domain IDs.
+
+:::
 
 ___
 
@@ -895,23 +823,23 @@ ___
 
 ▸ `Static` **domainToChainName**(`domainId`): `string`
 
+Returns the chain name for a specified domain.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID. |
 
 #### Returns
 
 `string`
 
+The chain name.
+
 #### Inherited from
 
-[NxtpSdkShared](sdk-shared).[domainToChainName](sdk-shared#domaintochainname)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:53](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L53)
+[NxtpSdkShared](./sdk-shared).[domainToChainName](sdk-shared#domaintochainname)
 
 ___
 
@@ -932,74 +860,4 @@ ___
 
 #### Inherited from
 
-[NxtpSdkShared](sdk-shared).[getBlockNumberFromUnixTimestamp](sdk-shared#getblocknumberfromunixtimestamp)
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:57](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L57)
-
-## Type Aliases
-
-### Pool
-
-Ƭ **Pool**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `address?` | `string` |
-| `adopted` | [`PoolAsset`](#poolasset) |
-| `canonicalHash` | `string` |
-| `domainId` | `string` |
-| `local` | [`PoolAsset`](#poolasset) |
-| `lpTokenAddress` | `string` |
-| `name` | `string` |
-| `symbol` | `string` |
-
-#### Defined in
-
-[packages/agents/sdk/src/interfaces/index.ts:3](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/interfaces/index.ts#L3)
-
-___
-
-### PoolAsset
-
-Ƭ **PoolAsset**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `address` | `string` |
-| `balance` | `BigNumber` |
-| `decimals` | `number` |
-| `index` | `number` |
-| `name` | `string` |
-| `symbol` | `string` |
-
-#### Defined in
-
-[packages/agents/sdk/src/interfaces/index.ts:14](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/interfaces/index.ts#L14)
-
-___
-
-### AssetData
-
-Ƭ **AssetData**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `adopted` | `string` |
-| `canonical_domain` | `string` |
-| `canonical_id` | `string` |
-| `domain` | `string` |
-| `id` | `string` |
-| `key` | `string` |
-| `local` | `string` |
-
-#### Defined in
-
-[packages/agents/sdk/src/interfaces/index.ts:23](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/interfaces/index.ts#L23)
+[NxtpSdkShared](./sdk-shared).[getBlockNumberFromUnixTimestamp](sdk-shared#getblocknumberfromunixtimestamp)

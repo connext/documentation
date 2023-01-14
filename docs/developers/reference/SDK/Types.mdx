@@ -1,0 +1,74 @@
+---
+sidebar_position: 6
+title: Types
+id: sdk-types
+---
+
+# Type Aliases
+
+### AssetData
+
+Ƭ **AssetData**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `adopted` | `string` |
+| `canonical_domain` | `string` |
+| `canonical_id` | `string` |
+| `domain` | `string` |
+| `id` | `string` |
+| `key` | `string` |
+| `local` | `string` |
+
+___
+
+### Pool
+
+Ƭ **Pool**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `address?` | `string` |
+| `adopted` | [`PoolAsset`](modules.md#poolasset) |
+| `canonicalHash` | `string` |
+| `domainId` | `string` |
+| `local` | [`PoolAsset`](modules.md#poolasset) |
+| `lpTokenAddress` | `string` |
+| `name` | `string` |
+| `symbol` | `string` |
+
+___
+
+### PoolAsset
+
+Ƭ **PoolAsset**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `address` | `string` |
+| `balance` | `BigNumber` |
+| `decimals` | `number` |
+| `index` | `number` |
+| `name` | `string` |
+| `symbol` | `string` |
+
+___
+
+### ConnextSupport
+
+Ƭ **ConnextSupport**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `assets` | `string`[] |
+| `chainId` | `number` |
+| `domainId` | `string` |
+| `name` | `string` |

@@ -7,21 +7,19 @@ id: sdk-shared
 
 **`Classdesc`**
 
-Base class to facilitate on-chain interactions with Connext.
+SDK class encapsulating shared logic to be inherited.
 
 ## Hierarchy
 
 - **`NxtpSdkShared`**
 
-  ↳ [`NxtpSdkBase`](NxtpSdkBase.md)
+  ↳ [`NxtpSdkBase`](sdk-base)
 
-  ↳ [`NxtpSdkRouter`](NxtpSdkRouter.md)
+  ↳ [`NxtpSdkRouter`](sdk-router)
 
-  ↳ [`NxtpSdkPool`](NxtpSdkPool.md)
+  ↳ [`NxtpSdkPool`](sdk-pool)
 
-  ↳ [`NxtpSdkUtils`](NxtpSdkUtils.md)
-
-
+  ↳ [`NxtpSdkUtils`](sdk-utils)
 
 ## Methods
 
@@ -29,22 +27,22 @@ Base class to facilitate on-chain interactions with Connext.
 
 ▸ **approveIfNeeded**(`domainId`, `assetId`, `amount`, `infiniteApprove?`): `Promise`<`undefined` \| `TransactionRequest`\>
 
+Returns the transaction request for an allowance approval.
+
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `domainId` | `string` | `undefined` |
-| `assetId` | `string` | `undefined` |
-| `amount` | `string` | `undefined` |
-| `infiniteApprove` | `boolean` | `true` |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` | The domain ID. |
+| `assetId` | `string` | `undefined` | The address of the token. |
+| `amount` | `string` | `undefined` | The amount of the token. |
+| `infiniteApprove` | `boolean` | `true` | (optional) Whether to approve an infinite amount. |
 
 #### Returns
 
 `Promise`<`undefined` \| `TransactionRequest`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:65](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L65)
+providers.TransactionRequest object.
 
 ___
 
@@ -52,22 +50,22 @@ ___
 
 ▸ **calculateCanonicalKey**(`domainId`, `canonicalId`): `string`
 
-Returns the hash of the canonical id + domain.
+Returns the hash of the canonical ID + canonical domain.
+
+**`Remarks`**
+
+This key is used as the unique identifier for a canonical token, across all domains.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `domainId` | `string` | The canonical domain id of the token. |
-| `canonicalId` | `string` | The canonical id of the token. |
+| `domainId` | `string` | The canonical domain ID of the token. |
+| `canonicalId` | `string` | The canonical ID of the token. |
 
 #### Returns
 
 `string`
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:160](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L160)
 
 ___
 
@@ -75,54 +73,63 @@ ___
 
 ▸ **changeSignerAddress**(`signerAddress`): `Promise`<`void`\>
 
+Switches the signer address in the SDK config.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `signerAddress` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `signerAddress` | `string` | The new signer address. |
 
 #### Returns
 
 `Promise`<`void`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:142](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L142)
-
 ___
 
 ### getAssetsData
 
-▸ **getAssetsData**(): `Promise`<[`AssetData`](#assetdata)[]\>
+▸ **getAssetsData**(): `Promise`<[`AssetData`](./sdk-types/#assetdata)[]\>
+
+Fetches the list of registered assets.
 
 #### Returns
 
-`Promise`<[`AssetData`](#assetdata)[]\>
+`Promise`<[`AssetData`](./sdk-types/#assetdata)[]\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:108](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L108)
+Array of objects containing assets registered to the network, in the form of:
+```ts
+{
+  "local": "0x2983bf5c334743aa6657ad70a55041d720d225db",
+  "adopted": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+  "canonical_id": "0x000000000000000000000000c02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+  "canonical_domain": "6648936",
+  "domain": "1634886255",
+  "key": "0x12acadfa38ab02479ae587196a9043ee4d8bf52fcb96b7f8d2ba240f03bcd08a",
+  "id": "0x2983bf5c334743aa6657ad70a55041d720d225db"
+},
+```
 
 ___
 
 ### getAssetsDataByDomainAndKey
 
-▸ **getAssetsDataByDomainAndKey**(`domainId`, `key`): `Promise`<`undefined` \| [`AssetData`](#assetdata)\>
+▸ **getAssetsDataByDomainAndKey**(`domainId`, `key`): `Promise`<`undefined` \| [`AssetData`](./sdk-types/#assetdata)\>
+
+Retrieve the asset data for a specific domain and key.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `key` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID. |
+| `key` | `string` | The canonical hash of the canonical token. |
 
 #### Returns
 
-`Promise`<`undefined` \| [`AssetData`](#assetdata)\>
+`Promise`<`undefined` \| [`AssetData`](./sdk-types/#assetdata)\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:116](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L116)
+The object containing asset data.
 
 ___
 
@@ -141,9 +148,30 @@ ___
 
 `Promise`<[`string`, `string`]\>
 
-#### Defined in
+___
 
-[packages/agents/sdk/src/sdkShared.ts:164](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L164)
+### getSupported
+
+▸ **getSupported**(): `Promise`<[`ConnextSupport`](./sdk-types/#connextsupport)[]\>
+
+Fetches the list of supported networks and assets.
+
+#### Returns
+
+`Promise`<[`ConnextSupport`](./sdk-types/#connextsupport)[]\>
+
+Array of objects containing networks and assets supported by the protocol, in the form of:
+```ts
+{
+  "name": "arbitrum",
+  "chainId": 42161,
+  "domainId": "1634886255",
+  "assets": [
+    "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+    "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8"
+  ]
+},
+```
 
 ___
 
@@ -151,19 +179,19 @@ ___
 
 ▸ **isNextAsset**(`tokenAddress`): `Promise`<`undefined` \| `boolean`\>
 
+Returns whether the specified token is a Connext-issued (local) token.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `tokenAddress` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `tokenAddress` | `string` | The address of the token. |
 
 #### Returns
 
 `Promise`<`undefined` \| `boolean`\>
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:129](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L129)
+Boolean or undefined if the specified token is not registered.
 
 ___
 
@@ -171,19 +199,19 @@ ___
 
 ▸ **parseConnextTransactionReceipt**(`transactionReceipt`): `any`
 
+Parses a providers.TransactionReceipt for the logs.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `transactionReceipt` | `TransactionReceipt` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `transactionReceipt` | `TransactionReceipt` | providers.TransactionReceipt object. |
 
 #### Returns
 
 `any`
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:146](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L146)
+Array of providers.Log objects.
 
 ___
 
@@ -191,19 +219,19 @@ ___
 
 ▸ `Static` **domainToChainName**(`domainId`): `string`
 
+Returns the chain name for a specified domain.
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID. |
 
 #### Returns
 
 `string`
 
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:53](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L53)
+The chain name.
 
 ___
 
@@ -221,29 +249,3 @@ ___
 #### Returns
 
 `Promise`<`number`\>
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkShared.ts:57](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/sdkShared.ts#L57)
-
-## Type Aliases
-
-### AssetData
-
-Ƭ **AssetData**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `adopted` | `string` |
-| `canonical_domain` | `string` |
-| `canonical_id` | `string` |
-| `domain` | `string` |
-| `id` | `string` |
-| `key` | `string` |
-| `local` | `string` |
-
-#### Defined in
-
-[packages/agents/sdk/src/interfaces/index.ts:23](https://github.com/connext/monorepo/blob/e16f6045f/packages/agents/sdk/src/interfaces/index.ts#L23)
