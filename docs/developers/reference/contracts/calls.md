@@ -191,7 +191,7 @@ to this chain), we will custody the tokens here.
 | `_to`               | `address`  | The target address on the destination chain. xcall will send funds to whatever address is specified here regardless of whether it is a contract or EOA. If calldata is provided, xcall will additionally attempt to call `xReceive` on this contract. |
 | `_asset`            | `address`  | The contract address of the asset to be bridged. If the `xcall` is calldata-only (e.g. doesn't bridge any funds), any registered asset can be used here as long as `amount: 0`.|
 | `_delegate`         | `address`  | An address on destination domain that has rights to update slippage tolerance, retry transactions, or revert back to origin in the event that a transaction fails at the destination.|
-| `_amount`           | `uint256`  | The amount of tokens to bridge specified in wei units (i.e. to send 1 USDC, a token with 10^18 decimals, you must specify the amount as `1000000000000000000`).|
+| `_amount`           | `uint256`  | The amount of tokens to bridge specified in wei units (i.e. to send 1 USDC, a token with 10^6 decimals, you must specify the amount as `1000000`).|
 | `_slippage`         | `uint256`  | The maximum slippage a user is willing to take, in BPS, due to the StableSwap Pool(s), if applicable. For example, to achieve 0.03% slippage tolerance this will be `3`.|
 | `_callData`         | `bytes`    | In the case of bridging funds only, this should be empty (""). If calldata is sent, then the encoded calldata must be passed here.|
 
