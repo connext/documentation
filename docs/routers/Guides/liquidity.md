@@ -17,7 +17,7 @@ Where necessary, for end users Connext will swap into and out of local and adopt
 
 </aside>
 
-Using UDSC as an example, to provide active liquidity on Amarok you will need to get local nextUSDC on the desired chain. 
+Using USDC as an example, to provide active liquidity on Amarok you will need to get local nextUSDC on the desired chain. 
 
 **Instructions below:**
 
