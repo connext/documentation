@@ -74,6 +74,8 @@ npm install ethers
 
 This is the full code for the example. Read through the comments and replace any placeholders between `<...>`.
 
+Information like asset addresses be found in the [Deployments](../../../resources/deployments) page.
+
 ```ts title="src/xtransfer.ts"
 import { create, NxtpSdkConfig } from "@connext/nxtp-sdk";
 import { ethers } from "ethers";
@@ -90,13 +92,27 @@ const signerAddress = await signer.getAddress();
 // Construct the `NxtpSdkConfig`. You can reference chain IDs in the "Resources" tab of the docs.
 const nxtpConfig: NxtpSdkConfig = {
   signerAddress: signerAddress,
-  network: "mainnet", // can be "mainnet" or "testnet", will default to "mainnet" if omitted
+  network: "testnet", // can be "mainnet" or "testnet"
   chains: {
-    "1735353714": {
+    1735353714: {
       providers: ["<GOERLI_RPC_URL>"],
+      assets: [
+        {
+          name: "TEST",
+          symbol: "TEST",
+          address: "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1",
+        },
+      ],
     },
-    "9991": {
+    9991: {
       providers: ["<MUMBAI_RPC_URL>"],
+      assets: [
+        {
+          name: "TEST",
+          symbol: "TEST",
+          address: "0xeDb95D8037f769B72AAab41deeC92903A98C9E16",
+        },
+      ],
     },
   },
 };
