@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Managing Your Router
 
 Routers have three distinct roles for management:

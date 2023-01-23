@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 # Security
 Being mindful of security is an essential part of operating any Web3 infrastructure, and running a Connext Router is no exception. Here are some things to be aware of:  
