@@ -17,7 +17,7 @@ When tokens are bridged through Connext, slippage can impact the `xcall` during 
 
 ### Increasing Slippage Tolerance
 
-The [`_delegate`](../reference/contracts/calls#parameters-8) parameter of `xcall` is an address that has rights to update the original slippage tolerance by calling Connext's [forceUpdateSlippage](https://github.com/connext/nxtp/blob/27bbf7871a78b03d8613b06ece2675a57309d573/packages/deployments/contracts/contracts/core/connext/facets/BridgeFacet.sol#L395) function with the following signature:
+The [`_delegate`](../reference/contracts/calls#parameters-8) parameter of `xcall` is an address that has rights to update the original slippage tolerance by calling Connext's [forceUpdateSlippage](https://github.com/connext/monorepo/blob/27bbf7871a78b03d8613b06ece2675a57309d573/packages/deployments/contracts/contracts/core/connext/facets/BridgeFacet.sol#L395) function with the following signature:
 
 ```solidity
 function forceUpdateSlippage(TransferInfo calldata _params, uint256 _slippage) external;

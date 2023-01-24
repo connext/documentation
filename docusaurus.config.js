@@ -6,7 +6,7 @@ const CardLink = require("./src/remark/CardLink");
 module.exports = {
   title: "Connext Documentation",
   tagline: "Fast, trust-minimized communication between blockchains.",
-  url: "https://nxtp-docs.connext.network",
+  url: "https://docs.connext.network",
   baseUrl: "/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
