@@ -86,8 +86,8 @@ Calculates the price impact of adding liquidity to a pool.
 | :------ | :------ | :------ |
 | `domainId` | `string` | The domain ID of the pool. |
 | `tokenAddress` | `string` | The address of local or adopted token. |
-| `amountX` | `string` | The amount of token X (index 0 of the pool). |
-| `amountY` | `string` | The amount of token Y (index 1 of the pool). |
+| `amountX` | `string` | The amount of token X (index 0 of the pool), in the token's native precision. |
+| `amountY` | `string` | The amount of token Y (index 1 of the pool), in the token's native precision. |
 
 #### Returns
 
@@ -158,8 +158,8 @@ Calculates the price impact depending on whether liquidity is being deposited or
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `tokenInputAmount` | `BigNumber` | `undefined` | The amount of inbound tokens (LP tokens for withdrawals, total tokens for deposits, dx for swaps). |
-| `tokenOutputAmount` | `BigNumber` | `undefined` | The amount of outbound tokens (total tokens for withdrawals, LP tokens for deposits, dy for swaps). |
+| `tokenInputAmount` | `BigNumber` | `undefined` | The amount of inbound tokens (LP tokens for withdrawals, total tokens for deposits, dx for swaps), in 1e18 precision. |
+| `tokenOutputAmount` | `BigNumber` | `undefined` | The amount of outbound tokens (total tokens for withdrawals, LP tokens for deposits, dy for swaps), in 1e18 precision. |
 | `virtualPrice` | `BigNumber` | `undefined` | (optional) The current virtual price of the pool. |
 | `isDeposit` | `boolean` | `true` | (optional) Whether this is a deposit or withdrawal. |
 
@@ -183,14 +183,14 @@ Returns the price impact of removing liquidity from a pool.
 | :------ | :------ | :------ |
 | `domainId` | `string` | The domain ID of the pool. |
 | `tokenAddress` | `string` | The address of local or adopted token. |
-| `amountX` | `string` | The amount of token X (index 0 of the pool). |
-| `amountY` | `string` | The amount of token Y (index 1 of the pool). |
+| `amountX` | `string` | The amount of token X (index 0 of the pool), in the token's native precision. |
+| `amountY` | `string` | The amount of token Y (index 1 of the pool), in the token's native precision. |
 
 #### Returns
 
 `Promise`<`undefined` \| `BigNumber`\>
 
-The price impact for removing liquidity.
+The price impact for removing liquidity, in 1e18 precision.
 
 ___
 
@@ -251,7 +251,7 @@ Calculates the price impact of a swap.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `domainId` | `string` | The domain ID of the pool. |
-| `amountX` | `string` | The amount of tokens to swap. |
+| `amountX` | `string` | The amount of tokens to swap, in the token's native precision. |
 | `tokenX` | `string` | The address of the token to swap from. |
 | `tokenY` | `string` | The address of the token to swap to. |
 
@@ -259,7 +259,7 @@ Calculates the price impact of a swap.
 
 `Promise`<`BigNumber`\>
 
-The price impact for swapping.
+The price impact for swapping, in 1e18 precision.
 
 ___
 
@@ -275,14 +275,14 @@ Calculates the minimum LP token amount from deposits or withdrawals.
 | :------ | :------ | :------ | :------ |
 | `domainId` | `string` | `undefined` | The domain ID of the pool. |
 | `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
-| `amounts` | `string`[] | `undefined` | The amounts of the tokens to deposit/withdraw, in the correct index order. |
+| `amounts` | `string`[] | `undefined` | The amounts of the tokens to deposit/withdraw, in the correct index order and in each token's native precision. |
 | `isDeposit` | `boolean` | `true` | (optional) Whether this is a deposit or withdrawal. |
 
 #### Returns
 
 `Promise`<`BigNumber`\>
 
-Minimum LP tokens received.
+Minimum LP tokens received, in 1e18 precision.
 
 ___
 
@@ -366,7 +366,7 @@ Fetches the list of registered assets.
 
 `Promise`<[`AssetData`](./sdk-types/#assetdata)[]\>
 
-Array of objects containing assets registered to the network.
+Array of objects containing assets registered to the network, in the form of:
 
 #### Inherited from
 
@@ -402,6 +402,8 @@ ___
 ### getCanonicalTokenId
 
 ▸ **getCanonicalTokenId**(`domainId`, `tokenAddress`): `Promise`<[`string`, `string`]\>
+
+Returns the canonical ID and canonical domain of a token.
 
 #### Parameters
 
@@ -455,24 +457,24 @@ The LP token address.
 
 ___
 
-### getLPTokenSupply
+### getTokenSupply
 
-▸ **getLPTokenSupply**(`domainId`, `lpTokenAddress`): `Promise`<`BigNumber`\>
+▸ **getTokenSupply**(`domainId`, `lpTokenAddress`): `Promise`<`BigNumber`\>
 
-Reads the LP token supply of a pool.
+Reads the ERC20 token supply.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `domainId` | `string` | The domain ID of the pool. |
-| `lpTokenAddress` | `string` | The address of the LP token. |
+| `tokenAddress` | `string` | The address of the LP token. |
 
 #### Returns
 
 `Promise`<`BigNumber`\>
 
-The LP token supply.
+The balance of the address.
 
 ___
 
@@ -480,7 +482,7 @@ ___
 
 ▸ **getPoolTokenAddress**(`domainId`, `tokenAddress`, `index`): `Promise`<`string`\>
 
-Reads the address of a pool token.
+Reads the token address of a specified index in a pool.
 
 #### Parameters
 
@@ -488,13 +490,13 @@ Reads the address of a pool token.
 | :------ | :------ | :------ |
 | `domainId` | `string` | The domain ID of the pool. |
 | `tokenAddress` | `string` | The address of local or adopted token. |
-| `index` | `number` | The index of the pool token. |
+| `index` | `number` | The index of the token in the pool. |
 
 #### Returns
 
 `Promise`<`string`\>
 
-The address of the token.
+The address of the specified token in the pool.
 
 ___
 
@@ -524,21 +526,21 @@ ___
 
 ▸ **getPoolTokenIndex**(`domainId`, `tokenAddress`, `poolTokenAddress`): `Promise`<`number`\>
 
-Reads the index of a pool token.
+Reads the index of a token in a pool.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `domainId` | `string` | The domain ID of the pool. |
-| `tokenAddress` | `string` | The address of the token. |
-| `poolTokenAddress` | `string` | The address of the pool token. |
+| `tokenAddress` | `string` | The address of the local or adopted token. |
+| `poolTokenAddress` | `string` | The address of the token in the pool to get the index for. |
 
 #### Returns
 
 `Promise`<`number`\>
 
-The index of the pool token.
+The index of the specified token in the pool.
 
 ___
 
@@ -587,21 +589,21 @@ ___
 
 ▸ **getTokenUserBalance**(`domainId`, `tokenAddress`, `userAddress`): `Promise`<`BigNumber`\>
 
-Reads the token balance of an address.
+Reads the ERC20 token balance of an address.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `domainId` | `string` | The domain ID where the token exists. |
-| `tokenAddress` | `string` | The address of the token. |
+| `domainId` | `string` | The domain ID of the ERC20 token. |
+| `tokenAddress` | `string` | The address of the ERC20 token. |
 | `userAddress` | `string` | The address to get the balance of. |
 
 #### Returns
 
 `Promise`<`BigNumber`\>
 
-The user's balance of the token.
+The balance of the address.
 
 ___
 
@@ -643,7 +645,7 @@ Reads the virtual price of a pool.
 
 `Promise`<`BigNumber`\>
 
-The virtual price.
+The virtual price, scaled to the pool's decimal precision (10^18).
 
 ___
 
@@ -791,7 +793,7 @@ providers.TransactionRequest object.
 
 @example:
 ```ts
-import { NxtpSdkPool } from "@connext/nxtp-sdk";
+import { NxtpSdkPool } from "@connext/sdk";
 
 const config = {
   signerAddress: "<wallet_address>",
@@ -871,10 +873,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `unixTimestamp` | `number` |
+| Name | Type | Description |  
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID. |
+| `unixTimestamp` | `number` | The unix timestamp. |
 
 #### Returns
 

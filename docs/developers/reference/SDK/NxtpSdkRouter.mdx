@@ -176,6 +176,8 @@ ___
 
 ▸ **getCanonicalTokenId**(`domainId`, `tokenAddress`): `Promise`<[`string`, `string`]\>
 
+Returns the canonical ID and canonical domain of a token.
+
 #### Parameters
 
 | Name | Type |
@@ -293,7 +295,7 @@ providers.TransactionRequest object.
 
 @example:
 ```ts
-import { NxtpSdkRouter } from "@connext/nxtp-sdk";
+import { NxtpSdkRouter } from "@connext/sdk";
 
 const config = {
   signerAddress: "<wallet_address>",
@@ -373,10 +375,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `unixTimestamp` | `number` |
+| Name | Type | Description |  
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID. |
+| `unixTimestamp` | `number` | The unix timestamp. |
 
 #### Returns
 
