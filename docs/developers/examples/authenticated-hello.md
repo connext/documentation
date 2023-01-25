@@ -12,8 +12,8 @@ Suppose we have a target contract on the destination domain with an `_updateGree
 ```solidity
 pragma solidity ^0.8.15;
 
-import {IConnext} from "@connext/monorepo/contracts/contracts/core/connext/interfaces/IConnext.sol";
-import {IXReceiver} from "@connext/monorepo/contracts/contracts/core/connext/interfaces/IXReceiver.sol";
+import {IConnext} from "@connext/smart-contracts/contracts/core/connext/interfaces/IConnext.sol";
+import {IXReceiver} from "@connext/smart-contracts/contracts/core/connext/interfaces/IXReceiver.sol";
 
 contract HelloTargetAuthenticated is IXReceiver {
   string public greeting;
@@ -88,7 +88,7 @@ Nothing special has to be accounted for on the source contract. This is the exac
 ```solidity showLineNumbers
 pragma solidity ^0.8.15;
 
-import {IConnext} from "@connext/monorepo/contracts/contracts/core/connext/interfaces/IConnext.sol";
+import {IConnext} from "@connext/smart-contracts/contracts/core/connext/interfaces/IConnext.sol";
 
 /**
  * @title HelloSource

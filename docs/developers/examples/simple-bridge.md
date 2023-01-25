@@ -15,7 +15,7 @@ The user will first have to approve a spending allowance of the token to the `Si
 ```solidity showLineNumbers
 pragma solidity ^0.8.15;
 
-import {IConnext} from "@connext/monorepo/contracts/contracts/core/connext/interfaces/IConnext.sol";
+import {IConnext} from "@connext/smart-contracts/contracts/core/connext/interfaces.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 /**
@@ -66,7 +66,7 @@ contract SimpleBridge {
       msg.sender,        // _delegate: address that can revert or forceLocal on destination
       amount,            // _amount: amount of tokens to transfer
       slippage,          // _slippage: the maximum amount of slippage the user will accept in BPS
-      ""                 // _callData: empty because we're only sending funds
+      "0x"               // _callData: empty bytes because we're only sending funds
     );  
   }
 }

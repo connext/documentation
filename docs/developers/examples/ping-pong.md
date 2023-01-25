@@ -19,8 +19,8 @@ Note that the user will first have to approve a spending allowance of the token 
 ```solidity showLineNumbers
 pragma solidity ^0.8.15;
 
-import {IConnext} from "@connext/monorepo/contracts/contracts/core/connext/interfaces/IConnext.sol";
-import {IXReceiver} from "@connext/monorepo/contracts/contracts/core/connext/interfaces/IXReceiver.sol";
+import {IConnext} from "@connext/smart-contracts/contracts/core/connext/interfaces/IConnext.sol";
+import {IXReceiver} from "@connext/smart-contracts/contracts/core/connext/interfaces/IXReceiver.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 /**
@@ -107,8 +107,8 @@ contract Ping is IXReceiver {
 ```solidity showLineNumbers
 pragma solidity ^0.8.15;
 
-import {IConnext} from "@connext/monorepo/contracts/contracts/core/connext/interfaces/IConnext.sol";
-import {IXReceiver} from "@connext/monorepo/contracts/contracts/core/connext/interfaces/IXReceiver.sol";
+import {IConnext} from "@connext/smart-contracts/contracts/core/connext/interfaces/IConnext.sol";
+import {IXReceiver} from "@connext/smart-contracts/contracts/core/connext/interfaces/IXReceiver.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 /**

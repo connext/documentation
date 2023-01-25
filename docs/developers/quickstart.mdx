@@ -99,7 +99,7 @@ In the `/contracts` directory, create a new contract called `SourceGreeting.sol`
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.15;
 
-import {IConnext} from "@connext/monorepo/contracts/contracts/core/connext/interfaces/IConnext.sol";
+import {IConnext} from "@connext/smart-contracts/contracts/core/connext/interfaces/IConnext.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 /**
@@ -146,6 +146,8 @@ contract SourceGreeting {
     token.approve(address(connext), cost);
 
     // Encode the data needed for the target contract call.
+    // Note: the receiver contract expects an encoded calldata argument so sending 
+    //       empty calldata would look like `abi.encode("")` or simply "0x"
     bytes memory callData = abi.encode(newGreeting);
 
     connext.xcall{value: relayerFee}(
@@ -236,7 +238,7 @@ All target contracts must implement Connext's `IXReceiver` interface. This inter
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.15;
 
-import {IXReceiver} from "@connext/monorepo/contracts/contracts/core/connext/interfaces/IXReceiver.sol";
+import {IXReceiver} from "@connext/smart-contracts/contracts/core/connext/interfaces/IXReceiver.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract DestinationGreeting is IXReceiver {

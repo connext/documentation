@@ -193,7 +193,7 @@ to this chain), we will custody the tokens here.
 | `_delegate`         | `address`  | An address on destination domain that has rights to update slippage tolerance, retry transactions, or revert back to origin in the event that a transaction fails at the destination.|
 | `_amount`           | `uint256`  | The amount of tokens to bridge specified in wei units (i.e. to send 1 USDC, a token with 10^6 decimals, you must specify the amount as `1000000`).|
 | `_slippage`         | `uint256`  | The maximum slippage a user is willing to take, in BPS, due to the StableSwap Pool(s), if applicable. For example, to achieve 0.03% slippage tolerance this will be `3`.|
-| `_callData`         | `bytes`    | In the case of bridging funds only, this should be empty (""). If calldata is sent, then the encoded calldata must be passed here.|
+| `_callData`         | `bytes`    | In the case of bridging funds only, this should be empty bytes ("0x"). If calldata is sent, then the encoded calldata must be passed here.|
 
 #### Return Values
 
