@@ -21,7 +21,7 @@ See the deployed addresses for assets at [Deployed Contract Addresses](../resour
 
 ## How do I find the canonical details of a token?
 
-The canonical domainId and tokenId of a token can be found by calling the [`getTokenId`](https://github.com/connext/nxtp/blob/3d0af2251b2d8d244d2617be6fb738c09a571022/packages/deployments/contracts/contracts/core/connext/helpers/TokenRegistry.sol#L176) function of `TokenRegistry`.
+The canonical domainId and tokenId of a token can be found by calling the [`getTokenId`](https://github.com/connext/monorepo/blob/3d0af2251b2d8d244d2617be6fb738c09a571022/packages/deployments/contracts/contracts/core/connext/helpers/TokenRegistry.sol#L176) function of `TokenRegistry`.
 
 Example:
 - The token of interest is TestERC20 (`0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1`) on Goerli. We want to figure out its canonical domainId and tokenId.

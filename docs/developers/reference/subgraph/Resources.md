@@ -25,4 +25,4 @@ This subgraph is can be used to query Connext bridge transactions, transactions 
 
 [Explorer Page](https://thegraph.com/explorer/subgraph?id=DfD1tZSmDtjCGC2LeYEQbVzj9j8kNqKAQEsYL27Vg6Sw&view=Playground)
 
-[Code repo with Connext's subgraph implementation](https://github.com/connext/nxtp/tree/56a166f3ecb50cc10356dd96c257e2e4d47f29e3/packages/deployments/subgraph/src/amarok-runtime-v0)
+[Code repo with Connext's subgraph implementation](https://github.com/connext/monorepo/tree/56a166f3ecb50cc10356dd96c257e2e4d47f29e3/packages/deployments/subgraph/src/amarok-runtime-v0)

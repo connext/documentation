@@ -40,7 +40,7 @@ Coming soon!
 
 1. Use the Connext repo to find the deployments for the chain you want to set up the router on: 
 
-[nxtp/packages/deployments/contracts/deployments at main · connext/nxtp](https://github.com/connext/nxtp/tree/main/packages/deployments/contracts/deployments)
+[monorepo/packages/deployments/contracts/deployments at main · connext/nxtp](https://github.com/connext/monorepo/tree/main/packages/deployments/contracts/deployments)
 
 1. Find the `Connext.json` deployment for that chain and copy the address.
 2. Go to the website [louper.dev](https://louper.dev/) and enter the Connext contract address and choose the correct network.

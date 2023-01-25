@@ -25,7 +25,7 @@ Using USDC as an example, to provide active liquidity on Amarok you will need to
 **Instructions below:**
 
 1. Move USDC to Ethereum mainnet
-    1. [If moving funds from nxtp-v1] Remove desired amount of USDC from chain on nxtp-v1 with [remove-liquidity endpoint](https://github.com/connext/nxtp/blob/1fc5f3d47e146f67957f8a6943cc8888cb392936/packages/router/example.http#L12-L22). **
+    1. [If moving funds from nxtp-v1] Remove desired amount of USDC from chain on nxtp-v1 with [remove-liquidity endpoint](https://github.com/connext/monorepo/blob/1fc5f3d47e146f67957f8a6943cc8888cb392936/packages/router/example.http#L12-L22). **
         1. (Note: If removing ALL funds from v1 router, add `"cleanupMode":"true"` and wait until amount f locked tokens equals 0. We phasing this out and and will closely communicate) 
 2. Bridge USDC to the desired chain through Connext, specifying to ‘Receive local’  in the Bridge UI settings to receive nextUSDC and avoid swaps/slippage.
     

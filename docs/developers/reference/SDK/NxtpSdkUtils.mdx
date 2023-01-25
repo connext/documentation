@@ -151,6 +151,8 @@ ___
 
 ▸ **getCanonicalTokenId**(`domainId`, `tokenAddress`): `Promise`<[`string`, `string`]\>
 
+Returns the canonical ID and canonical domain of a token.
+
 #### Parameters
 
 | Name | Type |
@@ -358,7 +360,7 @@ providers.TransactionRequest object.
 
 @example:
 ```ts
-import { NxtpSdkUtils } from "@connext/nxtp-sdk";
+import { NxtpSdkUtils } from "@connext/sdk";
 
 const config = {
   "chains": {
@@ -386,7 +388,7 @@ See the [Supported Chains](../../../resources/supported-chains) page for all dom
 
 #### Defined in
 
-[packages/agents/sdk/src/sdkBase.ts:77](https://github.com/connext/monorepo/blob/ed8421599/packages/agents/sdk/src/sdkBase.ts#L77)
+[packages/agents/sdk/src/sdkUtils.ts:52](https://github.com/connext/monorepo/blob/6af80580f/packages/agents/sdk/src/sdkUtils.ts#L52)
 
 #### Returns
 
@@ -396,7 +398,7 @@ providers.TransactionRequest object.
 
 @example:
 ```ts
-import { NxtpSdkUtils } from "@connext/nxtp-sdk";
+import { NxtpSdkUtils } from "@connext/sdk";
 
 const config = {
   signerAddress: "<wallet_address>",
@@ -476,10 +478,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `unixTimestamp` | `number` |
+| Name | Type | Description |  
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID. |
+| `unixTimestamp` | `number` | The unix timestamp. |
 
 #### Returns
 

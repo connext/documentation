@@ -66,7 +66,7 @@ mkdir src && touch src/xtransfer.ts
 Install the latest beta version of Connext SDK and ethers.
 
 ```bash npm2yarn
-npm install @connext/nxtp-sdk@beta
+npm install @connext/sdk@beta
 npm install ethers
 ```
 
@@ -77,7 +77,7 @@ This is the full code for the example. Read through the comments and replace any
 Information like asset addresses be found in the [Deployments](../../../resources/deployments) page.
 
 ```ts title="src/xtransfer.ts"
-import { create, NxtpSdkConfig } from "@connext/nxtp-sdk";
+import { create, NxtpSdkConfig } from "@connext/sdk";
 import { ethers } from "ethers";
 
 // Instantiate a Wallet object using your private key (i.e. from Metamask) and use it as a Signer.

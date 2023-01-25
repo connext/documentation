@@ -7,7 +7,7 @@ id: deployments
 
 ## Contract Deployments
 
-A full list of deployed contracts can be found in the [deployments.json](https://github.com/connext/nxtp/blob/main/packages/deployments/contracts/deployments.json) file. This contains deployments for all environments and is difficult to parse through manually. You should only need to reference it for automation or as a source of truth. For convenience, we extracted the important contract addresses and listed them here.
+A full list of deployed contracts can be found in the [deployments.json](https://github.com/connext/monorepo/blob/main/packages/deployments/contracts/deployments.json) file. This contains deployments for all environments and is difficult to parse through manually. You should only need to reference it for automation or as a source of truth. For convenience, we extracted the important contract addresses and listed them here.
 
 Note that the Test Token is a mintable ERC20. The open `mint` function has the signature `mint(address account, uint256 amount)` and can be freely called.
 
@@ -633,7 +633,7 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
 
 ### Sequencer
 
-Example endpoints can be found [here](https://github.com/connext/nxtp/blob/c694958e51b9f81cc100260d0776788276303087/packages/agents/sequencer/example.http#L15). For instance, you can check for queued transactions:
+Example endpoints can be found [here](https://github.com/connext/monorepo/blob/c694958e51b9f81cc100260d0776788276303087/packages/agents/sequencer/example.http#L15). For instance, you can check for queued transactions:
 
 [https://sequencer.testnet.connext.ninja/queued](https://sequencer.testnet.connext.ninja/queued)
 
@@ -641,7 +641,7 @@ Example endpoints can be found [here](https://github.com/connext/nxtp/blob/c6949
 
 The Cartographer is a Connext-hosted service that stores transfer data to a persistent datastore. The data schema is bespoke for Connext cross-chain transfers and a REST API is available for retrieving details like transfer status, transfer history by user, and more.
 
-Example endpoints can be found [here](https://github.com/connext/nxtp/blob/c694958e51b9f81cc100260d0776788276303087/packages/agents/cartographer/api/example.http). For instance, you can query for all transfers: 
+Example endpoints can be found [here](https://github.com/connext/monorepo/blob/c694958e51b9f81cc100260d0776788276303087/packages/agents/cartographer/api/example.http). For instance, you can query for all transfers: 
 
 [https://postgrest.testnet.connext.ninja/transfers](https://postgrest.testnet.connext.ninja/transfers)
 

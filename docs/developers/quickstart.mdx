@@ -58,7 +58,7 @@ Open your project in a code editor and rename your contract file under `src` to 
 Install the latest `beta` version of Connext contracts package in your project:
 
 ```bash npm2yarn
-npm install @connext/nxtp-contracts
+npm install @connext/contracts
 ```
 Next, install the OpenZepplin contract package:
 
@@ -99,7 +99,7 @@ In the `/contracts` directory, create a new contract called `SourceGreeting.sol`
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.15;
 
-import {IConnext} from "@connext/nxtp-contracts/contracts/core/connext/interfaces/IConnext.sol";
+import {IConnext} from "@connext/monorepo/contracts/contracts/core/connext/interfaces/IConnext.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 /**
@@ -236,7 +236,7 @@ All target contracts must implement Connext's `IXReceiver` interface. This inter
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.15;
 
-import {IXReceiver} from "@connext/nxtp-contracts/contracts/core/connext/interfaces/IXReceiver.sol";
+import {IXReceiver} from "@connext/monorepo/contracts/contracts/core/connext/interfaces/IXReceiver.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract DestinationGreeting is IXReceiver {

@@ -229,6 +229,8 @@ ___
 
 ▸ **getCanonicalTokenId**(`domainId`, `tokenAddress`): `Promise`<[`string`, `string`]\>
 
+Returns the canonical ID and canonical domain of a token.
+
 #### Parameters
 
 | Name | Type |
@@ -328,7 +330,7 @@ signer.sendTransaction(txRequest);
 | :------ | :------ | :------ |
 | `params` | `Object` | SdkXCallParams object. |
 | `params.amount` | `undefined` \| `string` | (optional) The amount of tokens (in specified asset) to send with the xcall. If `wrapNativeOnOrigin` is true, this will be used as the amount of native token to deposit into the wrapper contract and withdraw as wrapped native token for sending (e.g. deposit ETH to the WETH contract in exchange for the WETH ERC20). |
-| `params.asset` | `undefined` \| `string` | - |
+| `params.asset` | `undefined` \| `string` | (optional) The target asset to send with the xcall. Can be set to `address(0)` if this is a 0-value transfer. If `wrapNativeOnOrigin` is true, this should be the target wrapper contract (e.g. WETH) address. |   
 | `params.callData` | `undefined` \| `string` | (optional) Calldata to execute (can be empty: "0x"). |
 | `params.delegate` | `undefined` \| `string` | (optional) Address allowed to cancel an xcall on destination. |
 | `params.destination` | `string` | The destination domain ID. |
@@ -337,8 +339,8 @@ signer.sendTransaction(txRequest);
 | `params.relayerFee` | `undefined` \| `string` | (optional) Fee paid to relayers, in native asset on origin. Use `calculateRelayerFee` to estimate. |
 | `params.slippage` | `undefined` \| `string` | (optional) Maximum acceptable slippage in BPS. For example, a value of 30 means 0.3% slippage. |
 | `params.to` | `string` | Address receiving funds or the target contract. |
+| `params.wrapNativeOnOrigin` | `undefined` \| `boolean` | (optional) Whether we should wrap the native token before sending the xcall. This will use the Multisend utility contract to deposit ETH, approve Connext as a spender, and call xcall. If set true, `asset` should be the target wrapper contract (e.g. WETH) address. |
 | `params.unwrapNativeOnDestination` | `undefined` \| `boolean` | (optional) Whether we should unwrap the wrapped native token when the transfer reaches its destination. By default, if sending a wrapped native token, the wrapped token is what gets delivered at the destination. Setting this to `true` means we should overwrite `callData` to target the Unwrapper utility contract, which will unwrap the wrapped native token and deliver it to the target recipient (the `to` address). |
-| `params.wrapNativeOnOrigin` | `undefined` \| `boolean` | (optional) Whether we should wrap the native token before sending the xcall. This will use the Multisend utility contract to deposit ETH, approve Connext as a spender, and call xcall. |
 
 #### Returns
 
@@ -372,7 +374,7 @@ providers.TransactionRequest object.
 
 @example:
 ```ts
-import { NxtpSdkBase } from "@connext/nxtp-sdk";
+import { NxtpSdkBase } from "@connext/sdk";
 
 const config = {
   signerAddress: "<wallet_address>",
@@ -422,6 +424,44 @@ See the [Supported Chains](../../../resources/supported-chains) page for all dom
 
 ___
 
+### updateSlippage
+
+▸ **updateSlippage**(`params`): `Promise`<`TransactionRequest`\>
+
+Updates the slippage tolerance for a specific transfer on origin; only the origin sender is allowed to do so.
+
+**`Example`**
+
+```ts
+// call NxtpSdkBase.create(), instantiate a signer
+
+const params = {
+  domainId: "6648936",
+  transferId: "0xdd252f58a45dc78fee1ac12a628782bda6a98315b286aadf76e4d7322bf135ca",
+  relayerFee: "1000",
+};
+
+const txRequest = nxtpSdkBase.updateSlippage(params);
+signer.sendTransaction(txRequest);
+```
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `params` | `Object` | SdkUpdateSlippageParams object. |
+| `params.domainId` | `string` | The origin domain ID of the transfer. |
+| `params.slippage` | `string` | The new relayer fee to use for this transfer, in BPS. |
+| `params.transferId` | `string` | The transfer ID. |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+providers.TransactionRequest object.
+
+___
+
 ### domainToChainName
 
 ▸ `Static` **domainToChainName**(`domainId`): `string`
@@ -452,10 +492,10 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `unixTimestamp` | `number` |
+| Name | Type | Description |  
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID. |
+| `unixTimestamp` | `number` | The unix timestamp. |
 
 #### Returns
 
