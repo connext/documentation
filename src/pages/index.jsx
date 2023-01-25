@@ -434,7 +434,7 @@ export default function Home() {
               </Link>
               <Link 
                 style={{ textDecoration: "none" }}
-                href={"https://github.com/connext/nxtp"}
+                href={"https://github.com/connext/monorepo"}
               >
                 <CenterCard>
                   <GithubLogo />
