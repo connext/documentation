@@ -363,18 +363,19 @@ providers.TransactionRequest object.
 import { NxtpSdkUtils } from "@connext/sdk";
 
 const config = {
-  "chains": {
-    "6648936": { // the domain ID for Ethereum Mainnet
-      "providers": ["https://rpc.ankr.com/eth"]
+  signerAddress: "<wallet_address>",
+  network: "mainnet",
+  chains: {
+    6648936: { // the domain ID for Ethereum Mainnet
+      providers: ["https://rpc.ankr.com/eth"],
     },
-    "1869640809": { // the domain ID for Optimism
-      "providers": ["https://mainnet.optimism.io"]
+    1869640809: { // the domain ID for Optimism
+      providers: ["https://mainnet.optimism.io"]
     },
-    "1886350457": { // the domain ID for Polygon
-      "providers": ["https://polygon-rpc.com"]
+    1886350457: { // the domain ID for Polygon
+      providers: ["https://polygon-rpc.com"]
     },
   },
-  "signerAddress": "<wallet_address>",
 }
 
 const nxtpSdkUtils = await NxtpSdkUtils.create(config);
@@ -383,66 +384,6 @@ const nxtpSdkUtils = await NxtpSdkUtils.create(config);
 :::note
 
 See the [Supported Chains](../../../resources/supported-chains) page for all domain IDs.
-
-:::
-
-#### Defined in
-
-[packages/agents/sdk/src/sdkUtils.ts:52](https://github.com/connext/monorepo/blob/6af80580f/packages/agents/sdk/src/sdkUtils.ts#L52)
-
-#### Returns
-
-`Promise`<[`NxtpSdkUtils`](NxtpSdkUtils.md)\>
-
-providers.TransactionRequest object.
-
-@example:
-```ts
-import { NxtpSdkUtils } from "@connext/sdk";
-
-const config = {
-  signerAddress: "<wallet_address>",
-  network: "mainnet",
-  chains: {
-    6648936: { // the domain ID for Ethereum Mainnet
-      providers: ["https://rpc.ankr.com/eth"],
-      assets: [
-        {
-          name: "WETH",
-          symbol: "WETH",
-          address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-        },
-      ],
-    },
-    1869640809: { // the domain ID for Optimism
-      providers: ["https://mainnet.optimism.io"]
-      assets: [
-        {
-          name: "WETH",
-          symbol: "WETH",
-          address: "0x4200000000000000000000000000000000000006",
-        },
-      ],
-    },
-    1886350457: { // the domain ID for Polygon
-      providers: ["https://polygon-rpc.com"]
-      assets: [
-        {
-          name: "WETH",
-          symbol: "WETH",
-          address: "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
-        },
-      ],
-    },
-  },
-}
-
-const NxtpSdkUtils = await NxtpSdkUtils.create(config);
-```
-
-:::note
-
-See the [Supported Chains](../../../resources/supported-chains) page for all domain IDs and the [Deployments](../../../resources/deployments) page for all asset addresses.
 
 :::
 
