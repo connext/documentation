@@ -3,7 +3,7 @@ sidebar_position: 2
 title: Pool
 id: sdk-pool
 ---
-# Class: NxtpSdkPool
+# Class: SdkPool
 
 **`Classdesc`**
 
@@ -17,9 +17,9 @@ This class will either interact with internal StableSwapFacet pools or external 
 
 ## Hierarchy
 
-- [`NxtpSdkShared`](./sdk-shared)
+- [`SdkShared`](./sdk-shared)
 
-  ↳ **`NxtpSdkPool`**
+  ↳ **`SdkPool`**
 
 ## Methods
 
@@ -70,7 +70,7 @@ providers.TransactionRequest object.
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[approveIfNeeded](sdk-shared#approveifneeded)
+[SdkShared](./sdk-shared).[approveIfNeeded](sdk-shared#approveifneeded)
 
 ___
 
@@ -144,7 +144,7 @@ This key is used as the unique identifier for a canonical token, across all doma
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[calculateCanonicalKey](sdk-shared#calculatecanonicalkey)
+[SdkShared](./sdk-shared).[calculateCanonicalKey](sdk-shared#calculatecanonicalkey)
 
 ___
 
@@ -331,7 +331,7 @@ Switches the signer address in the SDK config.
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[changeSignerAddress](sdk-shared#changesigneraddress)
+[SdkShared](./sdk-shared).[changeSignerAddress](sdk-shared#changesigneraddress)
 
 ___
 
@@ -370,7 +370,7 @@ Array of objects containing assets registered to the network, in the form of:
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[getAssetsData](sdk-shared#getassetsdata)
+[SdkShared](./sdk-shared).[getAssetsData](sdk-shared#getassetsdata)
 
 ___
 
@@ -395,7 +395,7 @@ The object containing asset data.
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[getAssetsDataByDomainAndKey](sdk-shared#getassetsdatabydomainandkey)
+[SdkShared](./sdk-shared).[getAssetsDataByDomainAndKey](sdk-shared#getassetsdatabydomainandkey)
 
 ___
 
@@ -418,7 +418,7 @@ Returns the canonical ID and canonical domain of a token.
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[getCanonicalTokenId](sdk-shared#getcanonicaltokenid)
+[SdkShared](./sdk-shared).[getCanonicalTokenId](sdk-shared#getcanonicaltokenid)
 
 ___
 
@@ -691,7 +691,7 @@ Boolean or undefined if the specified token is not registered.
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[isNextAsset](sdk-shared#isnextasset)
+[SdkShared](./sdk-shared).[isNextAsset](sdk-shared#isnextasset)
 
 ___
 
@@ -715,7 +715,7 @@ Array of providers.Log objects.
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[parseConnextTransactionReceipt](sdk-shared#parseconnexttransactionreceipt)
+[SdkShared](./sdk-shared).[parseConnextTransactionReceipt](sdk-shared#parseconnexttransactionreceipt)
 
 ___
 
@@ -771,15 +771,15 @@ ___
 
 ### create
 
-▸ `Static` **create**(`_config`): `Promise`<[`NxtpSdkPool`](NxtpSdkPool.md)\>
+▸ `Static` **create**(`_config`): `Promise`<[`SdkPool`](SdkPool.md)\>
 
-Create a singleton instance of the NxtpSdkPool class.
+Create a singleton instance of the SdkPool class.
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `_config` | `Object` | undefined | NxtpSdkConfig object. |
+| `_config` | `Object` | undefined | SdkConfig object. |
 | `_config.chains` | `Record`<`string`, { providers: string[] }\> | undefined | Chain config, at minimum with providers for each chain. |
 | `_config.signerAddress` | `string` | undefined| Signer address for transactions. |
 | `_config.logLevel` | ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` | "info" | (optional) Logging severity level. |
@@ -787,13 +787,13 @@ Create a singleton instance of the NxtpSdkPool class.
 
 #### Returns
 
-`Promise`<[`NxtpSdkPool`](NxtpSdkPool.md)\>
+`Promise`<[`SdkPool`](SdkPool.md)\>
 
 providers.TransactionRequest object.
 
 @example:
 ```ts
-import { NxtpSdkPool } from "@connext/sdk";
+import { SdkPool } from "@connext/sdk";
 
 const config = {
   signerAddress: "<wallet_address>",
@@ -811,7 +811,7 @@ const config = {
   },
 }
 
-const nxtpSdkPool = await NxtpSdkPool.create(config);
+const sdkPool = await SdkPool.create(config);
 ```
 
 :::note
@@ -842,7 +842,7 @@ The chain name.
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[domainToChainName](sdk-shared#domaintochainname)
+[SdkShared](./sdk-shared).[domainToChainName](sdk-shared#domaintochainname)
 
 ___
 
@@ -863,4 +863,4 @@ ___
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[getBlockNumberFromUnixTimestamp](sdk-shared#getblocknumberfromunixtimestamp)
+[SdkShared](./sdk-shared).[getBlockNumberFromUnixTimestamp](sdk-shared#getblocknumberfromunixtimestamp)

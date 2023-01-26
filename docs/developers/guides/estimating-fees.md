@@ -25,23 +25,23 @@ Router fees are fixed and hardcoded into the Connext protocol. Relayer fees, on 
 
 For now, we need to rely on offchain tools to estimate relayer fees. The [Connext SDK](./sdk-guides.md) abstracts away some of this complexity. 
 
-The `NxtpSdkBase` class includes an `estimateRelayerFee` method that estimates total gas fees including a bump to account for Gelato relayer fees. The resulting estimate will be converted to the native origin asset.
+The `SdkBase` class includes an `estimateRelayerFee` method that estimates total gas fees including a bump to account for Gelato relayer fees. The resulting estimate will be converted to the native origin asset.
 
 ```typescript
-const {nxtpSdkBase} = await create(nxtpConfig);
+const {sdkBase} = await create(nxtpConfig);
 
 const params = {
   originDomain: "<ORIGIN_DOMAIN>",
   destinationDomain: "<DESTINATION_DOMAIN>"
 }
 
-const relayerFee = await nxtpSdkBase.estimateRelayerFee(params);
+const relayerFee = await sdkBase.estimateRelayerFee(params);
 ```
 
 The estimate should be used as the `relayerFee` param for an `xcall` using the SDK.
 
 ```typescript
-const xcallTxReq = await nxtpSdkBase.xcall(
+const xcallTxReq = await sdkBase.xcall(
   ...,
   relayerFee: relayerFee
 );

@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Base
 id: sdk-base
 ---
-# Class: NxtpSdkBase
+# Class: SdkBase
 
 **`Classdesc`**
 
@@ -11,9 +11,9 @@ SDK class encapsulating bridge functions.
 
 ## Hierarchy
 
-- [`NxtpSdkShared`](./sdk-shared)
+- [`SdkShared`](./sdk-shared)
 
-  ↳ **`NxtpSdkBase`**
+  ↳ **`SdkBase`**
 
 ## Methods
 
@@ -40,7 +40,7 @@ providers.TransactionRequest object.
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[approveIfNeeded](./sdk-shared#approveifneeded)
+[SdkShared](./sdk-shared).[approveIfNeeded](./sdk-shared#approveifneeded)
 
 ___
 
@@ -53,7 +53,7 @@ Increases the relayer fee for a specific transfer on origin; anyone is allowed t
 **`Example`**
 
 ```ts
-// call NxtpSdkBase.create(), instantiate a signer
+// call SdkBase.create(), instantiate a signer
 
 const params = {
   domainId: "6648936",
@@ -61,7 +61,7 @@ const params = {
   relayerFee: "10000",
 };
 
-const txRequest = nxtpSdkBase.bumpTransfer(params);
+const txRequest = sdkBase.bumpTransfer(params);
 signer.sendTransaction(txRequest);
 ```
 
@@ -105,7 +105,7 @@ This key is used as the unique identifier for a canonical token, across all doma
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[calculateCanonicalKey](./sdk-shared#calculatecanonicalkey)
+[SdkShared](./sdk-shared).[calculateCanonicalKey](./sdk-shared#calculatecanonicalkey)
 
 ___
 
@@ -127,7 +127,7 @@ Switches the signer address in the SDK config.
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[changeSignerAddress](./sdk-shared#changesigneraddress)
+[SdkShared](./sdk-shared).[changeSignerAddress](./sdk-shared#changesigneraddress)
 
 ___
 
@@ -140,14 +140,14 @@ Calculates an estimated relayer fee in the native asset of the origin domain to 
 **`Example`**
 
 ```ts
-// call NxtpSdkBase.create(), instantiate a signer
+// call SdkBase.create(), instantiate a signer
 
 const params = {
   originDomain: "6648936",
   destinationDomain: "1869640809",
 };
 
-const txRequest = nxtpSdkBase.estimateRelayerFee(params);
+const txRequest = sdkBase.estimateRelayerFee(params);
 signer.sendTransaction(txRequest);
 ```
 
@@ -192,7 +192,7 @@ Array of objects containing assets registered to the network, in the form of:
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[getAssetsData](./sdk-shared#getassetsdata)
+[SdkShared](./sdk-shared).[getAssetsData](./sdk-shared#getassetsdata)
 
 ___
 
@@ -217,7 +217,7 @@ The object containing asset data.
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[getAssetsDataByDomainAndKey](./sdk-shared#getassetsdatabydomainandkey)
+[SdkShared](./sdk-shared).[getAssetsDataByDomainAndKey](./sdk-shared#getassetsdatabydomainandkey)
 
 ___
 
@@ -240,7 +240,7 @@ Returns the canonical ID and canonical domain of a token.
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[getCanonicalTokenId](./sdk-shared#getcanonicaltokenid)
+[SdkShared](./sdk-shared).[getCanonicalTokenId](./sdk-shared#getcanonicaltokenid)
 
 ___
 
@@ -264,7 +264,7 @@ Boolean or undefined if the specified token is not registered.
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[isNextAsset](./sdk-shared#isnextasset)
+[SdkShared](./sdk-shared).[isNextAsset](./sdk-shared#isnextasset)
 
 ___
 
@@ -288,7 +288,7 @@ Array of providers.Log objects.
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[parseConnextTransactionReceipt](./sdk-shared#parseconnexttransactionreceipt)
+[SdkShared](./sdk-shared).[parseConnextTransactionReceipt](./sdk-shared#parseconnexttransactionreceipt)
 
 ___
 
@@ -302,7 +302,7 @@ to be sent to an RPC provider.
 **`Example`**
 
 ```ts
-// call NxtpSdkBase.create(), instantiate a signer
+// call SdkBase.create(), instantiate a signer
 
 const params = {
   origin: "6648936"
@@ -316,7 +316,7 @@ const params = {
   relayerFee: "10000000000000"
 };
 
-const txRequest = nxtpSdkBase.xcall(params);
+const txRequest = sdkBase.xcall(params);
 signer.sendTransaction(txRequest);
 ```
 
@@ -348,15 +348,15 @@ ___
 
 ### create
 
-▸ `Static` **create**(`_config`): `Promise`<[`NxtpSdkBase`](NxtpSdkBase.md)\>
+▸ `Static` **create**(`_config`): `Promise`<[`SdkBase`](SdkBase.md)\>
 
-Create a singleton instance of the NxtpSdkBase class.
+Create a singleton instance of the SdkBase class.
 
 #### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `_config` | `Object` | undefined | NxtpSdkConfig object. |
+| `_config` | `Object` | undefined | SdkConfig object. |
 | `_config.chains` | `Record`<`string`, { providers: string[] }\> | undefined | Chain config, at minimum with providers for each chain. |
 | `_config.signerAddress` | `string` | undefined| Signer address for transactions. |
 | `_config.logLevel` | ``"fatal"`` \| ``"error"`` \| ``"warn"`` \| ``"info"`` \| ``"debug"`` \| ``"trace"`` \| ``"silent"`` | "info" | (optional) Logging severity level. |
@@ -364,13 +364,13 @@ Create a singleton instance of the NxtpSdkBase class.
 
 #### Returns
 
-`Promise`<[`NxtpSdkBase`](NxtpSdkBase.md)\>
+`Promise`<[`SdkBase`](SdkBase.md)\>
 
 providers.TransactionRequest object.
 
 @example:
 ```ts
-import { NxtpSdkBase } from "@connext/sdk";
+import { SdkBase } from "@connext/sdk";
 
 const config = {
   signerAddress: "<wallet_address>",
@@ -388,7 +388,7 @@ const config = {
   },
 }
 
-const nxtpSdkBase = await NxtpSdkBase.create(config);
+const sdkBase = await SdkBase.create(config);
 ```
 
 :::note
@@ -408,7 +408,7 @@ Updates the slippage tolerance for a specific transfer on origin; only the origi
 **`Example`**
 
 ```ts
-// call NxtpSdkBase.create(), instantiate a signer
+// call SdkBase.create(), instantiate a signer
 
 const params = {
   domainId: "6648936",
@@ -416,7 +416,7 @@ const params = {
   relayerFee: "1000",
 };
 
-const txRequest = nxtpSdkBase.updateSlippage(params);
+const txRequest = sdkBase.updateSlippage(params);
 signer.sendTransaction(txRequest);
 ```
 
@@ -457,7 +457,7 @@ The chain name.
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[domainToChainName](./sdk-shared#domaintochainname)
+[SdkShared](./sdk-shared).[domainToChainName](./sdk-shared#domaintochainname)
 
 ___
 
@@ -478,4 +478,4 @@ ___
 
 #### Inherited from
 
-[NxtpSdkShared](./sdk-shared).[getBlockNumberFromUnixTimestamp](./sdk-shared#getblocknumberfromunixtimestamp)
+[SdkShared](./sdk-shared).[getBlockNumberFromUnixTimestamp](./sdk-shared#getblocknumberfromunixtimestamp)

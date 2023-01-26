@@ -77,7 +77,7 @@ This is the full code for the example. Read through the comments and replace any
 Information like asset addresses be found in the [Deployments](../../../resources/deployments) page.
 
 ```ts title="src/xtransfer.ts"
-import { create, NxtpSdkConfig } from "@connext/sdk";
+import { create, SdkConfig } from "@connext/sdk";
 import { ethers } from "ethers";
 
 // Instantiate a Wallet object using your private key (i.e. from Metamask) and use it as a Signer.
@@ -89,8 +89,8 @@ const provider = new ethers.providers.JsonRpcProvider("<GOERLI_RPC_URL>");
 signer = signer.connect(provider);
 const signerAddress = await signer.getAddress();
 
-// Construct the `NxtpSdkConfig`. You can reference chain IDs in the "Resources" tab of the docs.
-const nxtpConfig: NxtpSdkConfig = {
+// Construct the `SdkConfig`. You can reference chain IDs in the "Resources" tab of the docs.
+const nxtpConfig: SdkConfig = {
   signerAddress: signerAddress,
   network: "testnet", // can be "mainnet" or "testnet"
   chains: {
@@ -118,7 +118,7 @@ const nxtpConfig: NxtpSdkConfig = {
 };
 
 // Create the SDK instance.
-const {nxtpSdkBase} = await create(nxtpConfig);
+const {sdkBase} = await create(nxtpConfig);
 
 // Address of the TEST token
 const asset = "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1" 
@@ -140,7 +140,7 @@ const xcallParams = {
 };
 
 // Approve the asset transfer. This is necessary because funds will first be sent to the Connext contract before being bridged.
-const approveTxReq = await nxtpSdkBase.approveIfNeeded(
+const approveTxReq = await sdkBase.approveIfNeeded(
   xcallParams.origin,
   xcallParams.asset,
   xcallParams.amount
@@ -149,7 +149,7 @@ const approveTxReceipt = await signer.sendTransaction(approveTxReq);
 await approveTxReceipt.wait();
 
 // Send the xcall
-const xcallTxReq = await nxtpSdkBase.xcall(xcallParams);
+const xcallTxReq = await sdkBase.xcall(xcallParams);
 xcallTxReq.gasLimit = ethers.BigNumber.from("20000000"); 
 const xcallTxReceipt = await signer.sendTransaction(xcallTxReq);
 console.log(xcallTxReceipt);
