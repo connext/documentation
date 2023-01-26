@@ -130,7 +130,7 @@ Create a `config.json` file based on the `config.example.json` file. At minumum,
 - `logLevel` - One of `debug`, `info`, `warn`, `error` for log verbosity.
 - `network` - Set to `mainnet` or `testnet`.
 - `environment` - Not required for mainnet, set to `production` for testnet.
-- `chains` - Add your desired chains, assets, and provider URLs. Use [Domain IDs](./developers/testing-against-testnet#domain-ids). instead of `chainIds`. For more domain ids of chains, please check https://raw.githubusercontent.com/connext/chaindata/main/crossChain.json . Make sure you use multiple providers for each chain! The assets addresses should match the Connext bridge minted assets, which are NOT the normal addresses you would use. Example with the current mainnet assets:
+- `chains` - Add your desired chains, assets, and provider URLs. Use [Domain IDs](./resources/supported-chains#domain-ids). instead of `chainIds`. For more domain ids of chains, please check https://raw.githubusercontent.com/connext/chaindata/main/crossChain.json . Make sure you use multiple providers for each chain! The assets addresses should match the Connext bridge minted assets, which are NOT the normal addresses you would use. Example with the current mainnet assets:
 ```json
 {
   ...
