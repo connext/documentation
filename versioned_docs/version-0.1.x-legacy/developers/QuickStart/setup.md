@@ -28,14 +28,14 @@ The SDK is distributed as a typescript package on npm. It is fully isomorphic (c
 <TabItem value="yarn">
 
 ```shell
-yarn install @connext/nxtp-sdk
+yarn install @connext/sdk
 ```
 
 </TabItem>
 <TabItem value="npm">
 
 ```shell
-npm install @connext/nxtp-sdk
+npm install @connext/sdk
 ```
 
 </TabItem>
@@ -64,7 +64,7 @@ A basic example:
 
 ```ts
 import { providers, Wallet, utils } from "ethers";
-import { NxtpSdkEvents, NxtpSdk } from "@connext/nxtp-sdk";
+import { NxtpSdkEvents, NxtpSdk } from "@connext/sdk";
 
 // Set up provider to chain mappings
 const chainConfig = {
