@@ -90,41 +90,30 @@ signer = signer.connect(provider);
 const signerAddress = await signer.getAddress();
 
 // Construct the `SdkConfig`. You can reference chain IDs in the "Resources" tab of the docs.
-const nxtpConfig: SdkConfig = {
+const sdkConfig: SdkConfig = {
   signerAddress: signerAddress,
   network: "testnet", // can be "mainnet" or "testnet"
   chains: {
     1735353714: {
       providers: ["<GOERLI_RPC_URL>"],
-      assets: [
-        {
-          name: "TEST",
-          symbol: "TEST",
-          address: "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1",
-        },
-      ],
     },
     9991: {
       providers: ["<MUMBAI_RPC_URL>"],
-      assets: [
-        {
-          name: "TEST",
-          symbol: "TEST",
-          address: "0xeDb95D8037f769B72AAab41deeC92903A98C9E16",
-        },
-      ],
     },
   },
 };
 
 // Create the SDK instance.
-const {sdkBase} = await create(nxtpConfig);
+const {sdkBase} = await create(sdkConfig);
 
 // Address of the TEST token
 const asset = "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1" 
 
 // Send 1 TEST
 const amount = "1000000000000000000"; 
+
+// Estimate the relayer fee
+const relayerFee = (await sdkBase.estimateRelayerFee({originDomain, destinationDomain})).toString();
 
 // Prepare the xcall params
 const xcallParams = {
@@ -136,7 +125,7 @@ const xcallParams = {
   amount: amount,          // amount of tokens to transfer
   slippage: "30",          // the maximum amount of slippage the user will accept in BPS, 0.3% in this case
   callData: "0x",          // empty calldata for a simple transfer
-  relayerFee: "0",         // fee paid to relayers; relayers don't take any fees on testnet
+  relayerFee: relayerFee,  // fee paid to relayers
 };
 
 // Approve the asset transfer. This is necessary because funds will first be sent to the Connext contract before being bridged.
