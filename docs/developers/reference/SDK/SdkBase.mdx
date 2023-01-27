@@ -153,11 +153,13 @@ signer.sendTransaction(txRequest);
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `params` | `Object` | SdkEstimateRelayerFeeParams object. |
-| `params.destinationDomain` | `string` | The destination domain ID of the transfer. |
-| `params.originDomain` | `string` | The origin domain ID of the transfer. |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `params` | `Object` | undefined | SdkEstimateRelayerFeeParams object. |
+| `params.destinationDomain` | `string` | undefined | The destination domain ID of the transfer. |
+| `params.originDomain` | `string` | undefined | The origin domain ID of the transfer. |
+| `params.originNativeToken` | `string` | "0x0000000000000000000000000000000000000000" | (optional) The native token of the origin domain. |
+| `params.destinationNativeToken` | `string` | "0x0000000000000000000000000000000000000000" | (optional) The native token of the destination domain. |
 
 #### Returns
 
