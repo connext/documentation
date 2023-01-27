@@ -44,7 +44,7 @@ contract Ping is IXReceiver {
    * @param destinationDomain The destination domain ID. 
    * @param token Address of the token on this domain.
    * @param amount The amount to transfer.
-   * @param relayerFee The fee offered to relayers. On testnet, this can be 0.
+   * @param relayerFee The fee offered to relayers.
    */
   function sendPing(
     address target, 
@@ -132,7 +132,7 @@ contract Pong is IXReceiver {
    * @param destinationDomain The destination domain ID.
    * @param token Address of the token on this domain.
    * @param amount The amount to transfer.
-   * @param relayerFee The fee offered to relayers. On testnet, this can be 0.
+   * @param relayerFee The fee offered to relayers.
    */
   function sendPong(
     address target,

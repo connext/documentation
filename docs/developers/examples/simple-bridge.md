@@ -37,7 +37,7 @@ contract SimpleBridge {
    * @param tokenAddress Address of the token to transfer.
    * @param amount The amount to transfer.
    * @param slippage The maximum amount of slippage the user will accept in BPS.
-   * @param relayerFee The fee offered to relayers. On testnet, this can be 0.
+   * @param relayerFee The fee offered to relayers.
    */
   function xTransfer(
     address recipient,

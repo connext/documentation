@@ -126,7 +126,7 @@ contract SourceGreeting {
     * @param target Address of the DestinationGreeting contract.
     * @param destinationDomain The destination domain ID.
     * @param newGreeting New greeting to update to.
-    * @param relayerFee The fee offered to relayers. On testnet, this can be 0.
+    * @param relayerFee The fee offered to relayers.
     */
   function updateGreeting (
     address target, 
@@ -347,10 +347,8 @@ Let's talk about the different parameters.
     connext.xcall{value: relayerFee}(...)
     ```
 
-    However, we're paying 0 fees here! Only because on testnet, our relayers are not taking fees.
-
     :::tip
-    As a xApp developer, you have some tools available to estimate what this `relayerFee` should be. Check out the guide on [Estimating Fees](./guides/estimating-fees).
+    As a xApp developer, you have some tools available to estimate what this `relayerFee` should be. For now, there are offchain methods for doing so - check out the guide on [Estimating Fees](./guides/estimating-fees).
     :::
 
 ### Check `DestinationGreeting`
