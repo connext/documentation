@@ -15,7 +15,7 @@ The user will first have to approve a spending allowance of the token to the `Si
 ```solidity showLineNumbers
 pragma solidity ^0.8.15;
 
-import {IConnext} from "@connext/smart-contracts/contracts/core/connext/interfaces.sol";
+import {IConnext} from "@connext/smart-contracts/contracts/core/connext/interfaces/IConnext.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 /**
