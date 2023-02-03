@@ -7,7 +7,7 @@ id: ping-pong
 
 `Ping` is a contract on some domain and `Pong` is a contract on some other domain. The user sends a ping and a pong will be sent back!
 
-This example demontrates how to use nested `xcall`s and a single direction emulating "callback" behavior.
+This example demonstrates how to use nested `xcall`s and a single direction emulating "callback" behavior.
 
 
 ## Ping Contract
