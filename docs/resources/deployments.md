@@ -78,7 +78,7 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://optimistic.etherscan.io/address/0x8f7492DE823025b4CfaAB1D34c58963F2af5DEDA">
+          <a href="https://louper.dev/diamond/0x8f7492DE823025b4CfaAB1D34c58963F2af5DEDA?network=optimism">
             Connext
           </a>
         </td>
@@ -470,7 +470,7 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://goerli-optimism.etherscan.io/address/0x5Ea1bb242326044699C3d81341c5f535d5Af1504">
+          <a href="https://louper.dev/diamond/0x5Ea1bb242326044699C3d81341c5f535d5Af1504?network=optimism_goerli">
             Connext
           </a>
         </td>
