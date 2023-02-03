@@ -27,7 +27,7 @@ Connext is built with three core design principles in mind that make it the best
 
 ### Modularity
 
-Connext utilizes a modular hub-and-spoke architecture, which derives its security from Ethereum L1 and *plugs into* the battle-tested **canonical** messaging bridges that underpin the security of of each Ethereum-connected domain.
+Connext utilizes a modular hub-and-spoke architecture, which derives its security from Ethereum L1 and *plugs into* the battle-tested **canonical** messaging bridges that underpin the security of each Ethereum-connected domain.
 
 Messages in Connext are added to a merkle root generated on each spoke domain, which are then optimistically aggregated into a singular root on Ethereum L1. In the event that fraud occurs, the system falls back to using the canonical messaging bridge for each chain ecosystem. In other words, a message passed between Polygon and Optimism is secured by a proof that is posted to Ethereum and verified by the Polygon PoS bridge and Optimism rollup bridge. Similarly, a message passed within the Cosmos ecosystem is verified by IBC.
 
@@ -45,7 +45,7 @@ Additionally, Connext follows a strict philosophy of secure development, requiri
 
 Migrating to a completely new multichain development workflow can be challenging.
 
-Rather than reinventing the wheel, Connext tries to mimic and extend existing development patterns as much as possible. The protocol implements a single, simple primitive - `xcall` - which allows devs to asynchronously interact with contracts living on another chain/rollup simlarly to how you would `call` a contract living on the same chain/rollup.
+Rather than reinventing the wheel, Connext tries to mimic and extend existing development patterns as much as possible. The protocol implements a single, simple primitive - `xcall` - which allows devs to asynchronously interact with contracts living on another chain/rollup similarly to how you would `call` a contract living on the same chain/rollup.
 
 Connext additionally plugs into the tooling and supporting infrastructure that is *already* widely used in the ecosystem. Have a development workflow that isn't well supported by Connext? [Let us know](https://discord.gg/pef9AyEhNz) and our community can help build support for it!
 
@@ -68,4 +68,4 @@ If the above information was overwhelming, don't worry! We have plenty more reso
 - If you're a developer and want to start building with `xcall`, check out our [Developer Quickstart](../developers/quickstart) and [Examples](../developers/examples/).
 - Want to learn more about how the protocol works? Read through the [How Connext Works](./how-it-works/) section.
 - Are you an infrastructure operator? Help run the network by [operating a Connext router](../routers/intro.md).
-- Still not sure where to go? Join our [Discord](https://discord.gg/pef9AyEhNz) server and chat with us the `#dev-hub` channel.
+- Still not sure where to go? Join our [Discord](https://discord.gg/pef9AyEhNz) server and chat with us in the `#dev-hub` channel.
