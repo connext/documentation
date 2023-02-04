@@ -14,13 +14,13 @@ id: sdk-types
 
 | Name | Type |
 | :------ | :------ |
-| `adopted` | `string` |
-| `canonical_domain` | `string` |
-| `canonical_id` | `string` |
-| `domain` | `string` |
-| `id` | `string` |
-| `key` | `string` |
 | `local` | `string` |
+| `adopted` | `string` |
+| `canonical_id` | `string` |
+| `canonical_domain` | `string` |
+| `domain` | `string` |
+| `key` | `string` |
+| `id` | `string` |
 
 ___
 
@@ -32,14 +32,16 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `address?` | `string` |
-| `adopted` | [`PoolAsset`](modules.md#poolasset) |
-| `canonicalHash` | `string` |
 | `domainId` | `string` |
-| `local` | [`PoolAsset`](modules.md#poolasset) |
-| `lpTokenAddress` | `string` |
 | `name` | `string` |
 | `symbol` | `string` |
+| `local` | [`PoolAsset`](modules.md#poolasset) |
+| `adopted` | [`PoolAsset`](modules.md#poolasset) |
+| `lpTokenAddress` | `string` |
+| `canonicalHash` | `string` |
+| `swapFee` | `string` |
+| `adminFee` | `string` |
+| `address?` | `string` |
 
 ___
 
@@ -52,11 +54,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `address` | `string` |
-| `balance` | `BigNumber` |
-| `decimals` | `number` |
-| `index` | `number` |
 | `name` | `string` |
 | `symbol` | `string` |
+| `decimals` | `number` |
+| `index` | `number` |
+| `balance` | `BigNumber` |
 
 ___
 
@@ -72,6 +74,8 @@ ___
 | `chainId` | `number` |
 | `domainId` | `string` |
 | `name` | `string` |
+
+___
 
 ### XTransferStatus
 
