@@ -40,7 +40,7 @@ export const Actions = [
     title: "Developer Guides",
     href: "#",
     icon: LinkIcon,
-    to: "./developers/guides/xcall-status",
+    to: "./developers/intro",
     text: `Learn how to use xcall, the cross-chain primitive.`,
   },
   {
