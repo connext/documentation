@@ -40,28 +40,35 @@ You can query the hosted subgraphs on each chain to check the transaction status
 
 1. Make note of the transaction hash that interacted with the Connext contract.
 
-2. Navigate to the hosted subgraph for the origin domain and query by the transaction hash.
+2. Navigate to the hosted subgraph for the origin domain and query by the xcall's transaction hash or the transfer ID.
 
   ```graphql
-  {
+  query originTransfer {
     originTransfers(
       where: {
-        transactionHash: "<TRANSACTION_HASH>"
+        # Query by the transaction hash of the xcall
+        transactionHash: "<TRANSACTION_HASH>",
+        # Or by the xcall's transfer ID
+        transferId: "<TRANSFER_ID>"
       }
     ) {
       # Meta Data
       chainId
-      //highlight-next-line
-      transferId
       nonce
       to
       delegate
       receiveLocal
       callData
       slippage
+      relayerFee
       originSender
       originDomain
       destinationDomain
+      transactionHash
+      bridgedAmt
+      status
+      timestamp
+      normalizedIn
       # Asset Data
       asset {
         id
@@ -69,11 +76,6 @@ You can query the hosted subgraphs on each chain to check the transaction status
         canonicalId
         canonicalDomain
       }
-      bridgedAmt
-      normalizedIn
-      status
-      transactionHash
-      timestamp
     }
   }
   ```
@@ -81,24 +83,21 @@ You can query the hosted subgraphs on each chain to check the transaction status
 3. Navigate to the hosted subgraph for the destination domain and query by the `transferId` obtained from the origin domain subgraph.
 
   ```graphql
-  {
+  query DestinationTransfer {
     destinationTransfers(
       where: {
-        transferId: "<XCALL_TRANSFER_ID>"
+        transferId: "<TRANSFER_ID>"
       }
     ) {
       # Meta Data
       chainId
-      transferId
       nonce
+      transferId
       to
-      delegate
-      receiveLocal
       callData
-      slippage
-      originSender
       originDomain
       destinationDomain
+      delegate
       # Asset Data
       asset {
         id
@@ -109,9 +108,9 @@ You can query the hosted subgraphs on each chain to check the transaction status
       routers {
         id
       }
+      originSender
       # Executed Transaction
       executedCaller
-      //highlight-next-line
       executedTransactionHash
       executedTimestamp
       executedGasPrice
@@ -124,6 +123,8 @@ You can query the hosted subgraphs on each chain to check the transaction status
       reconciledGasPrice
       reconciledGasLimit
       reconciledBlockNumber
+      routersFee
+      slippage
     }
   }
   ```
