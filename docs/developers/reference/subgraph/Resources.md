@@ -19,7 +19,7 @@ This subgraph is can be used to query Connext bridge transactions, transactions 
 | --- | --- |
 | Ethereum | [v0-Mainnet](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-mainnet) |
 | Optimism | [v0-Optimism](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-optimism) |
-| Arbitrum | [v0-Arbitrum](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-arbitrum-one) |
+| Arbitrum | [v0-Arbitrum-One](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-arbitrum-one) |
 | Polygon | [v0-Polygon](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-polygon) |
 | Binance Smart Chain | [v0-Bnb](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-bnb) |
 | Gnosis | [v0-Gnosis](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-gnosis) |
