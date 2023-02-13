@@ -142,3 +142,12 @@ In the top right search box, enter the `transferId` of interest.
 Connextscan will pull up current status of the associated `xcall`. This is what it looks like when a transfer is complete.
 
 <img src="/img/guides/connextscan_complete.png" alt="Connextscan Search"/>
+
+
+## XCall Status
+
+XCalled - transaction has been initiated on origin.
+Executed - funds have been delivered and calldata executed on destination, if applicable. if this happens before Reconciled, then this was a fast path transfer (non-authenticated).
+Reconciled - funds have been reimbursed to routers. if this happens before Executed, then this was a slow path transfer (authenticated).
+CompletedFast - transaction has been Executed and then Reconciled.
+CompletedSlow - transaction has been Reconciled and then Executed.
