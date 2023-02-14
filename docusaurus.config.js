@@ -93,7 +93,18 @@ module.exports = {
       darkTheme: darkCodeTheme,
     },
   },
-  plugins: [require.resolve("@easyops-cn/docusaurus-search-local")],
+  plugins: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {}
+    ],
+    [
+      require.resolve('docusaurus-gtm-plugin'),
+      {
+        id: 'GTM-MLX9QD8', // GTM Container ID
+      }
+    ] 
+  ],
   presets: [
     [
       "@docusaurus/preset-classic",
