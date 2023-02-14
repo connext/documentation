@@ -24,10 +24,10 @@ module.exports = {
     },
     algolia: {
       // The application ID provided by Algolia
-      appId: "Z3QNOPOJN1",
+      appId: "2AWQ1KDE1U",
 
       // Public API key: it is safe to commit it
-      apiKey: "397370f03046aa9f9a7fc65aee13f0d1",
+      apiKey: "5add689ee403e9a231a600e2126496ed",
 
       indexName: "connext",
 
