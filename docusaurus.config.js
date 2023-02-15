@@ -1,7 +1,16 @@
 const lightCodeTheme = require("prism-react-renderer/themes/okaidia");
 const darkCodeTheme = require("prism-react-renderer/themes/okaidia");
 const CardLink = require("./src/remark/CardLink");
-
+  // docusaursus.config.js
+const config = {
+  title: 'My Site',
+  scripts: [
+    {
+      src: 'https://app.happyreact.com/widget/reactions.js',
+      defer: true,
+    },
+  ],
+};
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: "Connext Documentation",
