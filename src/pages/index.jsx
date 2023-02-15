@@ -298,7 +298,7 @@ export default function Home() {
                 style={{ textDecoration: "none" }}
                 to="./developers/quickstart"
               >
-                <CTACard>
+                <CTACard id="quickstart-button-cta">
                    Get Started!
                 </CTACard>
               </Link>
