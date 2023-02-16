@@ -3,7 +3,6 @@ const darkCodeTheme = require("prism-react-renderer/themes/okaidia");
 const CardLink = require("./src/remark/CardLink");
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
-const config 
 module.exports = {
   title: "Connext Documentation",
   tagline: "Fast, trust-minimized communication between blockchains.",
