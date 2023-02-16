@@ -19,6 +19,8 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 
 import SearchBar from "@theme-original/SearchBar";
 
+import Feedback from "../components/Feedback/feedback";
+
 import {
   InformationCircleIcon,
   LinkIcon,
@@ -458,6 +460,10 @@ export default function Home() {
               </Link>
           </div>
         </TwoRow>
+        <div data-hr-token="42e96254-e0df-42e3-867d-62dc42768774" data-hr-resource="users-happiness">
+          <Feedback>
+          </Feedback>
+        </div>
       </Container>
     </Layout>
   );

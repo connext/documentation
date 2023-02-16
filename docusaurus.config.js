@@ -16,6 +16,12 @@ module.exports = {
   customFields: {
     description: "Build your next xApp (cross-chain dapp) using Connext.",
   },
+  scripts: [ //happy react
+    {
+      src: 'https://app.happyreact.com/widget/reactions.js',
+      defer: true,
+    },
+  ],
   themeConfig: {
     colorMode: {
       defaultMode: 'dark',
