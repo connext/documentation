@@ -3,6 +3,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/okaidia");
 const CardLink = require("./src/remark/CardLink");
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
+const config 
 module.exports = {
   title: "Connext Documentation",
   tagline: "Fast, trust-minimized communication between blockchains.",
@@ -13,15 +14,17 @@ module.exports = {
   favicon: "img/logomark.ico",
   organizationName: "connext", // Usually your GitHub org/user name.
   projectName: "connext", // Usually your repo name.
-  customFields: {
-    description: "Build your next xApp (cross-chain dapp) using Connext.",
-  },
-  scripts: [ //happy react
+
+  scripts: [
     {
       src: 'https://app.happyreact.com/widget/reactions.js',
       defer: true,
     },
   ],
+
+  customFields: {
+    description: "Build your next xApp (cross-chain dapp) using Connext.",
+  },
   themeConfig: {
     colorMode: {
       defaultMode: 'dark',
