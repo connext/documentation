@@ -2,8 +2,6 @@ import React from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 
-import styles from "./index.module.css";
-
 import styled from "@emotion/styled";
 
 import DiscordLogo from "/static/img/discord_logo.svg";
@@ -15,17 +13,12 @@ import ConnextLogo from "/static/img/connext_Logo.svg";
 import XCallSnippet from "/static/img/xcall_snippet.png"
 
 import ThemedImage from "@theme/ThemedImage";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 
-import SearchBar from "@theme-original/SearchBar";
 
 import {
   InformationCircleIcon,
   LinkIcon,
   BookOpenIcon,
-  ChatIcon,
-  CodeIcon,
-  SwitchHorizontalIcon,
 } from "@heroicons/react/outline";
 
 export const Actions = [
