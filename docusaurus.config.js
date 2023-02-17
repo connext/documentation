@@ -95,10 +95,6 @@ module.exports = {
   },
   plugins: [
     [
-      require.resolve("@easyops-cn/docusaurus-search-local"),
-      {}
-    ],
-    [
       require.resolve('docusaurus-gtm-plugin'),
       {
         id: 'GTM-MLX9QD8', // GTM Container ID
