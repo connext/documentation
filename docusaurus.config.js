@@ -27,9 +27,9 @@ module.exports = {
       appId: "2AWQ1KDE1U",
 
       // Public API key: it is safe to commit it
-      apiKey: "5add689ee403e9a231a600e2126496ed",
+      apiKey: "cf4697f21b46555a9f679b37c11239a7",
 
-      indexName: "connext",
+      indexName: "connext_docs",
 
       // Optional: see doc section below
       contextualSearch: true,
