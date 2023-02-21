@@ -24,12 +24,12 @@ module.exports = {
     },
     algolia: {
       // The application ID provided by Algolia
-      appId: "2AWQ1KDE1U",
+      appId: "Z3QNOPOJN1",
 
       // Public API key: it is safe to commit it
-      apiKey: "cf4697f21b46555a9f679b37c11239a7",
+      apiKey: "a196f9d082dfa45a3fb64448a101cf46",
 
-      indexName: "connext_docs",
+      indexName: "connext",
 
       // Optional: see doc section below
       contextualSearch: true,
