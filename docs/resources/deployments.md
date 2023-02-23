@@ -64,6 +64,25 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://etherscan.io/address/0x268682b7D9992aE7e2ca4A8bCc9D9655FB06056F">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x268682b7D9992aE7e2ca4A8bCc9D9655FB06056F</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
   <br />
 
   ### Optimism
@@ -133,6 +152,27 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://optimistic.etherscan.io/address/0x7Fe09d217d646a6213e51b237670Bc326188cB93">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x7Fe09d217d646a6213e51b237670Bc326188cB93</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
   ### Polygon
 
   Domain ID: 1886350457
@@ -199,6 +239,27 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
     </tbody>
   </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://polygonscan.com/address/0x7E8F8B2dA3dc5Ad9c9Dfd1A832331A039d4f3f74">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x7E8F8B2dA3dc5Ad9c9Dfd1A832331A039d4f3f74</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
 
   ### Arbitrum-One
 
@@ -267,6 +328,27 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://arbiscan.io/address/0x429b9eb01362b2799131EfCC44319689b662999D">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x429b9eb01362b2799131EfCC44319689b662999D</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
   ### Binance Smart Chain
 
   Domain ID: 6450786
@@ -333,6 +415,27 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
     </tbody>
   </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://bscscan.com/address/0x2c7B8c1a13F2a7854B9299E4d22809A8B1E05De5">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x2c7B8c1a13F2a7854B9299E4d22809A8B1E05De5</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
 
   ### Gnosis
 
@@ -401,6 +504,27 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://gnosisscan.io/address/0x642c27a96dFFB6f21443A89b789a3194Ff8399fa">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x642c27a96dFFB6f21443A89b789a3194Ff8399fa</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
 </details>
 
 <details>
@@ -452,6 +576,25 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
         </td>
         <td>0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6</td>
         <td>Canonical</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://goerli.etherscan.io/address/0xa6633d369A9C4C8A442ef104E8e293DA7b352Acd">
+            Unwrapper
+          </a>
+        </td>
+        <td>0xa6633d369A9C4C8A442ef104E8e293DA7b352Acd</td>
+        <td>WETH Unwrapper</td>
       </tr>
     </tbody>
   </table>
@@ -516,6 +659,25 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://goerli-optimism.etherscan.io/address/0x08bDeFD0e4878A814Cb2fd11C033F3947251689f">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x08bDeFD0e4878A814Cb2fd11C033F3947251689f</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
   <br />
 
   ### Mumbai
@@ -576,6 +738,25 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0x1e0Db00EB08ceC7FFdA03c0Dbf224193E1563844">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x1e0Db00EB08ceC7FFdA03c0Dbf224193E1563844</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
   <br />
 
   ### Arbitrum-Goerli
@@ -626,6 +807,28 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
     </tbody>
   </table>
+
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://goerli.arbiscan.io/address/0x18BBF96BC8014aA93cbf1A5Bce005a485b5C2C4a">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x18BBF96BC8014aA93cbf1A5Bce005a485b5C2C4a</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
 
 </details>
 
