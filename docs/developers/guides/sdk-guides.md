@@ -64,7 +64,7 @@ Install the latest beta version of Connext SDK and ethers.
 
 ```bash npm2yarn
 npm install @connext/sdk
-npm install ethers@
+npm install ethers@^5
 ```
 
 ### 3. The code
