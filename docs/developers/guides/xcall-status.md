@@ -146,8 +146,51 @@ Connextscan will pull up current status of the associated `xcall`. This is what 
 
 ## XCall Status
 
-XCalled - transaction has been initiated on origin.
-Executed - funds have been delivered and calldata executed on destination, if applicable. if this happens before Reconciled, then this was a fast path transfer (non-authenticated).
-Reconciled - funds have been reimbursed to routers. if this happens before Executed, then this was a slow path transfer (authenticated).
-CompletedFast - transaction has been Executed and then Reconciled.
-CompletedSlow - transaction has been Reconciled and then Executed.
+<table>
+  <tbody>
+    <tr>
+      <th>Status</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>
+        XCalled
+      </td>
+      <td>
+        Transaction has been initiated on origin.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Executed
+      </td>
+      <td>
+        Funds have been delivered and calldata executed on destination, if applicable. If this happens before Reconciled, then this was a fast path transfer (non-authenticated).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Reconciled
+      </td>
+      <td>
+        Funds have been reimbursed to routers. If this happens before Executed, then this was a slow path transfer (authenticated).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        CompletedFast
+      </td>
+      <td>
+        Transaction has been Executed and then Reconciled.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        CompletedSlow
+      </td>
+      <td>
+        Transaction has been Reconciled and then Executed.
+      </td>
+    </tr>
+  </tbody>
+</table>

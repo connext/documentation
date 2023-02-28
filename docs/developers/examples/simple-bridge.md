@@ -7,7 +7,7 @@ id: simple-bridge
 
 The `SimpleBridge` just transfers tokens from a user to another wallet (could be themselves) on a different chain.
 
-Since no calldata is involved, no target contract is needed. However, to send and receive native ETH, the flow is a bit different. Since Connext doesn't accept native ETH as the bridged asset, ETH should be first wrapped into WETH on the origin domain and the delivered WETH on destination should be unwrapped back to ETH. An Unwrapper contract that implements `IXReceive` already exists on all supported networks to be used as the `_to` target in `xcall`. The final recipient on destination should be encoded into the `callData` param for the Unwrapper to send ETH to.
+Since no calldata is involved, no target contract is needed. However, to send and receive native ETH, the flow is a bit different. Since Connext doesn't accept native ETH as the bridged asset, ETH should be first wrapped into WETH on the origin domain and then delivered WETH on destination should be unwrapped back to ETH. An Unwrapper contract that implements `IXReceive` already exists on all supported networks to be used as the `_to` target in `xcall`. The final recipient on destination should be encoded into the `callData` param for the Unwrapper to send ETH to.
 
 In this example, `SimpleBridge` has two functions:
 - `xTransfer` bridges any ERC20 token
