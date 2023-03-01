@@ -19,6 +19,8 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
   
   Domain ID: 6648936
 
+  Chain ID: 1
+
   <table>
     <tbody>
       <tr>
@@ -88,6 +90,8 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
   ### Optimism
 
   Domain ID: 1869640809
+
+  Chain ID: 10
 
   <table>
     <tbody>
@@ -176,6 +180,8 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
   ### Polygon
 
   Domain ID: 1886350457
+  
+  Chain ID: 137
 
   <table>
     <tbody>
@@ -265,6 +271,8 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
 
   Domain ID: 1634886255
 
+  Chain ID: 42161
+
   <table>
     <tbody>
       <tr>
@@ -353,6 +361,8 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
 
   Domain ID: 6450786
 
+  Chain ID: 56
+
   <table>
     <tbody>
       <tr>
@@ -440,6 +450,8 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
   ### Gnosis
 
   Domain ID: 6778479
+
+  Chain ID: 100
 
   <table>
     <tbody>
@@ -534,6 +546,8 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
   ### Goerli 
   
   Domain ID: 1735353714
+  
+  Chain ID: 5
 
   <table>
     <tbody>
@@ -604,6 +618,8 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
   ### Optimism-Goerli
 
   Domain ID: 1735356532
+  
+  Chain ID: 420
 
   <table>
     <tbody>
@@ -684,6 +700,8 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
 
   Domain ID: 9991
 
+  Chain ID: 80001
+
   <table>
     <tbody>
       <tr>
@@ -761,7 +779,9 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
 
   ### Arbitrum-Goerli
 
-  Domain ID: 421613
+  Domain ID: 1734439522
+
+  Chain ID: 421613
 
   <table>
     <tbody>
