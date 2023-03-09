@@ -182,12 +182,12 @@ signer.sendTransaction(txRequest);
 | `params` | `Object` | undefined | SdkEstimateRelayerFeeParams object. |
 | `params.originDomain` | `string` | undefined | The origin domain ID of the transfer. |
 | `params.destinationDomain` | `string` | undefined | The destination domain ID of the transfer. |
-| `params.callDataGasAmount` | `string` | undefined | Additional gas to account for calldata execution. |
+| `params.callDataGasAmount` | `string` | undefined | The gas amount needed for calldata. |
 | `params.originNativeToken` | `string` | "0x0000000000000000000000000000000000000000" | (optional) The native token of the origin domain. |
 | `params.destinationNativeToken` | `string` | "0x0000000000000000000000000000000000000000" | (optional) The native token of the destination domain. |
-| `params.originNativeTokenPrice` | `number` | (uses external estimate - increases response time) | (optional) The price of the native token on the origin domain. |
-| `params.destinationNativeTokenPrice` | `number` | (uses external estimate - increases response time) | (optional) The price of the native token on the destination domain. |
-| `params.destinationGasPrice` | `string` | (uses external estimate - increases response time) | (optional) The gas price on the destination domain, in gwei units. |
+| `params.originNativeTokenPrice` | `number` | (uses external estimate - increases response time) | (optional) The USD price of the origin native token. |
+| `params.destinationNativeTokenPrice` | `number` | (uses external estimate - increases response time) | (optional) The USD price of the destination native token. |
+| `params.destinationGasPrice` | `string` | (uses external estimate - increases response time) | (optional) The gas price of the destination chain, in gwei units. |
 
 #### Returns
 
