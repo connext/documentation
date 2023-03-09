@@ -97,30 +97,6 @@ Price impact for adding liquidity, in 1e18 precision.
 
 ___
 
-### calculateAmountReceived
-
-▸ **calculateAmountReceived**(`originDomain`, `destinationDomain`, `originTokenAddress`, `amount`, `receiveLocal?`): `Promise`<{ `amountReceived`: `BigNumberish` ; `destinationSlippage`: `BigNumberish` ; `originSlippage`: `BigNumberish` ; `routerFee`: `BigNumberish`  }\>
-
-Calculates the estimated amount received on the destination domain for a bridge transaction.
-
-#### Parameters
-
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `originDomain` | `string` | `undefined` | The domain ID of the origin chain. |
-| `destinationDomain` | `string` | `undefined` | The domain ID of the destination chain. |
-| `originTokenAddress` | `string` | `undefined` | The address of the token to be bridged from origin. |
-| `amount` | `BigNumberish` | `undefined` | The amount of the origin token to bridge, in the origin token's native decimal precision. |
-| `receiveLocal` | `boolean` | `false` | (optional) Whether the desired destination token is the local asset ("nextAsset"). |
-
-#### Returns
-
-`Promise`<{ `amountReceived`: `BigNumberish` ; `destinationSlippage`: `BigNumberish` ; `originSlippage`: `BigNumberish` ; `routerFee`: `BigNumberish`  }\>
-
-Estimated amount received for local/adopted assets, if applicable, in their native decimal precisions.
-
-___
-
 ### calculateCanonicalKey
 
 ▸ **calculateCanonicalKey**(`domainId`, `canonicalId`): `string`
