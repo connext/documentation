@@ -31,6 +31,6 @@ Refer to [security.md](https://github.com/connext/documentation/blob/main/docs/r
 
 The router’s primary business model is to earn transaction fees for providing liquidity and relaying data across chains.
 
-Routers earn a fee of 5 basis points (0.0005%) on all liquidity that is provided for a user transaction. Router liquidity is then subsequently locked up until it can be claimed against the slow path. In effect, this is asa if the router is giving a protocol-level loan to the user for a period of up to 2 hours. In this model, router ROI scales with user demand - routers earn the highest returns if a high percentage of their capital is frequently locked up.
+Routers earn a fee of 5 basis points (0.05%) on all liquidity that is provided for a user transaction. Router liquidity is then subsequently locked up until it can be claimed against the slow path. In effect, this is asa if the router is giving a protocol-level loan to the user for a period of up to 2 hours. In this model, router ROI scales with user demand - routers earn the highest returns if a high percentage of their capital is frequently locked up.
 
 Routers currently do not take a fee for relaying data itself. There are future plans to implement an EIP-1559-style tip, that can supplement router income for data-only transactions.
