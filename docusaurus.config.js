@@ -75,12 +75,7 @@ module.exports = {
           docId: "resources/deployments",
           label: "Resources",
           position: "left",
-        },
-        {
-          type: "docsVersionDropdown",
-          position: "right",
-          dropdownActiveClassDisabled: true,
-        },
+        }
       ],
     },
     footer: {
@@ -112,11 +107,6 @@ module.exports = {
           sidebarCollapsible: true,
           editUrl: "https://github.com/connext/documentation",
           lastVersion: "current",
-          versions: {
-            current: {
-              label: "0.2.x-amarok",
-            },
-          },
           remarkPlugins: [
             CardLink,
             [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
