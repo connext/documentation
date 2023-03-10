@@ -346,7 +346,7 @@ export default function Home() {
             <div>
               <Link
                 style={{ textDecoration: "none" }}
-                href={"https://discord.gg/zZGTd9wT"}
+                href={"https://discord.gg/connext"}
               >
                 <CenterCard>
                   <DiscordLogo style={{ width: "48px", height: "48px" }} />
@@ -370,7 +370,7 @@ export default function Home() {
               </Link>
               <Link
                 style={{ textDecoration: "none" }}
-                href={"https://discord.gg/zZGTd9wT"}
+                href={"https://connext.academy"}
               >
                 <CenterCard>
                   <ConnextLogo style={{ width: "48px", height: "48px" }} />
@@ -432,7 +432,7 @@ export default function Home() {
                 <CenterCard>
                   <GithubLogo />
                   <div>
-                    <h3>nxtp</h3>
+                    <h3>Monorepo</h3>
                     <p>Monorepo with contracts and offchain agents.</p>
                   </div>
                 </CenterCard>

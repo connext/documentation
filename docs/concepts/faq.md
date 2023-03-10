@@ -9,11 +9,11 @@ This is a list of Frequently Asked Questions for the Amarok public testnet.
 
 ## What chains are supported?
 
-An updated list can be found at [Supported Chains](../resources/supported-chains).
+An updated list can be found at [Supported Chains](../resources/supported-chains.md).
 
 ## What assets are supported?
 
-See the deployed addresses for assets at [Deployed Contract Addresses](../resources/deployments).
+See the deployed addresses for assets at [Deployed Contract Addresses](../resources/deployments.md).
 
 ## What are token "flavors"?
 
@@ -71,8 +71,3 @@ There are a few steps to take, so please reach out to us for assistance:
 ## Are there size limits to calldata?
 
 Yes and the details will be posted soon.
-
-## How do I add my chain to Connext?
-
-Connext does not charge any fee to onboard new chains.
-You can learn about our process for onboarding new chains in our [Chain Onboarding Guide](https://www.notion.so/connext/How-can-Connext-Bridge-add-my-Chain-fa8b43cac720467a88b5c94f81804091).

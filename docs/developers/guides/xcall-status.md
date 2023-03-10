@@ -133,7 +133,7 @@ You can query the hosted subgraphs on each chain to check the transaction status
 
 ## Connextscan
 
-Another option is using [Connextscan](https://testnet.amarok.connextscan.io/) to track the status of any `transferId`.
+Another option is using [Connextscan](https://testnet.connextscan.io/) to track the status of any `transferId`.
 
 In the top right search box, enter the `transferId` of interest.
 

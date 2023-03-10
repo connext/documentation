@@ -59,4 +59,4 @@ Refer to [https://github.com/connext/router-docker-compose](https://github.com/c
 
 ---
 ## Useful links
-- How to deploy your router using helm — [Guide](https://github.com/connext/nxtp-router-helm/tree/amarok)<br/>
+- How to deploy your router using helm — [Guide](https://github.com/connext/router-helm)<br/>

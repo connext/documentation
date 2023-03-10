@@ -26,7 +26,7 @@ For a cross-chain message to travel through the fast path, it must abide by **BO
 
 ### Examples
 
-- A simple token bridge (like the [Connext Bridge](https://amarok.bridge.connext.network/))
+- A simple token bridge (like the [Connext Bridge](https://bridge.connext.network/))
 - Send funds from origin to destination and then execute a Uniswap `swap()` on destination
 
 ### How it works

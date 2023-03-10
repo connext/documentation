@@ -81,7 +81,7 @@ The various contracts required to manage merkle roots containing hashed transfer
 
 Routers are liquidity providers that enable instant liquidity for the user on the destination chain in return for a fee. Anybody can participate in the protocol as a router and there is no minimum liquidity required! Routers provide a crucial service to the Connext protocol.
 
-Learn how to run one in the [Routers Section](../routers/intro.md).
+Learn how to run one in the [Routers Section](../../routers/intro.md).
 
 ### Sequencer
 
