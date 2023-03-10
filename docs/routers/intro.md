@@ -25,7 +25,7 @@ Routers are largely designed to be as passive and safe for operators as possible
 2. **Misconfigured environments:** Router operators should also ensure that they are careful to not expose the router's private API as part of setting up their enviroment.
 3. **Protocol security**: As with any protocol, router operators are ultimately exposed to the risk of Connext's underlying implementation. While this risk is never 0, Connext follows best practices for [auditing](https://github.com/connext/audits), [security bounties](https://immunefi.com/bounty/connext/), and operational practices to keep routers safe.
 
-Refer to [security.md](https://github.com/connext/documentation/blob/main/docs/routers/security.md) and [router community call](https://www.youtube.com/watch?v=rjNcdm1mjCQ) for best practices to mitigate these risks.
+Refer to [security.md](./Guides/security.md) and [router community call](https://www.youtube.com/watch?v=rjNcdm1mjCQ) for best practices to mitigate these risks.
 
 ## Business Model
 
