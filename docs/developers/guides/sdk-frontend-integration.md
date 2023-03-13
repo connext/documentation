@@ -102,6 +102,6 @@ export default function Home() {
 
 React is a popular frontend framework that allows you to build client-rendered React applications. `create-react-app` is an easy way to get started with React.
 
-:::warning
-⚠️ `create-react-app` does not support polyfilling dependencies. You will need to eject your application to use the SDK. We highly recommend using Next.JS instead for easier integration. See this [issue](https://stackoverflow.com/questions/70591567/module-not-found-error-cant-resolve-fs-in-react) for more information.
+:::caution
+`create-react-app` does not support polyfilling dependencies. You will need to eject your application to use the SDK. We highly recommend using Next.JS instead for easier integration. See this [issue](https://stackoverflow.com/questions/70591567/module-not-found-error-cant-resolve-fs-in-react) for more information.
 :::
