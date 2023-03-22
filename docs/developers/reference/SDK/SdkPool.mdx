@@ -821,6 +821,30 @@ providers.TransactionRequest object.
 
 ___
 
+### removeLiquidityImbalance
+
+▸ **removeLiquidityImbalance**(`domainId`, `tokenAddress`, `amounts`, `maxBurnAmount?`, `deadline?`): `Promise`<`TransactionRequest`\>
+
+Returns the transaction request for removing liquidity from a pool.
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` | The domain ID of the pool. |
+| `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
+| `amounts` | `string`[] | `undefined` | The amount of LP tokens to burn. |
+| `maxBurnAmount` | `string` | "0" | (optional) The max LP tokens the use is willing to burn. |
+| `deadline` | `number` | One hour from current time. | (optional) The deadline for the operation. |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+providers.TransactionRequest object.
+
+___
+
 ### swap
 
 ▸ **swap**(`domainId`, `tokenAddress`, `from`, `to`, `amount`, `minDy?`, `deadline?`): `Promise`<`TransactionRequest`\>
