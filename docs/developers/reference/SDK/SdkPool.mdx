@@ -834,7 +834,7 @@ Returns the transaction request for removing liquidity from a pool.
 | `domainId` | `string` | `undefined` | The domain ID of the pool. |
 | `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
 | `amounts` | `string`[] | `undefined` | The amount of LP tokens to burn. |
-| `maxBurnAmount` | `string` | "0" | (optional) The max LP tokens the use is willing to burn. |
+| `maxBurnAmount` | `string` | "0" (Use total LP balance) | (optional) The max LP tokens the user is willing to burn. |
 | `deadline` | `number` | One hour from current time. | (optional) The deadline for the operation. |
 
 #### Returns
