@@ -5,19 +5,21 @@ id: simple-bridge
 
 # Simple Bridge
 
-The `SimpleBridge` just transfers tokens from a user to another wallet (could be themselves) on a different chain.
+The `SimpleBridge` just transfers tokens from a user to another wallet (could be themselves) on a different chain. Since no calldata is involved, no target contract is needed. 
 
-Since no calldata is involved, no target contract is needed. However, to send and receive native ETH, the flow is a bit different. Since Connext doesn't accept native ETH as the bridged asset, ETH should be first wrapped into WETH on the origin domain and then delivered WETH on destination should be unwrapped back to ETH. An Unwrapper contract that implements `IXReceive` already exists on all supported networks to be used as the `_to` target in `xcall`. The final recipient on destination should be encoded into the `callData` param for the Unwrapper to send ETH to.
 
-:::note
-
-If sending an ERC20 as the `asset`, the user must first approve a spending allowance of the token to the `SimpleBridge` contract.
-
-:::
 
 In this example, `SimpleBridge` has two functions:
 - `xTransfer` bridges any ERC20 token
+  - The user must first approve a spending allowance of the token to the `SimpleBridge` contract.
+  - `relayerFee` is paid in native ETH so when `xTransfer` is called, `msg.value` MUST be passed in equal to the specified `relayerFee`.
+
 - `xTransferEth` bridges ETH (for origin/destination chains whose native asset is ETH)
+  - To send and receive native ETH, the flow is a bit different. Since Connext doesn't accept native ETH as the bridged asset, ETH should be first wrapped into WETH on the origin domain and then the delivered WETH on destination should be unwrapped back to ETH. 
+  - An Unwrapper contract that implements `IXReceive` already exists on all supported networks to be used as the `_to` target in `xcall`. The final recipient on destination should be encoded into the `callData` param for the Unwrapper to send ETH to (demonstrated on line 92 below).
+  - When sending ETH, `msg.value` = `relayerFee` + `amount`. See example below (note: in Etherscan, the payable field is in `ether` while the other fields are specified in `wei`).
+
+    <img src="/img/developers/examples/etherscan_xTransferEth.png" alt="etherscan xTransferETh" width="300"/>
 
 ```solidity showLineNumbers
 // SPDX-License-Identifier: UNLICENSED
