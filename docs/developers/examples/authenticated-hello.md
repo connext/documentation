@@ -15,7 +15,7 @@ The target contract must implement some checks to uphold its security constraint
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.15;
 
-import {IXReceiver} from "@connext/smart-contracts/contracts/core/connext/interfaces/IXReceiver.sol";
+import {IXReceiver} from "@connext/interfaces/core/IXReceiver.sol";
 
 /**
  * @title DestinationGreeterAuthenticated
@@ -94,7 +94,7 @@ Nothing special has to be accounted for on the source contract.
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.15;
 
-import {IConnext} from "@connext/smart-contracts/contracts/core/connext/interfaces/IConnext.sol";
+import {IConnext} from "@connext/interfaces/core/IConnext.sol";
 
 /**
  * @title SourceGreeterAuthenticated
