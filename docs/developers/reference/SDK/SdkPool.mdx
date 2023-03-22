@@ -170,6 +170,29 @@ The price impact for removing liquidity, in 1e18 precision.
 
 ___
 
+### calculateRemoveSwapLiquidityOneToken
+
+▸ **calculateRemoveSwapLiquidity**(`domainId`, `tokenAddress`, `amount`, `index`): `Promise`<`BigNumber`\>
+
+Calculates the amounts of underlying tokens returned.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID of the pool. |
+| `tokenAddress` | `string` | The address of local or adopted token. |
+| `amount` | `string` | The amount of the LP token to burn on withdrawal. |
+| `index` | `number` | The index of the token to withdraw. |
+
+#### Returns
+
+`Promise`<`BigNumber`\>
+
+Calculated amount of underlying token returned.
+
+___
+
 ### calculateRemoveSwapLiquidity
 
 ▸ **calculateRemoveSwapLiquidity**(`domainId`, `tokenAddress`, `amount`): `Promise`<`BigNumber`[]\>
@@ -761,9 +784,34 @@ Returns the transaction request for removing liquidity from a pool.
 | :------ | :------ | :------ |
 | `domainId` | `string` | The domain ID of the pool. |
 | `tokenAddress` | `string` | The address of local or adopted token. |
-| `amount` | `string` | The amount of the token to remove. |
-| `minAmounts` | `string`[] | (optional) The minimum acceptable amounts of each token to burn. |
+| `amount` | `string` | The amount of LP tokens to burn. |
+| `minAmounts` | `string`[] | (optional) The minimum amounts of each token to withdraw. |
 | `deadline` | `number` | (optional) The deadline for the operation. |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+providers.TransactionRequest object.
+
+___
+
+### removeLiquidityOneToken
+
+▸ **removeLiquidityOneToken**(`domainId`, `tokenAddress`, `amount`, `minAmount?`, `deadline?`): `Promise`<`TransactionRequest`\>
+
+Returns the transaction request for removing liquidity from a pool.
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` | The domain ID of the pool. |
+| `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
+| `withdrawTokenAddress` | `string` | `undefined` | The address of the token to withdraw. |
+| `amount` | `string` | `undefined` | The amount of LP tokens to burn. |
+| `minAmount` | `string` | "0" | (optional) The minimum acceptable amount of the token to withdraw. |
+| `deadline` | `number` | One hour from current time. | (optional) The deadline for the operation. |
 
 #### Returns
 
