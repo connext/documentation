@@ -850,6 +850,134 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
 
   <br />
 
+  ### ZkSync-Testnet
+
+  Domain ID: 2053862260
+
+  Chain ID: 280
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Core Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://goerli.explorer.zksync.io/address/0xB0694fEcEdd88e5590A563aDb5f194d2dE30F0b6">
+            Connext
+          </a>
+        </td>
+        <td>0xB0694fEcEdd88e5590A563aDb5f194d2dE30F0b6</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Asset Contract</th>
+        <th>Address</th>
+        <th>Flavor</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://goerli.explorer.zksync.io/address/0x7C1412e456ad60B8ee458c4eb3A9852C3e389353">
+            TEST
+          </a>
+        </td>
+        <td>0x7C1412e456ad60B8ee458c4eb3A9852C3e389353</td>
+        <td>Local/Adopted</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="TBD">
+            Unwrapper
+          </a>
+        </td>
+        <td>TBD</td>
+        <td>TBD</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
+  ### Consensys-ZkEvm-Testnet
+
+  Domain ID: 1668247156
+
+  Chain ID: 59140
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Core Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://explorer.goerli.zkevm.consensys.net/address/0xfdb6B853C1945Dbffe78A3091BeBB9A928234fA3">
+            Connext
+          </a>
+        </td>
+        <td>0xfdb6B853C1945Dbffe78A3091BeBB9A928234fA3</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Asset Contract</th>
+        <th>Address</th>
+        <th>Flavor</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://explorer.goerli.zkevm.consensys.net/address/0xB706319D37b945727E71ae0d4353699d19112576">
+            TEST
+          </a>
+        </td>
+        <td>0xB706319D37b945727E71ae0d4353699d19112576</td>
+        <td>Local/Adopted</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="TBD">
+            Unwrapper
+          </a>
+        </td>
+        <td>TBD</td>
+        <td>TBD</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
 </details>
 
 ## Offchain Agents
