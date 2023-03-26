@@ -16,7 +16,7 @@ There are two types of fees paid to offchain agents for each applicable `xcall`.
 - **Relayer Fee**: A fee charged by relayers on top of normal gas costs in exchange for providing a meta-transaction service. 
   - Relayers execute transactions on the destination chain on behalf of users.
   - Users offer a fee bounty to incentivize relayers to execute their destination calls.
-  - Relayer fees are paid in the origin native asset and need to be estimated when `xcall` is initiated. Some relayers provide endpoints that can help with estimation. 
+  - Relayer fees are paid in the origin native asset or the transacting asset and need to be estimated when `xcall` is initiated. Some relayers provide endpoints that can help with estimation. 
 
 
 Router fees are fixed and hardcoded into the Connext protocol. Relayer fees, on the other hand, can vary between chains and the service provider. 
@@ -25,14 +25,24 @@ Router fees are fixed and hardcoded into the Connext protocol. Relayer fees, on 
 
 For now, we need to rely on offchain tools to estimate relayer fees. The [Connext SDK](./sdk-guides.md) abstracts away some of this complexity. 
 
-The `SdkBase` class includes an `estimateRelayerFee` method that estimates total gas fees including a bump to account for Gelato relayer fees. The resulting estimate will be converted to the native origin asset.
+The `SdkBase` class includes an `estimateRelayerFee` method that estimates total gas fees including a bump to account for Gelato relayer fees.
+
+The relayer fee can be paid in either the native asset or the transacting asset (the asset being bridged in the `xcall`).
+
+[Pay in native asset](#paying-relayer-fee-in-native-asset)
+
+[Pay in transacting asset](#paying-relayer-fee-in-transacting-asset)
+
+### Paying relayer fee in native asset
+
+The resulting estimate will be converted to the native origin asset.
 
 ```typescript
 const {sdkBase} = await create(nxtpConfig);
 
 const params = {
   originDomain: "<ORIGIN_DOMAIN>",
-  destinationDomain: "<DESTINATION_DOMAIN>"
+  destinationDomain: "<DESTINATION_DOMAIN>",
 }
 
 const relayerFee = await sdkBase.estimateRelayerFee(params);
@@ -55,6 +65,46 @@ contract Source {
   function crossChainCall() {
     ...
     connext.xcall{value: relayerFee}(...);
+  }
+}
+```
+
+### Paying relayer fee in transacting asset
+
+The resulting estimate will be the relayer fee in USD.
+
+```typescript
+const {sdkBase} = await create(nxtpConfig);
+
+const params = {
+  originDomain: "<ORIGIN_DOMAIN>",
+  destinationDomain: "<DESTINATION_DOMAIN>",
+  priceIn: "usd" // use this if you want the estimate in USD
+}
+
+const relayerFeeInTransactingAsset = await sdkBase.estimateRelayerFee(params);
+```
+
+The estimate in USD should be converted to the value of the transacting asset (e.g. by using a price feed) and supplied as the `relayerFeeInTransactingAsset` param for an `xcall` using the SDK.
+
+```typescript
+const xcallTxReq = await sdkBase.xcall(
+  ...,
+  relayerFeeInTransactingAsset: relayerFeeInTransactingAsset
+);
+```
+
+Or passed in as the `_relayerFee` for an `xcall` in a smart contract.
+
+```solidity
+contract Source {
+  ...
+  function crossChainCall() {
+    ...
+    connext.xcall(
+      ...,
+      relayerFeeInTransactingAsset
+    );
   }
 }
 ```
