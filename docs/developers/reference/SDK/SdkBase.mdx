@@ -184,6 +184,7 @@ signer.sendTransaction(txRequest);
 | `params.destinationDomain` | `string` | undefined | The destination domain ID of the transfer. |
 | `params.callDataGasAmount` | `string` | undefined | The gas amount needed for calldata. |
 | `params.originNativeToken` | `string` | "0x0000000000000000000000000000000000000000" | (optional) The native token of the origin domain. |
+| `params.priceIn` | `string` | "native" | (optional) "native" for native asset denomination or "usd" to get the estimate in USD value.
 | `params.destinationNativeToken` | `string` | "0x0000000000000000000000000000000000000000" | (optional) The native token of the destination domain. |
 | `params.originNativeTokenPrice` | `number` | (uses external estimate - increases response time) | (optional) The USD price of the origin native token. |
 | `params.destinationNativeTokenPrice` | `number` | (uses external estimate - increases response time) | (optional) The USD price of the destination native token. |
@@ -193,7 +194,7 @@ signer.sendTransaction(txRequest);
 
 `Promise`<`BigNumber`\>
 
-The relayer fee in native asset of the origin domain.
+The relayer fee in native asset of the origin domain or USD equivalent.
 
 ___
 
