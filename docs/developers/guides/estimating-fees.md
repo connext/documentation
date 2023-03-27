@@ -29,11 +29,11 @@ The `SdkBase` class includes an `estimateRelayerFee` method that estimates total
 
 The relayer fee can be paid in either the native asset or the transacting asset (the asset being bridged in the `xcall`).
 
-[Pay in native asset](#paying-relayer-fee-in-native-asset)
+[Pay in native asset](#pay-in-native-asset)
 
-[Pay in transacting asset](#paying-relayer-fee-in-transacting-asset)
+[Pay in transacting asset](#pay-in-transacting-asset)
 
-### Paying relayer fee in native asset
+### Pay in native asset
 
 The resulting estimate will be converted to the native origin asset.
 
@@ -69,7 +69,7 @@ contract Source {
 }
 ```
 
-### Paying relayer fee in transacting asset
+### Pay in transacting asset
 
 The resulting estimate will be the relayer fee in USD.
 
@@ -115,8 +115,46 @@ Since gas conditions are impossible to predict, transactions can potentially sta
 
 Anyone can call the Connext contract function `bumpTransfer` to increase the original relayer fee for an `xcall`. 
 
+[Bumping in native asset](#bump-in-native-asset)
+
+[Bumping in transacting asset](#bump-in-transacting-asset)
+
+### Bump in native asset
+
+To bump using SDK:
+
+```typescript
+const bumpTxReq = await sdkBase.bumpTransfer(
+  domainId: originDomain,
+  transferId: transferId,
+  asset: <native_asset_address>,
+  relayerFee: <relayerFee_in_native>
+);
+```
+
+To bump from a contract call:
+
 ```solidity
 function bumpTransfer(bytes32 _transferId) external payable;
+```
+
+### Bump in transacting asset
+
+To bump using SDK:
+
+```typescript
+const bumpTxReq = await sdkBase.bumpTransfer(
+  domainId: originDomain,
+  transferId: transferId,
+  asset: <transacting_asset_address>,
+  relayerFee: <relayerFee_in_transacting>
+);
+```
+
+To bump from a contract call:
+
+```solidity
+function bumpTransfer(bytes32 _transferId, address _relayerFeeAsset, uint256 _relayerFee) external payable;
 ```
 
 To find the `transferId`, see [Tracking xCalls](./xcall-status).
