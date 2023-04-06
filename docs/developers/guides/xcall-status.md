@@ -43,7 +43,7 @@ You can query the hosted subgraphs on each chain to check the transaction status
 2. Navigate to the hosted subgraph for the origin domain and query by the xcall's transaction hash or the transfer ID.
 
   ```graphql
-  query originTransfer {
+  query OriginTransfer {
     originTransfers(
       where: {
         # Query by the transaction hash of the xcall
@@ -55,12 +55,12 @@ You can query the hosted subgraphs on each chain to check the transaction status
       # Meta Data
       chainId
       nonce
+      transferId
       to
       delegate
       receiveLocal
       callData
       slippage
-      relayerFee
       originSender
       originDomain
       destinationDomain

@@ -30,7 +30,6 @@ query OriginTransfer {
     receiveLocal
     callData
     slippage
-    relayerFee
     originSender
     originDomain
     destinationDomain

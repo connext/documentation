@@ -58,6 +58,7 @@ Increases the relayer fee for a specific transfer on origin; anyone is allowed t
 const params = {
   domainId: "6648936",
   transferId: "0xdd252f58a45dc78fee1ac12a628782bda6a98315b286aadf76e4d7322bf135ca",
+  asset: "0x0000000000000000000000000000000000000000", // can be either native asset or transacting asset
   relayerFee: "10000",
 };
 
@@ -70,8 +71,9 @@ signer.sendTransaction(txRequest);
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `params` | `Object` | SdkBumpTransferParams object. |
+| `params.asset` | `string` | The asset address you want to pay in (use "0x0000000000000000000000000000000000000000" for native). |
 | `params.domainId` | `string` | The origin domain ID of the transfer. |
-| `params.relayerFee` | `string` | The additional relayer fee to increase the transfer by, in native gas token. |
+| `params.relayerFee` | `string` | The additional relayer fee to increase the transfer by, in the specified asset. |
 | `params.transferId` | `string` | The transfer ID. |
 
 #### Returns
@@ -84,7 +86,7 @@ ___
 
 ### calculateAmountReceived
 
-▸ **calculateAmountReceived**(`originDomain`, `destinationDomain`, `originTokenAddress`, `amount`, `receiveLocal?`): `Promise`<{ `amountReceived`: `BigNumberish` ; `destinationSlippage`: `BigNumberish` ; `originSlippage`: `BigNumberish` ; `routerFee`: `BigNumberish`  }\>
+▸ **calculateAmountReceived**(`originDomain`, `destinationDomain`, `originTokenAddress`, `amount`, `receiveLocal?`, `checkFastLiquidity?`): `Promise`<{ `amountReceived`: `BigNumberish` ; `destinationSlippage`: `BigNumberish` ; `originSlippage`: `BigNumberish` ; `routerFee`: `BigNumberish` ; `isFastPath`: `boolean` }\>
 
 Calculates the estimated amount received on the destination domain for a bridge transaction.
 
@@ -97,10 +99,11 @@ Calculates the estimated amount received on the destination domain for a bridge 
 | `originTokenAddress` | `string` | `undefined` | The address of the token to be bridged from origin. |
 | `amount` | `BigNumberish` | `undefined` | The amount of the origin token to bridge, in the origin token's native decimal precision. |
 | `receiveLocal` | `boolean` | `false` | (optional) Whether the desired destination token is the local asset ("nextAsset"). |
+| `checkFastLiquidity` | `boolean` | `false` | (optional) Whether to check current router liquidity for fast path availability. |
 
 #### Returns
 
-`Promise`<{ `amountReceived`: `BigNumberish` ; `destinationSlippage`: `BigNumberish` ; `originSlippage`: `BigNumberish` ; `routerFee`: `BigNumberish`  }\>
+`Promise`<{ `amountReceived`: `BigNumberish` ; `destinationSlippage`: `BigNumberish` ; `originSlippage`: `BigNumberish` ; `routerFee`: `BigNumberish` ; `isFastPath`: `boolean` }\>
 
 Estimated amount received for local/adopted assets, if applicable, in their native decimal precisions.
 
@@ -184,6 +187,7 @@ signer.sendTransaction(txRequest);
 | `params.destinationDomain` | `string` | undefined | The destination domain ID of the transfer. |
 | `params.callDataGasAmount` | `string` | undefined | The gas amount needed for calldata. |
 | `params.originNativeToken` | `string` | "0x0000000000000000000000000000000000000000" | (optional) The native token of the origin domain. |
+| `params.priceIn` | `string` | "native" | (optional) "native" for native asset denomination or "usd" to get the estimate in USD value.
 | `params.destinationNativeToken` | `string` | "0x0000000000000000000000000000000000000000" | (optional) The native token of the destination domain. |
 | `params.originNativeTokenPrice` | `number` | (uses external estimate - increases response time) | (optional) The USD price of the origin native token. |
 | `params.destinationNativeTokenPrice` | `number` | (uses external estimate - increases response time) | (optional) The USD price of the destination native token. |
@@ -193,7 +197,7 @@ signer.sendTransaction(txRequest);
 
 `Promise`<`BigNumber`\>
 
-The relayer fee in native asset of the origin domain.
+The relayer fee in native asset of the origin domain or USD equivalent.
 
 ___
 
