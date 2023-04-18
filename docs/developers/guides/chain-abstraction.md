@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 8
 id: chain-abstraction
 ---
 
@@ -16,10 +16,10 @@ This guide will cover a contract workspace that is using [Foundry](https://book.
 After your Foundry project is set up, you can add the Connext contracts to your project by running the following command:
 
 ```bash
-forge install connext-integration=connext/integration
+forge install connext/connext-integration
 ```
 
-The above code sets an alias so that the installed library is more descriptive. The library will be installed to `lib/connext-integration`.
+The library will be installed to `lib/connext-integration`.
 
 ### xReceiver Target Contract 
 The xReceiver target contract is the contract that will receive funds after swaps are completed. This contract will be deployed to the destination chain, and will be called by the router network for a ["fast path execution"]("../authentication). The contract simply has to inherit the `SwapForwarderXReceiver` contract and implement the `_forwardFunctionCall` method. A simple example is shown below.
