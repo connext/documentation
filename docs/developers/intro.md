@@ -18,7 +18,7 @@ Building a xApp requires only two straightforward steps:
 
 ### Fast Path vs. Slow Path 
 
-Take a moment to review the [Transaction Lifecycle](../concepts/how-it-works/transaction-flow). Here we introduce the concept of "fast path" and "slow path" (authenticated) transfers. The differentation is crucial to understand for any cross-chain project. Then, try it out with our Authentication guide.
+Take a moment to review the [Transaction Lifecycle](../concepts/how-it-works/transaction-flow). Here we introduce the concept of "fast path" and "slow path" (authenticated) transfers. The differentiation is crucial to understand for any cross-chain project. Then, try it out with our Authentication guide.
 
 [Authentication](./guides/authentication)
 
