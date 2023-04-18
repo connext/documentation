@@ -65,7 +65,7 @@ In short, pretty much anything! Here are some of the ideas that members of our c
 ## Where Do I Go Next?
 
 If the above information was overwhelming, don't worry! We have plenty more resources to help you learn about Connext:
-- If you're a developer and want to start building with `xcall`, check out our [Developer Quickstart](../developers/quickstart) and [Examples](../developers/examples/).
-- Want to learn more about how the protocol works? Read through the [How Connext Works](./how-it-works/) section.
+- If you're a developer and want to start building with `xcall`, check out our [Developer Quickstart](../developers/quickstart) and [Examples](../developers/examples/simple-bridge.md).
+- Want to learn more about how the protocol works? Read through the [How Connext Works](./how-it-works/flow.md) section.
 - Are you an infrastructure operator? Help run the network by [operating a Connext router](../routers/intro.md).
 - Still not sure where to go? Join our [Discord](https://discord.gg/pef9AyEhNz) server and chat with us in the `#dev-hub` channel.

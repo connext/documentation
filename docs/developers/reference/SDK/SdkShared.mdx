@@ -141,10 +141,10 @@ Returns the canonical ID and canonical domain of a token.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
+| Name | Type | Description |	
+| :------ | :------ | :------ |	
+| `domainId` | `string` | The canonical domain ID of the token. |	
+| `tokenAddress` | `string` | The address of the token. |
 
 #### Returns
 
@@ -240,6 +240,8 @@ ___
 ### getBlockNumberFromUnixTimestamp
 
 ▸ `Static` **getBlockNumberFromUnixTimestamp**(`domainId`, `unixTimestamp`): `Promise`<`number`\>
+
+Uses an external API to fetch the block number from a unix timestamp.
 
 #### Parameters
 

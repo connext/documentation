@@ -78,3 +78,8 @@ html[data-theme='light'] {
   background-repeat: no-repeat;
   background-image: radial-gradient(50% 50% at 50% 50%, rgba(98, 17, 138, 0.1) 10%, rgba(49, 226, 90, 0) 100%);
 }
+
+.DocSearch {
+  --docsearch-hit-color: var(--ifm-color-primary);
+  --docsearch-hit-active-color: var(--ifm-color-primary-active);
+}

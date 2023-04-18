@@ -10,16 +10,16 @@ The Connext SDK allows developers to interact with the Connext protocol in stand
 
 ## Cross-Chain Transfer
 
-This example demonstrates how to execute an `xcall` to transfer funds from a wallet on Goerli to a destination address on Polygon-Mumbai.
+This example demonstrates how to execute an `xcall` to transfer funds from a wallet on the source domain to the same address on the destination domain.
 
 ### 1. Setup
 
-Install [Node.js](https://nodejs.dev/en/learn/how-to-install-nodejs/) and use **Node.js v16**. Follow the instructions to install `nvm`, a node version manager, which will make switching versions easier.
+Install [Node.js](https://nodejs.dev/en/learn/how-to-install-nodejs/) and use **Node.js v18**. Follow the instructions to install `nvm`, a node version manager, which will make switching versions easier.
 
 Create a project folder and initialize the package. Fill out the project information as you please.
 
 ```bash npm2yarn
-mkdir node-examples && cd node-examples
+mkdir connext-sdk-example && cd connext-sdk-example
 npm init
 ```
 
@@ -27,7 +27,7 @@ We'll be using TypeScript so install the following and generate the `tsconfig.js
 
 ```bash npm2yarn
 npm install --save-dev @types/node @types/chai @types/mocha typescript 
-npx tsc --init # yarn tsc --init
+npx tsc --init # or `yarn tsc --init`
 ```
 
 We want to use top-level await so we'll set the compiler options accordingly.
@@ -48,17 +48,14 @@ We want to use top-level await so we'll set the compiler options accordingly.
 Add `type` and `scripts` as root-level entries to `package.json` - they may already exist, so just replace them with the following.
 
 ```json title="package.json"
+{
+  ...
   "type": "module",
   "scripts": {
-    "build": "tsc && node dist/xtransfer.js",
-    "xtransfer": "node dist/xtransfer.js"
+    "xtransfer": "tsc && node dist/xtransfer.js"
   }
-```
-
-Create `xtransfer.ts` in the `src` directory, where we will write all the code in this example.
-
-```bash
-mkdir src && touch src/xtransfer.ts
+  ...
+}
 ```
 
 ### 2. Install dependencies
@@ -66,91 +63,120 @@ mkdir src && touch src/xtransfer.ts
 Install the latest beta version of Connext SDK and ethers.
 
 ```bash npm2yarn
-npm install @connext/sdk@beta
-npm install ethers
+npm install @connext/sdk
+npm install ethers@^5
 ```
 
 ### 3. The code
 
-This is the full code for the example. Read through the comments and replace any placeholders between `<...>`.
+First, we'll configure the SDK. Create a `config.ts` file with the following contents.
 
-Information like asset addresses be found in the [Deployments](../../../resources/deployments) page.
-
-```ts title="src/xtransfer.ts"
-import { create, SdkConfig } from "@connext/sdk";
+```ts title="config.ts" showLineNumbers
+import { SdkConfig } from "@connext/sdk";
 import { ethers } from "ethers";
 
-// Instantiate a Wallet object using your private key (i.e. from Metamask) and use it as a Signer.
+// Create a Signer and connect it to a Provider on the sending chain
 const privateKey = "<PRIVATE_KEY>";
+
 let signer = new ethers.Wallet(privateKey);
 
-// Connext to a Provider on the sending chain. You can use a provider like Infura (https://infura.io/) or Alchemy (https://www.alchemy.com/).
-const provider = new ethers.providers.JsonRpcProvider("<GOERLI_RPC_URL>");
+// Use the RPC url for the origin chain
+const provider = new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/eth_goerli");
 signer = signer.connect(provider);
 const signerAddress = await signer.getAddress();
 
-// Construct the `SdkConfig`. You can reference chain IDs in the "Resources" tab of the docs.
 const sdkConfig: SdkConfig = {
   signerAddress: signerAddress,
-  network: "testnet", // can be "mainnet" or "testnet"
+  // Use `mainnet` when you're ready...
+  network: "testnet",
+  // Add more chains here! Use mainnet domains if `network: mainnet`.
+  // This information can be found at https://docs.connext.network/resources/supported-chains
   chains: {
-    1735353714: {
-      providers: ["<GOERLI_RPC_URL>"],
+    1735353714: { // Goerli domain ID
+      providers: ["https://rpc.ankr.com/eth_goerli"],
     },
-    9991: {
-      providers: ["<MUMBAI_RPC_URL>"],
+    1735356532: { // Optimism-Goerli domain ID
+      providers: ["https://goerli.optimism.io"],
     },
   },
 };
 
-// Create the SDK instance.
+export { signer, sdkConfig };
+```
+
+Replace `<PRIVATE_KEY>` with your own private key on line 5.
+
+Notice that the config supports Goerli and Optimism-Goerli. We've also hard-coded the origin chain provider on line 84.
+
+Now create a `xtransfer.ts` file with the following:
+
+```ts title="xtransfer.ts" showLineNumbers
+import { create } from "@connext/sdk";
+import { BigNumber } from "ethers";
+import { signer, sdkConfig } from "./config.js";
+
 const {sdkBase} = await create(sdkConfig);
 
-// Address of the TEST token
-const asset = "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1" 
+const signerAddress = await signer.getAddress();
 
-// Send 1 TEST
-const amount = "1000000000000000000"; 
+// xcall parameters
+const originDomain = "1735353714";
+const destinationDomain = "1735356532";
+const originAsset = "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1";
+const amount = "1000000000000000000";
+const slippage = "10000";
 
 // Estimate the relayer fee
-const relayerFee = (await sdkBase.estimateRelayerFee({originDomain, destinationDomain})).toString();
+const relayerFee = (
+  await sdkBase.estimateRelayerFee({
+    originDomain, 
+    destinationDomain
+  })
+).toString();
 
 // Prepare the xcall params
 const xcallParams = {
-  origin: "1735353714",    // send from Goerli
-  destination: "9991",     // to Mumbai
-  to: signerAddress,       // the address that should receive the funds on destination
-  asset: asset,            // address of the token contract
-  delegate: signerAddress, // address allowed to execute transaction on destination side in addition to relayers
-  amount: amount,          // amount of tokens to transfer
-  slippage: "30",          // the maximum amount of slippage the user will accept in BPS, 0.3% in this case
-  callData: "0x",          // empty calldata for a simple transfer
-  relayerFee: relayerFee,  // fee paid to relayers
+  origin: originDomain,           // send from Goerli
+  destination: destinationDomain, // to Mumbai
+  to: signerAddress,              // the address that should receive the funds on destination
+  asset: originAsset,             // address of the token contract
+  delegate: signerAddress,        // address allowed to execute transaction on destination side in addition to relayers
+  amount: amount,                 // amount of tokens to transfer
+  slippage: slippage,             // the maximum amount of slippage the user will accept in BPS (e.g. 30 = 0.3%)
+  callData: "0x",                 // empty calldata for a simple transfer (byte-encoded)
+  relayerFee: relayerFee,         // fee paid to relayers 
 };
 
-// Approve the asset transfer. This is necessary because funds will first be sent to the Connext contract before being bridged.
+// Approve the asset transfer if the current allowance is lower than the amount.
+// Necessary because funds will first be sent to the Connext contract in xcall.
 const approveTxReq = await sdkBase.approveIfNeeded(
-  xcallParams.origin,
-  xcallParams.asset,
-  xcallParams.amount
+  originDomain,
+  originAsset,
+  amount
 )
-const approveTxReceipt = await signer.sendTransaction(approveTxReq);
-await approveTxReceipt.wait();
+
+if (approveTxReq) {
+  const approveTxReceipt = await signer.sendTransaction(approveTxReq);
+  await approveTxReceipt.wait();
+}
 
 // Send the xcall
 const xcallTxReq = await sdkBase.xcall(xcallParams);
-xcallTxReq.gasLimit = ethers.BigNumber.from("20000000"); 
+xcallTxReq.gasLimit = BigNumber.from("20000000"); 
 const xcallTxReceipt = await signer.sendTransaction(xcallTxReq);
 console.log(xcallTxReceipt);
-const xcallResult = await xcallTxReceipt.wait();
+await xcallTxReceipt.wait();
 ```
+
+Most of the parameters are hardcoded in this example. For a detailed description of each parameter, see the [SDK reference for xcall](../reference/SDK/sdk-base#xcall).
+
+Information like asset addresses be found in the [Deployments](../../../resources/deployments) page.
 
 ### 4. Run it
 
-Now we can run it to fire off the cross-chain transfer!
+Fire off the cross-chain transfer!
 
 ```bash npm2yarn
-npm run build
 npm run xtransfer
 ```
 
@@ -160,4 +186,4 @@ We can now use the transaction `hash` from the logged transaction receipt to tra
 
 [Tracking an xcall](./xcall-status)
 
-After the transfer is `status: Executed` on the Mumbai side, the transferred tokens should show up in the destination wallet.
+After the transfer is `status: Executed` on the destination side, the transferred tokens should show up in the recipient wallet.

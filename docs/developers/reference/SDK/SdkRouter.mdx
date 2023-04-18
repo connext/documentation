@@ -180,10 +180,10 @@ Returns the canonical ID and canonical domain of a token.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
+| Name | Type | Description |	
+| :------ | :------ | :------ |	
+| `domainId` | `string` | The canonical domain ID of the token. |	
+| `tokenAddress` | `string` | The address of the token. |
 
 #### Returns
 
@@ -192,6 +192,36 @@ Returns the canonical ID and canonical domain of a token.
 #### Inherited from
 
 [SdkShared](./sdk-shared).[getCanonicalTokenId](sdk-shared#getcanonicaltokenid)
+
+___
+
+### getSupported	
+
+▸ **getSupported**(): `Promise`<[`ConnextSupport`](../modules.md#connextsupport)[]\>	
+
+Fetches the list of supported networks and assets.	
+
+#### Returns	
+
+`Promise`<[`ConnextSupport`](../modules.md#connextsupport)[]\>	
+
+Array of objects containing networks and assets supported by the protocol, in the form of:	
+
+```ts	
+{	
+  "name": "arbitrum",	
+  "chainId": 42161,	
+  "domainId": "1634886255",	
+  "assets": [	
+    "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",	
+    "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8"	
+  ]	
+},	
+```	
+
+#### Inherited from	
+
+[SdkShared](SdkShared.md).[getSupported](SdkShared.md#getsupported)
 
 ___
 
@@ -268,6 +298,27 @@ This function is permissioned to the router owner only.
 `Promise`<`TransactionRequest`\>
 
 providers.TransactionRequest object.
+
+___
+
+### removeRouterLiquidityFor	
+
+▸ **removeRouterLiquidityFor**(`params`): `Promise`<`TransactionRequest`\>	
+
+#### Parameters	
+
+| Name | Type |	
+| :------ | :------ |	
+| `params` | `Object` |	
+| `params.amount` | `string` |	
+| `params.domainId` | `string` |	
+| `params.recipient` | `string` |	
+| `params.router` | `string` |	
+| `params.tokenAddress` | `string` |	
+
+#### Returns	
+
+`Promise`<`TransactionRequest`\>
 
 ___
 

@@ -45,10 +45,12 @@ struct TransferInfo {
 
 The parameters in `TransferInfo` must match the same parameters used in the original `xcall`. It's possible to obtain the original parameters by [querying the subgraph](./xcall-status#querying-subgraphs) (origin *or* destination) with the `transferId` associated with the `xcall`.
 
+The Connext SDK also exposes an [updateSlippage](../reference/SDK/sdk-base#updateslippage) method for this.
+
 
 ## Reverts on Receiver Contract
 
-If the call on the receiver contract (also referred to as "target" contract) reverts, the Connext bridge contract may unwillingly end up with custody of funds involved in the operation. The xApp developer should be aware that in these cases, those funds may be considered forfeit. To avoid these kinds of situations, developers should build any contract implementing `IXReceive` defensively. 
+If the call on the receiver contract (also referred to as "target" contract) reverts, funds sent in with the call will end up on the receiver contract. To avoid situations where user funds get stuck on the receivers, developers should build any contract implementing `IXReceive` defensively. 
 
 Ultimately, the goal should be to handle any revert-susceptible code and ensure that the logical owner of funds *always* maintains agency over them.
 
@@ -75,3 +77,11 @@ contract TargetContract {
   }
 }
 ```
+
+### Options for Funds on Receiver
+
+We recommend that xApp developers consider recovery options in case of reverting calls on the receiver. For example, there could be an internal accounting structure to record `transferId`s and allow rightful `originSender`s to rescue their funds from the receiver contract. Note that this approach requires authentication and would cause `xcall`s to go through the slow path.
+
+Alternatively, the protocol can implement an allowlist for addresses that are able to rescue funds and redirect them to users. 
+
+Connext is actively researching standards and best practices for receiver contracts. Reach out to us if you questions!

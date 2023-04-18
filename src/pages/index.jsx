@@ -1,8 +1,7 @@
 import React from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
-
-import styles from "./index.module.css";
+import Head from "@docusaurus/Head";
 
 import styled from "@emotion/styled";
 
@@ -12,20 +11,14 @@ import GithubLogo from "/static/img/github_logo.svg";
 
 import ConnextLogo from "/static/img/connext_Logo.svg";
 
-import XCallSnippet from "/static/img/xcall_snippet.png"
+import XCallSnippet from "/static/img/xcall_snippet.png";
 
 import ThemedImage from "@theme/ThemedImage";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-
-import SearchBar from "@theme-original/SearchBar";
 
 import {
   InformationCircleIcon,
   LinkIcon,
   BookOpenIcon,
-  ChatIcon,
-  CodeIcon,
-  SwitchHorizontalIcon,
 } from "@heroicons/react/outline";
 
 export const Actions = [
@@ -40,7 +33,7 @@ export const Actions = [
     title: "Developer Guides",
     href: "#",
     icon: LinkIcon,
-    to: "./developers/guides/xcall-status",
+    to: "./developers/intro",
     text: `Learn how to use xcall, the cross-chain primitive.`,
   },
   {
@@ -258,22 +251,33 @@ const HideMedium = styled.div`
 
 export default function Home() {
   return (
-    <Layout
-      title={`Connext Docs`}
-      description="Technical Documentation For The Connext Protocol"
-    >
-      <Container>
-        <DocsHeader>
-          <div
-            style={{
-              padding: "4rem 0  ",
-              textAlign: "center",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h1 style={{ fontWeight: "600" }}> Welcome to the Connext Docs</h1>
+    <>
+      <Head>
+        <script
+          src="https://widget.mava.app"
+          id="MavaWebChat"
+          data-token="ff5a4a8ae57d4369888eaa4f81cfcee411c25ab31fa74d0ac47c105bfd2086a3"
+        ></script>
+      </Head>
+      <Layout
+        title={`Connext Docs`}
+        description="Technical Documentation For The Connext Protocol"
+      >
+        <Container>
+          <DocsHeader>
+            <div
+              style={{
+                padding: "4rem 0  ",
+                textAlign: "center",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <h1 style={{ fontWeight: "600" }}>
+                {" "}
+                Welcome to the Connext Docs
+              </h1>
 
               <p
                 style={{
@@ -287,127 +291,124 @@ export default function Home() {
                   align: "left",
                 }}
               >
-                Turn your dApp into a xApp with just a few lines of code. 
+                Turn your dApp into a xApp with just a few lines of code.
               </p>
 
               <div>
-                <img src={XCallSnippet} alt="xCall Snippet" style={{borderRadius: "20px", width: "400px"}}  />
+                <img
+                  src={XCallSnippet}
+                  alt="xCall Snippet"
+                  style={{ borderRadius: "20px", width: "400px" }}
+                />
               </div>
 
-              <Link 
+              <Link
                 style={{ textDecoration: "none" }}
                 to="./developers/quickstart"
               >
-                <CTACard>
-                   Get Started!
-                </CTACard>
+                <CTACard id="quickstart-button-cta">Get Started!</CTACard>
               </Link>
-          </div>
-
-          <LongRow>
-            {Actions.map((action) => (
-              <Link
-                style={{ textDecoration: "none" }}
-                to={action.to}
-                key={action.to}
-              >
-                <FixedCard key={action.title}>
-                  <TopSection>
-                    <IconWrapper>
-                      <action.icon
-                        style={{ width: "24px" }}
-                        color={action.color}
-                      />
-                    </IconWrapper>
-
-                    <svg
-                      style={{ width: "24px", opacity: 0.2 }}
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
-                    </svg>
-                  </TopSection>
-                  <h3 style={{ marginBottom: ".75rem", color: action.color }}>
-                    {action.title}
-                  </h3>
-                  <p style={{ marginBottom: "0.5rem" }}>{action.text}</p>
-                </FixedCard>
-              </Link>
-            ))}
-          </LongRow>
-        </DocsHeader>
-
-        <TwoRow
-          style={{
-            gap: "56px",
-            marginTop: "4rem",
-          }}
-        >
-          <div>
-            <h2>Ecosystem</h2>
-            <p>
-              Explore the Connext ecosystem.
-            </p>
-            <div>
-              <Link
-                style={{ textDecoration: "none" }}
-                href={"https://discord.gg/zZGTd9wT"}
-              >
-                <CenterCard>
-                  <DiscordLogo style={{ width: "48px", height: "48px" }} />
-                  <div>
-                    <h3>Discord</h3>
-                    <p>Join us in #dev-hub to get realtime help.</p>
-                  </div>
-                </CenterCard>
-              </Link>
-              <Link
-                style={{ textDecoration: "none" }}
-                href={"https://connext.network/"}
-              >
-                <CenterCard>
-                  <ConnextLogo style={{ width: "48px", height: "48px" }} />
-                  <div>
-                    <h3>Connext Homepage</h3>
-                    <p>Learn more about Connext.</p>
-                  </div>
-                </CenterCard>
-              </Link>
-              <Link
-                style={{ textDecoration: "none" }}
-                href={"https://discord.gg/zZGTd9wT"}
-              >
-                <CenterCard>
-                  <ConnextLogo style={{ width: "48px", height: "48px" }} />
-                  <div>
-                    <h3>Connext Academy</h3>
-                    <p>Community-run knowledge base.</p>
-                  </div>
-                </CenterCard>
-              </Link>
-              <Link
-                style={{ textDecoration: "none" }}
-                href={"https://medium.com/connext/"}
-              >
-                <CenterCard>
-                  <ConnextLogo style={{ width: "48px", height: "48px" }} />
-                  <div>
-                    <h3>Blog</h3>
-                    <p>Read about events, updates, and news.</p>
-                  </div>
-                </CenterCard>
-              </Link>
-
             </div>
-          </div>
 
-          <div>
-            <h2>Developers and Users</h2>
-            <p>
-              Resources for developers and users of the protocol.
-            </p>
+            <LongRow>
+              {Actions.map((action) => (
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={action.to}
+                  key={action.to}
+                >
+                  <FixedCard key={action.title}>
+                    <TopSection>
+                      <IconWrapper>
+                        <action.icon
+                          style={{ width: "24px" }}
+                          color={action.color}
+                        />
+                      </IconWrapper>
+
+                      <svg
+                        style={{ width: "24px", opacity: 0.2 }}
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
+                      </svg>
+                    </TopSection>
+                    <h3 style={{ marginBottom: ".75rem", color: action.color }}>
+                      {action.title}
+                    </h3>
+                    <p style={{ marginBottom: "0.5rem" }}>{action.text}</p>
+                  </FixedCard>
+                </Link>
+              ))}
+            </LongRow>
+          </DocsHeader>
+
+          <TwoRow
+            style={{
+              gap: "56px",
+              marginTop: "4rem",
+            }}
+          >
+            <div>
+              <h2>Ecosystem</h2>
+              <p>Explore the Connext ecosystem.</p>
+              <div>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  href={"https://discord.gg/connext"}
+                >
+                  <CenterCard>
+                    <DiscordLogo style={{ width: "48px", height: "48px" }} />
+                    <div>
+                      <h3>Discord</h3>
+                      <p>Join us in #dev-hub to get realtime help.</p>
+                    </div>
+                  </CenterCard>
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  href={"https://connext.network/"}
+                >
+                  <CenterCard>
+                    <ConnextLogo style={{ width: "48px", height: "48px" }} />
+                    <div>
+                      <h3>Connext Homepage</h3>
+                      <p>Learn more about Connext.</p>
+                    </div>
+                  </CenterCard>
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  href={"https://connext.academy"}
+                >
+                  <CenterCard>
+                    <ConnextLogo style={{ width: "48px", height: "48px" }} />
+                    <div>
+                      <h3>Connext Academy</h3>
+                      <p>Community-run knowledge base.</p>
+                    </div>
+                  </CenterCard>
+                </Link>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  href={"https://medium.com/connext/"}
+                >
+                  <CenterCard>
+                    <ConnextLogo style={{ width: "48px", height: "48px" }} />
+                    <div>
+                      <h3>Blog</h3>
+                      <p>Read about events, updates, and news.</p>
+                    </div>
+                  </CenterCard>
+                </Link>
+              </div>
+            </div>
+
+            <div>
+              <h2>Developers and Users</h2>
+              <p>Resources for developers and users of the protocol.</p>
               <Link
                 style={{ textDecoration: "none" }}
                 href={"https://bridge.connext.network/"}
@@ -432,19 +433,19 @@ export default function Home() {
                   </div>
                 </CenterCard>
               </Link>
-              <Link 
+              <Link
                 style={{ textDecoration: "none" }}
                 href={"https://github.com/connext/monorepo"}
               >
                 <CenterCard>
                   <GithubLogo />
                   <div>
-                    <h3>nxtp</h3>
+                    <h3>Monorepo</h3>
                     <p>Monorepo with contracts and offchain agents.</p>
                   </div>
                 </CenterCard>
               </Link>
-              <Link 
+              <Link
                 style={{ textDecoration: "none" }}
                 href={"https://github.com/connext/xapp-starter"}
               >
@@ -456,9 +457,10 @@ export default function Home() {
                   </div>
                 </CenterCard>
               </Link>
-          </div>
-        </TwoRow>
-      </Container>
-    </Layout>
+            </div>
+          </TwoRow>
+        </Container>
+      </Layout>
+    </>
   );
 }

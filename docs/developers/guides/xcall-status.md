@@ -11,28 +11,51 @@ Every `xcall` is associated with a unique `transferId` that can be used to track
 
 You can query the hosted subgraphs on each chain to check the transaction status.
 
+<details>
+
+  <summary>Mainnet Subgraphs</summary>
+
+| Chain | Subgraph |
+| --- | --- |
+| Ethereum | [v0-Mainnet](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-mainnet) |
+| Optimism | [v0-Optimism](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-optimism) |
+| Arbitrum | [v0-Arbitrum](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-arbitrum-one) |
+| Polygon | [v0-Polygon](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-polygon) |
+| Binance Smart Chain | [v0-Bnb](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-bnb) |
+| Gnosis | [v0-Gnosis](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-gnosis) |
+
+</details>
+
+<details>
+
+  <summary>Testnet Subgraphs</summary>
+
 | Chain | Subgraph |
 | --- | --- |
 | Goerli | [v0-Goerli](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-goerli) |
 | Optimism-Goerli | [v0-Opt-Goerli](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-opt-goerli) |
 | Mumbai | [v0-Mumbai](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-mumbai) |
 
+</details>
+
 1. Make note of the transaction hash that interacted with the Connext contract.
 
-2. Navigate to the hosted subgraph for the origin domain and query by the transaction hash.
+2. Navigate to the hosted subgraph for the origin domain and query by the xcall's transaction hash or the transfer ID.
 
   ```graphql
-  {
+  query OriginTransfer {
     originTransfers(
       where: {
-        transactionHash: "<TRANSACTION_HASH>"
+        # Query by the transaction hash of the xcall
+        transactionHash: "<TRANSACTION_HASH>",
+        # Or by the xcall's transfer ID
+        transferId: "<TRANSFER_ID>"
       }
     ) {
       # Meta Data
       chainId
-      //highlight-next-line
-      transferId
       nonce
+      transferId
       to
       delegate
       receiveLocal
@@ -41,6 +64,11 @@ You can query the hosted subgraphs on each chain to check the transaction status
       originSender
       originDomain
       destinationDomain
+      transactionHash
+      bridgedAmt
+      status
+      timestamp
+      normalizedIn
       # Asset Data
       asset {
         id
@@ -48,11 +76,6 @@ You can query the hosted subgraphs on each chain to check the transaction status
         canonicalId
         canonicalDomain
       }
-      bridgedAmt
-      normalizedIn
-      status
-      transactionHash
-      timestamp
     }
   }
   ```
@@ -60,24 +83,21 @@ You can query the hosted subgraphs on each chain to check the transaction status
 3. Navigate to the hosted subgraph for the destination domain and query by the `transferId` obtained from the origin domain subgraph.
 
   ```graphql
-  {
+  query DestinationTransfer {
     destinationTransfers(
       where: {
-        transferId: "<XCALL_TRANSFER_ID>"
+        transferId: "<TRANSFER_ID>"
       }
     ) {
       # Meta Data
       chainId
-      transferId
       nonce
+      transferId
       to
-      delegate
-      receiveLocal
       callData
-      slippage
-      originSender
       originDomain
       destinationDomain
+      delegate
       # Asset Data
       asset {
         id
@@ -88,9 +108,9 @@ You can query the hosted subgraphs on each chain to check the transaction status
       routers {
         id
       }
+      originSender
       # Executed Transaction
       executedCaller
-      //highlight-next-line
       executedTransactionHash
       executedTimestamp
       executedGasPrice
@@ -103,6 +123,8 @@ You can query the hosted subgraphs on each chain to check the transaction status
       reconciledGasPrice
       reconciledGasLimit
       reconciledBlockNumber
+      routersFee
+      slippage
     }
   }
   ```
@@ -111,7 +133,7 @@ You can query the hosted subgraphs on each chain to check the transaction status
 
 ## Connextscan
 
-Another option is using [Connextscan](https://testnet.amarok.connextscan.io/) to track the status of any `transferId`.
+Another option is using [Connextscan](https://testnet.connextscan.io/) to track the status of any `transferId`.
 
 In the top right search box, enter the `transferId` of interest.
 
@@ -120,3 +142,55 @@ In the top right search box, enter the `transferId` of interest.
 Connextscan will pull up current status of the associated `xcall`. This is what it looks like when a transfer is complete.
 
 <img src="/img/guides/connextscan_complete.png" alt="Connextscan Search"/>
+
+
+## XCall Status
+
+<table>
+  <tbody>
+    <tr>
+      <th>Status</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>
+        XCalled
+      </td>
+      <td>
+        Transaction has been initiated on origin.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Executed
+      </td>
+      <td>
+        Funds have been delivered and calldata executed on destination, if applicable. If this happens before Reconciled, then this was a fast path transfer (non-authenticated).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Reconciled
+      </td>
+      <td>
+        Funds have been reimbursed to routers. If this happens before Executed, then this was a slow path transfer (authenticated).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        CompletedFast
+      </td>
+      <td>
+        Transaction has been Executed and then Reconciled.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        CompletedSlow
+      </td>
+      <td>
+        Transaction has been Reconciled and then Executed.
+      </td>
+    </tr>
+  </tbody>
+</table>

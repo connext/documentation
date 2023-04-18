@@ -4,9 +4,7 @@ sidebar_position: 5
 
 # Configuration
 
-The router is accepts configuration using the config file `config.json` in the root directory of the [docker-compose repo](https://github.com/connext/nxtp-router-docker-compose).
-
-See the [testnet](../../developers/testing-against-testnet.md) or mainnet (coming soon) guides for addresses and URLs.
+The router is accepts configuration using the config file `config.json` in the root directory of the [docker-compose repo](https://github.com/connext/router-docker-compose).
 
 The JSON schema accepts the following keys:
 

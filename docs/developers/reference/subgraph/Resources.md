@@ -9,13 +9,34 @@ Connext has a GraphQL API Endpoint hosted by [The Graph](https://thegraph.com/do
 
 This subgraph is can be used to query Connext bridge transactions, transactions statuses and more.
 
-## Endpoints
+## Subgraphs
 
-| Chain | Endpoint |
-| ------ | -------- | 
+<details>
+
+  <summary>Mainnet Subgraphs</summary>
+
+| Chain | Subgraph |
+| --- | --- |
+| Ethereum | [v0-Mainnet](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-mainnet) |
+| Optimism | [v0-Optimism](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-optimism) |
+| Arbitrum | [v0-Arbitrum-One](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-arbitrum-one) |
+| Polygon | [v0-Polygon](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-polygon) |
+| Binance Smart Chain | [v0-Bnb](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-bnb) |
+| Gnosis | [v0-Gnosis](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-gnosis) |
+
+</details>
+
+<details>
+
+  <summary>Testnet Subgraphs</summary>
+
+| Chain | Subgraph |
+| --- | --- |
 | Goerli | [v0-Goerli](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-goerli) |
 | Optimism-Goerli | [v0-Opt-Goerli](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-opt-goerli) |
-| Mumbai | [v0-Mumbai](https://api.thegraph.com/subgraphs/name/connext/nxtp-amarok-runtime-v0-mumbai) |
+| Mumbai | [v0-Mumbai](https://thegraph.com/hosted-service/subgraph/connext/nxtp-amarok-runtime-v0-mumbai) |
+
+</details>
 
 ## Helpful Links
 

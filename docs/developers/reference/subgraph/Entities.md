@@ -3,115 +3,275 @@ sidebar_position: 2
 title: Entities
 ---
 
-## Entities
-
-- [Entities](#entities)
-- [Asset](#asset)
-- [AssetBalance](#assetbalance)
-- [Router](#router)
-- [OriginTransfer](#origintransfer)
-- [DestinationTransfer](#destinationtransfer)
-
 ## Asset
 
-Description:
+```graphql
+type Asset @entity {
+  id: ID! # local asset address
+  key: Bytes
+  canonicalId: Bytes
+  canonicalDomain: BigInt
+  adoptedAsset: Bytes
+  localAsset: Bytes
+  blockNumber: BigInt # needed in case multiple locals are stored under the same canonicalId
+  # status
+  status: AssetStatus
+}
+```
 
-| Field           | Type    | Description                                                          |
-| --------------- | ------- | -------------------------------------------------------------------- |
-| id              | ID!     |                                                                      |
-| local           | Bytes!  |                                                                      |
-| adoptedAsset    | Bytes!  |                                                                      |
-| canonicalId     | Bytes!  |                                                                      |
-| canonicalDomain | BigInt! |                                                                      |
-| blockNumber     | BigInt! | needed in case multiple locals are stored under the same canonicalId |
+## AssetStatus
+
+```graphql
+type AssetStatus @entity {
+  id: ID! # key
+  status: Boolean
+}
+```
 
 ## AssetBalance
 
-Description:
-
-| Field  | Type    | Description |
-| ------ | ------- | ----------- |
-| id     | ID!     |             |
-| amount | BigInt! |             |
-| router | Router! |             |
-| asset  | Asset!  |             |
+```graphql
+type AssetBalance @entity {
+  id: ID! # `key-router_address`
+  amount: BigInt!
+  router: Router!
+  asset: Asset!
+  feesEarned: BigInt!
+}
+```
 
 ## Router
 
-Description: Router represents a router and its associated liquidity
+```graphql
+type Router @entity {
+  id: ID!
+  isActive: Boolean!
+  owner: Bytes
+  recipient: Bytes
+  proposedOwner: Bytes
+  proposedTimestamp: BigInt
+  assetBalances: [AssetBalance!]! @derivedFrom(field: "router")
+}
+```
 
-| Field             | Type             | Description                                       |
-| ----------------- | ---------------- | ------------------------------------------------- |
-| id                | ID!              |                                                   |
-| isActive          | Boolean!         |                                                   |
-| owner             | Bytes            |                                                   |
-| recipient         | Bytes            |                                                   |
-| proposedOwner     | Bytes            |                                                   |
-| proposedTimestamp | BigInt           |                                                   |
-| assetBalances     | [AssetBalance!]! | Derived from the assets controlled by this router |
+## Setting
+
+```graphql
+type Setting @entity {
+  id: ID!
+  maxRoutersPerTransfer: BigInt!
+  caller: Bytes!
+}
+```
+
+## Relayer
+
+```graphql
+type Relayer @entity {
+  id: ID!
+  isActive: Boolean!
+  relayer: Bytes
+}
+```
+
+## Sequencer
+
+```graphql
+type Sequencer @entity {
+  id: ID!
+  isActive: Boolean!
+  sequencer: Bytes
+}
+```
+
+## TransferStatus
+
+```graphql
+enum TransferStatus {
+  XCalled
+  Executed
+  Reconciled
+  CompletedSlow
+  CompletedFast
+}
+```
 
 ## OriginTransfer
 
-Description:
+```graphql
+type OriginTransfer @entity {
+  id: ID!
 
-| Field             | Type           | Description                                                               |
-| ----------------- | -------------- | ------------------------------------------------------------------------- |
-| id                | ID!            |                                                                           |
-| chainId           | BigInt         | Meta: Chain ID for the transfer                                           |
-| transferId        | Bytes          | Meta: Transaction hash for the transfer                                   |
-| nonce             | BigInt         | Meta: Nonce for the transfer                                              |
-| to                | Bytes          | CallParams:                                                               |
-| callData          | Bytes          | CallParams:                                                               |
-| originDomain      | BigInt         | CallParams:                                                               |
-| destinationDomain | BigInt         | CallParams:                                                               |
-| forceSlow         | Boolean        | CallParams:                                                               |
-| receiveLocal      | Boolean        | CallParams:                                                               |
-| status            | TransferStatus | Event Data: Status of transver [XCalled, Executed, Reconciled, Completed] |
-| relayerFee        | BigInt         | Event Data:                                                               |
-| message           | Bytes          | Event Data:                                                               |
-| transactingAsset  | Bytes          | Asset: The asset address that gets sent in                                |
-| transactingAmount | BigInt         | Asset: Amount of asset sent in.                                           |
-| bridgedAsset      | Bytes          | Asset: AMB Bridge asset address being bridged.                            |
-| bridgedAmount     | BigInt         | Asset: Amount of bridged AMB Bridge asset.                                |
-| caller            | Bytes          | XCalled Transaction:                                                      |
-| transactionHash   | Bytes          | XCalled Transaction: Transaction Hash                                     |
-| timestamp         | BigInt         | XCalled Transaction:                                                      |
-| gasPrice          | BigInt         | XCalled Transaction:                                                      |
-| gasLimit          | BigInt         | XCalled Transaction:                                                      |
-| blockNumber       | BigInt         | XCalled Transaction:                                                      |
+  # Meta
+  chainId: BigInt
+  transferId: Bytes
+  nonce: BigInt
+  status: TransferStatus
+  messageHash: Bytes
+
+  # CallParams
+  originDomain: BigInt
+  destinationDomain: BigInt
+  canonicalDomain: BigInt
+  to: Bytes
+  delegate: Bytes
+  receiveLocal: Boolean
+  callData: Bytes
+  slippage: BigInt
+  originSender: Bytes
+  bridgedAmt: BigInt
+  normalizedIn: BigInt
+  canonicalId: Bytes
+
+  # Asset
+  asset: Asset
+
+  # Message
+  message: OriginMessage
+
+  # Relayer Fee paid by user
+  relayerFee: BigInt
+  bumpRelayerFeeCount: BigInt
+
+  # XCalled Transaction
+  caller: Bytes
+  transactionHash: Bytes
+  timestamp: BigInt
+  gasPrice: BigInt
+  gasLimit: BigInt
+  blockNumber: BigInt
+  txOrigin: Bytes
+}
+```
 
 ## DestinationTransfer
 
-Description:
+```graphql
+type DestinationTransfer @entity {
+  id: ID!
 
-| Field                     | Type           | Description                                                               |
-| ------------------------- | -------------- | ------------------------------------------------------------------------- |
-| id                        | ID!            |                                                                           |
-| chainId                   | BigInt         | Meta: Chain ID for the transfer                                           |
-| transferId                | Bytes          | Meta: Transaction hash for the transfer                                   |
-| nonce                     | BigInt         | Meta: Nonce for the transfer                                              |
-| to                        | Bytes          | CallParams:                                                               |
-| callData                  | Bytes          | CallParams:                                                               |
-| originDomain              | BigInt         | CallParams:                                                               |
-| destinationDomain         | BigInt         | CallParams:                                                               |
-| forceSlow                 | Boolean        | CallParams:                                                               |
-| receiveLocal              | Boolean        | CallParams:                                                               |
-| status                    | TransferStatus | Event Data: Status of transver [XCalled, Executed, Reconciled, Completed] |
-| routers                   | [Router!]      | Event Data:                                                               |
-| originSender              | Bytes          | Event Data:                                                               |
-| transactingAsset          | Bytes          | Asset: The asset address that gets sent in                                |
-| transactingAmount         | BigInt         | Asset: Amount of asset sent in.                                           |
-| localAsset                | Bytes          | Asset: The local version of the bridged asset's address                   |
-| localAmount               | BigInt         | Asset: Amount of local asset.                                             |
-| executedCaller            | Bytes          | Executed Transaction:                                                     |
-| executedtransactionHash   | Bytes          | Executed Transaction: Transaction Hash                                    |
-| executedTimestamp         | BigInt         | Executed Transaction:                                                     |
-| executedGasPrice          | BigInt         | Executed Transaction:                                                     |
-| executedGasLimit          | BigInt         | Executed Transaction:                                                     |
-| executedBlockNumber       | BigInt         | Executed Transaction:                                                     |
-| reconciledCaller          | Bytes          | Reconciled Transaction:                                                   |
-| reconciledTransactionHash | Bytes          | Reconciled Transaction:                                                   |
-| reconciledTimestamp       | BigInt         | Reconciled Transaction:                                                   |
-| reconciledGasPrice        | BigInt         | Reconciled Transaction:                                                   |
-| reconciledGasLimit        | BigInt         | Reconciled Transaction:                                                   |
-| reconciledBlockNumber     | BigInt         | Reconciled Transaction:                                                   |
+  # Meta
+  chainId: BigInt
+  transferId: Bytes
+  nonce: BigInt
+  status: TransferStatus
+  routers: [Router!]
+
+  # CallParams
+  originDomain: BigInt
+  destinationDomain: BigInt
+  canonicalDomain: BigInt
+  to: Bytes
+  delegate: Bytes
+  receiveLocal: Boolean
+  callData: Bytes
+  slippage: BigInt
+  bumpSlippageCount: BigInt
+  originSender: Bytes
+  bridgedAmt: BigInt
+  normalizedIn: BigInt
+  canonicalId: Bytes
+
+  # Asset
+  asset: Asset
+  amount: BigInt
+
+  # calculated
+  routersFee: BigInt
+
+  # Executed Transaction
+  executedCaller: Bytes
+  executedTransactionHash: Bytes
+  executedTimestamp: BigInt
+  executedGasPrice: BigInt
+  executedGasLimit: BigInt
+  executedBlockNumber: BigInt
+  executedTxOrigin: Bytes
+
+  # Reconciled Transaction
+  reconciledCaller: Bytes
+  reconciledTransactionHash: Bytes
+  reconciledTimestamp: BigInt
+  reconciledGasPrice: BigInt
+  reconciledGasLimit: BigInt
+  reconciledBlockNumber: BigInt
+  reconciledTxOrigin: Bytes
+}
+```
+
+## OriginMessage
+
+```graphql
+type OriginMessage @entity {
+  id: ID!
+
+  # origin transfer data
+  transferId: Bytes
+  destinationDomain: BigInt
+
+  # Dispatch Transaction
+  leaf: Bytes
+  index: BigInt
+  message: Bytes
+  root: Bytes
+  transactionHash: Bytes
+  blockNumber: BigInt
+
+  # root count RD
+  rootCount: RootCount
+}
+```
+
+## AggregateRoot
+
+```graphql
+type AggregateRoot @entity {
+  id: ID!
+  root: Bytes!
+  blockNumber: BigInt!
+}
+```
+
+## ConnectorMeta
+
+```graphql
+type ConnectorMeta @entity {
+  id: ID! # "ConnectorMeta"
+  spokeDomain: BigInt
+  hubDomain: BigInt
+
+  amb: Bytes
+  rootManager: Bytes
+  mirrorConnector: Bytes
+}
+```
+
+## RootCount
+
+```graphql
+type RootCount @entity {
+  id: ID!
+  count: BigInt
+}
+```
+
+## RootMessageSent
+
+```graphql
+type RootMessageSent @entity {
+  id: ID!
+
+  spokeDomain: BigInt
+  hubDomain: BigInt
+  root: Bytes
+  count: BigInt
+
+  # MessageSent Transaction
+  caller: Bytes
+  transactionHash: Bytes
+  timestamp: BigInt
+  gasPrice: BigInt
+  gasLimit: BigInt
+  blockNumber: BigInt
+}
+```

@@ -11,6 +11,8 @@ For example:
 - Uniswap's `swap` [function](https://docs.uniswap.org/protocol/reference/core/UniswapV3Pool#swap) is **unauthenticated** because it is a public function that can be called by anyone.
 - Uniswap's `setFeeProtocol` [function](https://docs.uniswap.org/protocol/reference/core/UniswapV3Pool#setfeeprotocol) is **authenticated** because it uses the `onlyFactoryOwner` modifier that prevents anyone but the owner of the contract factory from calling it. You can read more about this at [OpenZeppelin's Ownable contracts](https://docs.openzeppelin.com/contracts/2.x/api/ownership).
 
+The major impact that an authenticated call can have on users is latency. Authenticated calls are a crucial feature for xApps but in order to validate data transferred between chains, Connext must allow *some* time to elapse before accepting messages as authenticated on destination chains. This latency is both a drawback and a security mechanism of [optimistic bridges](../../concepts/background/verification.md#optimistic). 
+
 ## Checking Origin Data
 
 Suppose a target contract on the destination domain has a function that should only be callable by a specific source contract on a specific origin domain.
@@ -50,7 +52,3 @@ contract Target is IXReceiver {
 ```
 
 You can find a full example of this at [Authenticated Hello](../examples/authenticated-hello).
-
-## Caveats
-
-Authenticated calls are a crucial feature for xApps but in order to validate data transferred between chains, Connext must allow *some* time to elapse before accepting messages as authenticated on destination chains. This latency is both a drawback and a security mechanism of [optimistic bridges](../../concepts/background/verification.md#optimistic). 

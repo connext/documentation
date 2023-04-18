@@ -19,6 +19,8 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
   
   Domain ID: 6648936
 
+  Chain ID: 1
+
   <table>
     <tbody>
       <tr>
@@ -64,11 +66,32 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://etherscan.io/address/0x268682b7D9992aE7e2ca4A8bCc9D9655FB06056F">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x268682b7D9992aE7e2ca4A8bCc9D9655FB06056F</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
   <br />
 
   ### Optimism
 
   Domain ID: 1869640809
+
+  Chain ID: 10
 
   <table>
     <tbody>
@@ -78,7 +101,7 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://optimistic.etherscan.io/address/0x8f7492DE823025b4CfaAB1D34c58963F2af5DEDA">
+          <a href="https://louper.dev/diamond/0x8f7492DE823025b4CfaAB1D34c58963F2af5DEDA?network=optimism">
             Connext
           </a>
         </td>
@@ -133,9 +156,32 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://optimistic.etherscan.io/address/0x7Fe09d217d646a6213e51b237670Bc326188cB93">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x7Fe09d217d646a6213e51b237670Bc326188cB93</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
   ### Polygon
 
   Domain ID: 1886350457
+  
+  Chain ID: 137
 
   <table>
     <tbody>
@@ -200,9 +246,32 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://polygonscan.com/address/0x7E8F8B2dA3dc5Ad9c9Dfd1A832331A039d4f3f74">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x7E8F8B2dA3dc5Ad9c9Dfd1A832331A039d4f3f74</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
   ### Arbitrum-One
 
   Domain ID: 1634886255
+
+  Chain ID: 42161
 
   <table>
     <tbody>
@@ -267,9 +336,32 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://arbiscan.io/address/0x429b9eb01362b2799131EfCC44319689b662999D">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x429b9eb01362b2799131EfCC44319689b662999D</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
   ### Binance Smart Chain
 
   Domain ID: 6450786
+
+  Chain ID: 56
 
   <table>
     <tbody>
@@ -334,9 +426,32 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://bscscan.com/address/0x2c7B8c1a13F2a7854B9299E4d22809A8B1E05De5">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x2c7B8c1a13F2a7854B9299E4d22809A8B1E05De5</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
   ### Gnosis
 
   Domain ID: 6778479
+
+  Chain ID: 100
 
   <table>
     <tbody>
@@ -401,6 +516,27 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://gnosisscan.io/address/0x642c27a96dFFB6f21443A89b789a3194Ff8399fa">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x642c27a96dFFB6f21443A89b789a3194Ff8399fa</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
 </details>
 
 <details>
@@ -410,6 +546,8 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
   ### Goerli 
   
   Domain ID: 1735353714
+  
+  Chain ID: 5
 
   <table>
     <tbody>
@@ -456,11 +594,32 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://goerli.etherscan.io/address/0xa6633d369A9C4C8A442ef104E8e293DA7b352Acd">
+            Unwrapper
+          </a>
+        </td>
+        <td>0xa6633d369A9C4C8A442ef104E8e293DA7b352Acd</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
   <br />
 
   ### Optimism-Goerli
 
   Domain ID: 1735356532
+  
+  Chain ID: 420
 
   <table>
     <tbody>
@@ -470,7 +629,7 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
       <tr>
         <td>
-          <a href="https://goerli-optimism.etherscan.io/address/0x5Ea1bb242326044699C3d81341c5f535d5Af1504">
+          <a href="https://louper.dev/diamond/0x5Ea1bb242326044699C3d81341c5f535d5Af1504?network=optimism_goerli">
             Connext
           </a>
         </td>
@@ -516,11 +675,32 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://goerli-optimism.etherscan.io/address/0x08bDeFD0e4878A814Cb2fd11C033F3947251689f">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x08bDeFD0e4878A814Cb2fd11C033F3947251689f</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
   <br />
 
   ### Mumbai
 
   Domain ID: 9991
+
+  Chain ID: 80001
 
   <table>
     <tbody>
@@ -576,11 +756,32 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://mumbai.polygonscan.com/address/0x1e0Db00EB08ceC7FFdA03c0Dbf224193E1563844">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x1e0Db00EB08ceC7FFdA03c0Dbf224193E1563844</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
   <br />
 
   ### Arbitrum-Goerli
 
-  Domain ID: 421613
+  Domain ID: 1734439522
+
+  Chain ID: 421613
 
   <table>
     <tbody>
@@ -626,6 +827,156 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
       </tr>
     </tbody>
   </table>
+
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://goerli.arbiscan.io/address/0x18BBF96BC8014aA93cbf1A5Bce005a485b5C2C4a">
+            Unwrapper
+          </a>
+        </td>
+        <td>0x18BBF96BC8014aA93cbf1A5Bce005a485b5C2C4a</td>
+        <td>WETH Unwrapper</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
+  ### ZkSync-Testnet
+
+  Domain ID: 2053862260
+
+  Chain ID: 280
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Core Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://goerli.explorer.zksync.io/address/0xB0694fEcEdd88e5590A563aDb5f194d2dE30F0b6">
+            Connext
+          </a>
+        </td>
+        <td>0xB0694fEcEdd88e5590A563aDb5f194d2dE30F0b6</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Asset Contract</th>
+        <th>Address</th>
+        <th>Flavor</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://goerli.explorer.zksync.io/address/0x7C1412e456ad60B8ee458c4eb3A9852C3e389353">
+            TEST
+          </a>
+        </td>
+        <td>0x7C1412e456ad60B8ee458c4eb3A9852C3e389353</td>
+        <td>Local/Adopted</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="TBD">
+            Unwrapper
+          </a>
+        </td>
+        <td>TBD</td>
+        <td>TBD</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
+
+  ### Consensys-ZkEvm-Testnet
+
+  Domain ID: 1668247156
+
+  Chain ID: 59140
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Core Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://explorer.goerli.zkevm.consensys.net/address/0xfdb6B853C1945Dbffe78A3091BeBB9A928234fA3">
+            Connext
+          </a>
+        </td>
+        <td>0xfdb6B853C1945Dbffe78A3091BeBB9A928234fA3</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Asset Contract</th>
+        <th>Address</th>
+        <th>Flavor</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://explorer.goerli.zkevm.consensys.net/address/0xB706319D37b945727E71ae0d4353699d19112576">
+            TEST
+          </a>
+        </td>
+        <td>0xB706319D37b945727E71ae0d4353699d19112576</td>
+        <td>Local/Adopted</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="TBD">
+            Unwrapper
+          </a>
+        </td>
+        <td>TBD</td>
+        <td>TBD</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br />
 
 </details>
 

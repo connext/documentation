@@ -37,7 +37,7 @@ Prepares the transaction request for adding liquidity to a pool.
 | `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
 | `amounts` | `string`[] | `undefined` | The amounts of the tokens to swap. |
 | `minToMint` | `string` | `"0"` | (optional) The minimum acceptable amount of LP tokens to mint. |
-| `deadline` | `number` | `undefined` | (optional) The deadline for the swap. |
+| `deadline` | `number` | `undefined` | (optional) The deadline for the operation. |
 
 #### Returns
 
@@ -93,31 +93,7 @@ Calculates the price impact of adding liquidity to a pool.
 
 `Promise`<`undefined` \| `BigNumber`\>
 
-Price impact for adding liquidity.
-
-___
-
-### calculateAmountReceived
-
-▸ **calculateAmountReceived**(`originDomain`, `destinationDomain`, `originTokenAddress`, `amount`, `receiveLocal?`): `Promise`<{ `amountReceived`: `BigNumberish` ; `destinationSlippage`: `BigNumberish` ; `originSlippage`: `BigNumberish` ; `routerFee`: `BigNumberish`  }\>
-
-Calculates the estimated amount received on the destination domain for a bridge transaction.
-
-#### Parameters
-
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `originDomain` | `string` | `undefined` | The domain ID of the origin chain. |
-| `destinationDomain` | `string` | `undefined` | The domain ID of the destination chain. |
-| `originTokenAddress` | `string` | `undefined` | The address of the token to be bridged from origin. |
-| `amount` | `BigNumberish` | `undefined` | The amount of the origin token to bridge, in the origin token's native decimal precision. |
-| `receiveLocal` | `boolean` | `false` | (optional) Whether the desired destination token is the local asset ("nextAsset"). |
-
-#### Returns
-
-`Promise`<{ `amountReceived`: `BigNumberish` ; `destinationSlippage`: `BigNumberish` ; `originSlippage`: `BigNumberish` ; `routerFee`: `BigNumberish`  }\>
-
-Estimated amount received for local/adopted assets, if applicable, in their native decimal precisions.
+Price impact for adding liquidity, in 1e18 precision.
 
 ___
 
@@ -191,6 +167,29 @@ Returns the price impact of removing liquidity from a pool.
 `Promise`<`undefined` \| `BigNumber`\>
 
 The price impact for removing liquidity, in 1e18 precision.
+
+___
+
+### calculateRemoveSwapLiquidityOneToken
+
+▸ **calculateRemoveSwapLiquidity**(`domainId`, `tokenAddress`, `amount`, `index`): `Promise`<`BigNumber`\>
+
+Calculates the amounts of underlying tokens returned.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `domainId` | `string` | The domain ID of the pool. |
+| `tokenAddress` | `string` | The address of local or adopted token. |
+| `amount` | `string` | The amount of the LP token to burn on withdrawal. |
+| `index` | `number` | The index of the token to withdraw. |
+
+#### Returns
+
+`Promise`<`BigNumber`\>
+
+Calculated amount of underlying token returned.
 
 ___
 
@@ -407,10 +406,10 @@ Returns the canonical ID and canonical domain of a token.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
+| Name | Type | Description |	
+| :------ | :------ | :------ |	
+| `domainId` | `string` | The canonical domain ID of the token. |	
+| `tokenAddress` | `string` | The address of the token. |
 
 #### Returns
 
@@ -454,27 +453,6 @@ Reads the LP token address of a pool.
 `Promise`<`string`\>
 
 The LP token address.
-
-___
-
-### getTokenSupply
-
-▸ **getTokenSupply**(`domainId`, `lpTokenAddress`): `Promise`<`BigNumber`\>
-
-Reads the ERC20 token supply.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `domainId` | `string` | The domain ID of the pool. |
-| `tokenAddress` | `string` | The address of the LP token. |
-
-#### Returns
-
-`Promise`<`BigNumber`\>
-
-The balance of the address.
 
 ___
 
@@ -540,7 +518,29 @@ Reads the index of a token in a pool.
 
 `Promise`<`number`\>
 
-The index of the specified token in the pool.
+The index of the specified token in the pool or -1 if not found.
+
+___	
+
+### getPoolTokenDecimals	
+
+▸ **getPoolTokenDecimals**(`domainId`, `tokenAddress`, `poolTokenAddress`): `Promise`<`number`\>	
+
+Reads the decimal precision of a token in a pool.	
+
+#### Parameters	
+
+| Name | Type | Description |	
+| :------ | :------ | :------ |	
+| `domainId` | `string` | The domain id of the pool. |	
+| `tokenAddress` | `string` | The address of local or adopted token. |	
+| `poolTokenAddress` | `string` | The address of the token in the pool to get the precision for. |	
+
+#### Returns	
+
+`Promise`<`number`\>	
+
+The decimal precision of the specified token in the pool or -1 if not found.
 
 ___
 
@@ -548,7 +548,7 @@ ___
 
 ▸ **getRepresentation**(`domainId`, `tokenAddress`): `Promise`<`string`\>
 
-Reads the representation (local or adopted) token.
+Reads the representation asset of the pool. The representation asset is the adopted	asset on the canonical domain and local (nextAsset) otherwise.
 
 #### Parameters
 
@@ -582,6 +582,27 @@ Fetches the current price of a token.
 `Promise`<`any`\>
 
 The price of the token.
+
+___	
+
+### getTokenSupply	
+
+▸ **getTokenSupply**(`domainId`, `tokenAddress`): `Promise`<`BigNumber`\>	
+
+Reads the ERC20 token supply.	
+
+#### Parameters	
+
+| Name | Type | Description |	
+| :------ | :------ | :------ |	
+| `domainId` | `string` | The domain ID of the ERC20 token. |	
+| `tokenAddress` | `string` | The address of the ERC20 token. |	
+
+#### Returns	
+
+`Promise`<`BigNumber`\>	
+
+The balance of the address.	
 
 ___
 
@@ -649,25 +670,57 @@ The virtual price, scaled to the pool's decimal precision (10^18).
 
 ___
 
-### getYieldStatsForDay
+### getYieldStatsForDays
 
-▸ **getYieldStatsForDay**(`domainId`, `tokenAddress`, `unixTimestamp`): `Promise`<`undefined` \| { `totalFeesFormatted`: `number` ; `totalLiquidityFormatted`: `number` ; `totalVolume`: `BigNumber` ; `totalVolumeFormatted`: `number`  }\>
+▸ **getYieldStatsForDays**(`domainId`, `tokenAddress`, `unixTimestamp`, `days`): `Promise`<`undefined` \| { `totalFeesFormatted`: `number` ; `totalLiquidityFormatted`: `number` ; `totalVolume`: `BigNumber` ; `totalVolumeFormatted`: `number`  }\>
 
-Calculates the fees, liquidity, and volume of a pool for the 24 hours prior to the specified unix time.
+Calculates the fees, liquidity, and volume of a pool for the days prior to the specified unix time.
 
 #### Parameters
 
 | Name | Type | Description |
-| :------ | :------ | :------ |
-| `domainId` | `string` | The domain ID of the pool. |
-| `tokenAddress` | `string` | The address of the user to get the pools for. |
-| `unixTimestamp` | `number` | The unix time to look back 24 hours from. |
+| :------ | :------ | :------ |	
+| `domainId` | `string` | The domain ID of the pool. |	
+| `tokenAddress` | `string` | The address of local or adopted token. |	
+| `unixTimestamp` | `number` | The unix time to start the look back from. |	
+| `days` | `number` | The number of days to look back. |
 
 #### Returns
 
 `Promise`<`undefined` \| { `totalFeesFormatted`: `number` ; `totalLiquidityFormatted`: `number` ; `totalVolume`: `BigNumber` ; `totalVolumeFormatted`: `number`  }\>
 
-Object containing fees, liquidity, and volume, formatted in the pool token's native decimal precision.
+Object containing fees, liquidity, and volume, in 1e18 precision.
+
+___
+
+
+### getSupported	
+
+▸ **getSupported**(): `Promise`<[`ConnextSupport`](../modules.md#connextsupport)[]\>	
+
+Fetches the list of supported networks and assets.	
+
+#### Returns	
+
+`Promise`<[`ConnextSupport`](../modules.md#connextsupport)[]\>	
+
+Array of objects containing networks and assets supported by the protocol, in the form of:	
+
+```ts	
+{	
+  "name": "arbitrum",	
+  "chainId": 42161,	
+  "domainId": "1634886255",	
+  "assets": [	
+    "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",	
+    "0xff970a61a04b1ca14834a43f5de4533ebddb5cc8"	
+  ]	
+},	
+```	
+
+#### Inherited from	
+
+[SdkShared](SdkShared.md).[getSupported](SdkShared.md#getsupported)
 
 ___
 
@@ -731,9 +784,58 @@ Returns the transaction request for removing liquidity from a pool.
 | :------ | :------ | :------ |
 | `domainId` | `string` | The domain ID of the pool. |
 | `tokenAddress` | `string` | The address of local or adopted token. |
-| `amount` | `string` | The amount of the token to swap. |
-| `minAmounts` | `string`[] | (optional) The minimum acceptable amounts of each token to burn. |
-| `deadline` | `number` | (optional) The deadline for the swap. |
+| `amount` | `string` | The amount of LP tokens to burn. |
+| `minAmounts` | `string`[] | (optional) The minimum amounts of each token to withdraw. |
+| `deadline` | `number` | (optional) The deadline for the operation. |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+providers.TransactionRequest object.
+
+___
+
+### removeLiquidityOneToken
+
+▸ **removeLiquidityOneToken**(`domainId`, `tokenAddress`, `amount`, `minAmount?`, `deadline?`): `Promise`<`TransactionRequest`\>
+
+Returns the transaction request for removing liquidity from a pool.
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` | The domain ID of the pool. |
+| `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
+| `withdrawTokenAddress` | `string` | `undefined` | The address of the token to withdraw. |
+| `amount` | `string` | `undefined` | The amount of LP tokens to burn. |
+| `minAmount` | `string` | "0" | (optional) The minimum acceptable amount of the token to withdraw. |
+| `deadline` | `number` | One hour from current time. | (optional) The deadline for the operation. |
+
+#### Returns
+
+`Promise`<`TransactionRequest`\>
+
+providers.TransactionRequest object.
+
+___
+
+### removeLiquidityImbalance
+
+▸ **removeLiquidityImbalance**(`domainId`, `tokenAddress`, `amounts`, `maxBurnAmount?`, `deadline?`): `Promise`<`TransactionRequest`\>
+
+Returns the transaction request for removing liquidity from a pool.
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `domainId` | `string` | `undefined` | The domain ID of the pool. |
+| `tokenAddress` | `string` | `undefined` | The address of local or adopted token. |
+| `amounts` | `string`[] | `undefined` | The amount of LP tokens to burn. |
+| `maxBurnAmount` | `string` | "0" (Use total LP balance) | (optional) The max LP tokens the user is willing to burn. |
+| `deadline` | `number` | One hour from current time. | (optional) The deadline for the operation. |
 
 #### Returns
 
@@ -759,7 +861,7 @@ Returns the transaction request for performing a swap in a pool.
 | `to` | `string` | `undefined` | The address of the token to buy. |
 | `amount` | `string` | `undefined` | The amount of the selling token to swap. |
 | `minDy` | `number` | `0` | (optional) The minimum amount of the buying token to receive. |
-| `deadline` | `number` | `undefined` | (optional) The deadline for the swap. |
+| `deadline` | `number` | `undefined` | (optional) The deadline for the operation. |
 
 #### Returns
 

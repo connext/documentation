@@ -3,33 +3,39 @@ sidebar_position: 2
 id: authenticated-hello
 ---
 
-# Authenticated Hello
+# Authenticated Greeter
+
+The `DestinationGreeterAuthenticated` contract sets some permissioning constraints. It only allows its `greeting` to be updated from `SourceGreeterAuthenticated`. In order to enforce this, the contract checks that the caller is the original sender from the origin domain.
 
 ## Target Contract
 
-Suppose we have a target contract on the destination domain with an `_updateGreeting` function. We want to enforce that only the source contract on a specific origin domain can call it.
+The target contract must implement some checks to uphold its security constraints.
 
 ```solidity
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.15;
 
-import {IConnext} from "@connext/smart-contracts/contracts/core/connext/interfaces/IConnext.sol";
-import {IXReceiver} from "@connext/smart-contracts/contracts/core/connext/interfaces/IXReceiver.sol";
+import {IXReceiver} from "@connext/interfaces/core/IXReceiver.sol";
 
-contract HelloTargetAuthenticated is IXReceiver {
-  string public greeting;
+/**
+ * @title DestinationGreeterAuthenticated
+ * @notice Example destination contract that stores a greeting and only allows source to update it.
+ */
+contract DestinationGreeterAuthenticated is IXReceiver {
+  // The Connext contract on this domain
+  address public immutable connext;
 
-  // The Domain ID where the source contract is deployed
-  uint32 public originDomain;
+  // The domain ID where the source contract is deployed
+  uint32 public immutable originDomain;
 
   // The address of the source contract
-  address public source;
+  address public immutable source;
 
-  // The address of the Connext contract on the destination domain
-  IConnext public connext;
+  string public greeting;
 
   /** @notice A modifier for authenticated calls.
-   *  This is an important security consideration. If the target contract
-   *  function should be authenticated, it must check three things:
+   * This is an important security consideration. If the target contract
+   * function should be authenticated, it must check three things:
    *    1) The originating call comes from the expected origin domain.
    *    2) The originating call comes from the expected source contract.
    *    3) The call to this contract comes from Connext.
@@ -38,17 +44,16 @@ contract HelloTargetAuthenticated is IXReceiver {
     require(
       _origin == originDomain &&
         _originSender == source &&
-        msg.sender == address(connext),
-      "Expected source contract on origin domain called by Connext"
+        msg.sender == connext,
+      "Expected original caller to be source contract on origin domain and this to be called by Connext"
     );
     _;
   }
 
-  // In the constructor we pass information that the modifier will check
   constructor(
     uint32 _originDomain,
     address _source,
-    IConnext _connext
+    address _connext
   ) {
     originDomain = _originDomain;
     source = _source;
@@ -73,7 +78,7 @@ contract HelloTargetAuthenticated is IXReceiver {
   }
 
   /** @notice Internal function to update the greeting.
-    * @param _callData Calldata containing the new greeting.
+    * @param newGreeting The new greeting.
     */
   function _updateGreeting(string memory newGreeting) internal {
     greeting = newGreeting;
@@ -83,32 +88,33 @@ contract HelloTargetAuthenticated is IXReceiver {
 
 ## Source Contract
 
-Nothing special has to be accounted for on the source contract. This is the exact same contract as the (unauthenticated) Hello example in the Quickstart.
+Nothing special has to be accounted for on the source contract.
 
 ```solidity showLineNumbers
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.15;
 
-import {IConnext} from "@connext/smart-contracts/contracts/core/connext/interfaces/IConnext.sol";
+import {IConnext} from "@connext/interfaces/core/IConnext.sol";
 
 /**
- * @title HelloSource
- * @notice Example of cross-domain messaging.
+ * @title SourceGreeterAuthenticated
+ * @notice Example source contract that updates a greeting in DestinationGreeterAuthenticated.
  */
-contract HelloSource {
+contract SourceGreeterAuthenticated {
   // The connext contract on the origin domain.
   IConnext public immutable connext;
 
-  constructor(IConnext _connext) {
-    connext = _connext;
+  constructor(address _connext) {
+    connext = IConnext(_connext);
   }
 
-  /** @notice Updates a greeting variable on the HelloTarget contract.
-    * @param target Address of the HelloTarget contract.
+  /** @notice Updates a greeting variable on the DestinationGreeterAuthenticated contract.
+    * @param target Address of the DestinationGreeterAuthenticated contract.
     * @param destinationDomain The destination domain ID.
     * @param newGreeting New greeting to update to.
     * @param relayerFee The fee offered to relayers.
     */
-  function updateGreeting (
+  function xUpdateGreeting (
     address target, 
     uint32 destinationDomain,
     string memory newGreeting,

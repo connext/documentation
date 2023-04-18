@@ -58,6 +58,7 @@ Increases the relayer fee for a specific transfer on origin; anyone is allowed t
 const params = {
   domainId: "6648936",
   transferId: "0xdd252f58a45dc78fee1ac12a628782bda6a98315b286aadf76e4d7322bf135ca",
+  asset: "0x0000000000000000000000000000000000000000", // can be either native asset or transacting asset
   relayerFee: "10000",
 };
 
@@ -70,8 +71,9 @@ signer.sendTransaction(txRequest);
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `params` | `Object` | SdkBumpTransferParams object. |
+| `params.asset` | `string` | The asset address you want to pay in (use "0x0000000000000000000000000000000000000000" for native). |
 | `params.domainId` | `string` | The origin domain ID of the transfer. |
-| `params.relayerFee` | `string` | The additional relayer fee to increase the transfer by, in native gas token. |
+| `params.relayerFee` | `string` | The additional relayer fee to increase the transfer by, in the specified asset. |
 | `params.transferId` | `string` | The transfer ID. |
 
 #### Returns
@@ -79,6 +81,31 @@ signer.sendTransaction(txRequest);
 `Promise`<`TransactionRequest`\>
 
 providers.TransactionRequest object.
+
+___
+
+### calculateAmountReceived
+
+▸ **calculateAmountReceived**(`originDomain`, `destinationDomain`, `originTokenAddress`, `amount`, `receiveLocal?`, `checkFastLiquidity?`): `Promise`<{ `amountReceived`: `BigNumberish` ; `destinationSlippage`: `BigNumberish` ; `originSlippage`: `BigNumberish` ; `routerFee`: `BigNumberish` ; `isFastPath`: `boolean` }\>
+
+Calculates the estimated amount received on the destination domain for a bridge transaction.
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `originDomain` | `string` | `undefined` | The domain ID of the origin chain. |
+| `destinationDomain` | `string` | `undefined` | The domain ID of the destination chain. |
+| `originTokenAddress` | `string` | `undefined` | The address of the token to be bridged from origin. |
+| `amount` | `BigNumberish` | `undefined` | The amount of the origin token to bridge, in the origin token's native decimal precision. |
+| `receiveLocal` | `boolean` | `false` | (optional) Whether the desired destination token is the local asset ("nextAsset"). |
+| `checkFastLiquidity` | `boolean` | `false` | (optional) Whether to check current router liquidity for fast path availability. |
+
+#### Returns
+
+`Promise`<{ `amountReceived`: `BigNumberish` ; `destinationSlippage`: `BigNumberish` ; `originSlippage`: `BigNumberish` ; `routerFee`: `BigNumberish` ; `isFastPath`: `boolean` }\>
+
+Estimated amount received for local/adopted assets, if applicable, in their native decimal precisions.
 
 ___
 
@@ -156,16 +183,21 @@ signer.sendTransaction(txRequest);
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
 | `params` | `Object` | undefined | SdkEstimateRelayerFeeParams object. |
-| `params.destinationDomain` | `string` | undefined | The destination domain ID of the transfer. |
 | `params.originDomain` | `string` | undefined | The origin domain ID of the transfer. |
+| `params.destinationDomain` | `string` | undefined | The destination domain ID of the transfer. |
+| `params.callDataGasAmount` | `string` | undefined | The gas amount needed for calldata. |
 | `params.originNativeToken` | `string` | "0x0000000000000000000000000000000000000000" | (optional) The native token of the origin domain. |
+| `params.priceIn` | `string` | "native" | (optional) "native" for native asset denomination or "usd" to get the estimate in USD value.
 | `params.destinationNativeToken` | `string` | "0x0000000000000000000000000000000000000000" | (optional) The native token of the destination domain. |
+| `params.originNativeTokenPrice` | `number` | (uses external estimate - increases response time) | (optional) The USD price of the origin native token. |
+| `params.destinationNativeTokenPrice` | `number` | (uses external estimate - increases response time) | (optional) The USD price of the destination native token. |
+| `params.destinationGasPrice` | `string` | (uses external estimate - increases response time) | (optional) The gas price of the destination chain, in gwei units. |
 
 #### Returns
 
 `Promise`<`BigNumber`\>
 
-The relayer fee in native asset of the origin domain.
+The relayer fee in native asset of the origin domain or USD equivalent.
 
 ___
 
@@ -175,7 +207,7 @@ ___
 
 Fetches the list of registered assets.
 
-#### Retur/s
+#### Returns
 
 `Promise`<[`AssetData`](./sdk-types/#assetdata)[]\>
 
@@ -220,29 +252,6 @@ The object containing asset data.
 #### Inherited from
 
 [SdkShared](./sdk-shared).[getAssetsDataByDomainAndKey](./sdk-shared#getassetsdatabydomainandkey)
-
-___
-
-### getCanonicalTokenId
-
-▸ **getCanonicalTokenId**(`domainId`, `tokenAddress`): `Promise`<[`string`, `string`]\>
-
-Returns the canonical ID and canonical domain of a token.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `domainId` | `string` |
-| `tokenAddress` | `string` |
-
-#### Returns
-
-`Promise`<[`string`, `string`]\>
-
-#### Inherited from
-
-[SdkShared](./sdk-shared).[getCanonicalTokenId](./sdk-shared#getcanonicaltokenid)
 
 ___
 
