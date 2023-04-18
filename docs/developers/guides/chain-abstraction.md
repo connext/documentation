@@ -22,7 +22,7 @@ forge install connext/connext-integration
 The library will be installed to `lib/connext-integration`.
 
 ### xReceiver Target Contract 
-The xReceiver target contract is the contract that will receive funds after swaps are completed. This contract will be deployed to the destination chain, and will be called by the router network for a ["fast path execution"]("../authentication). The contract simply has to inherit the `SwapForwarderXReceiver` contract and implement the `_forwardFunctionCall` method. A simple example is shown below.
+The xReceiver target contract is the contract that will receive funds after swaps are completed. This contract will be deployed to the destination chain, and will be called by the router network for a ["fast path execution"](../guides/authentication). The contract simply has to inherit the `SwapForwarderXReceiver` contract and implement the `_forwardFunctionCall` method. A simple example is shown below.
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
