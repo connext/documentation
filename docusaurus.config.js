@@ -105,7 +105,7 @@ module.exports = {
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
           sidebarCollapsible: true,
-          editUrl: "https://github.com/connext/documentation",
+          editUrl: "https://github.com/connext/documentation/blob/main",
           lastVersion: "current",
           remarkPlugins: [
             CardLink,
