@@ -18,7 +18,7 @@ In this guide, we will build a cross-chain Greeter. The `DestinationGreeter` con
 
 To demonstrate a combination of an asset transfer and an arbitrary call in a single `xcall`, the `updateGreeting` function will require a payment to update the greeting. For this example, the contract will be okay with any amount greater than 0. 
 
-`updateGreeting` is implemented as an unauthenticated call (there are no checks to determine *who* is calling the function). Therefore, this type of `xcall` will be go through the ["Fast Path"](http://localhost:3000/concepts/how-it-works/transaction-flow).
+`updateGreeting` is implemented as an unauthenticated call (there are no checks to determine *who* is calling the function). Therefore, this type of `xcall` will be go through the ["Fast Path"](../concepts/how-it-works/flow).
 
 :::info
 
