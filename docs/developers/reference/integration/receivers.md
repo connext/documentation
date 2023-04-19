@@ -61,26 +61,14 @@ The `AuthForwarderXReceiver` is used for authenticated calls. It follows the sam
 
 In addition, the `xReceive` method is guarded by an `onlyOrigin` modifier which ensures that:
  
-  1. The originating call comes from the expected origin domain.
-  2. The originating call comes from the expected origin contract.
+  1. The originating call comes from a registered origin domain.
+  2. The originating call comes from the expected origin contract of the origin domain.
   3. The call to this contract comes from Connext.
 
 These checks guarantee that any successful call to an `AuthForwarderXReceiver` contains validated data. For more information on authentication, see the [Authentication](../../guides/authentication.md) section.
 
 ### originRegistry
 
-This contract also holds an `originRegistry` which maps domain IDs => `OriginInfo` where:
+This contract also holds an `originRegistry` which maps origin domain IDs to origin sender contracts. This registry is checked to uphold requirement #2 for the modifier above.
 
-```solidity
-/**
- * @notice Defines the fields checked during authentication for registered origins.
- * @param originConnext - The Connext contract address on origin
- * @param originSender - The sender address on origin that will call xcall
- */
-struct OriginInfo {
-  address originConnext;
-  address originSender;
-}
-```
-
-The contract is `Ownable` and only the owner can `addOrigin` and `removeOrigin`. All expected origins should be registered in this mapping.
+The contract is `Ownable` and only the owner can `addOrigin` and `removeOrigin`. All expected origins and senders should be registered in this mapping.
