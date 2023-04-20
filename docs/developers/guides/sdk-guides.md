@@ -106,7 +106,7 @@ export { signer, sdkConfig };
 
 Replace `<PRIVATE_KEY>` with your own private key on line 5.
 
-Notice that the config supports Goerli and Optimism-Goerli. We've also hard-coded the origin chain provider on line 84.
+Notice that the config supports Goerli and Optimism-Goerli. We've also hard-coded the origin chain provider on line 10.
 
 Now create a `xtransfer.ts` file with the following:
 
