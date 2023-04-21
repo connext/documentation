@@ -46,12 +46,6 @@ You can even chain `xcall`s across domains! :open_mouth:
 
 [Nested xCalls](./guides/nested-xcalls)
 
-### Chain Abstraction
-
-Create seamless cross-chain interactions without having to switch chains! 🤯
-
-[Chain Abstraction](./guides/chain-abstraction)
-
 ---
 ## Help
 
