@@ -89,4 +89,22 @@ Domain IDs are unique to every bridge and differ from Chain IDs. Connext's `xcal
     <td>1734439522</td>
     <td>✅</td>
   </tr>
+  <tr>
+    <td>zkSync Era Testnet</td>
+    <td>280</td>
+    <td>2053862260</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <td>Linea Testnet</td>
+    <td>59140</td>
+    <td>1668247156</td>
+    <td>✅</td>
+  </tr>
+  <tr>
+    <td>Polygon zkEVM Testnet</td>
+    <td>1442</td>
+    <td>1887071092</td>
+    <td>✅</td>
+  </tr>
 </table>

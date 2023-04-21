@@ -9,17 +9,13 @@ id: deployments
 
 A full list of deployed contracts can be found in the [deployments.json](https://github.com/connext/monorepo/blob/main/packages/deployments/contracts/deployments.json) file. This contains deployments for all environments and is difficult to parse through manually. You should only need to reference it for automation or as a source of truth. For convenience, we extracted the important contract addresses and listed them here.
 
-Note that the Test Token is a mintable ERC20. The open `mint` function has the signature `mint(address account, uint256 amount)` and can be freely called.
-
-<details>
-
-  <summary>Mainnet Contracts</summary>
+## Mainnet Contracts
 
   ### Ethereum 
   
-  Domain ID: 6648936
+  > Domain ID: 6648936
 
-  Chain ID: 1
+  > Chain ID: 1
 
   <table>
     <tbody>
@@ -85,13 +81,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-  <br />
-
   ### Optimism
 
-  Domain ID: 1869640809
+  > Domain ID: 1869640809
 
-  Chain ID: 10
+  > Chain ID: 10
 
   <table>
     <tbody>
@@ -175,13 +169,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-  <br />
-
   ### Polygon
 
-  Domain ID: 1886350457
+  > Domain ID: 1886350457
   
-  Chain ID: 137
+  > Chain ID: 137
 
   <table>
     <tbody>
@@ -265,13 +257,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-  <br />
+  ### Arbitrum One
 
-  ### Arbitrum-One
+  > Domain ID: 1634886255
 
-  Domain ID: 1634886255
-
-  Chain ID: 42161
+  > Chain ID: 42161
 
   <table>
     <tbody>
@@ -355,13 +345,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-  <br />
-
   ### Binance Smart Chain
 
-  Domain ID: 6450786
+  > Domain ID: 6450786
 
-  Chain ID: 56
+  > Chain ID: 56
 
   <table>
     <tbody>
@@ -445,13 +433,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-  <br />
-
   ### Gnosis
 
-  Domain ID: 6778479
+  > Domain ID: 6778479
 
-  Chain ID: 100
+  > Chain ID: 100
 
   <table>
     <tbody>
@@ -535,19 +521,15 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-  <br />
+## Testnet Contracts
 
-</details>
-
-<details>
-
-  <summary> Testnet Contracts</summary>
+Note that the Test Token is a mintable ERC20. The open `mint` function has the signature `mint(address account, uint256 amount)` and can be freely called.
 
   ### Goerli 
   
-  Domain ID: 1735353714
+  > Domain ID: 1735353714
   
-  Chain ID: 5
+  > Chain ID: 5
 
   <table>
     <tbody>
@@ -613,13 +595,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-  <br />
-
   ### Optimism-Goerli
 
-  Domain ID: 1735356532
+  > Domain ID: 1735356532
   
-  Chain ID: 420
+  > Chain ID: 420
 
   <table>
     <tbody>
@@ -694,13 +674,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-  <br />
-
   ### Mumbai
 
-  Domain ID: 9991
+  > Domain ID: 9991
 
-  Chain ID: 80001
+  > Chain ID: 80001
 
   <table>
     <tbody>
@@ -775,13 +753,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-  <br />
-
   ### Arbitrum-Goerli
 
-  Domain ID: 1734439522
+  > Domain ID: 1734439522
 
-  Chain ID: 421613
+  > Chain ID: 421613
 
   <table>
     <tbody>
@@ -828,7 +804,6 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-
   <table>
     <tbody>
       <tr>
@@ -848,13 +823,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-  <br />
+  ### zkSync Era Testnet
 
-  ### ZkSync-Testnet
+  > Domain ID: 2053862260
 
-  Domain ID: 2053862260
-
-  Chain ID: 280
+  > Chain ID: 280
 
   <table>
     <tbody>
@@ -892,7 +865,6 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-
   <table>
     <tbody>
       <tr>
@@ -912,13 +884,11 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-  <br />
+  ### Linea Testnet
 
-  ### Consensys-ZkEvm-Testnet
+  > Domain ID: 1668247156
 
-  Domain ID: 1668247156
-
-  Chain ID: 59140
+  > Chain ID: 59140
 
   <table>
     <tbody>
@@ -956,7 +926,6 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-
   <table>
     <tbody>
       <tr>
@@ -976,10 +945,67 @@ Note that the Test Token is a mintable ERC20. The open `mint` function has the s
     </tbody>
   </table>
 
-  <br />
+  ### Polygon zkEVM Testnet
 
-</details>
+  > Domain ID: 1887071092
 
+  > Chain ID: 1442
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Core Contract</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://testnet-zkevm.polygonscan.com/address/0x20b4789065DE09c71848b9A4FcAABB2c10006FA2">
+            Connext
+          </a>
+        </td>
+        <td>0x20b4789065DE09c71848b9A4FcAABB2c10006FA2</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Asset Contract</th>
+        <th>Address</th>
+        <th>Flavor</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://testnet-zkevm.polygonscan.com/address/0x5f921E4DE609472632CEFc72a3846eCcfbed4ed8">
+            TEST
+          </a>
+        </td>
+        <td>0x5f921E4DE609472632CEFc72a3846eCcfbed4ed8</td>
+        <td>Local/Adopted</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>Peripheral Contract</th>
+        <th>Address</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>
+          <a href="TBD">
+            Unwrapper
+          </a>
+        </td>
+        <td>TBD</td>
+        <td>TBD</td>
+      </tr>
+    </tbody>
+  </table>
+  
 ## Offchain Agents
 
 ### Sequencer
