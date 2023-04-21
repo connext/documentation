@@ -12,7 +12,7 @@ The `SimpleBridge` just transfers tokens from a user to another wallet (could be
 In this example, `SimpleBridge` has two functions:
 - `xTransfer` bridges any ERC20 token
   - The user must first approve a spending allowance of the token to the `SimpleBridge` contract.
-  - `relayerFee` is paid in native ETH so when `xTransfer` is called, `msg.value` MUST be passed in equal to the specified `relayerFee`.
+  - `relayerFee` is paid in native ETH so when `xTransfer` is called, `msg.value` MUST be passed in equal to the specified `relayerFee`. Informaation for calculating relayer fees can be found on [Estimating Fees](../guides/estimating-fees.md) page.
 
 - `xTransferEth` bridges ETH (for origin/destination chains whose native asset is ETH)
   - To send and receive native ETH, the flow is a bit different. Since Connext doesn't accept native ETH as the bridged asset, ETH should be first wrapped into WETH on the origin domain and then the delivered WETH on destination should be unwrapped back to ETH. 
@@ -128,3 +128,4 @@ contract SimpleBridge {
   }
 }
 ```
+Information like asset addresses be found in the [Deployments](../../resources/deployments.md) page.
