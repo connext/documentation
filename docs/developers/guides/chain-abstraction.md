@@ -88,9 +88,45 @@ npm install @connext/chain-abstraction
 ### Usage
 
 The SDK covers three major functions:
-- `getXCallCallData`
 - `getPoolFeeForUniV3`
+- `getXCallCallData`
 - `prepareSwapAndXCall`
+
+#### `getPoolFeeForUniV3`
+
+The function `getPoolFeeForUniV3` returns the poolFee of the UniV3 pool for a given token pair which would be used in the UniV3 router execution. The poolFee is the fee that is charged by the pool for trading the tokens.
+
+```ts
+export const getPoolFeeForUniV3 = async (
+  domainId: string,
+  rpc: string,
+  token0: string,
+  token1: string,
+):
+```
+
+The function takes four parameters:
+  - `domainId`: The target domain ID.
+  - `rpc`: The RPC endpoint for a given domain.
+  - `token0`: The first token address.
+  - `token1`: The second token address.
+
+The function returns a `Promise` that resolves to a string representing the poolFee of the UniV3 pool.
+
+##### Example
+
+```ts
+// asset address
+const POLYGON_WETH = "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619";
+const POLYGON_USDC = "0x2791bca1f2de4661ed88a30c99a7a9449aa84174";
+// Domain details
+const POLYGON_DOMAIN_ID = "1886350457";
+const POLYGON_RPC_URL = "https://polygon.llamarpc.com";
+
+const poolFee = await getPoolFeeForUniV3(POLYGON_DOMAIN_ID, POLYGON_RPC_URL, POLYGON_WETH, POLYGON_USDC);
+
+console.log(poolFee);
+```
 
 #### `getXCallCallData`
 
@@ -291,40 +327,4 @@ if (txRequest) {
   console.log(`SwapAndXCall tx mined. tx: ${tx.hash}`);
   await tx.wait();
 }
-```
-
-#### `getPoolFeeForUniV3`
-
-The function `getPoolFeeForUniV3` returns the poolFee of the UniV3 pool for a given token pair which would be used in the UniV3 router execution. The poolFee is the fee that is charged by the pool for trading the tokens.
-
-```ts
-export const getPoolFeeForUniV3 = async (
-  domainId: string,
-  rpc: string,
-  token0: string,
-  token1: string,
-):
-```
-
-The function takes four parameters:
-  - `domainId`: The target domain ID.
-  - `rpc`: The RPC endpoint for a given domain.
-  - `token0`: The first token address.
-  - `token1`: The second token address.
-
-The function returns a `Promise` that resolves to a string representing the poolFee of the UniV3 pool.
-
-##### Example
-
-```ts
-// asset address
-const POLYGON_WETH = "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619";
-const POLYGON_USDC = "0x2791bca1f2de4661ed88a30c99a7a9449aa84174";
-// Domain details
-const POLYGON_DOMAIN_ID = "1886350457";
-const POLYGON_RPC_URL = "https://polygon.llamarpc.com";
-
-const poolFee = await getPoolFeeForUniV3(POLYGON_DOMAIN_ID, POLYGON_RPC_URL, POLYGON_WETH, POLYGON_USDC);
-
-console.log(poolFee);
 ```
