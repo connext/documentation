@@ -71,4 +71,19 @@ The `_forwardFunctionCall` function unwraps the encoded data which includes the 
 ## SDK Integration
 The Connext SDK makes the process of creating the data for the swap very simple.
 
-Docs coming soon!
+### Installation
+For installing the SDK, use **Node.js v18**. You can install the SDK with the following command.
+
+```bash npm2yarn
+npm install @connext/chain-abstraction
+```
+
+### Usage
+The SDK covers three major functions `getXCallCallData`, `prepareSwapAndXCall` and `getPoolFeeForUniV3`
+
+- ### `getXCallCallData` 
+  Details about above function
+- ### `prepareSwapAndXCall`
+  Details about above function
+- ### `getPoolFeeForUniV3`
+  Details about above function
