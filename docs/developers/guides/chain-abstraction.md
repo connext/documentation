@@ -4,15 +4,19 @@ id: chain-abstraction
 ---
 
 # Chain Abstraction
+
 Chain abstraction is one of the flagship use cases of Connext. Chain abstraction allows any dapp to support deposits from any chain, without the user needing to send a transaction on the destination chain. This can be used at higher layers to fully abstract chains from the user, allowing them to interact with dapps without needing to know which chain they are on.
 
 # Creating a Chain Abstraction Layer
+
 Chain abstraction consists of two parts: swaps and "forward calls". Swaps are used to convert any asset into a bridgeable asset, and forward calls are used to call a function on a contract on a different chain. The following sections will walk through how to implement these two parts.
 
 ## Smart Contract Integration
+
 This guide will cover a contract workspace that is using [Foundry](https://book.getfoundry.sh/).
 
 ### Installation
+
 After your Foundry project is set up, you can add the Connext contracts to your project by running the following command:
 
 ```bash
@@ -21,7 +25,8 @@ forge install connext/connext-integration
 
 The library will be installed to `lib/connext-integration`.
 
-### xReceiver Target Contract 
+### xReceiver Target Contract
+
 The xReceiver target contract is the contract that will receive funds after swaps are completed. This contract will be deployed to the destination chain, and will be called by the router network for a ["fast path execution"](../guides/authentication). The contract simply has to inherit the `SwapForwarderXReceiver` contract and implement the `_forwardFunctionCall` method. A simple example is shown below.
 
 ```solidity
@@ -69,9 +74,11 @@ contract XSwapAndGreetTarget is SwapForwarderXReceiver {
 The `_forwardFunctionCall` function unwraps the encoded data which includes the calldata for the function call, the amount of tokens received after the swap, and the token contract address of the asset that was swapped to. The function then forwards the call to the `greeter` contract, which is a simple contract that just greets the user with a message while transferring some tokens in exchange.
 
 ## SDK Integration
+
 The Connext SDK makes the process of creating the data for the swap very simple.
 
 ### Installation
+
 For installing the SDK, use **Node.js v18**. You can install the SDK with the following command.
 
 ```bash npm2yarn
@@ -79,10 +86,54 @@ npm install @connext/chain-abstraction
 ```
 
 ### Usage
+
 The SDK covers three major functions `getXCallCallData`, `prepareSwapAndXCall` and `getPoolFeeForUniV3`
 
-- ### `getXCallCallData` 
-  Details about above function
+- ### `getXCallCallData`
+
+  The `getXCallCallData` function generates the encoded calldata that is used to perform cross-domain communication using `xcall` between two domains on the origin side for a given target.
+
+  ```js
+  export const getXCallCallData = async (
+  domainId: string,
+  target: XReceiveTarget,
+  swapper: Swapper,
+  params: DestinationCallDataParams,
+  ):
+  ```
+
+  It takes four parameters.
+
+  - domainId: A string representing the destination domain ID
+  - target: A string representing the name of `xReceive` contract on the destinantion.
+  - swapper: A string representing which swapper should be used. It could be either `UniV2`, `UniV3` and `OneInch`.
+  - params: A object containing two fields:
+
+    - swapForwarderData: Contains an object with fields as `toAsset` used to identify the token being swaped at destinantion domain, `forwardCallData` an encoded data that the xReceive target on the destination domain will use to receive the swapped tokens and `swapData` data that the swapper contract on the destination domain will use to perform the swap. E.g
+
+    ```
+    {
+    fallback: string;
+    swapForwarderData: {
+        toAsset: string;
+        swapData: {
+            amountOutMin: string;
+        } | {
+            amountOutMin: string;
+            poolFee: string;
+        };
+        forwardCallData: {
+            cTokenAddress: string;
+            underlying: string;
+            minter: string;
+        } | {} | {};
+    }
+    ```
+
+    - fallback: The fallback address to use if the xReceive target on the destination domain fails to receive the swapped tokens.
+
+Function returns the encoded calldata as a string.
+
 - ### `prepareSwapAndXCall`
   Details about above function
 - ### `getPoolFeeForUniV3`
