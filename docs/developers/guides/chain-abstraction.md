@@ -87,11 +87,14 @@ npm install @connext/chain-abstraction
 
 ### Usage
 
-The SDK covers three major functions `getXCallCallData`, `prepareSwapAndXCall`, and `getPoolFeeForUniV3`.
+The SDK covers three major functions:
+- `getXCallCallData`
+- `getPoolFeeForUniV3`
+- `prepareSwapAndXCall`
 
 #### `getXCallCallData`
 
-The `getXCallCallData` function generates the encoded calldata that is used to perform cross-domain communication using `xcall` between two domains on the origin side for a given target.
+The `getXCallCallData` function generates calldata to be passed into `xcall`. This is the "outer" calldata that contains encoded "inner" calldata for a swap and a forward call to a target contract on the destination domain.
 
 ```ts
 export const getXCallCallData = async (
@@ -107,8 +110,7 @@ It takes four parameters.
 - `domainId`: A string representing the destination domain ID.
 - `target`: A string representing the name of the `xReceive` contract on the destination.
 - `swapper`: A string representing which swapper should be used. It can be `UniV2`, `UniV3`, or `OneInch`.
-- `params`: An object containing two fields:
-  - `swapForwarderData`: Contains an object with fields as `toAsset` used to identify the token being swapped on destination domain, `forwardCallData` an encoded data that the xReceive target on the destination domain will use to receive the swapped tokens and `swapData` data that the swapper contract on the destination domain will use to perform the swap. E.g
+- `params`: An object containing the following fields.
 
     ```ts
     {
@@ -130,11 +132,15 @@ It takes four parameters.
     }
     ```
 
-  - `fallback`: The fallback address to use if the xReceive target on the destination domain fails to receive the swapped tokens.
+  - `fallback`: The fallback address to send funds if the forward call fails on the destination domain.
+  - `swapForwarderData`: An object with the following fields.
+     - `toAsset`: Address of the token to swap into on the destination domain. 
+     - `swapData`: Calldata that the swapper contract on the destination domain will use to perform the swap. 
+     - `forwardCallData`: Calldata that the xReceive target on the destination domain will use in the forward call.
 
 Function returns the encoded calldata as a string.
 
-##### Demonstrative Code -
+##### Example
 
 ```ts
 const rpcURL = "https://bsc-dataseed.binance.org";
@@ -198,7 +204,7 @@ if (txRequest) {
 
 #### `prepareSwapAndXCall`
 
-The `prepareSwapAndXCall` function prepares `SwapAndXCall` inputs and encodes the calldata, and returns a `providers.TransactionRequest` object to be sent to the RPC provider.
+The `prepareSwapAndXCall` function prepares `SwapAndXCall` inputs and encodes the calldata. It returns a `providers.TransactionRequest` object to be sent to the RPC provider.
 
 ```ts
 export const prepareSwapAndXCall = async (
@@ -209,6 +215,7 @@ export const prepareSwapAndXCall = async (
 
 It takes two parameters:
 
+- `signerAddress` (required): The address of the signer to send a transaction from.
 - `params`: An object containing the following fields:
   - `originDomain` (required): The origin domain ID.
   - `destinationDomain` (required): The destination domain ID.
@@ -222,7 +229,6 @@ It takes two parameters:
   - `callData` (optional): The calldata to execute (can be empty: "0x").
   - `relayerFeeInNativeAsset` (optional): The fee amount in native asset.
   - `relayerFeeInTransactingAsset` (optional): The fee amount in the transacting asset.
-  - `signerAddress` (required): The address of the signer to send a transaction from.
   
     ```
     {
@@ -243,8 +249,6 @@ It takes two parameters:
         callData: string | undefined,
     }
     ```
-
-- `signerAddress`: The address of signer who sends the transaction.
 
 The function returns a Promise that resolves to a `providers.TransactionRequest` object to be sent to the RPC provider.
 
@@ -311,6 +315,7 @@ The function takes four parameters:
 The function returns a `Promise` that resolves to a string representing the poolFee of the UniV3 pool.
 
 ##### Example
+
 ```ts
 // asset address
 const POLYGON_WETH = "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619";
