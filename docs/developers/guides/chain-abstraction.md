@@ -135,6 +135,67 @@ The SDK covers three major functions `getXCallCallData`, `prepareSwapAndXCall` a
 Function returns the encoded calldata as a string.
 
 - ### `prepareSwapAndXCall`
-  Details about above function
+  The `prepareSwapAndXCall` function prepares `SwapAndXCall` inputs and encodes the calldata, and returns a `providers.TransactionRequest` object to be sent to the RPC provider.
+  ```js
+  export const prepareSwapAndXCall = async (
+  params: SwapAndXCallParams,
+  signerAddress: string,
+  ):
+  ```
+  It takes two parameters:
+  - parms:
+    An object containing the following fields:
+    - originDomain (required): The origin domain ID.
+    - destinationDomain (required): The destination domain ID.
+    - fromAsset (required): The address of the asset to swap from.
+    - toAsset (required): The address of the asset to swap to.
+    - amountIn (required): The number of fromAsset tokens.
+    - to (required): The address to send the asset and call with the calldata on the destination.
+    - delegate (optional): The fallback address on the destination domain which defaults to `to`.
+    - slippage (optional): Maximum acceptable slippage in BPS which defaults to 300. For example, a value of 300 means 3% slippage.
+    - route (optional): The address of the swapper contract and the data to call the swapper contract with.
+    - callData (optional): The calldata to execute (can be empty: "0x").
+    - relayerFeeInNativeAsset (optional): The fee amount in native asset.
+    - relayerFeeInTransactingAsset (optional): The fee amount in the transacting asset.
+    - signerAddress (required): The address of the signer to send a transaction from.
+    E.g
+    ```
+    {
+          originDomain: string,
+          destinationDomain: string,
+          fromAsset: string,
+          toAsset: string,
+          amountIn: string,
+          to: string,
+          relayerFeeInNativeAsset: string | undefined,
+          relayerFeeInTransactingAsset: string | undefined,
+          delegate: string | undefined,
+          slippage: string | undefined,
+          route: { 
+              swapper: string,
+              swapData: string,
+            } | undefined,
+          callData: string | undefined,
+     }
+     ```
+  - signerAddress: The address of signer who sends the transaction.
+
+The function returns a Promise that resolves to a `providers.TransactionRequest` object to be sent to the RPC provider.
+
 - ### `getPoolFeeForUniV3`
-  Details about above function
+  The function `getPoolFeeForUniV3` returns the poolFee of the UniV3 pool for a given token pair which would be used in the UniV3 router execution. The poolFee is the fee that is charged by the pool for trading the tokens.
+  ```js
+  export const getPoolFeeForUniV3 = async (
+  domainId: string,
+  rpc: string,
+  token0: string,
+  token1: string,
+  ):
+  ```
+  The function takes four parameters:
+  - domainId: The target domain ID.
+  - rpc: The RPC endpoint for a given domain.
+  - token0: The first token address.
+  - token1: The second token address.
+
+The function returns a Promise that resolves to a string representing the poolFee of the UniV3 pool.
