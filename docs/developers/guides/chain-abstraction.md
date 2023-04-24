@@ -75,7 +75,7 @@ The `_forwardFunctionCall` function unwraps the encoded data which includes the 
 
 ## SDK Integration
 
-The Connext SDK makes the process of creating the data for the swap very simple.
+The Connext Chain Abstraction SDK makes the process of creating the data for the swap very simple.
 
 ### Installation
 
@@ -87,13 +87,13 @@ npm install @connext/chain-abstraction
 
 ### Usage
 
-The SDK covers three major functions `getXCallCallData`, `prepareSwapAndXCall` and `getPoolFeeForUniV3`
+The SDK covers three major functions `getXCallCallData`, `prepareSwapAndXCall`, and `getPoolFeeForUniV3`.
 
 #### `getXCallCallData`
 
 The `getXCallCallData` function generates the encoded calldata that is used to perform cross-domain communication using `xcall` between two domains on the origin side for a given target.
 
-```js
+```ts
 export const getXCallCallData = async (
   domainId: string,
   target: XReceiveTarget,
@@ -104,39 +104,39 @@ export const getXCallCallData = async (
 
 It takes four parameters.
 
-- domainId: A string representing the destination domain ID
-- target: A string representing the name of `xReceive` contract on the destinantion.
-- swapper: A string representing which swapper should be used. It could be either `UniV2`, `UniV3` and `OneInch`.
-- params: A object containing two fields:
+- `domainId`: A string representing the destination domain ID.
+- `target`: A string representing the name of the `xReceive` contract on the destination.
+- `swapper`: A string representing which swapper should be used. It can be `UniV2`, `UniV3`, or `OneInch`.
+- `params`: An object containing two fields:
+  - `swapForwarderData`: Contains an object with fields as `toAsset` used to identify the token being swapped on destination domain, `forwardCallData` an encoded data that the xReceive target on the destination domain will use to receive the swapped tokens and `swapData` data that the swapper contract on the destination domain will use to perform the swap. E.g
 
-  - swapForwarderData: Contains an object with fields as `toAsset` used to identify the token being swaped at destinantion domain, `forwardCallData` an encoded data that the xReceive target on the destination domain will use to receive the swapped tokens and `swapData` data that the swapper contract on the destination domain will use to perform the swap. E.g
+    ```ts
+    {
+      fallback: string;
+      swapForwarderData: {
+        toAsset: string;
+        swapData: {
+          amountOutMin: string;
+        } | {
+          amountOutMin: string;
+          poolFee: string;
+        };
+        forwardCallData: {
+          cTokenAddress: string;
+          underlying: string;
+          minter: string;
+        } | {} | {};
+      }
+    }
+    ```
 
-```js
-{
-  fallback: string;
-  swapForwarderData: {
-    toAsset: string;
-    swapData: {
-      amountOutMin: string;
-    } | {
-      amountOutMin: string;
-      poolFee: string;
-    };
-    forwardCallData: {
-      cTokenAddress: string;
-      underlying: string;
-      minter: string;
-    } | {} | {};
-  }
-}
-```
-
-  - fallback: The fallback address to use if the xReceive target on the destination domain fails to receive the swapped tokens.
+  - `fallback`: The fallback address to use if the xReceive target on the destination domain fails to receive the swapped tokens.
 
 Function returns the encoded calldata as a string.
 
 ##### Demonstrative Code -
-```js
+
+```ts
 const rpcURL = "https://bsc-dataseed.binance.org";
 const signer = new Wallet(process.env.PRIVATE_KEY ?? "", new providers.JsonRpcProvider(rpcURL));
 const signerAddress = signer.address;
@@ -197,32 +197,35 @@ if (txRequest) {
 ```
 
 #### `prepareSwapAndXCall`
+
 The `prepareSwapAndXCall` function prepares `SwapAndXCall` inputs and encodes the calldata, and returns a `providers.TransactionRequest` object to be sent to the RPC provider.
-```js
+
+```ts
 export const prepareSwapAndXCall = async (
   params: SwapAndXCallParams,
   signerAddress: string,
 ):
 ```
+
 It takes two parameters:
-- parms:
-  An object containing the following fields:
-  - originDomain (required): The origin domain ID.
-  - destinationDomain (required): The destination domain ID.
-  - fromAsset (required): The address of the asset to swap from.
-  - toAsset (required): The address of the asset to swap to.
-  - amountIn (required): The number of fromAsset tokens.
-  - to (required): The address to send the asset and call with the calldata on the destination.
-  - delegate (optional): The fallback address on the destination domain which defaults to `to`.
-  - slippage (optional): Maximum acceptable slippage in BPS which defaults to 300. For example, a value of 300 means 3% slippage.
-  - route (optional): The address of the swapper contract and the data to call the swapper contract with.
-  - callData (optional): The calldata to execute (can be empty: "0x").
-  - relayerFeeInNativeAsset (optional): The fee amount in native asset.
-  - relayerFeeInTransactingAsset (optional): The fee amount in the transacting asset.
-  - signerAddress (required): The address of the signer to send a transaction from.
-  E.g
-  ```
-  {
+
+- `params`: An object containing the following fields:
+  - `originDomain` (required): The origin domain ID.
+  - `destinationDomain` (required): The destination domain ID.
+  - `fromAsset` (required): The address of the asset to swap from.
+  - `toAsset` (required): The address of the asset to swap to.
+  - `amountIn` (required): The number of fromAsset tokens.
+  - `to` (required): The address to send the asset and call with the calldata on the destination.
+  - `delegate` (optional): The fallback address on the destination domain which defaults to `to`.
+  - `slippage` (optional): Maximum acceptable slippage in BPS which defaults to 300. For example, a value of 300 means 3% slippage.
+  - `route` (optional): The address of the swapper contract and the data to call the swapper contract with.
+  - `callData` (optional): The calldata to execute (can be empty: "0x").
+  - `relayerFeeInNativeAsset` (optional): The fee amount in native asset.
+  - `relayerFeeInTransactingAsset` (optional): The fee amount in the transacting asset.
+  - `signerAddress` (required): The address of the signer to send a transaction from.
+  
+    ```
+    {
         originDomain: string,
         destinationDomain: string,
         fromAsset: string,
@@ -240,11 +243,14 @@ It takes two parameters:
         callData: string | undefined,
     }
     ```
-- signerAddress: The address of signer who sends the transaction.
+
+- `signerAddress`: The address of signer who sends the transaction.
 
 The function returns a Promise that resolves to a `providers.TransactionRequest` object to be sent to the RPC provider.
+
 ##### Example
-```js
+
+```ts
 const rpcURL = "https://polygon.llamarpc.com";
 const signer = new Wallet(process.env.PRIVATE_KEY ?? "", new providers.JsonRpcProvider(rpcURL));
 const signerAddress = signer.address;
@@ -281,27 +287,31 @@ if (txRequest) {
   console.log(`SwapAndXCall tx mined. tx: ${tx.hash}`);
   await tx.wait();
 }
-  ```
+```
+
 #### `getPoolFeeForUniV3`
+
 The function `getPoolFeeForUniV3` returns the poolFee of the UniV3 pool for a given token pair which would be used in the UniV3 router execution. The poolFee is the fee that is charged by the pool for trading the tokens.
-```js
+
+```ts
 export const getPoolFeeForUniV3 = async (
-domainId: string,
-rpc: string,
-token0: string,
-token1: string,
+  domainId: string,
+  rpc: string,
+  token0: string,
+  token1: string,
 ):
 ```
-The function takes four parameters:
-- domainId: The target domain ID.
-- rpc: The RPC endpoint for a given domain.
-- token0: The first token address.
-- token1: The second token address.
 
-The function returns a Promise that resolves to a string representing the poolFee of the UniV3 pool.
+The function takes four parameters:
+  - `domainId`: The target domain ID.
+  - `rpc`: The RPC endpoint for a given domain.
+  - `token0`: The first token address.
+  - `token1`: The second token address.
+
+The function returns a `Promise` that resolves to a string representing the poolFee of the UniV3 pool.
 
 ##### Example
-```js
+```ts
 // asset address
 const POLYGON_WETH = "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619";
 const POLYGON_USDC = "0x2791bca1f2de4661ed88a30c99a7a9449aa84174";
@@ -311,5 +321,5 @@ const POLYGON_RPC_URL = "https://polygon.llamarpc.com";
 
 const poolFee = await getPoolFeeForUniV3(POLYGON_DOMAIN_ID, POLYGON_RPC_URL, POLYGON_WETH, POLYGON_USDC);
 
-console.log(poolFee)
+console.log(poolFee);
 ```
