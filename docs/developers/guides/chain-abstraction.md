@@ -5,7 +5,18 @@ id: chain-abstraction
 
 # Chain Abstraction
 
-Chain abstraction is one of the flagship use cases of Connext. Chain abstraction allows any dapp to support deposits from any chain, without the user needing to send a transaction on the destination chain. This can be used at higher layers to fully abstract chains from the user, allowing them to interact with dapps without needing to know which chain they are on.
+Chain abstraction is one of the flagship use cases of Connext. Chain abstraction allows a dapp to execute logic from any chain without requiring users to switch networks, sign transactions on a different chain, and spend gas on a different chain. This pattern can be used at higher layers to fully abstract chains from the user, removing the need for users to consciously have to think about what chain they are on.
+
+For example, a chain abstraction layer for Aave would involve a simple, two-step process.
+
+<div style={{marginLeft: 15}}>
+  <img src="/img/developers/chain_abstraction.png" alt="chain abstraction" width="500"/>
+</div>
+
+1. The Connext SDK is used to construct an `xcall` transaction to be sent by the user on their origin chain.
+2. An adapter contract deployed on the destination chain forwards the `deposit` call to Aave. 
+
+In the end, no changes are needed on the Aave contracts themselves and cross-chain deposits are enabled for users with maximally simplified UX.
 
 # Creating a Chain Abstraction Layer
 
@@ -17,7 +28,7 @@ This guide will cover a contract workspace that is using [Foundry](https://book.
 
 ### Installation
 
-After your Foundry project is set up, you can add the Connext contracts to your project by running the following command:
+After your Foundry project is set up, you can add the Connext contracts to your project by running the following command to install the [`connext-integration`](https://github.com/connext/connext-integration/tree/main) repository as a submodule:
 
 ```bash
 forge install connext/connext-integration
@@ -25,11 +36,61 @@ forge install connext/connext-integration
 
 The library will be installed to `lib/connext-integration`.
 
-### xReceiver Target Contract
+### SwapForwarderXReceiver
 
-The xReceiver target contract is the contract that will receive funds after swaps are completed. This contract will be deployed to the destination chain, and will be called by the router network for a ["fast path execution"](../guides/authentication). The contract simply has to inherit the `SwapForwarderXReceiver` contract and implement the `_forwardFunctionCall` method. A simple example is shown below.
+The `SwapForwarderXReceiver` is the abstract contract that should be implemented by receiver contracts that follow the chain abstraction pattern.
 
-```solidity
+```solidity title="XSwapAndGreetTarget.sol"
+abstract contract SwapForwarderXReceiver is ForwarderXReceiver, SwapAdapter {
+  using Address for address;
+
+  /// @dev The address of the Connext contract on this domain.
+  constructor(address _connext) ForwarderXReceiver(_connext) {}
+
+  /// INTERNAL
+  /**
+   * @notice Prepare the data by calling to the swap adapter. Return the data to be swapped.
+   * @dev This is called by the xReceive function so the input data is provided by the Connext bridge.
+   * @param _transferId The transferId of the transfer.
+   * @param _data The data to be swapped.
+   * @param _amount The amount to be swapped.
+   * @param _asset The incoming asset to be swapped.
+   */
+  function _prepare(
+    bytes32 _transferId,
+    bytes memory _data,
+    uint256 _amount,
+    address _asset
+  ) internal override returns (bytes memory) {
+    //highlight-start
+    (address _swapper, address _toAsset, bytes memory _swapData, bytes memory _forwardCallData) = abi.decode(
+      _data,
+      (address, address, bytes, bytes)
+    );
+    //highlight-end
+
+    uint256 _amountOut = this.exactSwap(_swapper, _amount, _asset, _toAsset, _swapData);
+
+    return abi.encode(_forwardCallData, _amountOut, _asset, _toAsset, _transferId);
+  }
+}
+```
+
+Notice that the `_prepare` function expects a `bytes memory _data` parameter that will be decoded into:
+
+- `_swapper`: The specific [swapper](../reference/integration/adapters#swappers) that will be used for the destination swap.
+- `_toAsset`: The asset that should be swapped into.
+- `_swapData`: The encoded swap data that will be constructed offchain (using the [Chain Abstraction SDK](./chain-abstraction#chain-abstraction-sdk) in the next section).
+- `_forwardCallData`: The forward call data that the receiver contract will call.
+
+
+### xReceiver Adapter Contract
+
+The xReceiver adapter contract is the adapter contract that integrators build. It is the target of the origin-side `xcall` and it will receive funds after swaps are completed. This contract will be deployed to the destination chain and will be called by the router network for a ["fast path execution"](../guides/authentication). 
+
+The contract simply has to inherit `SwapForwarderXReceiver` and implement the `_forwardFunctionCall` method. A simple example is shown below.
+
+```solidity title="XSwapAndGreetTarget.sol"
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
@@ -73,9 +134,11 @@ contract XSwapAndGreetTarget is SwapForwarderXReceiver {
 
 The `_forwardFunctionCall` function unwraps the encoded data which includes the calldata for the function call, the amount of tokens received after the swap, and the token contract address of the asset that was swapped to. The function then forwards the call to the `greeter` contract, which is a simple contract that just greets the user with a message while transferring some tokens in exchange.
 
-## SDK Integration
 
-The Connext Chain Abstraction SDK makes the process of creating the data for the swap very simple.
+
+## Chain Abstraction SDK
+
+The Chain Abstraction SDK makes the process of creating the `_swapData` for swaps very simple.
 
 ### Installation
 
@@ -85,14 +148,7 @@ For installing the SDK, use **Node.js v18**. You can install the SDK with the fo
 npm install @connext/chain-abstraction
 ```
 
-### Usage
-
-The SDK covers three major functions:
-- `getPoolFeeForUniV3`
-- `getXCallCallData`
-- `prepareSwapAndXCall`
-
-#### `getPoolFeeForUniV3`
+### `getPoolFeeForUniV3`
 
 The function `getPoolFeeForUniV3` returns the poolFee of the UniV3 pool for a given token pair which would be used in the UniV3 router execution. The poolFee is the fee that is charged by the pool for trading the tokens.
 
@@ -113,7 +169,7 @@ The function takes four parameters:
 
 The function returns a `Promise` that resolves to a string representing the poolFee of the UniV3 pool.
 
-##### Example
+#### Example
 
 ```ts
 // asset address
@@ -128,9 +184,9 @@ const poolFee = await getPoolFeeForUniV3(POLYGON_DOMAIN_ID, POLYGON_RPC_URL, POL
 console.log(poolFee);
 ```
 
-#### `getXCallCallData`
+### `getXCallCallData`
 
-The `getXCallCallData` function generates calldata to be passed into `xcall`. This is the "outer" calldata that contains encoded "inner" calldata for a swap and a forward call to a target contract on the destination domain.
+The `getXCallCallData` function generates calldata to be passed into `xcall`. This is the "outer" calldata that contains encoded "inner" calldata which specifies the swap plus the forward call to a target contract on the destination domain.
 
 ```ts
 export const getXCallCallData = async (
@@ -142,11 +198,10 @@ export const getXCallCallData = async (
 ```
 
 It takes four parameters.
-
-- `domainId`: A string representing the destination domain ID.
-- `target`: A string representing the name of the `xReceive` contract on the destination.
-- `swapper`: A string representing which swapper should be used. It can be `UniV2`, `UniV3`, or `OneInch`.
-- `params`: An object containing the following fields.
+  - `domainId`: A string representing the destination domain ID.
+  - `target`: A string representing the name of the `xReceive` contract on the destination.
+  - `swapper`: A string representing which [swapper](../reference/integration/adapters#swappers) should be used. It can be `UniV2`, `UniV3`, or `OneInch`.
+  - `params`: An object containing the following fields.
 
     ```ts
     {
@@ -168,15 +223,15 @@ It takes four parameters.
     }
     ```
 
-  - `fallback`: The fallback address to send funds if the forward call fails on the destination domain.
+  - `fallback`: The fallback address to send funds to if the forward call fails on the destination domain.
   - `swapForwarderData`: An object with the following fields.
      - `toAsset`: Address of the token to swap into on the destination domain. 
      - `swapData`: Calldata that the swapper contract on the destination domain will use to perform the swap. 
      - `forwardCallData`: Calldata that the xReceive target on the destination domain will use in the forward call.
 
-Function returns the encoded calldata as a string.
+The function returns the encoded calldata as a string.
 
-##### Example
+#### Example
 
 ```ts
 const rpcURL = "https://bsc-dataseed.binance.org";
@@ -238,7 +293,7 @@ if (txRequest) {
 }
 ```
 
-#### `prepareSwapAndXCall`
+### `prepareSwapAndXCall`
 
 The `prepareSwapAndXCall` function prepares `SwapAndXCall` inputs and encodes the calldata. It returns a `providers.TransactionRequest` object to be sent to the RPC provider.
 
@@ -266,7 +321,7 @@ It takes two parameters:
   - `relayerFeeInNativeAsset` (optional): The fee amount in native asset.
   - `relayerFeeInTransactingAsset` (optional): The fee amount in the transacting asset.
   
-    ```
+    ```ts
     {
         originDomain: string,
         destinationDomain: string,
@@ -288,7 +343,7 @@ It takes two parameters:
 
 The function returns a Promise that resolves to a `providers.TransactionRequest` object to be sent to the RPC provider.
 
-##### Example
+#### Example
 
 ```ts
 const rpcURL = "https://polygon.llamarpc.com";
