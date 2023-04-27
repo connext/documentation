@@ -5,10 +5,10 @@ id: get-started
 
 # Get-Started
 
-With xcall you can make any dapp cross-chain abstracted. There are two ways to integrate with Connext.
+With connext you can make any dapp cross-chain abstracted.
 
-- SDK
-- Contract
+- Simple integration would be integrate xcall() via sdk or contract to onboard users from Any chain to Any chain. (estimate time for integration 10 mins)
+- Custom integration would be to implement custom logic in the contract to support swaps, defi, nft minting etc.  (estimate time for integration 1 day - couple of weeks)
 
 ## SDK
 
