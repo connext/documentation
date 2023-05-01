@@ -59,6 +59,24 @@ A full list of deployed contracts can be found in the [deployments.json](https:/
         <td>0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2</td>
         <td>Canonical</td>
       </tr>
+      <tr>
+        <td>
+          <a href="https://etherscan.io/address/0x6b175474e89094c44da98b954eedeac495271d0f">
+            DAI
+          </a>
+        </td>
+        <td>0x6B175474E89094C44Da98b954EedeAC495271d0F</td>
+        <td>Canonical</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://etherscan.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7">
+            USDT
+          </a>
+        </td>
+        <td>0xdAC17F958D2ee523a2206206994597C13D831ec7</td>
+        <td>Canonical</td>
+      </tr>
     </tbody>
   </table>
 
@@ -145,6 +163,42 @@ A full list of deployed contracts can be found in the [deployments.json](https:/
           </a>
         </td>
         <td>0x4200000000000000000000000000000000000006</td>
+        <td>Adopted</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://optimistic.etherscan.io/address/0xd64Bd028b560bbFc732eA18f282c64B86F3468e0">
+            nextDAI
+          </a>
+        </td>
+        <td>0xd64Bd028b560bbFc732eA18f282c64B86F3468e0</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://optimistic.etherscan.io/address/0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1">
+            DAI
+          </a>
+        </td>
+        <td>0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1</td>
+        <td>Adopted</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://optimistic.etherscan.io/address/0x4cBB28FA12264cD8E87C62F4E1d9f5955Ce67D20">
+            nextUSDT
+          </a>
+        </td>
+        <td>0x4cBB28FA12264cD8E87C62F4E1d9f5955Ce67D20</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://optimistic.etherscan.io/address/0x94b008aA00579c1307B0EF2c499aD98a8ce58e58">
+            USDT
+          </a>
+        </td>
+        <td>0x94b008aA00579c1307B0EF2c499aD98a8ce58e58</td>
         <td>Adopted</td>
       </tr>
     </tbody>
@@ -235,6 +289,42 @@ A full list of deployed contracts can be found in the [deployments.json](https:/
         <td>0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619</td>
         <td>Adopted</td>
       </tr>
+      <tr>
+        <td>
+          <a href="https://polygonscan.com/address/0xaDCe87b14d570665222C1172D18a221BF7690d5a">
+            nextDAI
+          </a>
+        </td>
+        <td>0xaDCe87b14d570665222C1172D18a221BF7690d5a</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://polygonscan.com/address/0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063">
+            DAI
+          </a>
+        </td>
+        <td>0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063</td>
+        <td>Adopted</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://polygonscan.com/address/0xE221C5A2a8348f12dcb2b0e88693522EbAD2690f">
+            nextUSDT
+          </a>
+        </td>
+        <td>0xE221C5A2a8348f12dcb2b0e88693522EbAD2690f</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://polygonscan.com/address/0xc2132D05D31c914a87C6611C10748AEb04B58e8F">
+            USDT
+          </a>
+        </td>
+        <td>0xc2132D05D31c914a87C6611C10748AEb04B58e8F</td>
+        <td>Adopted</td>
+      </tr>
     </tbody>
   </table>
 
@@ -321,6 +411,42 @@ A full list of deployed contracts can be found in the [deployments.json](https:/
           </a>
         </td>
         <td>0x82aF49447D8a07e3bd95BD0d56f35241523fBab1</td>
+        <td>Adopted</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://arbiscan.io/address/0xfDe99b3B3fbB69553D7DaE105EF34Ba4FE971190">
+            nextDAI
+          </a>
+        </td>
+        <td>0xfDe99b3B3fbB69553D7DaE105EF34Ba4FE971190</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://arbiscan.io/address/0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1">
+            DAI
+          </a>
+        </td>
+        <td>0xDA10009cBd5D07dd0CeCc66161FC93D7c9000da1</td>
+        <td>Adopted</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://arbiscan.io/address/0x2fD7E61033b3904c65AA9A9B83DCd344Fa19Ffd2">
+            nextUSDT
+          </a>
+        </td>
+        <td>0x2fD7E61033b3904c65AA9A9B83DCd344Fa19Ffd2</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://arbiscan.io/address/0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9">
+            USDT
+          </a>
+        </td>
+        <td>0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9</td>
         <td>Adopted</td>
       </tr>
     </tbody>
@@ -411,6 +537,42 @@ A full list of deployed contracts can be found in the [deployments.json](https:/
         <td>0x2170Ed0880ac9A755fd29B2688956BD959F933F8</td>
         <td>Adopted</td>
       </tr>
+      <tr>
+        <td>
+          <a href="https://bscscan.com/address/0x86a343BCF17D79C475d300eed35F0145F137D0c9">
+            nextDAI
+          </a>
+        </td>
+        <td>0x86a343BCF17D79C475d300eed35F0145F137D0c9</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://bscscan.com/address/0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3">
+            DAI
+          </a>
+        </td>
+        <td>0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3</td>
+        <td>Adopted</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://bscscan.com/address/0xD609f26B5547d5E31562B29150769Cb7c774B97a">
+            nextUSDT
+          </a>
+        </td>
+        <td>0xD609f26B5547d5E31562B29150769Cb7c774B97a</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://bscscan.com/address/0x55d398326f99059fF775485246999027B3197955">
+            USDT
+          </a>
+        </td>
+        <td>0x55d398326f99059fF775485246999027B3197955</td>
+        <td>Adopted</td>
+      </tr>
     </tbody>
   </table>
 
@@ -497,6 +659,42 @@ A full list of deployed contracts can be found in the [deployments.json](https:/
           </a>
         </td>
         <td>0x6A023CCd1ff6F2045C3309768eAd9E68F978f6e1</td>
+        <td>Adopted</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://gnosisscan.io/address/0x0e1D5Bcd2Ac5CF2f71841A9667afC1E995CaAf4F">
+            nextDAI
+          </a>
+        </td>
+        <td>0x0e1D5Bcd2Ac5CF2f71841A9667afC1E995CaAf4F</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://gnosisscan.io/address/0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d">
+            DAI
+          </a>
+        </td>
+        <td>0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d</td>
+        <td>Adopted</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://gnosisscan.io/address/0xF4d944883D6FddC56d3534986feF82105CaDbfA1">
+            nextUSDT
+          </a>
+        </td>
+        <td>0xF4d944883D6FddC56d3534986feF82105CaDbfA1</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>
+          <a href="https://gnosisscan.io/address/0x4ECaBa5870353805a9F068101A40E0f32ed605C6">
+            USDT
+          </a>
+        </td>
+        <td>0x4ECaBa5870353805a9F068101A40E0f32ed605C6</td>
         <td>Adopted</td>
       </tr>
     </tbody>
