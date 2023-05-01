@@ -191,16 +191,16 @@ The `getXCallCallData` function generates calldata to be passed into `xcall`. Th
 ```ts
 export const getXCallCallData = async (
   domainId: string,
-  target: XReceiveTarget,
   swapper: Swapper,
+  forwardCallData: string,
   params: DestinationCallDataParams,
-):
+)
 ```
 
 It takes four parameters.
   - `domainId`: A string representing the destination domain ID.
-  - `target`: A string representing the name of the `xReceive` contract on the destination.
   - `swapper`: A string representing which [swapper](../reference/integration/adapters#swappers) should be used. It can be `UniV2`, `UniV3`, or `OneInch`.
+  - `forwardCallData`: encoded data for passing into the target contract using `abiencoder`.
   - `params`: An object containing the following fields.
 
     ```ts
@@ -265,15 +265,14 @@ const params: DestinationCallDataParams = {
     swapData: {
       amountOutMin: "0",
       poolFee: poolFee,
-    },
-    forwardCallData: {
-      cTokenAddress: POLYGON_CTOKEN_WETH,
-      underlying: POLYGON_WETH,
-      minter: signerAddress,
-    },
+    }
   },
 };
-const callDataForMidasProtocolTarget = await getXCallCallData(POLYGON_DOMAIN_ID, target, swapper, params);
+const forwardCallData = defaultAbiCoder.encode(
+  ["address", "address", "address"],
+  [POLYGON_CTOKEN_WETH, POLYGON_WETH, signerAddress],
+);
+const callDataForMidasProtocolTarget = await getXCallCallData(POLYGON_DOMAIN_ID, swapper, forwardCallData, params);
 const swapAndXCallParams = {
   originDomain: "6450786",
   destinationDomain: "1886350457",
