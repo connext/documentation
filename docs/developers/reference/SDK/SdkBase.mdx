@@ -344,6 +344,7 @@ signer.sendTransaction(txRequest);
 | `params.origin` | `string` | The origin domain ID. |
 | `params.receiveLocal` | `undefined` \| `boolean` | (optional) Whether to receive the local asset ("nextAsset"). |
 | `params.relayerFee` | `undefined` \| `string` | (optional) Fee paid to relayers, in native asset on origin. Use `calculateRelayerFee` to estimate. |
+| `params.relayerFeeInTransactingAsset` | `undefined` \| `string` | (optional) Fee paid to relayers, in transacting asset on origin. Use `calculateRelayerFee` to estimate. |
 | `params.slippage` | `undefined` \| `string` | (optional) Maximum acceptable slippage in BPS. For example, a value of 30 means 0.3% slippage. |
 | `params.to` | `string` | Address receiving funds or the target contract. |
 | `params.wrapNativeOnOrigin` | `undefined` \| `boolean` | (optional) Whether we should wrap the native token before sending the xcall. This will use the Multisend utility contract to deposit ETH, approve Connext as a spender, and call xcall. If set true, `asset` should be the target wrapper contract (e.g. WETH) address. |

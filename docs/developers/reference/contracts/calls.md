@@ -171,7 +171,7 @@ Gets the `domain` identifier of the chain.
 ### xcall
 
 ```solidity
-function xcall(uint32 _destination, address _to, address _asset, address _delegate, uint256 _amount, uint256 _slippage, bytes _callData) external payable returns (bytes32)
+function xcall(uint32 _destination, address _to, address _asset, address _delegate, uint256 _amount, uint256 _slippage, bytes _callData, uint256 _relayerFee) external payable returns (bytes32)
 ```
 
 Initiates a cross-chain transfer of funds, calldata, and/or various named properties.
@@ -182,6 +182,8 @@ necessary. In the event that the adopted assets *are* local assets, no swap is n
 then be sent via the bridge router. If the local assets are representational for an asset on another chain, we will
 burn the tokens here. If the local assets are canonical (meaning that the adopted to local asset pairing is native
 to this chain), we will custody the tokens here.
+
+> Note that `_relayerFee` is a parameter in an overloaded `xcall` method. If the call doesn't specify `relayerFee`, it will assume that the relayer fee will be paid in native asset (e.g. `xcall{value: relayerFeeInNative}`).
 
 #### Parameters
 
@@ -194,6 +196,7 @@ to this chain), we will custody the tokens here.
 | `_amount`           | `uint256`  | The amount of tokens to bridge specified in wei units (i.e. to send 1 USDC, a token with 10^6 decimals, you must specify the amount as `1000000`).|
 | `_slippage`         | `uint256`  | The maximum slippage a user is willing to take, in BPS, due to the StableSwap Pool(s), if applicable. For example, to achieve 0.03% slippage tolerance this will be `3`.|
 | `_callData`         | `bytes`    | In the case of bridging funds only, this should be empty bytes ("0x"). If calldata is sent, then the encoded calldata must be passed here.|
+| `_relayerFee`       | `uint256`  | Relayer fee to be paid in the transacting asset (`_asset`).|
 
 #### Return Values
 
@@ -204,7 +207,7 @@ to this chain), we will custody the tokens here.
 ### xcallIntoLocal
 
 ```solidity
-function xcallIntoLocal(uint32 _destination, address _to, address _asset, address _delegate, uint256 _amount, uint256 _slippage, bytes _callData) external payable returns (bytes32)
+function xcallIntoLocal(uint32 _destination, address _to, address _asset, address _delegate, uint256 _amount, uint256 _slippage, bytes _callData, uint256 _relayerFee) external payable returns (bytes32)
 ```
 
 Helper function that xcalls as normal but forces the receipt of the local (Connext-flavored) asset at destination. This function is used typically to generate nextAssets that can be used to LP into the destination chain stableswap. Params and returned data function exactly the same way as `xcall`.
