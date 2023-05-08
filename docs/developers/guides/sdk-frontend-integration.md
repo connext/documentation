@@ -98,10 +98,79 @@ export default function Home() {
   )
 ```
 
-## Create React App
+## Create React App (CRA)
 
-React is a popular frontend framework that allows you to build client-rendered React applications. `create-react-app` is an easy way to get started with React.
+React is a popular frontend framework that allows you to build client-rendered React applications. However, CRA is at end of life and the React team recommends other frameworks instead. 
 
-:::caution
-`create-react-app` does not support polyfilling dependencies. You will need to eject your application to use the SDK. We highly recommend using Next.JS instead for easier integration. See this [issue](https://stackoverflow.com/questions/70591567/module-not-found-error-cant-resolve-fs-in-react) for more information.
-:::
+We highly recommend using NextJS for easier integration. If, however, you still want to use CRA for your project then you should follow these steps.
+
+### 1. Setup
+
+Create a new CRA using the `create-react-app` command.
+
+```bash
+npx create-react-app my-app
+# or
+yarn create react-app my-app --template typescript
+```
+
+### 2. Install the SDK
+
+Install the SDK using your package manager of choice.
+
+```bash npm2yarn
+npm install @connext/sdk
+```
+
+### 3. Configure CRA
+
+1) Install necessary dependencies
+
+```
+yarn add -D @craco/craco zlib-browserify 
+```
+
+2) Create a `craco.config.js` in your project root with the following contents.
+
+```js
+const webpack from 'webpack';
+
+module.exports = {
+  webpack: {
+    configure: webpackConfig => {
+      webpackConfig['resolve'] = {
+        fallback: {
+          fs: false,
+          path: false,
+          os: false,
+          zlib: require.resolve("zlib-browserify"),
+        },
+      }
+      return webpackConfig;
+    },
+		plugins: [
+      // Work around for Buffer is undefined:
+      // https://github.com/webpack/changelog-v5/issues/10
+      new webpack.ProvidePlugin({
+          Buffer: ['buffer', 'Buffer'],
+      }),
+      new webpack.ProvidePlugin({
+          process: 'process/browser',
+      }),
+    ],
+  },
+};
+```
+
+3) Change scripts in `package.json` to use `craco` commands instead of `react-scripts`.
+
+```json
+"scripts": {
+-  "start": "react-scripts start",
+-  "build": "react-scripts build",
+-  "test": "react-scripts test"
++  "start": "craco start",
++  "build": "craco build",
++  "test": "craco test"
+}
+```
