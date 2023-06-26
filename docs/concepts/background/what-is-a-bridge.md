@@ -1,4 +1,4 @@
----
+\65;6800;1c---
 sidebar_position: 1
 id: "what-is-a-bridge"
 ---
@@ -31,7 +31,7 @@ Typically, this is done by actors that are running nodes on both chains.
 The verification layer is the trickiest layer to both describe and design. While it is fairly straightforward to poll an origin chain for new data and then post it to a destination chain, it is not at all simple to verify that the polled data is actually correct. The problem is that in many cases, both the origin chain and the destination chain are decentralized networks, and therefore the claim of a signular node is not trustworthy.
 
 To understand this better, we will use a non-technical analogy.
-Imagine that there are two communities of people, community A and community B. Each community has a history spanning thousands of years, and in those thousands of years they have developed a strong folklor, mythology, and set of shared values and truths. However, they have never written these things down on a shared document.
+Imagine that there are two communities of people, community A and community B. Each community has a history spanning thousands of years, and in those thousands of years they have developed a strong folklore, mythology, and set of shared values and truths. However, they have never written these things down on a shared document.
 
 Now a member of community B wants to know something about an event that occured in community A's past. So they travel to where community A lives, befriend somebody and ask them about that event. Can the person from community B trust the person from community A to tell the truth?
 
