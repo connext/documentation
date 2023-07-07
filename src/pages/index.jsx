@@ -85,7 +85,7 @@ const LongRow = styled.div`
   grid-gap: 16px;
   justify-content: center;
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 1350px;
 
   @media (max-width: 1250px) {
     grid-template-columns: 1fr 1fr;
