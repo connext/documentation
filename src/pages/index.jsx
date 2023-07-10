@@ -393,7 +393,7 @@ export default function Home() {
                 </Link>
                 <Link
                   style={{ textDecoration: "none" }}
-                  href={"https://medium.com/connext/"}
+                  href={"https://blog.connext.network/"}
                 >
                   <CenterCard>
                     <ConnextLogo style={{ width: "48px", height: "48px" }} />
