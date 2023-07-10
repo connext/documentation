@@ -381,13 +381,13 @@ export default function Home() {
                 </Link>
                 <Link
                   style={{ textDecoration: "none" }}
-                  href={"https://connext.academy"}
+                  href={"https://www.connext.network/ecosystem"}
                 >
                   <CenterCard>
                     <ConnextLogo style={{ width: "48px", height: "48px" }} />
                     <div>
-                      <h3>Connext Academy</h3>
-                      <p>Community-run knowledge base.</p>
+                      <h3>Ecosystem Portal</h3>
+                      <p>Explore who's building on Connext.</p>
                     </div>
                   </CenterCard>
                 </Link>
