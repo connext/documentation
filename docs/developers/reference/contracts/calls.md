@@ -15,7 +15,7 @@ This section contains a full API reference of all public functions & events rela
 ### XCalled
 
 ```solidity
-event XCalled(bytes32 transferId, uint256 nonce, bytes32 messageHash, struct TransferInfo params, address asset, uint256 amount, address local)
+event XCalled(bytes32 transferId, uint256 nonce, bytes32 messageHash, TransferInfo params, address asset, uint256 amount, address local)
 ```
 
 Emitted when `xcall` is called on the origin domain of a transfer.
@@ -27,7 +27,7 @@ Emitted when `xcall` is called on the origin domain of a transfer.
 | transferId | bytes32 | - The unique identifier of the crosschain transfer. |
 | nonce | uint256 | - The bridge nonce of the transfer on the origin domain. |
 | messageHash | bytes32 | - The hash of the message bytes (containing all transfer info) that were bridged. |
-| params | struct TransferInfo | - The `TransferInfo` provided to the function. |
+| params | TransferInfo | - The `TransferInfo` provided to the function. |
 | asset | address | - The asset sent in with xcall |
 | amount | uint256 | - The amount sent in with xcall |
 | local | address | - The local asset that is controlled by the bridge and can be burned/minted |
@@ -51,7 +51,7 @@ Emitted when a transfer has its external data executed
 ### Executed
 
 ```solidity
-event Executed(bytes32 transferId, address to, address asset, struct ExecuteArgs args, address local, uint256 amount, address caller)
+event Executed(bytes32 transferId, address to, address asset, ExecuteArgs args, address local, uint256 amount, address caller)
 ```
 
 Emitted when `execute` is called on the destination domain of a transfer.
@@ -65,7 +65,7 @@ _`execute` may be called when providing fast liquidity or when processing a reco
 | transferId | bytes32 | - The unique identifier of the crosschain transfer. |
 | to | address | - The recipient `TransferInfo.to` provided, created as indexed parameter. |
 | asset | address | - The asset the recipient is given or the external call is executed with. Should be the adopted asset on that chain. |
-| args | struct ExecuteArgs | - The `ExecuteArgs` provided to the function. |
+| args | ExecuteArgs | - The `ExecuteArgs` provided to the function. |
 | local | address | - The local asset that was either supplied by the router for a fast-liquidity transfer or minted by the bridge in a reconciled (slow) transfer. Could be the same as the adopted `asset` param. |
 | amount | uint256 | - The amount of transferring asset the recipient address receives or the external call is executed with. |
 | caller | address | - The account that called the function. |
@@ -215,7 +215,7 @@ Helper function that xcalls as normal but forces the receipt of the local (Conne
 ### execute
 
 ```solidity
-function execute(struct ExecuteArgs _args) external returns (bytes32)
+function execute(ExecuteArgs calldata _args) external returns (bytes32)
 ```
 
 Called on a destination domain to disburse correct assets to end recipient and execute any included
@@ -230,7 +230,7 @@ reconcile has been completed (i.e. the optimistic confirmation period has elapse
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| _args | struct ExecuteArgs | - ExecuteArgs arguments. |
+| _args | ExecuteArgs | - ExecuteArgs arguments. |
 
 #### Return Values
 
@@ -238,7 +238,7 @@ reconcile has been completed (i.e. the optimistic confirmation period has elapse
 | ---- | ---- | ----------- |
 | [0] | bytes32 | bytes32 - The transfer ID of the crosschain transfer. Should match the xcall's transfer ID in order for reconciliation to occur. |
 
-### bumpTransfer
+### bumpTransfer (native asset)
 
 ```solidity
 function bumpTransfer(bytes32 _transferId) external payable
@@ -252,10 +252,26 @@ Anyone can call this function on the origin domain to increase the relayer fee f
 | ---- | ---- | ----------- |
 | _transferId | bytes32 | - The unique identifier of the crosschain transaction |
 
+### bumpTransfer (transacting asset)
+
+```solidity
+function bumpTransfer(bytes32 _transferId, address _relayerFeeAsset, uint256 _relayerFee) external payable
+```
+
+Anyone can call this function to increase the relayer fee for a transfer. MUST be called on the origin domain.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _transferId | bytes32 | - The unique identifier of the crosschain transaction |
+| _relayerfeeAsset | address | - The asset you are bumping fee with |
+| _relayerFee | uint256 | - The amount you want to bump transfer fee with |
+
 ### forceUpdateSlippage
 
 ```solidity
-function forceUpdateSlippage(struct TransferInfo _params, uint256 _slippage) external
+function forceUpdateSlippage(TransferInfo calldata _params, uint256 _slippage) external
 ```
 
 Allows a user-specified account (`delegate` in `xcall`) to update the slippage they are willing
@@ -265,8 +281,22 @@ to take on destination transfers. MUST be called on the destination chain.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| _params | struct TransferInfo | TransferInfo associated with the transfer |
+| _params | TransferInfo | TransferInfo associated with the transfer |
 | _slippage | uint256 | The updated slippage |
+
+### forceReceiveLocal
+
+```solidity
+function forceReceiveLocal(TransferInfo calldata _params) external
+```
+
+Allows a user-specified account (`delegate` in `xcall`) to withdraw the local asset directly. MUST be called on the destination chain.
+
+#### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| _params | TransferInfo | TransferInfo associated with the transfer |
 
 ---
 
