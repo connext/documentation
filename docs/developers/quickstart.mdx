@@ -223,13 +223,15 @@ Create a `/scripts/deploySource.js` file with the following:
 
 ```js
 const main = async () => {
-  const SourceGreeter = await hre.ethers.getContractFactory('SourceGreeter');
-  const sourceGreeterContract = await SourceGreeter.deploy(
-    "0xFCa08024A6D4bCc87275b1E4A1E22B71fAD7f649", // Connext on Goerli
-    "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1" // TEST on Goerli
+  const sourceGreeterContract = await hre.ethers.deployContract(
+    "SourceGreeter",
+    [
+      "0xFCa08024A6D4bCc87275b1E4A1E22B71fAD7f649", // Connext on Goerli
+      "0x7ea6eA49B0b0Ae9c5db7907d139D9Cd3439862a1" // TEST on Goerli
+    ]
   );
-  await sourceGreeterContract.deployed();
-  console.log("Contract deployed to:", sourceGreeterContract.address);
+  await sourceGreeterContract.waitForDeployment();
+  console.log("Contract deployed to:", await sourceGreeterContract.getAddress());
   
 };
 
@@ -259,7 +261,7 @@ Output: `Contract deployed to: 0x9Af84578B89FcA019580af02326388987A074ca1`
 
 ### Verify Contract
 
-Add an `etherScan` section to `hardhat.config.js`:
+Add an `etherScan` section to `hardhat.config.js` with your `goerli` api key (note: Etherscan API keys for the mainnet explorers will work for testnets):
 
 ```js
 module.exports = {
@@ -375,7 +377,8 @@ module.exports = {
     //highlight-start
     "optimism-goerli":{
       url: "https://goerli.optimism.io",
-      accounts: [`0x${process.env.PRIVATE_KEY}`]
+      accounts: [`0x${process.env.PRIVATE_KEY}`],
+      // gasPrice: 800000 // you may need to set this manually if you get "transaction underpriced"
     }
     //highlight-end
   }
@@ -385,12 +388,14 @@ module.exports = {
 Create a `scripts/deployTarget.js` file with the following: 
 ```js
 const main = async () => {
-  const DestinationGreeter = await hre.ethers.getContractFactory('DestinationGreeter');
-  const destinationGreeterContract = await DestinationGreeter.deploy(
-    "0x68Db1c8d85C09d546097C65ec7DCBFF4D6497CbF" // TEST on Optimism-Goerli
+  const destinationGreeterContract = await hre.ethers.deployContract(
+    "DestinationGreeter",
+    [
+      "0x68Db1c8d85C09d546097C65ec7DCBFF4D6497CbF" // TEST on Optimism-Goerli
+    ]
   );
-  await destinationGreeterContract.deployed();
-  console.log("Contract deployed to:", destinationGreeterContract.address);
+  await destinationGreeterContract.waitForDeployment();
+  console.log("Contract deployed to:", await destinationGreeterContract.getAddress());
 };
 
 const runMain = async () => {
@@ -415,6 +420,29 @@ npx hardhat run scripts/deployTarget.js --network optimism-goerli
 Output: `Contract deployed to: 0xC4e508cEe84499958a84C3562e92bD9e71d7D38a`
 
 ### Verify Contract
+
+Add an `apiKey` to `hardhat.config.js` for `optimism-goerli`:
+
+```js
+module.exports = {
+  solidity: "0.8.17",
+  networks:{
+    goerli:{
+      url: "https://rpc.ankr.com/eth_goerli",
+     // PRIVATE_KEY loaded from .env file
+      accounts: [`0x${process.env.PRIVATE_KEY}`]
+    }
+  },
+  etherscan: {
+    apiKey: {
+      goerli: "YOUR-API-KEY-HERE",
+      //highlight-start
+      optimisticGoerli: "YOUR-API-KEY-HERE",
+      //highlight-end
+    }
+  }
+};
+```
 
 Using the contract address you just deployed, verify it:
 
@@ -490,9 +518,15 @@ Let's walk through the different parameters.
     As a xApp developer, you have some tools available to estimate what this `relayerFee` should be. For now, there are offchain methods for doing so - check out the guide on [Estimating Fees](./guides/estimating-fees).
     :::
 
+### Track the xcall
+
+After executing `updateGreeting`, you can use [Connextscan (testnet)](https://testnet.connextscan.io) to check the status of the `xcall`. Just search up the transaction hash from the execution transaction.
+
+Note that if your `relayerFee` was too low, the explorer will prompt you to increase it.
+
 ### Check `DestinationGreeter`
 
-After executing `updateGreeting`, `DestinationGreeter` should be updated in just a few minutes (because this call is unauthenticated!). Cross-chain calls are not always this fast - see our guide on [Authentication](./guides/authentication).
+`DestinationGreeter` should be updated in just a few minutes (because this call is unauthenticated!). Cross-chain calls are not always this fast - see our guide on [Authentication](./guides/authentication).
 
 Head over to the `DestinationGreeter` contract on Etherscan. This time, we'll go to the `Read Contract` tab and look at the value of `greeting`. It has updated!
 
