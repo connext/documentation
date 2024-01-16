@@ -17,12 +17,13 @@ This subgraph is can be used to query Connext bridge transactions, transactions 
 
 | Chain | Subgraph |
 | --- | --- |
-| Ethereum | [v0-Mainnet](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-mainnet) |
-| Optimism | [v0-Optimism](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-optimism) |
-| Arbitrum | [v0-Arbitrum-One](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-arbitrum-one) |
-| Polygon | [v0-Polygon](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-polygon) |
-| Binance Smart Chain | [v0-Bnb](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-bnb) |
-| Gnosis | [v0-Gnosis](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-gnosis) |
+| Ethereum | [v0.0.1-Mainnet](https://thegraph.com/explorer/subgraphs/FfTxiY98LJG6zoiAjCXdT34pAmCKDEP8vZRVuC8D5Gf?view=Overview&chain=arbitrum-one) |
+| Optimism | [v0.0.1-Optimism](https://thegraph.com/explorer/subgraphs/3115xfkzXPrYzbqDHTiWGtzRDYNXBxs8dyitva6J18jf?view=Overview&chain=arbitrum-one) |
+| Arbitrum | [v0.0.1-Arbitrum-One](https://thegraph.com/explorer/subgraphs/F325dMRiLVCJpX8EUFHg3SX8LE3kXBUmrsLRASisPEQ3?view=Overview&chain=arbitrum-one) |
+| Polygon | [v0.0.1-Polygon](https://thegraph.com/explorer/subgraphs/7mDXK2K6UfkVXiJMhXU8VEFuh7qi2TwdYxeyaRjkmexo?view=Overview&chain=arbitrum-one) |
+| Binance Smart Chain | [v0.0.1-Bnb](https://thegraph.com/hosted-service/subgraph/connext/amarok-runtime-v0-bnb) |
+| Gnosis | [v0.0.1-Gnosis](https://thegraph.com/explorer/subgraphs/6oJrPk9YJEU9rWU4DAizjZdALSccxe5ZahBsTtFaGksU?view=Overview&chain=arbitrum-one) |
+| Base | [v0.0.1-Base](https://thegraph.com/explorer/subgraphs/4YtEYNhpX6x1G21wra23DQF871yNs62D6H2E98EY3uCd?view=Overview&chain=arbitrum-one) |
 
 </details>
 
